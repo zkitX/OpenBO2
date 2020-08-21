@@ -162,6 +162,25 @@ int common::Com_GetPrivateClients()
     return 0;
 }
 
+void common::Com_PrintError(int a1, int channel, const char* fmt, ...)
+{
+    unsigned int v3; // kr00_4
+    char dest[4095]; // [esp+0h] [ebp-1004h]
+    char v5; // [esp+FFFh] [ebp-5h]
+    va_list ap; // [esp+1014h] [ebp+10h]
+
+    va_start(ap, fmt);
+    if (q_shared::I_stristr(fmt, "error"))
+        q_shared::I_strncpyz(dest, "^1", 4096);
+    else
+        q_shared::I_strncpyz(dest, "^1Error: ", 4096);
+    v3 = strlen(dest);
+    _vsnprintf(&dest[v3], 4096 - v3, fmt, ap);
+    ++com_errorPrintsCount;
+    v5 = 0;
+    Com_PrintMessage(a1, channel, dest, 3);
+}
+
 void common::Com_Printf(int a1, int channel, const char* fmt, ...)
 {
     signed int v3; // kr00_4
@@ -230,6 +249,10 @@ void common::Com_Printf(int a1, int channel, const char* fmt, ...)
             }
         }
     }
+}
+
+void common::Com_PrintMessage(int a1, int channel, const char* msg, int error)
+{
 }
 
 bool common::Com_SetPrivateClients()

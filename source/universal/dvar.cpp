@@ -2,12 +2,51 @@
 
 #include <emmintrin.h>
 
+#include "../qcommon/cmd.h"
+
 void Dvar_AddCommands()
 {
+    Cmd_AddCommandInternal("toggle", (void(__cdecl*)())dvar::Dvar_Toggle_f, &Dvar_Toggle_f_VAR);
+    Cmd_AddCommandInternal("togglep", (void(__cdecl*)())dvar::Dvar_TogglePrint_f, &Dvar_TogglePrint_f_VAR);
+    Cmd_AddCommandInternal("set", (void(__cdecl*)())dvar::Dvar_Set_f, &Dvar_Set_f_VAR);
+    Cmd_AddCommandInternal("seta", (void(__cdecl*)())dvar::Dvar_SetA_f, &Dvar_SetA_f_VAR);
+    Cmd_AddCommandInternal("setdvartotime", (void(__cdecl*)())Dvar_SetToTime_f, &Dvar_SetToTime_f_VAR);
+    Cmd_AddCommandInternal("reset", (void(__cdecl*)())dvar::Dvar_Reset_f, &Dvar_Reset_f_VAR);
+    Cmd_AddCommandInternal("dvarlist", (void(__cdecl*)())dvar::Dvar_List_f, &Dvar_List_f_VAR);
+    Cmd_AddCommandInternal("dvardump", Dvar_Dump_f, &Dvar_Dump_f_VAR);
+    Cmd_AddCommandInternal("dvar_bool", (void(__cdecl*)())dvar::Dvar_RegisterBool_f, &Dvar_RegisterBool_f_VAR);
+    Cmd_AddCommandInternal("dvar_int", (void(__cdecl*)())dvar::Dvar_RegisterInt_f, &Dvar_RegisterInt_f_VAR);
+    Cmd_AddCommandInternal("dvar_float", (void(__cdecl*)())dvar::Dvar_RegisterFloat_f, &Dvar_RegisterFloat_f_VAR);
+    Cmd_AddCommandInternal("dvar_color", Dvar_RegisterColor_f, &Dvar_RegisterColor_f_VAR);
+    Cmd_AddCommandInternal("dvarAddConfigFlag", Dvar_AddConfigFlag_f, &Dvar_AddConfigFlag_f_VAR);
+    Cmd_AddCommandInternal("restoreDvars", (void(__cdecl*)())BG_EvalVehicleName, &Dvar_RestoreDvars_VAR);
 }
 
 void Dvar_AddConfigFlag_f()
 {
+    const char* v0; // eax
+    dvar_t* v1; // eax
+
+    if (Cmd_Argc() == 2)
+    {
+        v0 = Cmd_Argv(1);
+        v1 = Dvar_FindVar((const char*)v0);
+        if (v1)
+        {
+            Dvar_AddFlags(v1, 0x20000);
+        }
+        #ifdef _DEBUG
+        else if (!(unsigned __int8)assertive::Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(dvar)",
+            (const char*)&pBlock))
+        {
+            __debugbreak();
+        }
+        #endif // _DEBUG
+    }
 }
 
 void Dvar_AddFlags(const dvar_t* dvar, int flags)
@@ -994,7 +1033,7 @@ void Dvar_WriteSingleDefault(const dvar_t* dvar, void* userData)
     const char* v5; // eax
 
     v2 = Dvar_GetName(dvar);
-    if (I_stricmp(v2, "cl_cdkey"))
+    if (q_shared::I_stricmp(v2, "cl_cdkey"))
     {
         if (!((unsigned int)Dvar_GetFlags(dvar) & 0x40C0))
         {
@@ -1014,7 +1053,7 @@ void Dvar_WriteSingleVariable(const dvar_t* dvar, void* userData)
     const char* v5; // eax
 
     v2 = Dvar_GetName(dvar);
-    if (I_stricmp(v2, "cl_cdkey"))
+    if (q_shared::I_stricmp(v2, "cl_cdkey"))
     {
         if ((unsigned int)Dvar_GetFlags(dvar) & 1)
         {
@@ -1244,7 +1283,7 @@ int dvar::Dvar_StringToEnum(const DvarLimits* domain, const char* string)
     v2 = 0;
     if (domain->enumeration.stringCount > 0)
     {
-        while (I_stricmp(string, domain->enumeration.strings[v2]))
+        while (q_shared::I_stricmp(string, domain->enumeration.strings[v2]))
         {
             if (++v2 >= domain->enumeration.stringCount)
                 goto LABEL_10;
@@ -1280,7 +1319,7 @@ LABEL_10:
         v2 = 0;
         if (domain->enumeration.stringCount > 0)
         {
-            while (I_strnicmp(string, domain->enumeration.strings[v2], v6))
+            while (q_shared::I_strnicmp(string, domain->enumeration.strings[v2], v6))
             {
                 if (++v2 >= domain->enumeration.stringCount)
                     return -1337;
@@ -1534,7 +1573,7 @@ bool dvar::Dvar_ToggleInternal()
             v35 = Cmd_Argv(v34 - 1);
             v36 = Cmd_Argv(v33);
             v37 = va("%s %s", v36, v35);
-            if (!I_stricmp(v5, v37))
+            if (!q_shared::I_stricmp(v5, v37))
                 break;
             v33 += 2;
             v34 += 2;
@@ -1560,7 +1599,7 @@ bool dvar::Dvar_ToggleInternal()
             v26 = Cmd_Argv(v24 + 1);
             v27 = Cmd_Argv(v24);
             v28 = va("%s %s %s", v27, v26, v25);
-            if (!I_stricmp(v5, v28))
+            if (!q_shared::I_stricmp(v5, v28))
                 break;
             v24 += 3;
             if (v24 + 3 >= Cmd_Argc())
@@ -1584,7 +1623,7 @@ bool dvar::Dvar_ToggleInternal()
             v16 = Cmd_Argv(v13 + 1);
             v17 = Cmd_Argv(v13);
             v18 = va("%s %s %s %s", v17, v16, v15, v14);
-            if (!I_stricmp(v5, v18))
+            if (!q_shared::I_stricmp(v5, v18))
                 break;
             v13 += 4;
             if (v13 + 4 >= Cmd_Argc())
@@ -1723,7 +1762,7 @@ void dvar::Dvar_TogglePrint_f()
             __debugbreak();
         }
 #endif // _DEBUG
-        Com_Printf(0, "%s toggled to %s\n", v1, v3);
+        common::Com_Printf((int)v2, 0, "%s toggled to %s\n", v2, v3);
     }
 }
 
@@ -1785,7 +1824,7 @@ char dvar::Dvar_ToggleSimple(const dvar_t* dvar)
     case DVAR_TYPE_LINEAR_COLOR_RGB:
     case DVAR_TYPE_COLOR_XYZ:
         v9 = Dvar_GetName(dvar);
-        Com_Printf(0, "'toggle' with no arguments makes no sense for dvar '%s'\n", v9);
+        common::Com_Printf((int)dvar, 0, "'toggle' with no arguments makes no sense for dvar '%s'\n", v9);
         result = 0;
         break;
     case DVAR_TYPE_INT:

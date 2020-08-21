@@ -29,19 +29,22 @@ public:
 		ERR_LOCALIZATION = 0x7,
 	};
 	static GfxViewParms com_errorMessage;
+	static unsigned int com_errorPrintsCount;
 	static char g_stackTrace[8192];
 	static char unknownByte;
 	// _________________________________________________________________________________
 	// Function declarations
 	// _________________________________________________________________________________
 	static void Com_Error(errorParm_t code, const char* fmt, ...);
-	void Com_ErrorCleanup();;
-	void Com_Frame_Try_Block_Function();
+	static void Com_ErrorCleanup();;
+	static void Com_Frame_Try_Block_Function();
 	static const char* Com_GetBuildName();
 	static const char* Com_GetBuildVersion();
-	int Com_GetPrivateClients();
+	static int Com_GetPrivateClients();
+	static void Com_PrintError(int a1, int channel, const char* fmt, ...);
 	static void Com_Printf(int a1, int channel, const char* fmt, ...);
-	bool Com_SetPrivateClients();
+	static void Com_PrintMessage(int a1, int channel, const char* msg, int error);
+	static bool Com_SetPrivateClients();
 
 	static char* Sys_Cwd();
 	static char* Sys_DefaultInstallPath();

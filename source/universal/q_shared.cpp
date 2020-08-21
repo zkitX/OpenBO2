@@ -1,3 +1,5 @@
+#include <direct.h>
+
 #include "q_shared.h"
 #include "assertive.h"
 
@@ -44,6 +46,89 @@ void q_shared::I_strncpyz(char* dest, const char* src, int destsize)
     strncpy(dest, src, destsize-1);
 }
 
+int q_shared::I_stricmp(const char* s0, const char* s1)
+{
+#ifdef _DEBUG
+    if (!s0
+        && !(unsigned __int8)assertive::Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(s0)",
+            (const char*)&pBlock))
+    {
+        __debugbreak();
+    }
+    if (!s1
+        && !(unsigned __int8)assertive::Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(s1)",
+            (const char*)&pBlock))
+    {
+        __debugbreak();
+    }
+#endif // _DEBUG
+    return I_strnicmp(s0, s1, 0x7FFFFFFF);
+}
+
+int q_shared::I_strnicmp(const char* s0, const char* s1, int n)
+{
+    const char* v3; // esi
+    int v4; // edx
+    int v5; // eax
+    int v6; // ecx
+    int v7; // ebx
+
+    if (!s0
+        && !(unsigned __int8)assertive::Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(s0)",
+            (const char*)&pBlock))
+    {
+        __debugbreak();
+    }
+    v3 = s1;
+    if (!s1
+        && !(unsigned __int8)assertive::Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            (int)s1,
+            "(s1)",
+            (const char*)&pBlock))
+    {
+        __debugbreak();
+    }
+    if (!s0 || !s1)
+        return s1 - s0;
+    v4 = n;
+    while (1)
+    {
+        v5 = (unsigned __int8)v3[s0 - s1];
+        v6 = *(unsigned __int8*)v3;
+        v7 = v4;
+        ++v3;
+        --v4;
+        if (!v7)
+            return 0;
+        if (v5 != v6)
+        {
+            if ((unsigned int)(v5 - 65) <= 0x19)
+                v5 += 32;
+            if ((unsigned int)(v6 - 65) <= 0x19)
+                v6 += 32;
+            if (v5 != v6)
+                break;
+        }
+        if (!v5)
+            return 0;
+    }
+    return 2 * (v5 >= v6) - 1;
+}
+
 bool Com_BitCheckAssert(const unsigned int* array, int bitNum, int size)
 {
     if (!array
@@ -69,6 +154,87 @@ bool Com_BitCheckAssert(const unsigned int* array, int bitNum, int size)
         __debugbreak();
     }
     return (array[bitNum >> 5] & (1 << (bitNum & 0x1F))) != 0;
+}
+
+const char* I_stristr(const char* s0, const char* substr)
+{
+    const char* v2; // edi
+    signed int v3; // esi
+    int v4; // ebx
+    bool v5; // zf
+    int s0Char; // [esp+8h] [ebp-4h]
+    const char* substra; // [esp+18h] [ebp+Ch]
+
+    if (!s0
+        && !(unsigned __int8)assertive::Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(s0)",
+            (const char*)&pBlock))
+    {
+        __debugbreak();
+    }
+    v2 = substr;
+    if (!substr
+        && !(unsigned __int8)assertive::Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            (int)substr,
+            "(substr)",
+            (const char*)&pBlock))
+    {
+        __debugbreak();
+    }
+    if (!s0 || !substr)
+        return 0;
+    s0Char = 0;
+    if (*s0)
+    {
+        substra = s0;
+        while (2)
+        {
+            v3 = -1;
+            do
+            {
+                if (!v2[++v3])
+                    return &s0[s0Char];
+                v4 = tolower(substra[v3]);
+            } while (v4 == tolower(v2[v3]));
+            ++s0Char;
+            v5 = (substra++)[1] == 0;
+            if (!v5)
+                continue;
+            break;
+        }
+    }
+    return 0;
+}
+
+void* Sys_GetValue(int valueIndex)
+{
+    return
+}
+
+void Sys_MkdirEx(const char* _path)
+{
+    signed int v1; // kr00_4
+    signed int i; // esi
+    char v3; // bl
+    char path[1024]; // [esp+0h] [ebp-404h]
+
+    strcpy(path, _path);
+    v1 = strlen(path);
+    for (i = 0; i < v1; ++i)
+    {
+        v3 = path[i];
+        if (v3 == 47 || v3 == 92)
+        {
+            path[i] = 0;
+            _mkdir(path);
+            path[i] = v3;
+        }
+    }
 }
 
 char* va(const char* format, ...)

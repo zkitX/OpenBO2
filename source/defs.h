@@ -24,6 +24,8 @@
   typedef          __int64 ll;
   typedef unsigned __int64 ull;
   #define MAKELL(num) num ## i64
+  #define __PAIR__(high, low) (((unsigned long)(high)<<sizeof(high)*8) | low)
+  #define _mm_set_epi64x(m0, m1) _mm_set_epi64(_m_from_int64(m0), _m_from_int64(m1))
   #define FMT_64 "I64"
 #elif defined (__BORLANDC__)
   typedef          __int64 ll;

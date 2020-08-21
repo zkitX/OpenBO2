@@ -360,6 +360,30 @@
     <ClCompile Include="source\glass\glass_shard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\devgui\devgui_util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\aim_assist\aim_assist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\aim_assist\aim_target.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DynEntity\DynEntity_client.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DynEntity\DynEntity_coll.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DynEntity\DynEntity_load_obj.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DynEntity\DynEntity_pieces.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DynEntity\DynEntity_server.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\win32\win_main.h">
@@ -714,6 +738,30 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\glass\glass_server.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\devgui\devgui_util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\aim_assist\aim_target.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\aim_assist\aim_assist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DynEntity\DynEntity_client.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DynEntity\DynEntity_server.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DynEntity\DynEntity_coll.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DynEntity\DynEntity_load_obj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\DynEntity\DynEntity_pieces.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

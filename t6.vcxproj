@@ -139,6 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\DynEntity\DynEntity_coll.h" />
+    <ClInclude Include="source\DynEntity\DynEntity_load_obj.h" />
+    <ClInclude Include="source\DynEntity\DynEntity_pieces.h" />
+    <ClInclude Include="source\DynEntity\DynEntity_server.h" />
+    <ClInclude Include="source\DynEntity\DynEntity_client.h" />
+    <ClInclude Include="source\aim_assist\aim_assist.h" />
+    <ClInclude Include="source\aim_assist\aim_target.h" />
+    <ClInclude Include="source\devgui\devgui_util.h" />
     <ClInclude Include="source\glass\glass_allocator.h" />
     <ClInclude Include="source\glass\glass_client.h" />
     <ClInclude Include="source\glass\glass_renderer.h" />
@@ -259,6 +267,14 @@
     <ClInclude Include="source\server_mp\sv_snapshot_profile_mp.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\DynEntity\DynEntity_coll.cpp" />
+    <ClCompile Include="source\DynEntity\DynEntity_load_obj.cpp" />
+    <ClCompile Include="source\DynEntity\DynEntity_pieces.cpp" />
+    <ClCompile Include="source\DynEntity\DynEntity_server.cpp" />
+    <ClCompile Include="source\DynEntity\DynEntity_client.cpp" />
+    <ClCompile Include="source\aim_assist\aim_assist.cpp" />
+    <ClCompile Include="source\aim_assist\aim_target.cpp" />
+    <ClCompile Include="source\devgui\devgui_util.cpp" />
     <ClCompile Include="source\glass\glass_allocator.cpp" />
     <ClCompile Include="source\glass\glass_client.cpp" />
     <ClCompile Include="source\glass\glass_renderer.cpp" />

@@ -92,7 +92,7 @@ int miniDumper::writeMiniDump(miniDumper*, _EXCEPTION_POINTERS* pExceptionInfo, 
     HANDLE v7; // eax
     HANDLE v8; // eax
     int v10; // eax
-    _BYTE* v11; // edi
+    unsigned char* v11; // edi
     char* v12; // eax
     char v13; // cl
     char* v14; // eax
@@ -141,12 +141,12 @@ int miniDumper::writeMiniDump(miniDumper*, _EXCEPTION_POINTERS* pExceptionInfo, 
     strrchr(v6->m_szAppPath, 92);
     if (v10)
     {
-        v11 = (_BYTE*)(v10 + 1);
+        v11 = (unsigned char*)(v10 + 1);
         v12 = (char*)(v10 + 1);
         do
         {
             v13 = *v12;
-            v12[(_BYTE*)v6->m_szAppBaseName - v11] = *v12;
+            v12[(unsigned char*)v6->m_szAppBaseName - v11] = *v12;
             ++v12;
         } while (v13);
         *v11 = 0;
@@ -197,7 +197,7 @@ int miniDumper::writeMiniDump(miniDumper*, _EXCEPTION_POINTERS* pExceptionInfo, 
                     EnterCriticalSection(g_miniDumper.s_pCriticalSection);
                     v20 = GetCurrentProcessId();
                     v21 = GetCurrentProcess();
-                    v31 = (FARPROC)((int(__stdcall*)(HANDLE, DWORD, HANDLE, _MINIDUMP_TYPE, DWORD*, _DWORD, _DWORD))v31)(
+                    v31 = (FARPROC)((int(__stdcall*)(HANDLE, DWORD, HANDLE, _MINIDUMP_TYPE, DWORD*, unsigned int, unsigned int))v31)(
                         v21,
                         v20,
                         v18,

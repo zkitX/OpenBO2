@@ -1,25 +1,24 @@
 #pragma once
 
+struct GfxDrawSurfFields
+{
+	unsigned long long objectId : 16;
+	unsigned long long customIndex : 9;
+	unsigned long long reflectionProbeIndex : 5;
+	unsigned long long dlightMask : 2;
+	unsigned long long materialSortedIndex : 12;
+	unsigned long long primaryLightIndex : 8;
+	unsigned long long surfType : 4;
+	unsigned long long prepass : 2;
+	unsigned long long primarySortKey : 6;
+};
+
 union GfxDrawSurf
 {
 	GfxDrawSurfFields fields;
-	unsigned __int64 packed;
-};
-
-struct GfxDrawSurfFields
-{
-	unsigned __int64 objectId : 16;
-	unsigned __int64 customIndex : 9;
-	unsigned __int64 reflectionProbeIndex : 5;
-	unsigned __int64 dlightMask : 2;
-	unsigned __int64 materialSortedIndex : 12;
-	unsigned __int64 primaryLightIndex : 8;
-	unsigned __int64 surfType : 4;
-	unsigned __int64 prepass : 2;
-	unsigned __int64 primarySortKey : 6;
+	unsigned long long packed;
 };
 
 class r_drawsurf
 {
 };
-

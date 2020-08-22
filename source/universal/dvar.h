@@ -38,8 +38,8 @@ union DvarValue
 	bool enabled;
 	int integer;
 	unsigned int unsignedInt;
-	__int64 integer64;
-	unsigned __int64 unsignedInt64;
+	long long integer64;
+	unsigned long long unsignedInt64;
 	float value;
 	vec4_t vector;
 	const char* string;
@@ -57,8 +57,8 @@ union DvarLimits
 		int max;
 	} integer;
 	struct {
-		__int64 min;
-		__int64 max;
+		long long min;
+		long long max;
 	} integer64;
 	struct {
 		float min;
@@ -134,8 +134,8 @@ const char** Dvar_GetDomainEnumStrings(const char** result);
 double Dvar_GetDomainFloatMax(const dvar_t* dvar);
 double Dvar_GetDomainFloatMin(const dvar_t* dvar);
 
-__int64 Dvar_GetDomainInt64Max(const dvar_t* dvar);
-__int64 Dvar_GetDomainInt64Min(const dvar_t* dvar);
+long long Dvar_GetDomainInt64Max(const dvar_t* dvar);
+long long Dvar_GetDomainInt64Min(const dvar_t* dvar);
 
 int Dvar_GetDomainIntMax(const dvar_t* dvar);
 int Dvar_GetDomainIntMin(const dvar_t* dvar);
@@ -151,8 +151,8 @@ double Dvar_GetFloat(int dvarHash);
 int Dvar_GetInt(const dvar_t* dvar);
 int Dvar_GetInt(int dvarHash);
 
-__int64 Dvar_GetInt64(const dvar_t* dvar);
-__int64 Dvar_GetInt64(int dvarHash);
+long long Dvar_GetInt64(const dvar_t* dvar);
+long long Dvar_GetInt64(int dvarHash);
 
 bool Dvar_GetLatchedBool(const dvar_t* dvar);
 void Dvar_GetLatchedColor(const dvar_t* dvar, char* color);
@@ -210,7 +210,7 @@ const dvar_t* Dvar_SetFromStringByNameFromSource(const char* dvarName, const cha
 void Dvar_SetFromStringFromSource(const dvar_t* dvar, const char* string, DvarSetSource source);
 void Dvar_SetInAutoExec(bool inAutoExec);
 void Dvar_SetInt(const dvar_t* dvar, int value);
-void Dvar_SetInt64FromSource(const dvar_t* dvar, __int64 value, DvarSetSource source);
+void Dvar_SetInt64FromSource(const dvar_t* dvar, long long value, DvarSetSource source);
 void Dvar_SetIntFromSource(const dvar_t* dvar, int value, DvarSetSource source);
 void Dvar_SetIntIfChanged(const dvar_t* dvar, int value);
 void Dvar_SetLatchedValue(DvarValue value);
@@ -241,6 +241,10 @@ void Dvar_WriteSingleDefault(const dvar_t* dvar, void* userData);
 void Dvar_WriteSingleVariable(const dvar_t* dvar, void* userData);
 void Dvar_WriteVariables(int f);
 
+dvar_t* _Dvar_RegisterBool(const char* dvarName, bool value, unsigned int flags, const char* description);
+dvar_t* _Dvar_RegisterFloat(const char* dvarName, float value, float min, float max, unsigned int flags, const char* description);
+dvar_t* Dvar_RegisterVariant(const char* dvarName, dvarType_t type, unsigned int flags, DvarValue value, DvarLimits domain, const char* description);
+
 class dvar
 {
 public:
@@ -257,7 +261,7 @@ public:
 	static void Dvar_Init(int a1);
 	static void Dvar_List_f();
 	static void Dvar_LoadDvars(MemoryFile* memFile);
-	static void Dvar_LoadDvarsAddFlags(MemoryFile* memFile, unsigned __int16 flags);
+	static void Dvar_LoadDvarsAddFlags(MemoryFile* memFile, unsigned short flags);
 	static void Dvar_LoadScriptInfo(MemoryFile* memFile);
 	static void Dvar_MakeExplicitType(dvar_t* dvar, dvarType_t type, const char* dvarName, unsigned int flags, DvarValue resetValue, DvarLimits domain);
 	static void Dvar_PerformUnregistration(dvar_t* dvar);
@@ -281,7 +285,7 @@ public:
 	static int Dvar_StringToEnum(const DvarLimits* domain, const char* string);
 	static double Dvar_StringToFloat(const char* string);
 	static int Dvar_StringToInt(const char* string);
-	static __int64 Dvar_StringToInt64(const char* string);
+	static long long Dvar_StringToInt64(const char* string);
 	static DvarValue* Dvar_StringToValue(const dvarType_t type, const char* string, double a3, const DvarLimits domain);
 	static void Dvar_StringToVec2(const char* string, vec2_t* vector);
 	static void Dvar_StringToVec3(const char* string, vec3_t* vector);

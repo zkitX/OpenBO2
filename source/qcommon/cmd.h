@@ -18,7 +18,7 @@ struct CmdArgs
 {
 	int nesting;
 	LocalClientNum_t localClientNum[8];
-	win_gamepad::ControllerIndex_t controllerIndex[8];
+	ControllerIndex_t controllerIndex[8];
 	itemDef_s* itemDef[8];
 	int argshift[8];
 	int argc[8];
@@ -33,6 +33,8 @@ struct CmdArgs
 void Cmd_AddCommandInternal(const char* cmdName, void(* function)(), cmd_function_s* allocedCmd);
 int Cmd_Argc();
 const char* Cmd_Argv(int argIndex);
+void Cmd_ExecuteSingleCommand(LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, const char* text, bool fromRemoteConsole);
+void Cmd_ExecuteSingleCommandInternal(LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, itemDef_s* item, const char* text, bool fromRemoteConsole);
 
 class cmd
 {

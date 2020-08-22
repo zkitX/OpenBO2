@@ -12,8 +12,6 @@ char pBlock;
 int com_errorEntered;
 int com_fixedConsolePosition;
 
-errorParm_t errorcode;
-
 enum errorParm_t
 {
 	ERR_FATAL = 0x0,
@@ -25,9 +23,11 @@ enum errorParm_t
 	ERR_SCRIPT_DROP = 0x6,
 	ERR_LOCALIZATION = 0x7,
 };
+
+errorParm_t errorcode;
+
 const char* com_errorMessage;
 unsigned int com_errorPrintsCount;
-char g_stackTrace[8192];
 char unknownByte;
 // _________________________________________________________________________________
 // Function declarations

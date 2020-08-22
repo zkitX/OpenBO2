@@ -1,9 +1,17 @@
 #include "win_main.h"
+#include "win_net.h"
+#include "win_syscon.h"
 #include "win_localize.h"
 
 #include "../qcommon/cmd.h"
 #include "../qcommon/common.h"
+#include "../qcommon/threads.h"
 #include "../universal/blackbox.h"
+
+bool IsDebuggerConnected()
+{
+    return IsDebuggerPresent();
+}
 
 void Sys_Error(const char* error, ...)
 {
@@ -13,7 +21,19 @@ void Sys_Error(const char* error, ...)
 
     va_start(ap, error);
     _vsnprintf(&string, 0x1000u, error, ap);
-    
+    Com_PrintStackTrace(0, 0);
+    Com_PrintError(10, "\nSys_Error: %s\n\n", &string);
+    BB_Alert(__FILE__, __LINE__, "sys_error", &string);
+    FixWindowsDesktop();
+    if (IsDebuggerConnected)
+        __debugbreak();
+    SV_SysLog_LogMessage(0, &string);
+    SV_SysLog_ForceFlush();
+    if ((unsigned char)Sys_IsMainThread()) {
+        //LiveStream_Shutdown();
+        Sys_ShowConsole();
+    }
+
 }
 
 void Sys_OutOfMemErrorInternal(int a1, const char* filename, int line)
@@ -24,7 +44,7 @@ void Sys_OutOfMemErrorInternal(int a1, const char* filename, int line)
 
     ShowCursor(1);
     Sys_EnterCriticalSection(CRITSECT_FATAL_ERROR);
-    blackbox::BB_Alert(__FILE__, __LINE__, "error", "Out of Memory");
+    BB_Alert(__FILE__, __LINE__, "error", "Out of Memory");
     Com_Printf(10, "Out of memory: filename '%s', line %d\n", filename, line);
     localizedMemTitle = Win_LocalizeRef("WIN_OUT_OF_MEM_TITLE");
     localizedMemBody = Win_LocalizeRef("WIN_OUT_OF_MEM_BODY");

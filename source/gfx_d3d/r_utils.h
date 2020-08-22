@@ -2,6 +2,42 @@
 
 #include <d3d11.h>
 
+union vec2_t
+{
+	float v[2];
+	struct {
+		float x;
+		float y;
+	};
+};
+
+union vec3_t
+{
+	struct {
+		float x;
+		float y;
+		float z;
+	};
+	float v[3];
+};
+
+union vec4_t
+{
+	float v[4];
+	struct {
+		float x;
+		float y;
+		float z;
+		float w;
+	};
+	struct {
+		float r;
+		float g;
+		float b;
+		float a;
+	};
+};
+
 struct GfxMatrix
 {
 	vec4_t m[4];
@@ -27,41 +63,4 @@ struct GfxStateBits
 	ID3D11BlendState* blendState;
 	ID3D11DepthStencilState* depthStencilState;
 	ID3D11RasterizerState* rasterizerState;
-};
-
-union vec2_t
-{
-	float v[2];
-	struct {
-		float x;
-		float y;
-	};
-};
-
-union vec3_t
-{
-	struct {
-		float x;
-		float y;
-		float z;
-	};
-	float v[3];
-};
-
-
-union vec4_t
-{
-	float v[4];
-	struct {
-		float x;
-		float y;
-		float z;
-		float w;
-	};
-	struct {
-		float r;
-		float g;
-		float b;
-		float a;
-	};
 };

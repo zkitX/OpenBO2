@@ -10,6 +10,31 @@ __declspec(thread) unsigned int g_currentThreadId;
 #pragma data_seg(".CRT$XLB")
 #pragma data_seg()
 
+typedef struct _SCOPETABLE_ENTRY* PSCOPETABLE_ENTRY;
+
+struct _EH3_EXCEPTION_REGISTRATION
+{
+	struct _EH3_EXCEPTION_REGISTRATION* Next;
+	PVOID ExceptionHandler;
+	PSCOPETABLE_ENTRY ScopeTable;
+	DWORD TryLevel;
+};
+
+struct CPPEH_RECORD
+{
+	DWORD old_esp;
+	EXCEPTION_POINTERS* exc_ptr;
+	struct _EH3_EXCEPTION_REGISTRATION registration;
+};
+
+struct tagTHREADNAME_INFO
+{
+	unsigned int dwType;
+	const char* szName;
+	unsigned int dwThreadID;
+	unsigned int dwFlags;
+};
+
 struct va_info_t
 {
 	char va_string[4][1024];
@@ -34,17 +59,28 @@ TraceThreadInfo g_traceThreadInfo[16];
 void* g_threadValues[17][5];
 void* threadHandle[17];
 unsigned int threadId[17];
+void(* threadFunc[17])(unsigned int);
+
+const char* s_threadNames[17] = { "Main", "Backend", "Worker0", "Worker1", "Worker2", "Worker3", "Worker4", "Worker5", "Worker6", "Worker7", "TitleServer", "Database", "Sound Mix", "Sound Decode", "WebM Decode"};
+
+int g_databaseStopServer;
+
+HANDLE databaseCompletedEvent;
+HANDLE demoStreamingReady;
+HANDLE serverCompletedEvent;
 
 unsigned int s_affinityMaskForCpu[8];
 unsigned int s_affinityMaskForProcess;
 unsigned int s_cpuCount;
 
 void Com_InitThreadData(int threadContext);
+void SetThreadName(unsigned int dwThreadID, const char* szThreadName);
 void Sys_CreateEvent(int manualReset, int initialState, void** evt);
 void Sys_CreateThread(unsigned int threadContext, void(*function)(unsigned int));
 void Sys_DatabaseCompleted();
 void Sys_FrontEndSleep();
 int Sys_GetThreadContext();
+void* Sys_GetValue(int valueIndex);
 void Sys_InitDemoStreamingEvent();
 void Sys_InitMainThread();
 void Sys_InitWebMStreamingEvent();

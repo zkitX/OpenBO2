@@ -29,6 +29,8 @@ enum IdentityParam
 // Functions declarations
 // _________________________________________________________________________________
 
+bool IsDebuggerConnected();
+
 int PrivateUnhandledExceptionFilter(_EXCEPTION_POINTERS* ExceptionInfo);
 
 void Sys_Error(const char* error, ...);

@@ -34,8 +34,8 @@ int assertive::Assert_BuildAssertMessageWithStack(const char* extra, int line, c
     {
         _mm_storel_epi64((__m128i*)g_module, _mm_loadl_epi64((const __m128i*)"<unknown application>"));
         _mm_storel_epi64((__m128i*) & g_module[8], _mm_loadl_epi64((const __m128i*)" application>"));
-        *(_DWORD*)&g_module[16] = *(_DWORD*)"tion>";
-        *(_WORD*)&g_module[20] = *(_WORD*)">";
+        *(unsigned int*)&g_module[16] = *(unsigned int*)"tion>";
+        *(unsigned short*)&g_module[20] = *(unsigned short*)">";
     }
     v8 = _snprintf(message, messageLen, "%s\n%s\n%s\n%s:%d\n", v15, v14, g_module, v7, v13);
     v9 = &message[v8 + StackTrace_Generate(messageLen - v8, &message[v8])];
@@ -88,7 +88,7 @@ bool assertive::Assert_MyHandler(const char* filename, int line, int type, const
         v7 = GetActiveWindow();
         MessageBoxA(v7, assertMessage, lpCaption, 0x12011u);
         Assert_BuildAssertMessageWithStack(message, line, assertMessage, expr, filename, type, 4096);
-        blackbox::BB_Alert(filename, line, "assert", message);
+        BB_Alert(filename, line, "assert", message);
         if (isHandlingAssert == 1)
         {
             isHandlingAssert = 2;
@@ -103,7 +103,7 @@ bool assertive::Assert_MyHandler(const char* filename, int line, int type, const
     isHandlingAssert = 1;
     FixWindowsDesktop();
     Assert_BuildAssertMessageWithStack(message, line, assertMessage, expr, filename, type, 4096);
-    blackbox::BB_Alert(filename, line, "assert", message);
+    BB_Alert(filename, line, "assert", message);
     Com_Printf(10, "ASSERTBEGIN -------------------------------------------------------------------\n");
     Com_Printf(10, "%s", assertMessage);
     Com_Printf(10, "ASSERTEND ---------------------------------------------------------------------\n");
@@ -157,12 +157,12 @@ HMODULE assertive::GetModuleBase(int a1, const char* name)
 LABEL_10:
     memcpy(moduleName, (char*)name, v2);
     v5 = &moduleName[v2];
-    *(_DWORD*)v5 = *(_DWORD*)aExe;
+    *(unsigned int*)v5 = *(unsigned int*)aExe;
     v5[4] = 0;
     result = GetModuleHandleA(moduleName);
     if (!result)
     {
-        *(_DWORD*)v5 = *(_DWORD*)aDll;
+        *(unsigned int*)v5 = *(unsigned int*)aDll;
         v5[4] = 0;
         result = GetModuleHandleA(moduleName);
     }
@@ -244,7 +244,7 @@ bool assertive::ParseMapFile(_iobuf* fp, bool a2, unsigned int baseAddress, cons
     unsigned int v15; // eax
     char v16; // cl
     char* v17; // eax
-    _BYTE* v18; // eax
+    unsigned char* v18; // eax
     int v19; // eax
     char* v20; // eax
     _iobuf* v21; // esi
@@ -255,7 +255,7 @@ bool assertive::ParseMapFile(_iobuf* fp, bool a2, unsigned int baseAddress, cons
     unsigned int v26; // eax
     char v27; // cl
     char* v28; // eax
-    _BYTE* v29; // eax
+    unsigned char* v29; // eax
     int v30; // eax
     char* v31; // eax
     _iobuf* v32; // ebx
@@ -363,11 +363,11 @@ bool assertive::ParseMapFile(_iobuf* fp, bool a2, unsigned int baseAddress, cons
                             v14 = g_assertAddress[0].bestFunction;
                             do
                             {
-                                v15 = *((_DWORD*)v14 - 17);
-                                if (v15 >= baseAddress && v15 < baseEndAddress && v12 <= v15 && (!*v14 || *((_DWORD*)v14 + 32) < v12))
+                                v15 = *((unsigned int*)v14 - 17);
+                                if (v15 >= baseAddress && v15 < baseEndAddress && v12 <= v15 && (!*v14 || *((unsigned int*)v14 + 32) < v12))
                                 {
                                     v16 = function[0];
-                                    *((_DWORD*)v14 + 32) = v12;
+                                    *((unsigned int*)v14 + 32) = v12;
                                     v17 = function;
                                     if (v16 == 95 || v16 == 63)
                                         v17 = &function[1];
@@ -420,14 +420,14 @@ bool assertive::ParseMapFile(_iobuf* fp, bool a2, unsigned int baseAddress, cons
                                         v25 = g_assertAddress[0].bestFunction;
                                         do
                                         {
-                                            v26 = *((_DWORD*)v25 - 17);
+                                            v26 = *((unsigned int*)v25 - 17);
                                             if (v26 >= baseAddress
                                                 && v26 < baseEndAddress
                                                 && v23 <= v26
-                                                && (!*v25 || *((_DWORD*)v25 + 32) < v23))
+                                                && (!*v25 || *((unsigned int*)v25 + 32) < v23))
                                             {
                                                 v27 = function[0];
-                                                *((_DWORD*)v25 + 32) = v23;
+                                                *((unsigned int*)v25 + 32) = v23;
                                                 v28 = function;
                                                 if (v27 == 95 || v27 == 63)
                                                     v28 = &function[1];
@@ -471,8 +471,8 @@ bool assertive::ParseMapFile(_iobuf* fp, bool a2, unsigned int baseAddress, cons
                             strchr(v33, 41);
                             if (!v35)
                                 break;
-                            v36 = v35 - (_DWORD)v34;
-                            strncpy(filenameBuffer, v34 + 1, v35 - (_DWORD)v34 - 1);
+                            v36 = v35 - (unsigned int)v34;
+                            strncpy(filenameBuffer, v34 + 1, v35 - (unsigned int)v34 - 1);
                             function[v36 + 2047] = 0;
                             if (!SkipLines(1, v32))
                                 return 0;
@@ -519,7 +519,7 @@ bool assertive::ParseMapFile(_iobuf* fp, bool a2, unsigned int baseAddress, cons
                                                 do
                                                 {
                                                     v44 = *(v43 - 66);
-                                                    if (v44 >= v41 && v44 < baseEndAddress && v42 <= v44 && (!*((_BYTE*)v43 - 64) || *v43 < v42))
+                                                    if (v44 >= v41 && v44 < baseEndAddress && v42 <= v44 && (!*((unsigned char*)v43 - 64) || *v43 < v42))
                                                     {
                                                         v45 = lineNumber[v56 / 4];
                                                         *v43 = v42;
@@ -586,15 +586,15 @@ int assertive::StackTrace_Generate(int len, char* msg)
                 v7 = &v5[_snprintf(v5, v4 - v5, "%s:    ", v6)];
                 if (v6[196])
                 {
-                    v8 = _snprintf(v7, v4 - v7, "%s        ...%s, line %i", v6 + 64, v6 + 196, *((_DWORD*)v6 + 66));
+                    v8 = _snprintf(v7, v4 - v7, "%s        ...%s, line %i", v6 + 64, v6 + 196, *((unsigned int*)v6 + 66));
                 }
                 else if (v6[64])
                 {
-                    v8 = _snprintf(v7, v4 - v7, "%s        ...%s, address %x", v6 + 64, v6 + 128, *((_DWORD*)v6 - 1));
+                    v8 = _snprintf(v7, v4 - v7, "%s        ...%s, address %x", v6 + 64, v6 + 128, *((unsigned int*)v6 - 1));
                 }
                 else
                 {
-                    v8 = _snprintf(v7, v4 - v7, "%s, address %x", v6 + 64, *((_DWORD*)v6 - 1));
+                    v8 = _snprintf(v7, v4 - v7, "%s, address %x", v6 + 64, *((unsigned int*)v6 - 1));
                 }
                 v5 = &v7[v8 + _snprintf(&v7[v8], v4 - &v7[v8], "\n")];
             }
@@ -678,7 +678,7 @@ char assertive::ReadLine(_iobuf* fp)
     {
         lineBufferEndPos -= lineBufferStartPos;
         if ((lineBufferEndPos & 0x80000000) != 0
-            && !(unsigned __int8)Assert_MyHandler(
+            && !(unsigned char)Assert_MyHandler(
                 __FILE__,
                 __LINE__,
                 0,
@@ -704,7 +704,7 @@ char assertive::ReadLine(_iobuf* fp)
         v2 = 4095 - lineBufferEndPos;
         v3 = fread(&lineBuffer[lineBufferEndPos], 1u, 4095 - lineBufferEndPos, fp);
         if (v3 > v2
-            && !(unsigned __int8)Assert_MyHandler(
+            && !(unsigned char)Assert_MyHandler(
                 __FILE__,
                 __LINE__,
                 0,
@@ -723,7 +723,7 @@ char assertive::ReadLine(_iobuf* fp)
             goto LABEL_18;
         }
     }
-    v6 = *(_BYTE*)(v1 + 127084113) == 13;
+    v6 = *(unsigned char*)(v1 + 127084113) == 13;
     lineBuffer[v1] = 0;
     if (v6)
     {
@@ -758,7 +758,7 @@ char assertive::SkipLines(int lineCount, _iobuf* fp)
             lineBufferEndPos = v3;
             if (v3 < 0)
             {
-                if (!(unsigned __int8)Assert_MyHandler(
+                if (!(unsigned char)Assert_MyHandler(
                     __FILE__,
                     __LINE__,
                     0,
@@ -780,7 +780,7 @@ char assertive::SkipLines(int lineCount, _iobuf* fp)
                 }
                 if (v4 + 1 != lineBufferEndPos)
                 {
-                    v8 = *(_BYTE*)(v4 + 127084113) == 13;
+                    v8 = *(unsigned char*)(v4 + 127084113) == 13;
                     lineBuffer[v4] = 0;
                     if (v8)
                         lineBufferStartPos = v4 + 2;
@@ -793,7 +793,7 @@ char assertive::SkipLines(int lineCount, _iobuf* fp)
             v5 = 4095 - lineBufferEndPos;
             v6 = fread(&lineBuffer[lineBufferEndPos], 1u, 4095 - lineBufferEndPos, fp);
             if (v6 > v5
-                && !(unsigned __int8)Assert_MyHandler(
+                && !(unsigned char)Assert_MyHandler(
                     __FILE__,
                     __LINE__,
                     0,
@@ -832,7 +832,7 @@ void CopyMessageToClipboard(const char* msg)
     HWND v1; // eax
     HGLOBAL v2; // eax
     void* v3; // esi
-    _BYTE* v4; // eax
+    unsigned char* v4; // eax
     char* v5; // ecx
     int v6; // edx
     char v7; // al
@@ -845,11 +845,11 @@ void CopyMessageToClipboard(const char* msg)
         v3 = v2;
         if (v2)
         {
-            v4 = (_BYTE*)GlobalLock(v2);
+            v4 = (unsigned char*)GlobalLock(v2);
             if (v4)
             {
                 v5 = (char*)msg;
-                v6 = v4 - (_BYTE*)msg;
+                v6 = v4 - (unsigned char*)msg;
                 do
                 {
                     v7 = *v5;
@@ -870,9 +870,9 @@ void FixWindowsDesktop()
     HWND v1; // esi
     HDC v2; // edi
     int v3; // eax
-    unsigned __int16* v4; // ecx
+    unsigned short* v4; // ecx
     signed int v5; // edx
-    unsigned __int16 ramp[3][256]; // [esp+8h] [ebp-604h]
+    unsigned short ramp[3][256]; // [esp+8h] [ebp-604h]
 
     ChangeDisplaySettingsA(0, 0);
     v0 = GetCurrentThreadId();

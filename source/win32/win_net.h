@@ -22,4 +22,3 @@ void SV_SysLog_LogMessage(int severity, const char* msg);
 class win_net
 {
 };
-

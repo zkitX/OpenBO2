@@ -426,6 +426,9 @@
     <ClCompile Include="source\win32\win_net.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="com_clients.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\win32\win_main.h">
@@ -846,6 +849,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\win32\win_net.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="com_clients.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

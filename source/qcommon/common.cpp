@@ -2,14 +2,17 @@
 #include <Windows.h>
 
 #include "common.h"
+#include "threads.h"
 #include "../universal/q_shared.h"
 #include "../win32/win_gamepad.h"
+#include "../win32/win_main.h"
+#include "../win32/win_syscon.h"
 #include "../xanim/xmodel.h"
 
 void Com_Error(errorParm_t code, const char* fmt, ...)
 {
     int v2; // esi
-    win_gamepad::ControllerIndex_t v3; // eax
+    ControllerIndex_t v3; // eax
     const char* v4; // esi
     const char* v5; // eax
     LocalClientNum_t v6; // eax

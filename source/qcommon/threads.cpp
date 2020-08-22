@@ -11,6 +11,19 @@ void Com_InitThreadData(int threadContext)
     Sys_SetValue(4, g_cmd_args);
 }
 
+void SetThreadName(unsigned int dwThreadID, const char* szThreadName)
+{
+    tagTHREADNAME_INFO info; // [esp+10h] [ebp-28h]
+    CPPEH_RECORD ms_exc; // [esp+20h] [ebp-18h]
+
+    info.dwType = 4096;
+    info.szName = szThreadName;
+    info.dwThreadID = dwThreadID;
+    info.dwFlags = 0;
+    ms_exc.registration.TryLevel = 0;
+    RaiseException(0x406D1388u, 0, 4u, (const ULONG_PTR*)&info.dwType);
+}
+
 void Sys_CreateEvent(int manualReset, int initialState, void** evt)
 {
     HANDLE v3; // eax
@@ -26,9 +39,9 @@ void Sys_CreateEvent(int manualReset, int initialState, void** evt)
     else
     {
         v5 = GetLastError();
-        Com_Printf((int)v4, 1, "error %d while creating event\n", v5);
+        Com_Printf(1, "error %d while creating event\n", v5);
 #ifdef _DEBUG
-        if (!(unsigned __int8)assertive::Assert_MyHandler(
+        if (!(unsigned char)assertive::Assert_MyHandler(
             __FILE__,
             __LINE__,
             (int)v4,
@@ -42,10 +55,74 @@ void Sys_CreateEvent(int manualReset, int initialState, void** evt)
 
 void Sys_CreateThread(unsigned int threadContext, void(*function)(unsigned int))
 {
+    HANDLE newThread; // eax
+    DWORD v3; // eax
+#ifdef _DEBUG
+    if (threadFunc[threadContext]
+        && !(unsigned __int8)assertive::Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(threadFunc[threadContext] == 0)",
+            &pBlock))
+    {
+        __debugbreak();
+    }
+    if (threadContext >= 0x11
+        && !(unsigned __int8)assertive::Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(threadContext < THREAD_CONTEXT_COUNT)",
+            &pBlock))
+    {
+        __debugbreak();
+    }
+#endif
+    threadFunc[threadContext] = function;
+    newThread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)Sys_ThreadMain, (LPVOID)threadContext, 4u, (LPDWORD)(4 * threadContext + 125788032));
+    threadHandle[threadContext] = newThread;
+#ifdef _DEBUG
+    if (!newThread
+        && !(unsigned __int8)assertive::Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(threadHandle[threadContext] != 0)",
+            &pBlock))
+    {
+        __debugbreak();
+    }
+#endif
+    if (!threadHandle[threadContext])
+    {
+        v3 = GetLastError();
+        Com_Printf(1, "error %d while creating thread %d\n", v3, threadContext);
+    }
+    SetThreadName(threadId[threadContext], s_threadNames[threadContext]);
 }
 
 void Sys_DatabaseCompleted()
 {
+    DWORD v0; // eax
+
+    g_databaseStopServer = 1;
+    if (serverCompletedEvent)
+    {
+        v0 = WaitForSingleObject(serverCompletedEvent, 0xFFFFFFFF);
+        if (v0)
+        {
+            if (!(unsigned __int8)assertive::Assert_MyHandler(
+                __FILE__,
+                __LINE__,
+                0,
+                "((result == ((((DWORD )0x00000000L) ) + 0 )))",
+                "(result) = %i",
+                v0))
+                __debugbreak();
+        }
+    }
+    SetEvent(databaseCompletedEvent);
 }
 
 void Sys_FrontEndSleep()
@@ -54,11 +131,52 @@ void Sys_FrontEndSleep()
 
 int Sys_GetThreadContext()
 {
-    return 0;
+    int curthreadid;
+    int result;
+    if (!g_currentThreadId) {
+        g_currentThreadId = GetCurrentThreadId();
+    }
+    curthreadid = g_currentThreadId;
+    for (result = 0; threadId[result] != curthreadid; result++) {
+        if (++result >= 17) {
+            Com_Printf(1, "Current thread is not in thread table\n");
+            if (!(unsigned __int8)assertive::Assert_MyHandler(
+                __FILE__,
+                __LINE__,
+                0,
+                "(0)",
+                &pBlock))
+                __debugbreak();
+            return 17;
+        }
+    }
+    return result;
+}
+
+void* Sys_GetValue(int valueIndex)
+{
+    return g_dwTlsIndex[valueIndex];
 }
 
 void Sys_InitDemoStreamingEvent()
 {
+    HANDLE demoStreamingEvent; // esi
+    DWORD v1; // eax
+
+    demoStreamingEvent = CreateEventA(0, 0, 0, 0);
+    if (!demoStreamingEvent)
+    {
+        v1 = GetLastError();
+        Com_Printf(1, "error %d while creating event\n", v1);
+        if (!(unsigned __int8)assertive::Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(e != 0)",
+            &pBlock))
+            __debugbreak();
+    }
+    demoStreamingReady = demoStreamingEvent;
 }
 
 void Sys_InitMainThread()
@@ -97,6 +215,11 @@ void Sys_SetServerNetworkCompletedEvent()
 {
 }
 
+void Sys_SetValue(int valueIndex, void* data)
+{
+    g_dwTlsIndex[valueIndex] = data;
+}
+
 char Sys_SpawnDatabaseThread(void(*function)(unsigned int))
 {
     return 0;
@@ -118,6 +241,34 @@ void Sys_StreamSleep()
 
 unsigned int Sys_ThreadMain(void* parameter)
 {
+#ifdef _DEBUG
+    if ((unsigned int)parameter >= 0x11
+        && !(unsigned __int8)assertive::Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(unsigned)(threadContext) < (unsigned)(THREAD_CONTEXT_COUNT)",
+            "threadContext doesn't index THREAD_CONTEXT_COUNT\n\t%i not in [0, %i)",
+            parameter,
+            17))
+    {
+        __debugbreak();
+    }
+    if (!threadFunc[(unsigned int)parameter]
+        && !(unsigned __int8)assertive::Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(threadFunc[threadContext])",
+            &pBlock))
+    {
+        __debugbreak();
+    }
+#endif
+    SetThreadName(0xFFFFFFFF, s_threadNames[(unsigned int)parameter]);
+    *g_dwTlsIndex = g_threadValues[(int)parameter];
+    Com_InitThreadData((int)parameter);
+    threadFunc[(unsigned int)parameter]((unsigned int)parameter);
     return 0;
 }
 

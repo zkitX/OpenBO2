@@ -1,5 +1,7 @@
 #include "win_syscon.h"
 
+#include "win_net.h"
+
 #include "../qcommon/common.h"
 #include "../qcommon/threads.h"
 
@@ -9,9 +11,9 @@ void Conbuf_AppendText(const char* pMsg)
 	char* v2; // edi
 	char target; // [esp+8h] [ebp-8004h]
 
-	#ifdef _DEBUG
+#ifdef _DEBUG
 	if (!s_wcd.hwndBuffer
-		&& !(unsigned __int8)assertive::Assert_MyHandler(
+		&& !(unsigned char)assertive::Assert_MyHandler(
 			"c:\\t6\\code\\src_noserver\\win32\\win_syscon.cpp",
 			399,
 			0,
@@ -20,7 +22,7 @@ void Conbuf_AppendText(const char* pMsg)
 	{
 		__debugbreak();
 	}
-	#endif
+#endif
 
 	if (strlen(pMsg) <= 0x3FFF)
 		v1 = pMsg;
@@ -45,7 +47,7 @@ void Conbuf_AppendText(const char* pMsg)
 void Conbuf_AppendTextInMainThread(const char* msg)
 {
 	if (s_wcd.hwndBuffer) {
-		if ((unsigned __int8)Sys_IsMainThread())
+		if ((unsigned char)Sys_IsMainThread())
 			Conbuf_AppendText(msg);
 	}
 }
@@ -100,26 +102,63 @@ char* Conbuf_CleanText(const char* source, char* target, int sizeofTarget)
 	return (char*)(target - i);
 }
 
+void Con_GetTextCopy(char* text, int maxSize)
+{
+	int v2; // esi
+	int v3; // edi
+	unsigned int end; // [esp+0h] [ebp-4h]
+
+	if (msgwnd.activeLineCount)
+	{
+		v2 = msgwnd.lines[msgwnd.firstLineIndex].textBufPos;
+		v3 = msgwnd.textBufPos - v2;
+		end = msgwnd.textBufPos;
+		if (msgwnd.textBufPos - v2 < 0)
+			v3 += msgwnd.textBufSize;
+		if (v3 > maxSize - 1)
+		{
+			v2 += v3 - maxSize + 1;
+			if (v2 > msgwnd.textBufSize)
+				v2 -= msgwnd.textBufSize;
+			v3 = maxSize - 1;
+		}
+		if (v2 >= msgwnd.textBufPos)
+		{
+			memcpy(text, &msgwnd.circularTextBuffer[v2], msgwnd.textBufSize - v2);
+			memcpy(&text[msgwnd.textBufSize - v2], msgwnd.circularTextBuffer, end);
+		}
+		else
+		{
+			memcpy(text, &msgwnd.circularTextBuffer[v2], msgwnd.textBufPos - v2);
+		}
+		text[v3] = 0;
+	}
+	else
+	{
+		*text = 0;
+	}
+}
+
 LRESULT ConWndProc(HWND__* hWnd, unsigned int uMsg, unsigned int wParam, int lParam)
 {
 	LRESULT result;
 	switch (uMsg) {
 	case WM_SIZE:
-		SetWindowPos(s_wcd.hwndBuffer, 0, 5, 70, (unsigned __int16)lParam - 15, ((unsigned int)lParam >> 16) - 100, 0);
+		SetWindowPos(s_wcd.hwndBuffer, 0, 5, 70, (unsigned short)lParam - 15, ((unsigned int)lParam >> 16) - 100, 0);
 		SetWindowPos(
 			s_wcd.hwndInputLine,
 			0,
 			5,
 			((unsigned int)lParam >> 16) - 100 + 78,
-			(unsigned __int16)lParam - 15,
+			(unsigned short)lParam - 15,
 			20,
 			0);
-		s_wcd.windowWidth = (unsigned __int16)lParam;
+		s_wcd.windowWidth = (unsigned short)lParam;
 		s_wcd.windowHeight = (unsigned int)lParam >> 16;
 		result = DefWindowProcA(hWnd, uMsg, wParam, lParam);
 		break;
 	case WM_ACTIVATE:
-		if ((_WORD)wParam)
+		if ((unsigned short)wParam)
 			SetFocus(s_wcd.hwndInputLine);
 		result = DefWindowProcA(hWnd, uMsg, wParam, lParam);
 		break;
@@ -258,4 +297,26 @@ void Sys_Print(const char* msg)
 		OutputDebugStringA(msg);
 	Conbuf_AppendTextInMainThread(msg);
 	SV_SysLog_LogMessage(0, msg);
+}
+
+void Sys_ShowConsole()
+{
+	if (!s_wcd.hWnd) {
+		Sys_CreateConsole(GetModuleHandleA(0));
+		#ifdef _DEBUG
+		if (!s_wcd.hWnd
+			&& !(unsigned __int8)assertive::Assert_MyHandler(
+				__FILE__,
+				__LINE__,
+				0,
+				"(s_wcd.hWnd)",
+				&pBlock))
+		{
+			__debugbreak();
+		}
+		#endif
+	}
+	ShowWindow(s_wcd.hWnd, 1);
+	SendMessageA(s_wcd.hwndBuffer, 0xB6u, 0, 0xFFFF);
+	ShowCursor(1);
 }

@@ -27,14 +27,6 @@ enum _MINIDUMP_TYPE
 	MiniDumpWithTokenInformation = 0x40000,
 	MiniDumpValidTypeFlags = 0x7FFFF,
 };
-char aDbgh[];
-
-miniDumper g_miniDumper;
-
-bool g_miniDumperStarted;
-
-static miniDumper* s_pMiniDumper;
-cmd_function_s SetDumpDir_f_VAR;
 
 bool Sys_IsMiniDumpStarted();
 void Sys_StartMiniDump(bool prompt);
@@ -58,3 +50,9 @@ private:
 	static LPCRITICAL_SECTION s_pCriticalSection;
 };
 
+miniDumper g_miniDumper;
+bool g_miniDumperStarted;
+static miniDumper* s_pMiniDumper;
+cmd_function_s SetDumpDir_f_VAR;
+
+ 

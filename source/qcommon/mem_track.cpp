@@ -27,7 +27,7 @@ TempMemInfo* GetTempMemInfo(int permanent, const char* name, int type, int usage
             return 0;
 #ifdef _DEBUG
         if (!name
-            && !(unsigned __int8)assertive::Assert_MyHandler(
+            && !(unsigned char)assertive::Assert_MyHandler(
                 "c:\\t6\\code\\src_noserver\\qcommon\\mem_track.cpp",
                 308,
                 0,
@@ -37,7 +37,7 @@ TempMemInfo* GetTempMemInfo(int permanent, const char* name, int type, int usage
             __debugbreak();
         }
         if (++ * tempMemInfoCount >= 1500
-            && !(unsigned __int8)assertive::Assert_MyHandler(
+            && !(unsigned char)assertive::Assert_MyHandler(
                 "c:\\t6\\code\\src_noserver\\qcommon\\mem_track.cpp",
                 310,
                 0,
@@ -68,7 +68,7 @@ TempMemInfo* GetTempMemInfo(int permanent, const char* name, int type, int usage
             v7 = v9;
             if ((!name || !q_shared::I_stricmp(v9->data.name, name))
                 && v9->permanent == permanent
-                && (unsigned __int8)v9->data.usageType == usageType)
+                && (unsigned char)v9->data.usageType == usageType)
             {
                 break;
             }
@@ -106,7 +106,7 @@ void track_z_alloc(int size, const char* name, int type, void* pos, int project,
     mem_track_node_s* v10; // eax
 
     if (size < 0
-        && !(unsigned __int8)assertive::Assert_MyHandler(
+        && !(unsigned char)assertive::Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -139,7 +139,7 @@ void track_z_alloc(int size, const char* name, int type, void* pos, int project,
     }
     v9 = (mem_track_node_s*)((char*)pos - 164);
     if (!*name
-        && !(unsigned __int8)assertive::Assert_MyHandler(
+        && !(unsigned char)assertive::Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -194,11 +194,11 @@ void track_z_free(int type, void* pos, int overhead)
     mem_track_node_s* v10; // eax
 
     Sys_EnterCriticalSection(CRITSECT_MEMTRACK);
-    v3 = (unsigned __int8)*((char*)pos - 20);
+    v3 = (unsigned char)*((char*)pos - 20);
     v4 = (mem_track_node_s*)((char*)pos - 164);
     #ifdef _DEBUG
     if (v3 != type
-        && !(unsigned __int8)assertive::Assert_MyHandler(
+        && !(unsigned char)assertive::Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -263,7 +263,7 @@ void track_z_free(int type, void* pos, int overhead)
     {
         #ifdef _DEBUG
         if (!v4->prev
-            && !(unsigned __int8)assertive::Assert_MyHandler(
+            && !(unsigned char)assertive::Assert_MyHandler(
                 __FILE__,
                 __LINE__,
                 0,

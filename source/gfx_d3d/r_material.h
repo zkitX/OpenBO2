@@ -4,6 +4,30 @@
 #include "r_shade.h"
 #include "r_utils.h"
 
+struct MaterialTechniqueSet;
+struct MaterialTextureDef;
+struct MaterialConstantDef;
+struct MaterialVertexDeclaration;
+struct MaterialVertexShader;
+struct MaterialPixelShader;
+struct MaterialShaderArgument;
+
+struct MaterialInfo
+{
+	const char* name;
+	unsigned int gameFlags;
+	char pad;
+	char sortKey;
+	char textureAtlasRowCount;
+	char textureAtlasColumnCount;
+	GfxDrawSurf drawSurf;
+	unsigned int surfaceTypeBits;
+	unsigned int layeredSurfaceTypes;
+	unsigned short hashIndex;
+	int surfaceFlags;
+	int contents;
+};
+
 struct Material
 {
 	MaterialInfo info;
@@ -29,7 +53,7 @@ struct Material
 
 struct MaterialArgumentCodeConst
 {
-	unsigned __int16 index;
+	unsigned short index;
 	char firstRow;
 	char rowCount;
 };
@@ -44,7 +68,7 @@ union MaterialArgumentDef
 
 union MaterialArgumentLocation
 {
-	unsigned __int16 offset;
+	unsigned short offset;
 	struct {
 		char textureIndex;
 		char samplerIndex;
@@ -56,22 +80,6 @@ struct MaterialConstantDef
 	unsigned int nameHash;
 	char name[12];
 	vec4_t literal;
-};
-
-struct MaterialInfo
-{
-	const char* name;
-	unsigned int gameFlags;
-	char pad;
-	char sortKey;
-	char textureAtlasRowCount;
-	char textureAtlasColumnCount;
-	GfxDrawSurf drawSurf;
-	unsigned int surfaceTypeBits;
-	unsigned int layeredSurfaceTypes;
-	unsigned __int16 hashIndex;
-	int surfaceFlags;
-	int contents;
 };
 
 struct MaterialPass
@@ -94,24 +102,25 @@ struct MaterialPass
 	};
 };
 
-struct MaterialPixelShader
-{
-	const char* name;
-	MaterialPixelShaderProgram prog;
-};
-
 struct MaterialPixelShaderProgram
 {
 	ID3D11PixelShader* ps;
 	GfxPixelShaderLoadDef loadDef;
 };
 
+
+struct MaterialPixelShader
+{
+	const char* name;
+	MaterialPixelShaderProgram prog;
+};
+
 struct MaterialShaderArgument
 {
-	unsigned __int16 type;
+	unsigned short type;
 	MaterialArgumentLocation location;
-	unsigned __int16 size;
-	unsigned __int16 buffer;
+	unsigned short size;
+	unsigned short buffer;
 	MaterialArgumentDef u;
 };
 
@@ -124,8 +133,8 @@ struct MaterialStreamRouting
 struct MaterialTechnique
 {
 	const char* name;
-	unsigned __int16 flags;
-	unsigned __int16 passCount;
+	unsigned short flags;
+	unsigned short passCount;
 	MaterialPass passArray[1];
 };
 
@@ -148,6 +157,12 @@ struct MaterialTextureDef
 	GfxImage* image;
 };
 
+struct MaterialVertexStreamRouting
+{
+	MaterialStreamRouting data[16];
+	ID3D11InputLayout* decl[20];
+};
+
 struct MaterialVertexDeclaration
 {
 	char streamCount;
@@ -156,25 +171,18 @@ struct MaterialVertexDeclaration
 	MaterialVertexStreamRouting routing;
 };
 
-struct MaterialVertexShader
-{
-	const char* name;
-	MaterialVertexShaderProgram prog;
-};
-
 struct MaterialVertexShaderProgram
 {
 	ID3D11VertexShader* vs;
 	GfxVertexShaderLoadDef loadDef;
 };
 
-struct MaterialVertexStreamRouting
+struct MaterialVertexShader
 {
-	MaterialStreamRouting data[16];
-	ID3D11InputLayout* decl[20];
+	const char* name;
+	MaterialVertexShaderProgram prog;
 };
 
 class r_material
 {
 };
-

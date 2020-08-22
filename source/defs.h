@@ -418,8 +418,6 @@ inline int64  abs64(int64   x) { return x >= 0 ? x : -x; }
 #define _UNKNOWN char
 
 #ifdef _MSC_VER
-#define snprintf _snprintf
-#define vsnprintf _vsnprintf
 #endif
 
 // The ADJ() macro is used for shifted pointers.

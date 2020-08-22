@@ -330,7 +330,7 @@ void Dvar_GetResetVec3(const dvar_t* dvar, vec3_t* result)
 {
 }
 
-GfxViewParms* Dvar_GetString(const dvar_t* dvar)
+const char* Dvar_GetString(const dvar_t* dvar)
 {
     return nullptr;
 }
@@ -349,12 +349,12 @@ const dvar_t* Dvar_GetUnsignedInt(const dvar_t* dvar)
     return nullptr;
 }
 
-GfxViewParms* Dvar_GetVariantString(const dvar_t* dvar)
+const char* Dvar_GetVariantString(const dvar_t* dvar)
 {
     return nullptr;
 }
 
-GfxViewParms* Dvar_GetVariantString(int dvarHash)
+const char* Dvar_GetVariantString(int dvarHash)
 {
     return nullptr;
 }
@@ -1762,7 +1762,7 @@ void dvar::Dvar_TogglePrint_f()
             __debugbreak();
         }
 #endif // _DEBUG
-        common::Com_Printf((int)v2, 0, "%s toggled to %s\n", v2, v3);
+        Com_Printf((int)v2, 0, "%s toggled to %s\n", v2, v3);
     }
 }
 
@@ -1824,7 +1824,7 @@ char dvar::Dvar_ToggleSimple(const dvar_t* dvar)
     case DVAR_TYPE_LINEAR_COLOR_RGB:
     case DVAR_TYPE_COLOR_XYZ:
         v9 = Dvar_GetName(dvar);
-        common::Com_Printf((int)dvar, 0, "'toggle' with no arguments makes no sense for dvar '%s'\n", v9);
+        Com_Printf((int)dvar, 0, "'toggle' with no arguments makes no sense for dvar '%s'\n", v9);
         result = 0;
         break;
     case DVAR_TYPE_INT:

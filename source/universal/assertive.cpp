@@ -4,6 +4,7 @@
 #include "blackbox.h"
 #include "win_common.h"
 #include "../qcommon/common.h"
+#include "../win32/miniDumper.h"
 
 const char aExe[5] = ".exe";
 const char aDll[5] = ".dll";
@@ -38,8 +39,8 @@ int assertive::Assert_BuildAssertMessageWithStack(const char* extra, int line, c
     }
     v8 = _snprintf(message, messageLen, "%s\n%s\n%s\n%s:%d\n", v15, v14, g_module, v7, v13);
     v9 = &message[v8 + StackTrace_Generate(messageLen - v8, &message[v8])];
-    v10 = common::Com_GetBuildVersion();
-    v11 = common::Com_GetBuildName();
+    v10 = Com_GetBuildVersion();
+    v11 = Com_GetBuildName();
     return v9 - message + _snprintf(v9, &message[messageLen] - v9, "%s %s\n", v11, v10);
 }
 
@@ -66,7 +67,7 @@ bool assertive::Assert_MyHandler(const char* filename, int line, int type, const
     if (isHandlingAssert)
     {
         v5 = va("Assert Expression:\n    %s\nFile:    %s\nLine:    %d\n\n", message, filename, line);
-        Com_Printf(line, 10, v5);
+        Com_Printf(10, v5);
         CopyMessageToClipboard(assertMessage);
         v6 = lastAssertType;
         if (AssertCallback)
@@ -86,14 +87,14 @@ bool assertive::Assert_MyHandler(const char* filename, int line, int type, const
         ShowCursor(1);
         v7 = GetActiveWindow();
         MessageBoxA(v7, assertMessage, lpCaption, 0x12011u);
-        Assert_BuildAssertMessageWithStack(expr, message, filename, line, type, 4096, assertMessage);
+        Assert_BuildAssertMessageWithStack(message, line, assertMessage, expr, filename, type, 4096);
         blackbox::BB_Alert(filename, line, "assert", message);
         if (isHandlingAssert == 1)
         {
             isHandlingAssert = 2;
-            Com_Printf(line, 10, "ASSERTBEGIN - ( Recursive assert )---------------------------------------------\n");
-            Com_Printf(line, 10, "%s", assertMessage);
-            Com_Printf(line, 10, "ASSERTEND - ( Recursive assert ) ----------------------------------------------\n\n");
+            Com_Printf(10, "ASSERTBEGIN - ( Recursive assert )---------------------------------------------\n");
+            Com_Printf(10, "%s", assertMessage);
+            Com_Printf(10, "ASSERTEND - ( Recursive assert ) ----------------------------------------------\n\n");
         }
         // LiveSteam_Shutdown();
         exit(-1);
@@ -101,11 +102,11 @@ bool assertive::Assert_MyHandler(const char* filename, int line, int type, const
     lastAssertType = type;
     isHandlingAssert = 1;
     FixWindowsDesktop();
-    Assert_BuildAssertMessageWithStack(expr, message, filename, line, type, 4096, assertMessage);
+    Assert_BuildAssertMessageWithStack(message, line, assertMessage, expr, filename, type, 4096);
     blackbox::BB_Alert(filename, line, "assert", message);
-    Com_Printf(type, 10, "ASSERTBEGIN -------------------------------------------------------------------\n");
-    Com_Printf(type, 10, "%s", assertMessage);
-    Com_Printf(type, 10, "ASSERTEND ---------------------------------------------------------------------\n");
+    Com_Printf(10, "ASSERTBEGIN -------------------------------------------------------------------\n");
+    Com_Printf(10, "%s", assertMessage);
+    Com_Printf(10, "ASSERTEND ---------------------------------------------------------------------\n");
     OutputDebugStringA(assertMessage);
     if (!Dvar_IsSystemActive())
     {
@@ -123,7 +124,7 @@ bool assertive::Assert_MyHandler(const char* filename, int line, int type, const
     shouldQuitOnError = 0;
 LABEL_19:
     CopyMessageToClipboard(assertMessage);
-    v8 = AssertNotify(type, 0);
+    v8 = AssertNotify(type, (AssertOccurance)0);
     isHandlingAssert = 0;
     Sys_LeaveCriticalSection(CRITSECT_ASSERT);
     return v8 == 0;
@@ -186,12 +187,12 @@ void assertive::LoadMapFilesForDir(const char* dir)
 
     if (*dir)
     {
-        v1 = common::Sys_DefaultInstallPath();
+        v1 = Sys_DefaultInstallPath();
         sprintf(&string, "%s\\%s\\*.map", v1, dir);
     }
     else
     {
-        v2 = common::Sys_DefaultInstallPath();
+        v2 = Sys_DefaultInstallPath();
         sprintf(&string, "%s\\*.map", v2);
     }
     hFindFile = FindFirstFileA(&string, &FindFileData);
@@ -202,7 +203,7 @@ void assertive::LoadMapFilesForDir(const char* dir)
             v4 = GetModuleBase(v3, FindFileData.cFileName);
             if (v4)
             {
-                v5 = common::Sys_DefaultInstallPath();
+                v5 = Sys_DefaultInstallPath();
                 sprintf(file, "%s\\%s", v5, FindFileData.cFileName);
                 v6 = fopen(file, "rb");
                 if (v6)
@@ -329,7 +330,7 @@ bool assertive::ParseMapFile(_iobuf* fp, bool a2, unsigned int baseAddress, cons
             do
             {
                 if (v8->address >= baseAddress && v8->address < baseEndAddress)
-                    q_shared::I_strncpyz(v8->moduleName, mapName, 64);
+                    I_strncpyz(v8->moduleName, mapName, 64);
                 ++v7;
                 ++v8;
             } while (v7 < g_assertAddressCount);
@@ -370,7 +371,7 @@ bool assertive::ParseMapFile(_iobuf* fp, bool a2, unsigned int baseAddress, cons
                                     v17 = function;
                                     if (v16 == 95 || v16 == 63)
                                         v17 = &function[1];
-                                    q_shared::I_strncpyz(v14, v17, 64);
+                                    I_strncpyz(v14, v17, 64);
                                     strchr(v14, 64);
                                     if (v18)
                                         *v18 = 0;
@@ -379,7 +380,7 @@ bool assertive::ParseMapFile(_iobuf* fp, bool a2, unsigned int baseAddress, cons
                                         v20 = (char*)(v19 + 1);
                                     else
                                         v20 = filenameBuffer;
-                                    q_shared::I_strncpyz(v14 + 64, v20, 64);
+                                    I_strncpyz(v14 + 64, v20, 64);
                                 }
                                 ++v13;
                                 v14 += 272;
@@ -430,7 +431,7 @@ bool assertive::ParseMapFile(_iobuf* fp, bool a2, unsigned int baseAddress, cons
                                                 v28 = function;
                                                 if (v27 == 95 || v27 == 63)
                                                     v28 = &function[1];
-                                                q_shared::I_strncpyz(v25, v28, 64);
+                                                I_strncpyz(v25, v28, 64);
                                                 strchr(v25, 64);
                                                 if (v29)
                                                     *v29 = 0;
@@ -439,7 +440,7 @@ bool assertive::ParseMapFile(_iobuf* fp, bool a2, unsigned int baseAddress, cons
                                                     v31 = (char*)(v30 + 1);
                                                 else
                                                     v31 = filenameBuffer;
-                                                q_shared::I_strncpyz(v25 + 64, v31, 64);
+                                                I_strncpyz(v25 + 64, v31, 64);
                                             }
                                             ++v24;
                                             v25 += 272;
@@ -528,7 +529,7 @@ bool assertive::ParseMapFile(_iobuf* fp, bool a2, unsigned int baseAddress, cons
                                                             v47 = (char*)(v46 + 1);
                                                         else
                                                             v47 = filenameBuffer;
-                                                        q_shared::I_strncpyz((char*)v43 - 64, v47, 64);
+                                                        I_strncpyz((char*)v43 - 64, v47, 64);
                                                         v40 = g_assertAddressCount;
                                                         v41 = baseAddress;
                                                     }
@@ -812,4 +813,138 @@ char assertive::SkipLines(int lineCount, _iobuf* fp)
         if (++i >= lineCount)
             return 1;
     }
+}
+
+void Com_PrintStackTrace(int code, void(__cdecl* cb)(const char*))
+{
+    Com_Printf(10, "STACKBEGIN -------------------------------------------------------------------\n");
+    assertive::StackTrace_Walk(1, 0);
+    assertive::StackTrace_ResolveSymbols();
+    assertive::StackTrace_Generate(0x2000, g_stackTrace);
+    Com_Printf(10, "%s", g_stackTrace);
+    Com_Printf(10, "STACKEND ---------------------------------------------------------------------\n");
+    if (cb)
+        cb(g_stackTrace);
+}
+
+void CopyMessageToClipboard(const char* msg)
+{
+    HWND v1; // eax
+    HGLOBAL v2; // eax
+    void* v3; // esi
+    _BYTE* v4; // eax
+    char* v5; // ecx
+    int v6; // edx
+    char v7; // al
+
+    v1 = GetDesktopWindow();
+    if (OpenClipboard(v1))
+    {
+        EmptyClipboard();
+        v2 = GlobalAlloc(2u, strlen(msg) + 1);
+        v3 = v2;
+        if (v2)
+        {
+            v4 = (_BYTE*)GlobalLock(v2);
+            if (v4)
+            {
+                v5 = (char*)msg;
+                v6 = v4 - (_BYTE*)msg;
+                do
+                {
+                    v7 = *v5;
+                    v5[v6] = *v5;
+                    ++v5;
+                } while (v7);
+                GlobalUnlock(v3);
+                SetClipboardData(1u, v3);
+            }
+        }
+        CloseClipboard();
+    }
+}
+
+void FixWindowsDesktop()
+{
+    DWORD v0; // eax
+    HWND v1; // esi
+    HDC v2; // edi
+    int v3; // eax
+    unsigned __int16* v4; // ecx
+    signed int v5; // edx
+    unsigned __int16 ramp[3][256]; // [esp+8h] [ebp-604h]
+
+    ChangeDisplaySettingsA(0, 0);
+    v0 = GetCurrentThreadId();
+    EnumThreadWindows(v0, (WNDENUMPROC)HideWindowCallback, 0);
+    v1 = GetDesktopWindow();
+    v2 = GetDC(v1);
+    v3 = 0;
+    v4 = ramp[1];
+    v5 = 256;
+    do
+    {
+        *(v4 - 256) = v3;
+        *v4 = v3;
+        v4[256] = v3;
+        v3 += 257;
+        ++v4;
+        --v5;
+    } while (v5);
+    SetDeviceGammaRamp(v2, ramp);
+    ReleaseDC(v1, v2);
+}
+
+int HideWindowCallback(HWND__* hwnd, int lParam)
+{
+    LONG v2; // esi
+    LONG v3; // edi
+    int v4; // eax
+    char caption[1024]; // [esp+8h] [ebp-404h]
+
+    if (!GetWindowTextA(hwnd, caption, 1024) || !strcmp(caption, Com_GetBuildDisplayNameR()))
+    {
+        v2 = GetWindowLongA(hwnd, -16);
+        v3 = GetWindowLongA(hwnd, -20);
+        if (v2 & 0x10000000)
+        {
+            v4 = g_hiddenCount;
+            g_hwndGame[g_hiddenCount] = hwnd;
+            g_hiddenCount = v4 + 1;
+            SetWindowLongA(hwnd, -16, v2 & 0xEFFFFFFF);
+            SetWindowLongA(hwnd, -20, v3 & 0xFFFFFFF7);
+        }
+    }
+    return 1;
+}
+
+char AssertNotify(int type, AssertOccurance occurance)
+{
+    const char* v2; // edi
+    HWND v3; // eax
+
+    if (AssertCallback)
+        AssertCallback(assertive::assertMessage);
+    if (type)
+    {
+        if (type == 1)
+            v2 = "SANITY CHECK FAILURE... (this text is on the clipboard)";
+        else
+            v2 = "INTERNAL ERROR";
+    }
+    else
+    {
+        v2 = "ASSERTION FAILURE... (this text is on the clipboard)";
+    }
+    ShowCursor(1);
+    ShowCursor(1);
+    v3 = GetActiveWindow();
+    if (MessageBoxA(v3, assertive::assertMessage, v2, 0x12011u) == 1 && occurance != 1)
+    {
+        if (Sys_IsMiniDumpStarted() && !IsDebuggerPresent())
+            RaiseException(1u, 0, 0, 0);
+        //LiveSteam_Shutdown();
+        exit(-1);
+    }
+    return 1;
 }

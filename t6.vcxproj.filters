@@ -384,6 +384,48 @@
     <ClCompile Include="source\DynEntity\DynEntity_server.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\database\db_assetnames.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\database\db_file_load.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\database\db_gump.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\database\db_memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\database\db_registry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\database\db_stream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\database\db_stream_load.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gfx_d3d\r_material.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gfx_d3d\r_shade.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gfx_d3d\r_drawsurf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gfx_d3d\r_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\win32\miniDumper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\win32\win_syscon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\win32\win_net.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\win32\win_main.h">
@@ -411,9 +453,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\universal\assertive.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\gfx_d3d\gfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\universal\win_common.h">
@@ -762,6 +801,51 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\DynEntity\DynEntity_pieces.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\database\db_stream_load.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\database\db_assetnames.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\database\db_file_load.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\database\db_gump.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\database\db_memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\database\db_registry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\database\db_stream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\gfx_d3d\r_utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\gfx_d3d\r_material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\gfx_d3d\r_shade.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\gfx_d3d\r_drawsurf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\gfx_d3d\r_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\win32\miniDumper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\win32\win_syscon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\win32\win_net.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,7 @@
 #include "cmd.h"
 
+#include "threads.h"
+
 void Cmd_AddCommandInternal(const char* cmdName, void(*function)(), cmd_function_s* allocedCmd)
 {
 }
@@ -11,5 +13,8 @@ int Cmd_Argc()
 
 const char* Cmd_Argv(int argIndex)
 {
-    return nullptr;
+    _DWORD* v1;
+    const char* result;
+
+    v1 = Sys_GetValue
 }

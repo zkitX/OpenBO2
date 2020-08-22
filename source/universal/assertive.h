@@ -1,10 +1,27 @@
 #pragma once
-// 
-#include <Windows.h>
-#include <cstdio>
+#include <stdio.h>
 
 #include "q_shared.h"
 #include "../defs.h"
+
+enum AssertOccurance
+{
+	FIRST_TIME = 0x0,
+	RECURSIVE = 0x1,
+};
+
+int g_hiddenCount;
+HWND__* g_hwndGame[4];
+char g_stackTrace[8192];
+
+void Com_PrintStackTrace(int code, void(__cdecl* cb)(const char*));
+void CopyMessageToClipboard(const char* msg);
+
+void FixWindowsDesktop();
+int HideWindowCallback(HWND__* hwnd, int lParam);
+
+void(* AssertCallback)(const char*);
+char AssertNotify(int type, AssertOccurance occurance);
 
 class assertive
 {
@@ -49,6 +66,7 @@ private:
 	static int g_assertAddressCount;
 	static bool g_inStackTrace;
 	static char g_module[260];
+	static int isHandlingAssert;
 	static int lastAssertType;
 	static unsigned int lineBufferEndPos;
 	static int lineBufferStartPos;

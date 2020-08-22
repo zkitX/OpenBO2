@@ -1,23 +1,8 @@
 #pragma once
 #include "../defs.h"
+#include "../qcommon/cmd.h"
 #include <Windows.h>
 #include <setjmp.h>
-
-#include "../win32/win_gamepad.h"
-
-struct CmdArgs
-{
-	int nesting; //0x0
-	char unk0[0x60]; //0x4
-	int localClientNum[8]; //0x64
-	int argc[8]; //0x84
-	const char** argv[8]; //0xA4
-	char textPool[0x2000]; //0xC4
-	const char* argvPool[0x200]; //0x20C4
-	int usedTextPool[8]; //0x28C4
-	int totalUsedArgvPool; //0x28E4
-	int totalUsedTextPool;//0x28E8
-};
 
 __declspec(thread) void** g_dwTlsIndex;
 __declspec(thread) unsigned int g_currentThreadId;
@@ -31,13 +16,6 @@ struct va_info_t
 	int index;
 };
 
-struct TraceCheckCount
-{
-	unsigned __int16 global;
-	unsigned __int16* partitions;
-	unsigned __int16* brushes;
-};
-
 struct TraceThreadInfo
 {
 	short global;
@@ -48,23 +26,8 @@ struct TraceThreadInfo
 	char(*ptr2)[0x4];
 };
 
-struct CmdArgs
-{
-	int nesting;
-	LocalClientNum_t localClientNum[8];
-	win_gamepad::ControllerIndex_t controllerIndex[8];
-	itemDef_s* itemDef[8];
-	int argshift[8];
-	int argc[8];
-	const char** argv[8];
-	char textPool[8192];
-	const char* argvPool[512];
-	int usedTextPool[8];
-	int totalUsedArgvPool;
-	int totalUsedTextPool;
-};
-
 va_info_t va_info[17];
+CmdArgs g_cmd_args[2];
 int g_com_error[16][16];
 TraceThreadInfo g_traceThreadInfo[16];
 
@@ -85,6 +48,7 @@ int Sys_GetThreadContext();
 void Sys_InitDemoStreamingEvent();
 void Sys_InitMainThread();
 void Sys_InitWebMStreamingEvent();
+bool Sys_IsMainThread();
 void Sys_NotifyRenderer();
 void Sys_ResetServerNetworkCompletedEvent();
 void Sys_SetServerNetworkCompletedEvent();

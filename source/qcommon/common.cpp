@@ -6,7 +6,7 @@
 #include "../win32/win_gamepad.h"
 #include "../xanim/xmodel.h"
 
-void common::Com_Error(errorParm_t code, const char* fmt, ...)
+void Com_Error(errorParm_t code, const char* fmt, ...)
 {
     int v2; // esi
     win_gamepad::ControllerIndex_t v3; // eax
@@ -27,13 +27,13 @@ void common::Com_Error(errorParm_t code, const char* fmt, ...)
         _vsnprintf((char*)&com_errorMessage, 0x1000u, fmt, ap);
         unknownByte = 0;
         printf((const char*)&com_errorMessage);
-        Com_Printf(code, 10, (const char*)&com_errorMessage);
-        Com_Printf(code, 10, "STACKBEGIN -------------------------------------------------------------------\n");
+        Com_Printf(10, (const char*)&com_errorMessage);
+        Com_Printf(10, "STACKBEGIN -------------------------------------------------------------------\n");
         assertive::StackTrace_Walk(1, 0);
         assertive::StackTrace_ResolveSymbols();
         assertive::StackTrace_Generate(0x2000, g_stackTrace);
-        Com_Printf(code, 10, "%s", g_stackTrace);
-        Com_Printf(code, 10, "STACKEND ---------------------------------------------------------------------\n");
+        Com_Printf(10, "%s", g_stackTrace);
+        Com_Printf(10, "STACKEND ---------------------------------------------------------------------\n");
         return;
     }
     Sys_EnterCriticalSection(CRITSECT_COM_ERROR);
@@ -80,12 +80,12 @@ void common::Com_Error(errorParm_t code, const char* fmt, ...)
             {
                 __debugbreak();
             }
-            Com_Printf(v2, 10, "STACKBEGIN -------------------------------------------------------------------\n");
+            Com_Printf(10, "STACKBEGIN -------------------------------------------------------------------\n");
             assertive::StackTrace_Walk(1, 0);
             assertive::StackTrace_ResolveSymbols();
             assertive::StackTrace_Generate(0x2000, g_stackTrace);
-            Com_Printf(v2, 10, "%s", g_stackTrace);
-            Com_Printf(v2, 10, "STACKEND ---------------------------------------------------------------------\n");
+            Com_Printf(10, "%s", g_stackTrace);
+            Com_Printf(10, "STACKEND ---------------------------------------------------------------------\n");
             v7 = "err_drop";
             if (v2 != 1)
                 v7 = "err_fatal";
@@ -93,9 +93,9 @@ void common::Com_Error(errorParm_t code, const char* fmt, ...)
         LABEL_40:
             errorcode = v2;
             Sys_LeaveCriticalSection(CRITSECT_COM_ERROR);
-            Com_Printf(v2, 10, "\n====================================================\n");
-            Com_Printf(v2, 10, "Com_ERROR: %s", &com_errorMessage);
-            Com_Printf(v2, 10, "\n====================================================\n\n");
+            Com_Printf(10, "\n====================================================\n");
+            Com_Printf(10, "Com_ERROR: %s", &com_errorMessage);
+            Com_Printf(10, "\n====================================================\n\n");
             if (G_ExitOnComError(v2))
             {
                 printf((const char*)&stru_C3DBC8);
@@ -121,12 +121,12 @@ void common::Com_Error(errorParm_t code, const char* fmt, ...)
         dwRecordEventFormat(v3, DW_EVENT_SYS_ERROR, "%s", &com_errorMessage);
         Sys_LeaveCriticalSection(CRITSECT_DEMONWARE);
     }
-    Com_Printf(2, 10, "STACKBEGIN -------------------------------------------------------------------\n");
+    Com_Printf(10, "STACKBEGIN -------------------------------------------------------------------\n");
     assertive::StackTrace_Walk(1, 0);
     assertive::StackTrace_ResolveSymbols();
     assertive::StackTrace_Generate(0x2000, g_stackTrace);
-    Com_Printf(2, 10, "%s", g_stackTrace);
-    Com_Printf(2, 10, "STACKEND ---------------------------------------------------------------------\n");
+    Com_Printf(10, "%s", g_stackTrace);
+    Com_Printf(10, "STACKEND ---------------------------------------------------------------------\n");
     if (errorcode == 3 || (v4 = "MENU_ERROR", Com_ErrorIsNotice((const char*)&com_errorMessage)))
         v4 = "MENU_NOTICE";
     v5 = SEH_LocalizeTextMessage((const char*)&com_errorMessage, "error message", LOCMSG_NOERR);
@@ -139,30 +139,35 @@ void common::Com_Error(errorParm_t code, const char* fmt, ...)
     Sys_LeaveCriticalSection(CRITSECT_COM_ERROR);
 }
 
-void common::Com_ErrorCleanup()
+void Com_ErrorCleanup()
 {
 }
 
-void common::Com_Frame_Try_Block_Function()
+void Com_Frame_Try_Block_Function()
 {
 }
 
-const char* common::Com_GetBuildName()
+const char* Com_GetBuildDisplayNameR()
+{
+    return "Call of Duty®";
+}
+
+const char* Com_GetBuildName()
 {
     return "COD_T6";
 }
 
-const char* common::Com_GetBuildVersion()
+const char* Com_GetBuildVersion()
 {
     return "alpha_version";
 }
 
-int common::Com_GetPrivateClients()
+int Com_GetPrivateClients()
 {
     return 0;
 }
 
-void common::Com_PrintError(int a1, int channel, const char* fmt, ...)
+void Com_PrintError(int channel, const char* fmt, ...)
 {
     unsigned int v3; // kr00_4
     char dest[4095]; // [esp+0h] [ebp-1004h]
@@ -170,23 +175,22 @@ void common::Com_PrintError(int a1, int channel, const char* fmt, ...)
     va_list ap; // [esp+1014h] [ebp+10h]
 
     va_start(ap, fmt);
-    if (q_shared::I_stristr(fmt, "error"))
-        q_shared::I_strncpyz(dest, "^1", 4096);
+    if (I_stristr(fmt, "error"))
+        I_strncpyz(dest, "^1", 4096);
     else
-        q_shared::I_strncpyz(dest, "^1Error: ", 4096);
+        I_strncpyz(dest, "^1Error: ", 4096);
     v3 = strlen(dest);
     _vsnprintf(&dest[v3], 4096 - v3, fmt, ap);
     ++com_errorPrintsCount;
     v5 = 0;
-    Com_PrintMessage(a1, channel, dest, 3);
+    Com_PrintMessage(channel, dest, 3);
 }
 
-void common::Com_Printf(int a1, int channel, const char* fmt, ...)
+void Com_Printf(int channel, const char* fmt, ...)
 {
     signed int v3; // kr00_4
     char* v4; // edx
     char* v5; // esi
-    int v6; // [esp-4h] [ebp-1054h]
     char string; // [esp+Ch] [ebp-1044h]
     char v8; // [esp+Dh] [ebp-1043h]
     char msg; // [esp+Eh] [ebp-1042h]
@@ -207,7 +211,6 @@ void common::Com_Printf(int a1, int channel, const char* fmt, ...)
             source = 0;
             memset(&dst, 0, 0x3Fu);
             v3 = strlen(&string);
-            v6 = a1;
             if (v3 <= 256)
             {
                 strncpy(&com_consoleBuffer[256 * com_consoleBufferCurLine], &source, 0);
@@ -245,29 +248,29 @@ void common::Com_Printf(int a1, int channel, const char* fmt, ...)
                 if (channel != 8 && (!Dvar_GetBool(com_filter_output) || Con_IsChannelVisible(0, channel, 3)))
                     Sys_Print(v5);
                 if (channel != 9 && com_logfile && Dvar_GetInt(com_logfile))
-                    Com_LogPrintMessage(v6, v5);
+                    Com_LogPrintMessage(v5);
             }
         }
     }
 }
 
-void common::Com_PrintMessage(int a1, int channel, const char* msg, int error)
+void Com_PrintMessage(int channel, const char* msg, int error)
 {
 }
 
-bool common::Com_SetPrivateClients()
+bool Com_SetPrivateClients()
 {
     return false;
 }
 
-char* common::Sys_Cwd()
+char* Sys_Cwd()
 {
     _getcwd(cwd, 255);
     cwd[255] = 0;
     return cwd;
 }
 
-char* common::Sys_DefaultInstallPath()
+char* Sys_DefaultInstallPath()
 {
     DWORD v1; // eax
     char v2; // cl
@@ -278,7 +281,7 @@ char* common::Sys_DefaultInstallPath()
     {
         _getcwd(cwd, 255);
         cwd[255] = 0;
-        q_shared::I_strncpyz(exePath, cwd, 256);
+        I_strncpyz(exePath, cwd, 256);
         return exePath;
     }
     v1 = GetModuleFileNameA(0, exePath, 0x100u);

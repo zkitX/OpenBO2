@@ -1,11 +1,22 @@
 #include <direct.h>
 
 #include "q_shared.h"
-#include "assertive.h"
 
 #include "../qcommon/common.h"
 
-void q_shared::I_strncpyz(char* dest, const char* src, int destsize)
+struct _iobuf
+{
+    char* _ptr;
+    int _cnt;
+    char* _base;
+    int _flag;
+    int _file;
+    int _charbuf;
+    int _bufsiz;
+    char* _tmpfname;
+};
+
+void I_strncpyz(char* dest, const char* src, int destsize)
 {
     const char* v3; // eax
     int i; // edi
@@ -46,7 +57,7 @@ void q_shared::I_strncpyz(char* dest, const char* src, int destsize)
     strncpy(dest, src, destsize-1);
 }
 
-int q_shared::I_stricmp(const char* s0, const char* s1)
+int I_stricmp(const char* s0, const char* s1)
 {
 #ifdef _DEBUG
     if (!s0
@@ -73,14 +84,14 @@ int q_shared::I_stricmp(const char* s0, const char* s1)
     return I_strnicmp(s0, s1, 0x7FFFFFFF);
 }
 
-int q_shared::I_strnicmp(const char* s0, const char* s1, int n)
+int I_strnicmp(const char* s0, const char* s1, int n)
 {
     const char* v3; // esi
     int v4; // edx
     int v5; // eax
     int v6; // ecx
     int v7; // ebx
-
+    #ifdef _DEBUG
     if (!s0
         && !(unsigned __int8)assertive::Assert_MyHandler(
             __FILE__,
@@ -91,7 +102,9 @@ int q_shared::I_strnicmp(const char* s0, const char* s1, int n)
     {
         __debugbreak();
     }
+    #endif
     v3 = s1;
+    #ifdef _DEBUG
     if (!s1
         && !(unsigned __int8)assertive::Assert_MyHandler(
             __FILE__,
@@ -102,6 +115,7 @@ int q_shared::I_strnicmp(const char* s0, const char* s1, int n)
     {
         __debugbreak();
     }
+    #endif
     if (!s0 || !s1)
         return s1 - s0;
     v4 = n;
@@ -154,6 +168,17 @@ bool Com_BitCheckAssert(const unsigned int* array, int bitNum, int size)
         __debugbreak();
     }
     return (array[bitNum >> 5] & (1 << (bitNum & 0x1F))) != 0;
+}
+
+int Com_sprintf(char* dest, int size, const char* fmt, ...)
+{
+    int result; // eax
+    va_list ap; // [esp+1Ch] [ebp+14h]
+
+    va_start(ap, fmt);
+    result = _vsnprintf(dest, size, fmt, ap);
+    dest[size - 1] = 0;
+    return result;
 }
 
 const char* I_stristr(const char* s0, const char* substr)
@@ -213,7 +238,7 @@ const char* I_stristr(const char* s0, const char* substr)
 
 void* Sys_GetValue(int valueIndex)
 {
-    return
+    return;
 }
 
 void Sys_MkdirEx(const char* _path)
@@ -246,7 +271,7 @@ char* va(const char* format, ...)
     va_list ap; // [esp+10h] [ebp+Ch]
 
     va_start(ap, format);
-    v1 = Sys_GetValue(1);
+    v1 = (_DWORD*)Sys_GetValue(1);
     v2 = v1[1024];
     v3 = (char*)&v1[256 * v2];
     v1[1024] = (v2 + 1) % 4;
@@ -255,7 +280,7 @@ char* va(const char* format, ...)
     if (v4 < 0 || v4 >= 1024)
     {
         v3[1023] = 0;
-        common::Com_Error(common::ERR_DROP, &byte_C80B84, v3);
+        Com_Error(ERR_DROP, "Attempted to overrun string in call to va(): '%s'", v3);
     }
     return v3;
 }

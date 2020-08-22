@@ -5,9 +5,10 @@
 
 void Com_InitThreadData(int threadContext)
 {
-    g_dwTlsIndex[1] = &va_info[threadContext];
-    g_dwTlsIndex[2] = g_com_error[threadContext];
-    g_dwTlsIndex[3] = 
+    Sys_SetValue(1, &va_info[threadContext]);
+    Sys_SetValue(2, g_com_error[threadContext]);
+    Sys_SetValue(3, (void*)g_traceThreadInfo);
+    Sys_SetValue(4, g_cmd_args);
 }
 
 void Sys_CreateEvent(int manualReset, int initialState, void** evt)
@@ -25,7 +26,7 @@ void Sys_CreateEvent(int manualReset, int initialState, void** evt)
     else
     {
         v5 = GetLastError();
-        common::Com_Printf((int)v4, 1, "error %d while creating event\n", v5);
+        Com_Printf((int)v4, 1, "error %d while creating event\n", v5);
 #ifdef _DEBUG
         if (!(unsigned __int8)assertive::Assert_MyHandler(
             __FILE__,
@@ -69,15 +70,19 @@ void Sys_InitMainThread()
     threadId[0] = *(&g_currentThreadId);
     DuplicateHandle(GetCurrentProcess(), GetCurrentThread(), GetCurrentProcess(), threadHandle, 0, 0, 2u);
     Win_InitThreads();
-    g_dwTlsIndex = (void**)g_threadValues;
-    g_threadValues[0][1] = va_info;
-    g_threadValues[0][2] = g_com_error;
-    g_threadValues[0][3] = g_traceThreadInfo;
-    g_threadValues[0][4] = g_cmd_args;
+    *g_dwTlsIndex = g_threadValues;
+    Com_InitThreadData(0);
 }
 
 void Sys_InitWebMStreamingEvent()
 {
+}
+
+bool Sys_IsMainThread()
+{
+    if (!g_currentThreadId)
+        g_currentThreadId = GetCurrentThreadId();
+    return g_currentThreadId == threadId[0];
 }
 
 void Sys_NotifyRenderer()

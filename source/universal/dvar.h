@@ -4,7 +4,7 @@
 #include "assertive.h"
 
 #include "../cgame/cg_main.h"
-#include "../gfx_d3d/gfx.h"
+#include "../gfx_d3d/r_utils.h"
 #include "../defs.h"
 
 enum dvarType_t
@@ -85,6 +85,11 @@ struct dvar_t
 	dvar_t* hashNext;
 };
 
+struct enumDvarDef_s
+{
+	const char* enumDvarName;
+};
+
 void Dvar_AddCommands();
 void Dvar_AddConfigFlag_f();
 void Dvar_AddFlags(const dvar_t* dvar, int flags);
@@ -162,13 +167,13 @@ const char* Dvar_GetName(const dvar_t* dvar);
 int Dvar_GetResetInt(const dvar_t* dvar);
 const char* Dvar_GetResetString(const dvar_t* dvar);
 void Dvar_GetResetVec3(const dvar_t* dvar, vec3_t* result);
-GfxViewParms* Dvar_GetString(const dvar_t* dvar);
+const char* Dvar_GetString(const dvar_t* dvar);
 dvarType_t Dvar_GetType(const dvar_t* dvar);
 void Dvar_GetUnpackedColor(const dvar_t* dvar, vec4_t* expandedColor);
 const dvar_t* Dvar_GetUnsignedInt(const dvar_t* dvar);
 
-GfxViewParms* Dvar_GetVariantString(const dvar_t* dvar);
-GfxViewParms* Dvar_GetVariantString(int dvarHash);
+const char* Dvar_GetVariantString(const dvar_t* dvar);
+const char* Dvar_GetVariantString(int dvarHash);
 
 void Dvar_GetVec2(const dvar_t* dvar, vec2_t* result);
 void Dvar_GetVec3(const dvar_t* dvar, vec3_t* result);

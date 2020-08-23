@@ -35,7 +35,7 @@ int PrivateUnhandledExceptionFilter(_EXCEPTION_POINTERS* ExceptionInfo);
 
 void Sys_Error(const char* error, ...);
 char* Sys_GetIdentityParam(IdentityParam p);
-void Sys_OutOfMemErrorInternal(int a1, const char* filename, int line);
+void Sys_OutOfMemErrorInternal(const char* filename, int line);
 
 // Startup function
 int __stdcall WinMain(HINSTANCE__* hInstance, HINSTANCE__* hPrevInstance, char* lpCmdLine, int nCmdShow);

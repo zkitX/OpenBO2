@@ -32,11 +32,23 @@ void Sys_Error(const char* error, ...)
     if ((unsigned char)Sys_IsMainThread()) {
         //LiveStream_Shutdown();
         Sys_ShowConsole();
+        Conbuf_AppendText("\n\n");
+        Conbuf_AppendText(&string);
+        Conbuf_AppendText("\n");
+        Sys_SetErrorText(&string);
+        while (GetMessageA(&Msg, 0, 0, 0))
+        {
+            TranslateMessage(&Msg);
+            DispatchMessageA(&Msg);
+        }
+        exit(0);
     }
+    if ((unsigned __int8)Sys_IsServerThread())
+        Sys_ServerCompleted();
 
 }
 
-void Sys_OutOfMemErrorInternal(int a1, const char* filename, int line)
+void Sys_OutOfMemErrorInternal(const char* filename, int line)
 {
     const char* localizedMemTitle; // ST1C_4
     const char* localizedMemBody; // ST18_4

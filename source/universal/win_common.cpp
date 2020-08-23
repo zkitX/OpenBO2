@@ -35,3 +35,12 @@ void Sys_LeaveCriticalSection(CriticalSection critSect) {
     }
 #endif
 }
+
+void Sys_InitializeCriticalSections()
+{
+    if (!CritSectInited) {
+        CritSectInited = 1;
+        for (_RTL_CRITICAL_SECTION* v0 = s_criticalSection; (unsigned int*)v0 < &s_threadAffinityMask; v0++)
+            InitializeCriticalSection(v0);
+    }
+}

@@ -140,7 +140,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\devgui\devgui_input.h" />
+    <ClInclude Include="source\client\cl_input.h" />
     <ClInclude Include="com_clients.h" />
+    <ClInclude Include="source\gfx_d3d\r_dvars.h" />
+    <ClInclude Include="source\universal\physicalmemory.h" />
     <ClInclude Include="source\win32\miniDumper.h" />
     <ClInclude Include="source\gfx_d3d\r_image.h" />
     <ClInclude Include="source\gfx_d3d\r_drawsurf.h" />
@@ -214,7 +218,6 @@
     <ClInclude Include="source\sound\snd_globals.h" />
     <ClInclude Include="source\sound\snd_local.h" />
     <ClInclude Include="source\qcommon\cmd.h" />
-    <ClInclude Include="source\qcommon\mem_track.h" />
     <ClInclude Include="source\universal\com_tasks.h" />
     <ClInclude Include="source\devgui\devgui.h" />
     <ClInclude Include="source\universal\com_memory.h" />
@@ -281,9 +284,14 @@
     <ClInclude Include="source\server_mp\sv_snapshot_profile_mp.h" />
     <ClInclude Include="source\win32\win_syscon.h" />
     <ClInclude Include="source\win32\win_net.h" />
+    <ClInclude Include="source\win32\win_wndproc.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\devgui\devgui_input.cpp" />
+    <ClCompile Include="source\client\cl_input.cpp" />
     <ClCompile Include="com_clients.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_dvars.cpp" />
+    <ClCompile Include="source\universal\physicalmemory.cpp" />
     <ClCompile Include="source\win32\miniDumper.cpp" />
     <ClCompile Include="source\gfx_d3d\r_image.cpp" />
     <ClCompile Include="source\gfx_d3d\r_drawsurf.cpp" />
@@ -356,7 +364,6 @@
     <ClCompile Include="source\sound\snd_globals.cpp" />
     <ClCompile Include="source\sound\snd_local.cpp" />
     <ClCompile Include="source\qcommon\cmd.cpp" />
-    <ClCompile Include="source\qcommon\mem_track.cpp" />
     <ClCompile Include="source\universal\com_tasks.cpp" />
     <ClCompile Include="source\devgui\devgui.cpp" />
     <ClCompile Include="source\universal\com_memory.cpp" />

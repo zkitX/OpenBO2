@@ -66,7 +66,7 @@ TempMemInfo* GetTempMemInfo(int permanent, const char* name, int type, int usage
         while (1)
         {
             v7 = v9;
-            if ((!name || !q_shared::I_stricmp(v9->data.name, name))
+            if ((!name || !I_stricmp(v9->data.name, name))
                 && v9->permanent == permanent
                 && (unsigned char)v9->data.usageType == usageType)
             {
@@ -81,7 +81,7 @@ TempMemInfo* GetTempMemInfo(int permanent, const char* name, int type, int usage
         if (!v8)
             return v9;
     }
-    qmemcpy(&foundTempMemInfo, v7, sizeof(foundTempMemInfo));
+    memcpy(&foundTempMemInfo, v7, sizeof(foundTempMemInfo));
     if (v8 > 0)
     {
         v11 = &tempMemInfoArray[v8];
@@ -90,11 +90,36 @@ TempMemInfo* GetTempMemInfo(int permanent, const char* name, int type, int usage
             v12 = v11;
             --v8;
             --v11;
-            qmemcpy(v12, v11, sizeof(TempMemInfo));
+            memcpy(v12, v11, sizeof(TempMemInfo));
         } while (v8 > 0);
     }
-    qmemcpy(tempMemInfoArray, &foundTempMemInfo, sizeof(TempMemInfo));
+    memcpy(tempMemInfoArray, &foundTempMemInfo, sizeof(TempMemInfo));
     return tempMemInfoArray;
+}
+
+void track_init()
+{
+    char v0;
+    int memtrackcount;
+    char* v2;
+
+    Sys_InitializeCriticalSections();
+    Sys_EnterCriticalSection(CRITSECT_MEMTRACK);
+    if (!inited_0) {
+        inited_0 = 1;
+        memset(&g_info, 0, 0x1E0u);
+        memset(&g_virtualMemInfo, 0, 0x1E0u);
+        v0 = (char)aInternal;
+        v2 = &g_staticsMemTrack[0].type;
+        for (memtrackcount = 0; v2 < (char*)g_staticsMemTrack; memtrackcount++) {
+
+        }
+    }
+    Sys_LeaveCriticalSection(CRITSECT_MEMTRACK);
+}
+
+void track_physical_alloc(int size, const char* name, int type, int location)
+{
 }
 
 void track_z_alloc(int size, const char* name, int type, void* pos, int project, int overhead)

@@ -72,9 +72,6 @@
     <ClCompile Include="source\win32\win_input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\qcommon\mem_track.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\win32\win_localize.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -429,6 +426,18 @@
     <ClCompile Include="com_clients.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\universal\physicalmemory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gfx_d3d\r_dvars.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\client\cl_input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\devgui\devgui_input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\win32\win_main.h">
@@ -489,9 +498,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\win32\win_input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\qcommon\mem_track.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\win32\win_localize.h">
@@ -852,6 +858,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="com_clients.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\universal\physicalmemory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\win32\win_wndproc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\gfx_d3d\r_dvars.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\client\cl_input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\devgui\devgui_input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

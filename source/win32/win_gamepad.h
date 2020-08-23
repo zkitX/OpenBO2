@@ -8,6 +8,61 @@ enum ControllerIndex_t
 	CONTROLLER_INDEX_COUNT = 0x1,
 };
 
+enum GamePadButton
+{
+	GPAD_NONE = 0x0,
+	GPAD_UP = 0x10000001,
+	GPAD_DOWN = 0x10000002,
+	GPAD_LEFT = 0x10000004,
+	GPAD_RIGHT = 0x10000008,
+	GPAD_START = 0x10000010,
+	GPAD_BACK = 0x10000020,
+	GPAD_L3 = 0x10000040,
+	GPAD_R3 = 0x10000080,
+	GPAD_A = 0x10001000,
+	GPAD_B = 0x10002000,
+	GPAD_X = 0x10004000,
+	GPAD_Y = 0x10008000,
+	GPAD_L_SHLDR = 0x10000100,
+	GPAD_R_SHLDR = 0x10000200,
+	GPAD_L_TRIG = 0x20000000,
+	GPAD_R_TRIG = 0x20000001,
+};
+
+enum GamePadButtonEvent
+{
+	GPAD_BUTTON_RELEASED = 0x0,
+	GPAD_BUTTON_PRESSED = 0x1,
+	GPAD_BUTTON_UPDATE = 0x2,
+};
+
+enum GamePadStick
+{
+	GPAD_INVALID = 0x0,
+	GPAD_LX = 0x40000000,
+	GPAD_LY = 0x40000001,
+	GPAD_RX = 0x40000002,
+	GPAD_RY = 0x40000003,
+};
+
+enum GamePadStickDir
+{
+	GPAD_STICK_POS = 0x0,
+	GPAD_STICK_NEG = 0x1,
+	GPAD_STICK_DIRCOUNT = 0x2,
+};
+
+struct StickToCodeMap_t {
+	GamePadStick padStick;
+	GamePadStickDir padStickDir;
+	int code;
+};
+
+struct ButtonToCodeMap_t {
+	GamePadButton padButton;
+	int code;
+};
+
 class win_gamepad
 {
 };

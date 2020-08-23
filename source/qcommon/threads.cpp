@@ -203,6 +203,13 @@ bool Sys_IsMainThread()
     return g_currentThreadId == threadId[0];
 }
 
+bool Sys_IsServerThread()
+{
+    if (!g_currentThreadId)
+        g_currentThreadId = GetCurrentThreadId();
+    return g_currentThreadId == threadId[10];
+}
+
 void Sys_NotifyRenderer()
 {
 }

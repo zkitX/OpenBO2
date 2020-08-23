@@ -10,7 +10,9 @@
 #  define LOW_IND(x,part_type)   0
 #endif
 
+#define BYTEn(x, n)   (*((unsigned char*)&(x)+n))
 #define DWORDn(x, n)  (*((long long*)&(x)+n))
 
 #define LODWORD(x) DWORDn(x,LOW_IND(x,long long))
 #define HIDWORD(x) DWORDn(x,HIGH_IND(x,long long))
+#define BYTE1(x)   BYTEn(x,  1)

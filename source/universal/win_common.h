@@ -82,8 +82,14 @@ enum CriticalSection
 	CRITSECT_COUNT = 0x4D,
 };
 
+_RTL_CRITICAL_SECTION s_criticalSection[77];
+
+bool CritSectInited;
+unsigned int s_threadAffinityMask;
+
 void Sys_EnterCriticalSection(CriticalSection critSect);
 void Sys_LeaveCriticalSection(CriticalSection critSect);
+void Sys_InitializeCriticalSections();
 
 
 class win_common

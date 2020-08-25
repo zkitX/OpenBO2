@@ -423,9 +423,6 @@
     <ClCompile Include="source\win32\win_net.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="com_clients.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\universal\physicalmemory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -436,6 +433,60 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\devgui\devgui_input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\universal\q_parse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\demo\demo_common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\demo\demo_ui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\qcommon\com_clients.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\win32\win_shared.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\cgame\cg_camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\client\cl_keys.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\bgame\bg_faction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\client\cl_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\xanim\dobj.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\xanim\dobj_skel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\xanim\dobj_utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gfx_d3d\r_xsurface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\database\db_load.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\cgame\cg_hudelem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\cgame\cg_vehicle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\game\g_weapon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\cgame\cg_visionsets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -857,9 +908,6 @@
     <ClInclude Include="source\win32\win_net.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="com_clients.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\universal\physicalmemory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -873,6 +921,60 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\devgui\devgui_input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\universal\q_parse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\demo\demo_common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\demo\demo_ui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\qcommon\com_clients.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\win32\win_shared.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\cgame\cg_camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\client\cl_keys.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\bgame\bg_faction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\client\cl_main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\xanim\dobj_utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\xanim\dobj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\xanim\dobj_skel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\gfx_d3d\r_xsurface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\database\db_load.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\cgame\cg_hudelem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\cgame\cg_vehicle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\game\g_weapon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\cgame\cg_visionsets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

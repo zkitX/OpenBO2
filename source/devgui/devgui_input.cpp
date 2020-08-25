@@ -29,3 +29,13 @@ void DevGui_InputInit()
 {
     Cmd_AddCommandInternal("devgui", DevGui_Toggle, &DevGui_Toggle_VAR);
 }
+
+void DevGui_InputShutdown()
+{
+    //Cmd_RemoveCommand("devgui");
+}
+
+void DevGui_SelectGamepad(ControllerIndex_t gamePadIndex)
+{
+    s_input.selectedGamePadIndex = gamePadIndex;
+}

@@ -58,8 +58,11 @@ struct DevGuiInput
 };
 
 DevGuiInput s_input;
+cmd_function_s DevGui_Toggle_VAR;
 
 float i_fsign(float val);
 bool DevGui_IsButtonDown(DevGuiInputButton button);
 void DevGui_MouseEvent(int dx, int dy);
 void DevGui_InputInit();
+void DevGui_InputShutdown();
+void DevGui_SelectGamepad(ControllerIndex_t gamePadIndex);

@@ -210,6 +210,20 @@ bool Sys_IsServerThread()
     return g_currentThreadId == threadId[10];
 }
 
+bool Sys_IsRenderThread()
+{
+    if (!g_currentThreadId)
+        g_currentThreadId = GetCurrentThreadId();
+    return g_currentThreadId == threadId[1];
+}
+
+bool Sys_IsDatabaseThread()
+{
+    if (!g_currentThreadId)
+        g_currentThreadId = GetCurrentThreadId();
+    return g_currentThreadId == threadId[12];
+}
+
 void Sys_NotifyRenderer()
 {
 }

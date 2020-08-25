@@ -299,6 +299,20 @@ void Sys_Print(const char* msg)
 	SV_SysLog_LogMessage(0, msg);
 }
 
+void Sys_SetErrorText(const char* buf)
+{
+	const char* v1; // ST08_4
+	HWND v2; // eax
+
+	I_strncpyz(s_wcd.errorString, buf, 512);
+	DestroyWindow(s_wcd.hwndInputLine);
+	s_wcd.hwndInputLine = 0;
+	ShowCursor(1);
+	v1 = Win_LocalizeRef("WIN_ERROR");
+	v2 = GetActiveWindow();
+	MessageBoxA(v2, buf, v1, 0x10u);
+}
+
 void Sys_ShowConsole()
 {
 	if (!s_wcd.hWnd) {

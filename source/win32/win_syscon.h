@@ -68,4 +68,5 @@ LRESULT InputLineWndProc(HWND__* hWnd, unsigned int uMsg, unsigned int wParam, i
 
 void Sys_CreateConsole(HINSTANCE__* hInstance);
 void Sys_Print(const char* msg);
+void Sys_SetErrorText(const char* buf);
 void Sys_ShowConsole();

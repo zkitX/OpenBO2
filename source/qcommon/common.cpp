@@ -101,8 +101,8 @@ void Com_Error(errorParm_t code, const char* fmt, ...)
             Com_Printf(10, "\n====================================================\n\n");
             if (G_ExitOnComError(v2))
             {
-                printf((const char*)&stru_C3DBC8);
-                LiveSteam_Shutdown();
+                printf((const char*)&com_errorMessage);
+                //LiveSteam_Shutdown();
                 BG_EvalVehicleName(v8, &com_errorMessage);
                 v9 = __iob_func();
                 fflush(v9 + 1);

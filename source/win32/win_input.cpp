@@ -8,6 +8,43 @@
 
 #include "../universal/assertive.h"
 
+void IN_ClampMouseMove(tagPOINT* curPos)
+{
+	int v1; // edx
+	char v2; // cl
+	int v3; // eax
+	int v4; // edx
+	tagRECT rc; // [esp+0h] [ebp-14h]
+
+	GetWindowRect(g_wv.hWnd, &rc);
+	v1 = rc.left;
+	v2 = 0;
+	if (curPos->x >= rc.left)
+	{
+		if (curPos->x < rc.right)
+			goto LABEL_5;
+		v1 = rc.right - 1;
+	}
+	v2 = 1;
+	curPos->x = v1;
+LABEL_5:
+	v3 = curPos->y;
+	v4 = rc.top;
+	if (v3 >= rc.top)
+	{
+		if (v3 < rc.bottom)
+		{
+			if (!v2)
+				return;
+			goto LABEL_10;
+		}
+		v4 = rc.bottom - 1;
+	}
+	curPos->y = v4;
+LABEL_10:
+	SetCursorPos(curPos->x, curPos->y);
+}
+
 int IN_DeactivateWin32Mouse()
 {
 	int result;

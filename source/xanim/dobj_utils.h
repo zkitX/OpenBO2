@@ -1,5 +1,5 @@
 #pragma once
-class com_clients
+class dobj_utils
 {
 };
 

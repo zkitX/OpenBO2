@@ -3,7 +3,7 @@
 #include "com_memory.h"
 #include "assertive.h"
 
-#include "../cgame/cg_main.h"
+#include "../qcommon/com_clients.h"
 #include "../gfx_d3d/r_utils.h"
 #include "../defs.h"
 

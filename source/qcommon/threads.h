@@ -86,6 +86,8 @@ void Sys_InitMainThread();
 void Sys_InitWebMStreamingEvent();
 bool Sys_IsMainThread();
 bool Sys_IsServerThread();
+bool Sys_IsRenderThread();
+bool Sys_IsDatabaseThread();
 void Sys_NotifyRenderer();
 void Sys_ResetServerNetworkCompletedEvent();
 void Sys_SetServerNetworkCompletedEvent();

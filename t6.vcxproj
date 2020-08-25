@@ -89,6 +89,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>source/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -140,9 +141,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\cgame\cg_visionsets.h" />
+    <ClInclude Include="source\game\g_weapon.h" />
+    <ClInclude Include="source\cgame\cg_vehicle.h" />
+    <ClInclude Include="source\cgame\cg_hudelem.h" />
+    <ClInclude Include="source\database\db_load.h" />
+    <ClInclude Include="source\gfx_d3d\r_xsurface.h" />
+    <ClInclude Include="source\xanim\dobj.h" />
+    <ClInclude Include="source\xanim\dobj_skel.h" />
+    <ClInclude Include="source\xanim\dobj_utils.h" />
+    <ClInclude Include="source\client\cl_main.h" />
+    <ClInclude Include="source\bgame\bg_faction.h" />
+    <ClInclude Include="source\client\cl_keys.h" />
+    <ClInclude Include="source\cgame\cg_camera.h" />
+    <ClInclude Include="source\demo\demo_ui.h" />
+    <ClInclude Include="source\demo\demo_common.h" />
+    <ClInclude Include="source\universal\q_parse.h" />
     <ClInclude Include="source\devgui\devgui_input.h" />
     <ClInclude Include="source\client\cl_input.h" />
-    <ClInclude Include="com_clients.h" />
+    <ClInclude Include="source\qcommon\com_clients.h" />
     <ClInclude Include="source\gfx_d3d\r_dvars.h" />
     <ClInclude Include="source\universal\physicalmemory.h" />
     <ClInclude Include="source\win32\miniDumper.h" />
@@ -285,11 +302,28 @@
     <ClInclude Include="source\win32\win_syscon.h" />
     <ClInclude Include="source\win32\win_net.h" />
     <ClInclude Include="source\win32\win_wndproc.h" />
+    <ClInclude Include="source\win32\win_shared.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\cgame\cg_visionsets.cpp" />
+    <ClCompile Include="source\game\g_weapon.cpp" />
+    <ClCompile Include="source\cgame\cg_vehicle.cpp" />
+    <ClCompile Include="source\cgame\cg_hudelem.cpp" />
+    <ClCompile Include="source\database\db_load.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_xsurface.cpp" />
+    <ClCompile Include="source\xanim\dobj.cpp" />
+    <ClCompile Include="source\xanim\dobj_skel.cpp" />
+    <ClCompile Include="source\xanim\dobj_utils.cpp" />
+    <ClCompile Include="source\client\cl_main.cpp" />
+    <ClCompile Include="source\bgame\bg_faction.cpp" />
+    <ClCompile Include="source\client\cl_keys.cpp" />
+    <ClCompile Include="source\cgame\cg_camera.cpp" />
+    <ClCompile Include="source\demo\demo_ui.cpp" />
+    <ClCompile Include="source\demo\demo_common.cpp" />
+    <ClCompile Include="source\universal\q_parse.cpp" />
     <ClCompile Include="source\devgui\devgui_input.cpp" />
     <ClCompile Include="source\client\cl_input.cpp" />
-    <ClCompile Include="com_clients.cpp" />
+    <ClCompile Include="source\qcommon\com_clients.cpp" />
     <ClCompile Include="source\gfx_d3d\r_dvars.cpp" />
     <ClCompile Include="source\universal\physicalmemory.cpp" />
     <ClCompile Include="source\win32\miniDumper.cpp" />
@@ -428,6 +462,7 @@
     <ClCompile Include="source\server_mp\sv_snapshot_profile_mp.cpp" />
     <ClCompile Include="source\win32\win_syscon.cpp" />
     <ClCompile Include="source\win32\win_net.cpp" />
+    <ClCompile Include="source\win32\win_shared.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LICENSE" />

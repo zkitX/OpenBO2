@@ -1,7 +1,8 @@
 #pragma once
 
-char* Win_LocalizeRef(const char* ref);
+struct {
+	char* language;
+	char* strings;
+} localization;
 
-class win_localize
-{
-};
+char* Win_LocalizeRef(const char* ref);

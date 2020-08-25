@@ -43,6 +43,32 @@ struct GfxMatrix
 	vec4_t m[4];
 };
 
+union GfxColor
+{
+	unsigned int packed;
+	char array[4];
+};
+
+union PackedTexCoords
+{
+	unsigned int packed;
+};
+
+union PackedUnitVec
+{
+	unsigned int packed;
+};
+
+struct GfxPackedVertex
+{
+	vec3_t xyz;
+	float binormalSign;
+	GfxColor color;
+	PackedTexCoords texCoord;
+	PackedUnitVec normal;
+	PackedUnitVec tangent;
+};
+
 struct GfxViewParms
 {
 	GfxMatrix viewMatrix;

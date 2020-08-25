@@ -173,6 +173,7 @@ struct dvar_t const* const in_mouse;
 int window_center_x;
 int window_center_y;
 
+void IN_ClampMouseMove(tagPOINT* curPos);
 int IN_DeactivateWin32Mouse();
 HWND IN_MouseMove();
 void IN_RecenterMouse();

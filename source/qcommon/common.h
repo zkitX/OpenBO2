@@ -44,9 +44,6 @@ void Com_Printf(int channel, const char* fmt, ...);
 void Com_PrintMessage(int channel, const char* msg, int error);
 bool Com_SetPrivateClients();
 
-char* Sys_Cwd();
-char* Sys_DefaultInstallPath();
-char cwd[256];
 char exePath[256];
 
 

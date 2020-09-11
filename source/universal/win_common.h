@@ -82,16 +82,42 @@ enum CriticalSection
 	CRITSECT_COUNT = 0x4D,
 };
 
+enum HU_ALLOCATION_SCHEME
+{
+	HU_SCHEME_DEFAULT = 0x0,
+	HU_SCHEME_DEBUG = 0x1,
+	HU_SCHEME_FIRSTFIT = 0x2,
+	HU_SCHEME_FIXED = 0x3,
+	HU_SCHEME_NULL = 0x4,
+	HU_SCHEME_COUNT = 0x5,
+};
+
+struct HunkUser
+{
+	HU_ALLOCATION_SCHEME scheme;
+	unsigned int flags;
+	const char* name;
+	int type;
+};
+
 _RTL_CRITICAL_SECTION s_criticalSection[77];
 
+int marker_win_common;
 bool CritSectInited;
 unsigned int s_threadAffinityMask;
+char cwd[256];
+char homePath[256];
 
-void Sys_EnterCriticalSection(CriticalSection critSect);
-void Sys_LeaveCriticalSection(CriticalSection critSect);
+void Sys_Mkdir(const char* path);
+void Sys_MkdirEx(char const* _path);
+char* Sys_Cwd();
+char const* Sys_DefaultHomePath();
+char const* Sys_DefaultInstallPath();
+bool Sys_FileExists(char const* path);
+void Sys_ListFilteredFiles(const char* baseDir, const char* subDirs, const char* filter, int* numFiles, HunkUser* user, char** list);
+char** Sys_ListFiles(char const* directory, char const* extension, char const* filter, int* numfiles, int wantsubs);
+int Sys_DirectoryHasContents(char const* directory);
 void Sys_InitializeCriticalSections();
-
-
-class win_common
-{
-};
+void Sys_EnterCriticalSection(CriticalSection critSect);
+bool Sys_TryEnterCriticalSection(CriticalSection critSect);
+void Sys_LeaveCriticalSection(CriticalSection critSect);

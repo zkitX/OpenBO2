@@ -3,73 +3,87 @@
 #include "win_main.h"
 #include "win_net.h"
 
-void enqueueSyslogMessage(const char* msg)
-{
-	unsigned int v1; // esi
+#include <immintrin.h>
 
-	EnterCriticalSection(&s_sysLogCritSec);
-	v1 = strlen(msg);
-	if (v1 > 0x578)
-		v1 = 1400;
-	if (v1 > 1400 - s_bufferPos)
-	{
-		sendto(s_syslogSocket, s_syslogBuffer, s_bufferPos, 0, (const struct sockaddr*)&s_sysLogAddr, 16);
-		s_bufferPos = 0;
-	}
-	memcpy(&s_syslogBuffer[s_bufferPos], (char*)msg, v1);
-	s_bufferPos += v1;
-	if (s_bufferPos >= 0x400)
-	{
-		sendto(s_syslogSocket, s_syslogBuffer, s_bufferPos, 0, (const struct sockaddr*)&s_sysLogAddr, 16);
-		s_bufferPos = 0;
-	}
-	LeaveCriticalSection(&s_sysLogCritSec);
+void NET_Sleep(unsigned int timeInMs)
+{
+	Sleep(timeInMs);
 }
 
-void SV_SysLog_ForceFlush()
+const char* NET_ErrorString()
 {
-	if (s_syslogInited)
-	{
-		sendto(s_syslogSocket, s_syslogBuffer, s_bufferPos, 0, (const struct sockaddr*)&s_sysLogAddr, 16);
-		s_bufferPos = 0;
+	int socketError;
+
+	socketError = WSAGetLastError();
+	switch (socketError) {
+		case WSAEINTR: return "WSAEINTR";
+		case WSAEBADF: return "WSAEBADF";
+		case WSAEACCES: return "WSAEACCES";
+		case WSAEDISCON: return "WSAEDISCON";
+		case WSAEFAULT: return "WSAEFAULT";
+		case WSAEINVAL: return "WSAEINVAL";
+		case WSAEMFILE: return "WSAEMFILE";
+		case WSAEWOULDBLOCK: return "WSAEWOULDBLOCK";
+		case WSAEINPROGRESS: return "WSAEINPROGRESS";
+		case WSAEALREADY: return "WSAEALREADY";
+		case WSAENOTSOCK: return "WSAENOTSOCK";
+		case WSAEDESTADDRREQ: return "WSAEDESTADDRREQ";
+		case WSAEMSGSIZE: return "WSAEMSGSIZE";
+		case WSAEPROTOTYPE: return "WSAEPROTOTYPE";
+		case WSAENOPROTOOPT: return "WSAENOPROTOOPT";
+		case WSAEPROTONOSUPPORT: return "WSAEPROTONOSUPPORT";
+		case WSAESOCKTNOSUPPORT: return "WSAESOCKTNOSUPPORT";
+		case WSAEOPNOTSUPP: return "WSAEOPNOTSUPP";
+		case WSAEPFNOSUPPORT: return "WSAEPFNOSUPPORT";
+		case WSAEAFNOSUPPORT: return "WSAEAFNOSUPPORT";
+		case WSAEADDRINUSE: return "WSAEADDRINUSE";
+		case WSAEADDRNOTAVAIL: return "WSAEADDRNOTAVAIL";
+		case WSAENETDOWN: return "WSAENETDOWN";
+		case WSAENETUNREACH: return "WSAENETUNREACH";
+		case WSAENETRESET: return "WSAENETRESET";
+		case WSAECONNABORTED: return "WSWSAECONNABORTEDAEINTR";
+		case WSAECONNRESET: return "WSAECONNRESET";
+		case WSAENOBUFS: return "WSAENOBUFS";
+		case WSAEISCONN: return "WSAEISCONN";
+		case WSAENOTCONN: return "WSAENOTCONN";
+		case WSAESHUTDOWN: return "WSAESHUTDOWN";
+		case WSAETOOMANYREFS: return "WSAETOOMANYREFS";
+		case WSAETIMEDOUT: return "WSAETIMEDOUT";
+		case WSAECONNREFUSED: return "WSAECONNREFUSED";
+		case WSAELOOP: return "WSAELOOP";
+		case WSAENAMETOOLONG: return "WSAENAMETOOLONG";
+		case WSAEHOSTDOWN: return "WSAEHOSTDOWN";
+		case WSASYSNOTREADY: return "WSASYSNOTREADY";
+		case WSAVERNOTSUPPORTED: return "WSAVERNOTSUPPORTED";
+		case WSANOTINITIALISED: return "WSANOTINITIALISED";
+		case WSAHOST_NOT_FOUND: return "WSAHOST_NOT_FOUND";
+		case WSATRY_AGAIN: return "WSATRY_AGAIN";
+		case WSANO_RECOVERY: return "WSANO_RECOVERY";
+		case WSANO_DATA: return "WSANO_DATA";
+		default: return "NO ERROR";
 	}
 }
 
-void SV_SysLog_Init()
+hostent* Sys_StringToSockaddr(char const* s, sockaddr* sadr)
 {
-	int lastError; // eax
-	const char* syslogAddress; // esi
-	unsigned short syslogPort; // ax
+	struct hostent* result; // eax
 
-	if (Dvar_GetBool(sv_syslog_enabled))
+	_mm_storel_epi64((__m128i*)sadr, (__m128i)0i64);				// Need a constructor for long long to m128i
+	_mm_storel_epi64((__m128i*) & sadr->sa_data[6], (__m128i)0i64);
+	*(unsigned int*)&sadr->sa_family = 2;
+	if (I_isdigit(*s))
 	{
-		InitializeCriticalSection(&s_sysLogCritSec);
-		s_syslogSocket = WSASocketA(2, 2, 17, 0, 0, 0);
-		if (s_syslogSocket == -1)
+		*(unsigned int*)&sadr->sa_data[2] = inet_addr(s);
+		result = (struct hostent*)1;
+	}
+	else
+	{
+		result = gethostbyname(s);
+		if (result)
 		{
-			lastError = WSAGetLastError();
-			Sys_Error("Couldn't open syslog socket - error %u", lastError);
+			*(unsigned int*)&sadr->sa_data[2] = **(unsigned int**)result->h_addr_list;
+			result = (struct hostent*)1;
 		}
-		syslogAddress = Dvar_GetString(sv_syslog_address);
-		syslogPort = Dvar_GetInt(sv_syslog_port);
-		s_sysLogAddr.sin_family = 2;
-		s_sysLogAddr.sin_port = htons(syslogPort);
-		s_sysLogAddr.sin_addr.S_un.S_addr = inet_addr(syslogAddress);
-		s_syslogInited = 1;
 	}
-}
-
-void SV_SysLog_LogMessage(int severity, const char* msg)
-{
-	const char* v2; // eax
-	char syslogMsg[1264]; // [esp+4h] [ebp-4F4h]
-
-	if (s_syslogInited && Dvar_GetBool(sv_syslog_enabled))
-	{
-		syslogMsg[0] = 0;
-		memset(&syslogMsg[1], 0, 0x4EFu);
-		v2 = Dvar_GetString(sv_hostname);
-		Com_sprintf(syslogMsg, 1263, "<%u>%s: %s", severity + 128, v2, msg);
-		enqueueSyslogMessage(syslogMsg);
-	}
+	return result;
 }

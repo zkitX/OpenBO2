@@ -135,8 +135,10 @@ parseInfo_t* Com_ParseExt(const char** data_p, int allowLineBreaks)
     v2 = Com_GetParseThreadInfo();
     v3 = (int)v2->parseInfo[v2->parseInfoNum].token;
     parse = v2;
+#ifdef _DEBUG
     if (!data_p && !assertive::Assert_MyHandler(__FILE__, __LINE__, 0, "(data_p)", &pBlock))
         __debugbreak();
+#endif
     v4 = *data_p;
     len = 0;
     *(unsigned char*)v3 = 0;
@@ -403,6 +405,7 @@ ParseThreadInfo* Com_GetParseThreadInfo()
         return g_parse + 36120;
     if (Sys_IsDatabaseThread())
         return g_parse + 54180;
+#ifdef _DEBUG
     if (!assertive::Assert_MyHandler(
         __FILE__,
         __LINE__,
@@ -410,6 +413,7 @@ ParseThreadInfo* Com_GetParseThreadInfo()
         &pBlock,
         "No parse context for current thread."))
         __debugbreak();
+#endif
     return 0;
 }
 

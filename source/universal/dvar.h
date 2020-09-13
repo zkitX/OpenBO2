@@ -1,11 +1,8 @@
 #pragma once
 
-#include "com_memory.h"
-#include "assertive.h"
+#include <gfx_d3d/r_utils.h>
 
-#include "../qcommon/com_clients.h"
-#include "../gfx_d3d/r_utils.h"
-#include "../defs.h"
+#include <qcommon/com_clients.h>
 
 enum dvarType_t
 {
@@ -89,6 +86,11 @@ struct enumDvarDef_s
 {
 	const char* enumDvarName;
 };
+
+const dvar_t* cl_socketpool_enabled;
+const dvar_t* cl_socketpool_size;
+
+const dvar_t* net_broadcast;
 
 void Dvar_AddCommands();
 void Dvar_AddConfigFlag_f();

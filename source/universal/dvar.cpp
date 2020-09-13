@@ -3,6 +3,8 @@
 #include <emmintrin.h>
 
 #include "../qcommon/cmd.h"
+#include "com_memory.h"
+#include "assertive.h"
 
 void Dvar_AddCommands()
 {

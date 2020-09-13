@@ -2,8 +2,8 @@
 #include <Xinput.h>
 #include <cstdint>
 
-#include <qcommon/com_clients.h>
 #include <universal/dvar.h>
+#include <qcommon/com_clients.h>
 
 enum ControllerIndex_t
 {
@@ -93,7 +93,29 @@ const uint32_t _mask__AbsFloat_ = 0x7FFFFFFF;
 const uint32_t _mask__NegFloat_ = 0x80000000;
 
 const dvar_t* gpad_button_deadzone;
+
+const dvar_t* gpad_stick_deadzone_min;
+const dvar_t* gpad_stick_deadzone_max;
+const dvar_t* gpad_stick_pressed;
+const dvar_t* gpad_stick_pressed_hysteresis;
+
+float flt_7AB2058[12]; // UNNAMED
+float flt_lowrumble[4];
+float flt_highrumble[4];
+
 GamePad s_gamePads[1];
+
+XINPUT_CAPABILITIES pCapabilities;
+const dvar_t* gpad_enabled;
+int byte_7AB2041;
+void(* s_removedCB)(ControllerIndex_t);
+void(* s_insertedCB)(ControllerIndex_t);
+
+const dvar_t* gpad_debug;
+_XINPUT_GAMEPAD xpad;
+_XINPUT_STATE delayedInputState[1];
+bool hasInput[1];
+int inputCounter;
 
 void GPad_UpdateDigitals(ControllerIndex_t portIndex, const _XINPUT_GAMEPAD* xpad);
 void GPad_UpdateAnalogs(ControllerIndex_t portIndex, const _XINPUT_GAMEPAD* xpad);

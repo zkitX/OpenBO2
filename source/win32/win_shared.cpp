@@ -1,6 +1,8 @@
 #include "win_shared.h"
 
-DWORD Sys_Milliseconds()
+#include <Windows.h>
+
+int Sys_Milliseconds()
 {
     if (!initialized_1)
     {
@@ -8,4 +10,16 @@ DWORD Sys_Milliseconds()
         initialized_1 = 1;
     }
     return timeGetTime() - sys_timeBase;
+}
+
+int Sys_MillisecondsRaw()
+{
+    return timeGetTime();
+}
+
+void Sys_SnapVector(float* v)
+{
+    *v = (float)(signed int)*v;
+    v[1] = (float)(signed int)v[1];
+    v[2] = (float)(signed int)v[2];
 }

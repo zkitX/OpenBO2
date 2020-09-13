@@ -1,8 +1,8 @@
 #pragma once
 
-#include "win_main.h"
-
 int initialized_1;
-DWORD sys_timeBase;
+int sys_timeBase;
 
-DWORD Sys_Milliseconds();
+int Sys_Milliseconds();
+int Sys_MillisecondsRaw();
+void Sys_SnapVector(float* v);

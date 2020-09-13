@@ -7,10 +7,17 @@
 #include "../universal/dvar.h"
 #include "../universal/win_common.h"
 
-char pBlock;
-
-int com_errorEntered;
-int com_fixedConsolePosition;
+struct _iobuf
+{
+	char* _ptr;
+	int _cnt;
+	char* _base;
+	int _flag;
+	int _file;
+	int _charbuf;
+	int _bufsiz;
+	char* _tmpfname;
+};
 
 enum errorParm_t
 {
@@ -23,6 +30,11 @@ enum errorParm_t
 	ERR_SCRIPT_DROP = 0x6,
 	ERR_LOCALIZATION = 0x7,
 };
+
+char pBlock;
+
+int com_errorEntered;
+int com_fixedConsolePosition;
 
 errorParm_t errorcode;
 

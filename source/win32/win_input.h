@@ -161,21 +161,29 @@ struct WinMouseVars_t
 	bool mouseInitialized;
 };
 
+int dword_DD710C[]; // UNKNOWN
+
 ButtonToCodeMap_t buttonList[16];
 StickToCodeMap_t* analogStickList;
 
 static WinMouseVars_t s_wmv;
 
-int g_showCursor;
-int marker_win_input;
+static int g_showCursor;
+static int marker_win_input;
 struct dvar_t const* const in_mouse;
 
 int window_center_x;
 int window_center_y;
 
-void IN_ClampMouseMove(tagPOINT* curPos);
-int IN_DeactivateWin32Mouse();
-HWND IN_MouseMove();
+int in_appactive;
+
+void IN_GamepadsMove();
 void IN_RecenterMouse();
-void IN_ShowSystemCursor(int show);
+void IN_ActivateMouse(int force);
+void IN_ClampMouseMove(tagPOINT* curPos);
+HWND IN_MouseMove();
 void IN_SetCursorPos(int x, int y);
+void IN_ShowSystemCursor(int show);
+int IN_DeactivateWin32Mouse();
+void IN_Shutdown();
+void IN_Frame();

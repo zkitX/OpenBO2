@@ -1,4 +1,9 @@
 #pragma once
+#include <Xinput.h>
+#include <cstdint>
+
+#include <qcommon/com_clients.h>
+#include <universal/dvar.h>
 
 enum ControllerIndex_t
 {
@@ -52,6 +57,27 @@ enum GamePadStickDir
 	GPAD_STICK_DIRCOUNT = 0x2,
 };
 
+struct GamePad
+{
+	bool enabled;
+	bool keyboardEnabled;
+	__int16 digitals;
+	__int16 lastDigitals;
+	float analogs[2];
+	float lastAnalogs[2];
+	float sticks[4];
+	float lastSticks[4];
+	bool stickDown[4][2];
+	bool stickDownLast[4][2];
+	float lowRumble;
+	float highRumble;
+	struct { 
+		_XINPUT_VIBRATION Rumble;
+	} feedback;
+	_XINPUT_CAPABILITIES caps;
+	_XINPUT_CAPABILITIES keyboardCaps;
+};
+
 struct StickToCodeMap_t {
 	GamePadStick padStick;
 	GamePadStickDir padStickDir;
@@ -63,7 +89,29 @@ struct ButtonToCodeMap_t {
 	int code;
 };
 
-class win_gamepad
-{
-};
+const uint32_t _mask__AbsFloat_ = 0x7FFFFFFF;
+const uint32_t _mask__NegFloat_ = 0x80000000;
 
+const dvar_t* gpad_button_deadzone;
+GamePad s_gamePads[1];
+
+void GPad_UpdateDigitals(ControllerIndex_t portIndex, const _XINPUT_GAMEPAD* xpad);
+void GPad_UpdateAnalogs(ControllerIndex_t portIndex, const _XINPUT_GAMEPAD* xpad);
+void GPad_ConvertStickToFloat(float* outX, float* outY, __int16 inX, __int16 inY);
+void GPad_UpdateSticksDown(GamePad* gPad);
+void GPad_UpdateSticks(ControllerIndex_t portIndex, const _XINPUT_GAMEPAD* xpad);
+void GPad_StopRumbles(ControllerIndex_t portIndex);
+bool GPad_InUse(LocalClientNum_t localClientNum);
+bool GPad_IsActive(ControllerIndex_t portIndex);
+double GPad_GetButton(ControllerIndex_t portIndex, GamePadButton button);
+bool GPad_ButtonRequiresUpdates(ControllerIndex_t portIndex, GamePadButton button);
+signed int GPad_IsButtonPressed(ControllerIndex_t portIndex, GamePadButton button);
+signed int GPad_IsButtonReleased(ControllerIndex_t portIndex, GamePadButton button);
+double GPad_GetStick(ControllerIndex_t portIndex, GamePadStick stick);
+void GPad_SetLowRumble(ControllerIndex_t portIndex, float rumble);
+void GPad_SetHighRumble(ControllerIndex_t portIndex, float rumble);
+bool GPad_GetStickChangedToPressedState(ControllerIndex_t portIndex, GamePadStick stick, GamePadStickDir stickDir, bool pressedState);
+bool GPad_IsStickPressed(ControllerIndex_t portIndex, GamePadStick stick, GamePadStickDir stickDir);
+bool GPad_IsStickReleased(ControllerIndex_t portIndex, GamePadStick stick, GamePadStickDir stickDir);
+void GPad_RefreshAll();
+void GPad_UpdateAll();

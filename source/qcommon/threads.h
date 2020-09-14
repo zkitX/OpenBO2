@@ -108,6 +108,7 @@ bool Sys_WaitServer(int timeout);
 void Sys_WaitServerNetworkCompleted();
 void Sys_WaitStartDatabase();
 bool Sys_WaitStartServer(int timeout);
+unsigned int Sys_GetCpuCount();
 unsigned int Win_InitThreads();
 class threads
 {

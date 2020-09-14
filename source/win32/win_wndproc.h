@@ -1,6 +1,6 @@
 #pragma once
 
-#include "win_main.h"
+#include <Windows.h>
 
 struct WinVars_t
 {
@@ -15,5 +15,4 @@ struct WinVars_t
 	unsigned int sysMsgTime;
 } g_wv;
 
-int marker_win_wndproc;
 int g_blockHook;

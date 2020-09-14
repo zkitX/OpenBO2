@@ -28,6 +28,12 @@ enum _MINIDUMP_TYPE
 	MiniDumpValidTypeFlags = 0x7FFFF,
 };
 
+miniDumper g_miniDumper;
+bool g_miniDumperStarted;
+static miniDumper* s_pMiniDumper;
+cmd_function_s SetDumpDir_f_VAR;
+
+void InitMiniDumper(char* lpCmdLine);
 bool Sys_IsMiniDumpStarted();
 void Sys_StartMiniDump(bool prompt);
 
@@ -42,17 +48,9 @@ class miniDumper {
 	};
 public:
 	bool enablePrivilege(const char* pszPriv, void* hToken, _TOKEN_PRIVILEGES* ptpOld);
-	void InitMiniDumper(char* lpCmdLine);
 	void setMiniDumpFileName(miniDumper*, const char* tag);
 	int unhandledExceptionHandler(_EXCEPTION_POINTERS* pExceptionInfo);
 	int writeMiniDump(miniDumper*, _EXCEPTION_POINTERS* pExceptionInfo, const char* tag, _MINIDUMP_TYPE type, bool prompt, bool upload);
 private:
 	static LPCRITICAL_SECTION s_pCriticalSection;
 };
-
-miniDumper g_miniDumper;
-bool g_miniDumperStarted;
-static miniDumper* s_pMiniDumper;
-cmd_function_s SetDumpDir_f_VAR;
-
- 

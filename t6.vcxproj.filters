@@ -489,6 +489,12 @@
     <ClCompile Include="source\cgame\cg_visionsets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\win32\win_configure.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\win32\timing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\win32\win_main.h">
@@ -975,6 +981,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\cgame\cg_visionsets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\win32\win_configure.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\win32\timing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

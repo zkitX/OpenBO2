@@ -1,8 +1,6 @@
 #pragma once
 #include <Windows.h>
 
-#include "../defs.h"
-
 struct WinConData
 {
 	HWND__* hWnd;
@@ -58,15 +56,12 @@ unsigned int s_totalChars;
 WinConData s_wcd;
 MessageWindow msgwnd;
 
-void Conbuf_AppendText(const char* pMsg);
-void Conbuf_AppendTextInMainThread(const char* msg);
-char* Conbuf_CleanText(const char* source, char* target, int sizeofTarget);
-void Con_GetTextCopy(char* text, int maxSize);
-
 LRESULT ConWndProc(HWND__* hWnd, unsigned int uMsg, unsigned int wParam, int lParam);
 LRESULT InputLineWndProc(HWND__* hWnd, unsigned int uMsg, unsigned int wParam, int lParam);
-
+char* Conbuf_CleanText(const char* source, char* target, int sizeofTarget);
 void Sys_CreateConsole(HINSTANCE__* hInstance);
-void Sys_Print(const char* msg);
-void Sys_SetErrorText(const char* buf);
+void Sys_DestroyConsole();
 void Sys_ShowConsole();
+void Conbuf_AppendText(const char* pMsg);
+void Conbuf_AppendTextInMainThread(const char* msg);
+void Sys_SetErrorText(const char* buf);

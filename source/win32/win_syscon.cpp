@@ -14,8 +14,8 @@ void Conbuf_AppendText(const char* pMsg)
 #ifdef _DEBUG
 	if (!s_wcd.hwndBuffer
 		&& !(unsigned char)assertive::Assert_MyHandler(
-			"c:\\t6\\code\\src_noserver\\win32\\win_syscon.cpp",
-			399,
+			__FILE__,
+			__LINE__,
 			0,
 			"(s_wcd.hwndBuffer)",
 			&pBlock))
@@ -100,43 +100,6 @@ char* Conbuf_CleanText(const char* source, char* target, int sizeofTarget)
 	}
 	*target = 0;
 	return (char*)(target - i);
-}
-
-void Con_GetTextCopy(char* text, int maxSize)
-{
-	int v2; // esi
-	int v3; // edi
-	unsigned int end; // [esp+0h] [ebp-4h]
-
-	if (msgwnd.activeLineCount)
-	{
-		v2 = msgwnd.lines[msgwnd.firstLineIndex].textBufPos;
-		v3 = msgwnd.textBufPos - v2;
-		end = msgwnd.textBufPos;
-		if (msgwnd.textBufPos - v2 < 0)
-			v3 += msgwnd.textBufSize;
-		if (v3 > maxSize - 1)
-		{
-			v2 += v3 - maxSize + 1;
-			if (v2 > msgwnd.textBufSize)
-				v2 -= msgwnd.textBufSize;
-			v3 = maxSize - 1;
-		}
-		if (v2 >= msgwnd.textBufPos)
-		{
-			memcpy(text, &msgwnd.circularTextBuffer[v2], msgwnd.textBufSize - v2);
-			memcpy(&text[msgwnd.textBufSize - v2], msgwnd.circularTextBuffer, end);
-		}
-		else
-		{
-			memcpy(text, &msgwnd.circularTextBuffer[v2], msgwnd.textBufPos - v2);
-		}
-		text[v3] = 0;
-	}
-	else
-	{
-		*text = 0;
-	}
 }
 
 LRESULT ConWndProc(HWND__* hWnd, unsigned int uMsg, unsigned int wParam, int lParam)
@@ -291,12 +254,15 @@ void Sys_CreateConsole(HINSTANCE__* hInstance) {
 	}
 }
 
-void Sys_Print(const char* msg)
+void Sys_DestroyConsole()
 {
-	if (enable_OutputDebugString)
-		OutputDebugStringA(msg);
-	Conbuf_AppendTextInMainThread(msg);
-	SV_SysLog_LogMessage(0, msg);
+	if (s_wcd.hWnd)
+	{
+		ShowWindow(s_wcd.hWnd, 0);
+		CloseWindow(s_wcd.hWnd);
+		DestroyWindow(s_wcd.hWnd);
+		s_wcd.hWnd = 0;
+	}
 }
 
 void Sys_SetErrorText(const char* buf)

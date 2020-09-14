@@ -343,6 +343,11 @@ bool Sys_WaitStartServer(int timeout)
     return false;
 }
 
+unsigned int Sys_GetCpuCount()
+{
+    return s_cpuCount;
+}
+
 unsigned int Win_InitThreads()
 {
     HANDLE v0; // eax

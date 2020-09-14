@@ -22,7 +22,7 @@ bool miniDumper::enablePrivilege(const char* pszPriv, void* hToken, _TOKEN_PRIVI
     return result;
 }
 
-void miniDumper::InitMiniDumper(char* lpCmdLine)
+void InitMiniDumper(char* lpCmdLine)
 {
     if (I_stristr(lpCmdLine, "autodump"))
     {

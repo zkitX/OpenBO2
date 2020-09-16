@@ -363,8 +363,8 @@ char* Sys_GetIdentityParam(IdentityParam p)
 #ifdef _DEBUG
 	if ((unsigned int)p >= 7
 		&& !Assert_MyHandler(
-			"c:\\t6\\code\\src_noserver\\win32\\win_main.cpp",
-			1527,
+			__FILE__,
+			__LINE__,
 			0,
 			"(unsigned)(p) < (unsigned)(IDENTITY_PARAM_COUNT)",
 			"p doesn't index IDENTITY_PARAM_COUNT\n\t%i not in [0, %i)",

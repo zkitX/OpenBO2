@@ -1,235 +1,226 @@
-#include <immintrin.h>
-
 #include "assertive.h"
+
 #include "blackbox.h"
 #include "win_common.h"
-#include "../qcommon/common.h"
-#include "../win32/miniDumper.h"
+
+#include <immintrin.h>
+
+#include <qcommon/common.h>
+#include <gfx_d3d/r_dvars.h>
+#include <win32/miniDumper.h>
 
 const char aExe[5] = ".exe";
 const char aDll[5] = ".dll";
 
-int assertive::Assert_BuildAssertMessageWithStack(const char* extra, int line, char* message, const char* expr, const char* filename, int type, int messageLen)
+int HideWindowCallback(HWND__* hwnd, int lParam)
 {
-    void* v7; // esi
-    int v8; // eax
-    char* v9; // esi
-    const char* v10; // ST28_4
-    const char* v11; // eax
-    int v13; // [esp+0h] [ebp-20h]
-    const char* v14; // [esp+8h] [ebp-18h]
-    void* v15; // [esp+Ch] [ebp-14h]
-    char unknown[10]; // [esp+10h] [ebp-10h]
+    LONG v2; // esi
+    LONG v3; // edi
+    int v4; // eax
+    char caption[1024]; // [esp+8h] [ebp-404h]
 
-    v7 = (void*)filename;
-    v14 = extra;
-    v13 = line;
-    v15 = (void*)expr;
-    strcpy(unknown, "<unknown>");
-    if (!filename)
-        v7 = unknown;
-    if (!expr)
-        v15 = unknown;
-    if (!GetModuleFileNameA(0, g_module, 0x104u))
+    if (!GetWindowTextA(hwnd, caption, 1024) || !strcmp(caption, Com_GetBuildDisplayNameR()))
     {
-        _mm_storel_epi64((__m128i*)g_module, _mm_loadl_epi64((const __m128i*)"<unknown application>"));
-        _mm_storel_epi64((__m128i*) & g_module[8], _mm_loadl_epi64((const __m128i*)" application>"));
-        *(unsigned int*)&g_module[16] = *(unsigned int*)"tion>";
-        *(unsigned short*)&g_module[20] = *(unsigned short*)">";
+        v2 = GetWindowLongA(hwnd, -16);
+        v3 = GetWindowLongA(hwnd, -20);
+        if (v2 & 0x10000000)
+        {
+            v4 = g_hiddenCount;
+            g_hwndGame[g_hiddenCount] = hwnd;
+            g_hiddenCount = v4 + 1;
+            SetWindowLongA(hwnd, -16, v2 & 0xEFFFFFFF);
+            SetWindowLongA(hwnd, -20, v3 & 0xFFFFFFF7);
+        }
     }
-    v8 = _snprintf(message, messageLen, "%s\n%s\n%s\n%s:%d\n", v15, v14, g_module, v7, v13);
-    v9 = &message[v8 + StackTrace_Generate(messageLen - v8, &message[v8])];
-    v10 = Com_GetBuildVersion();
-    v11 = Com_GetBuildName();
-    return v9 - message + _snprintf(v9, &message[messageLen] - v9, "%s %s\n", v11, v10);
+    return 1;
 }
 
-bool assertive::Assert_MyHandler(const char* filename, int line, int type, const char* expr, const char* fmt, ...)
+void FixWindowsDesktop()
 {
-    const char* v5; // eax
-    int v6; // edi
-    HWND v7; // eax
-    char v8; // bl
-    const char* lpCaption; // [esp+0h] [ebp-4h]
-    va_list ap; // [esp+20h] [ebp+1Ch]
+    DWORD v0; // eax
+    HWND v1; // esi
+    HDC v2; // edi
+    int v3; // eax
+    unsigned short* v4; // ecx
+    signed int v5; // edx
+    unsigned short ramp[3][256]; // [esp+8h] [ebp-604h]
 
-    va_start(ap, fmt);
-    Sys_EnterCriticalSection(CRITSECT_ASSERT);
-    _vsnprintf(message, 0x400u, fmt, ap);
-    message[1023] = 0;
-    StackTrace_Walk(1, 0);
-    if (!g_inStackTrace)
+    ChangeDisplaySettingsA(0, 0);
+    v0 = GetCurrentThreadId();
+    EnumThreadWindows(v0, (WNDENUMPROC)HideWindowCallback, 0);
+    v1 = GetDesktopWindow();
+    v2 = GetDC(v1);
+    v3 = 0;
+    v4 = ramp[1];
+    v5 = 256;
+    do
     {
-        g_inStackTrace = 1;
-        LoadMapFilesForDir((const char*)&pBlock);
-        g_inStackTrace = 0;
-    }
-    if (isHandlingAssert)
-    {
-        v5 = va("Assert Expression:\n    %s\nFile:    %s\nLine:    %d\n\n", message, filename, line);
-        Com_Printf(10, v5);
-        CopyMessageToClipboard(assertMessage);
-        v6 = lastAssertType;
-        if (AssertCallback)
-            AssertCallback(assertMessage);
-        if (v6)
-        {
-            if (v6 == 1)
-                lpCaption = "SANITY CHECK FAILURE... (this text is on the clipboard)";
-            else
-                lpCaption = "INTERNAL ERROR";
-        }
-        else
-        {
-            lpCaption = "ASSERTION FAILURE... (this text is on the clipboard)";
-        }
-        ShowCursor(1);
-        ShowCursor(1);
-        v7 = GetActiveWindow();
-        MessageBoxA(v7, assertMessage, lpCaption, 0x12011u);
-        Assert_BuildAssertMessageWithStack(message, line, assertMessage, expr, filename, type, 4096);
-        BB_Alert(filename, line, "assert", message);
-        if (isHandlingAssert == 1)
-        {
-            isHandlingAssert = 2;
-            Com_Printf(10, "ASSERTBEGIN - ( Recursive assert )---------------------------------------------\n");
-            Com_Printf(10, "%s", assertMessage);
-            Com_Printf(10, "ASSERTEND - ( Recursive assert ) ----------------------------------------------\n\n");
-        }
-        // LiveSteam_Shutdown();
-        exit(-1);
-    }
-    lastAssertType = type;
-    isHandlingAssert = 1;
-    FixWindowsDesktop();
-    Assert_BuildAssertMessageWithStack(message, line, assertMessage, expr, filename, type, 4096);
-    BB_Alert(filename, line, "assert", message);
-    Com_Printf(10, "ASSERTBEGIN -------------------------------------------------------------------\n");
-    Com_Printf(10, "%s", assertMessage);
-    Com_Printf(10, "ASSERTEND ---------------------------------------------------------------------\n");
-    OutputDebugStringA(assertMessage);
-    if (!Dvar_IsSystemActive())
-    {
-        if (!shouldQuitOnError)
-            goto LABEL_19;
-    LABEL_22:
-        //LiveSteam_Shutdown();
-        ExitProcess(0xFFFFFFFF);
-    }
-    if (Dvar_GetBool(quit_on_error) || Dvar_GetInt(r_vc_compile) == 2)
-    {
-        shouldQuitOnError = 1;
-        goto LABEL_22;
-    }
-    shouldQuitOnError = 0;
-LABEL_19:
-    CopyMessageToClipboard(assertMessage);
-    v8 = AssertNotify(type, (AssertOccurance)0);
-    isHandlingAssert = 0;
-    Sys_LeaveCriticalSection(CRITSECT_ASSERT);
-    return v8 == 0;
+        *(v4 - 256) = v3;
+        *v4 = v3;
+        v4[256] = v3;
+        v3 += 257;
+        ++v4;
+        --v5;
+    } while (v5);
+    SetDeviceGammaRamp(v2, ramp);
+    ReleaseDC(v1, v2);
 }
 
-HMODULE assertive::GetModuleBase(int a1, const char* name)
-{
-    unsigned int v2; // esi
-    int v3; // ecx
-    char v4; // al
-    char* v5; // esi
-    HMODULE result; // eax
-    char moduleName[260]; // [esp+8h] [ebp-108h]
-
-    v2 = strlen(name);
-    v3 = v2 - 1;
-    if ((signed int)(v2 - 1) >= 0)
-    {
-        while (1)
-        {
-            v4 = name[v3];
-            if (v4 == 46 || v4 == 47 || v4 == 92)
-                break;
-            if (--v3 < 0)
-                goto LABEL_10;
-        }
-        if (v3 >= 0 && name[v3] == 46)
-            v2 = v3;
-    }
-LABEL_10:
-    memcpy(moduleName, (char*)name, v2);
-    v5 = &moduleName[v2];
-    *(unsigned int*)v5 = *(unsigned int*)aExe;
-    v5[4] = 0;
-    result = GetModuleHandleA(moduleName);
-    if (!result)
-    {
-        *(unsigned int*)v5 = *(unsigned int*)aDll;
-        v5[4] = 0;
-        result = GetModuleHandleA(moduleName);
-    }
-    return result;
-}
-
-void assertive::LoadMapFilesForDir(const char* dir)
-{
-    char* v1; // eax
-    char* v2; // eax
-    int v3; // ecx
-    HMODULE v4; // edi
-    char* v5; // eax
-    _iobuf* v6; // esi
-    int v7; // eax
-    char v8; // cl
-    HANDLE hFindFile; // [esp+0h] [ebp-1148h]
-    _WIN32_FIND_DATAA FindFileData; // [esp+4h] [ebp-1144h]
-    char string; // [esp+144h] [ebp-1004h]
-    char v12[4]; // [esp+940h] [ebp-808h]
-    char file[2048]; // [esp+944h] [ebp-804h]
-
-    if (*dir)
-    {
-        v1 = Sys_DefaultInstallPath();
-        sprintf(&string, "%s\\%s\\*.map", v1, dir);
-    }
-    else
-    {
-        v2 = Sys_DefaultInstallPath();
-        sprintf(&string, "%s\\*.map", v2);
-    }
-    hFindFile = FindFirstFileA(&string, &FindFileData);
-    if (hFindFile != (HANDLE)-1)
-    {
-        do
-        {
-            v4 = GetModuleBase(v3, FindFileData.cFileName);
-            if (v4)
-            {
-                v5 = Sys_DefaultInstallPath();
-                sprintf(file, "%s\\%s", v5, FindFileData.cFileName);
-                v6 = fopen(file, "rb");
-                if (v6)
-                {
-                    v7 = 0;
-                    do
-                    {
-                        v8 = FindFileData.cFileName[v7];
-                        file[v7++] = v8;
-                    } while (v8);
-                    v12[strlen(file)] = 0;
-                    ParseMapFile(v6, (bool)v6, (unsigned int)v4, file);
-                    fclose(v6);
-                }
-            }
-        } while (FindNextFileA(hFindFile, &FindFileData));
-        FindClose(hFindFile);
-    }
-}
-
-void assertive::ParseError(const char* msg)
+void ParseError(const char* msg)
 {
     MessageBoxA(GetActiveWindow(), msg, ".map parse error", 0x10u);
 }
 
-bool assertive::ParseMapFile(_iobuf* fp, bool a2, unsigned int baseAddress, const char* mapName) {
+char ReadLine(_iobuf* fp)
+{
+    int v1; // eax
+    signed int v2; // esi
+    signed int v3; // edi
+    int v4; // eax
+    bool v6; // zf
+
+    while (1)
+    {
+        lineBufferEndPos -= lineBufferStartPos;
+        if ((lineBufferEndPos & 0x80000000) != 0
+            && !(unsigned char)Assert_MyHandler(
+                __FILE__,
+                __LINE__,
+                0,
+                "(lineBufferEndPos >= 0)",
+                (const char*)&pBlock))
+        {
+            __debugbreak();
+        }
+        memmove(lineBuffer, &lineBuffer[lineBufferStartPos], lineBufferEndPos);
+        v1 = 0;
+        lineBufferStartPos = 0;
+        if ((signed int)lineBufferEndPos > 0)
+        {
+            while (lineBuffer[v1] != 10)
+            {
+                if (++v1 >= (signed int)lineBufferEndPos)
+                    goto LABEL_9;
+            }
+            if (v1 + 1 != lineBufferEndPos)
+                break;
+        }
+    LABEL_9:
+        v2 = 4095 - lineBufferEndPos;
+        v3 = fread(&lineBuffer[lineBufferEndPos], 1u, 4095 - lineBufferEndPos, fp);
+        if (v3 > v2
+            && !(unsigned char)Assert_MyHandler(
+                __FILE__,
+                __LINE__,
+                0,
+                "(bytesRead <= readSize)",
+                (const char*)&pBlock))
+        {
+            __debugbreak();
+        }
+        v4 = v3 + lineBufferEndPos;
+        lineBufferEndPos = v4;
+        lineBuffer[v4] = 0;
+        if (!v3)
+        {
+            if (!v4)
+                return 0;
+            goto LABEL_18;
+        }
+    }
+    v6 = *(unsigned char*)(v1 + 127084113) == 13;
+    lineBuffer[v1] = 0;
+    if (v6)
+    {
+        lineBufferStartPos = v1 + 2;
+        return 1;
+    }
+    v4 = v1 + 1;
+LABEL_18:
+    lineBufferStartPos = v4;
+    return 1;
+}
+
+char SkipLines(int lineCount, _iobuf* fp)
+{
+    unsigned int v2; // eax
+    signed int v3; // eax
+    int v4; // ecx
+    signed int v5; // esi
+    signed int v6; // edi
+    bool v8; // zf
+    int i; // [esp+Ch] [ebp-4h]
+
+    i = 0;
+    if (lineCount <= 0)
+        return 1;
+    v2 = lineBufferEndPos;
+    while (1)
+    {
+        do
+        {
+            v3 = v2 - lineBufferStartPos;
+            lineBufferEndPos = v3;
+            if (v3 < 0)
+            {
+                if (!(unsigned char)Assert_MyHandler(
+                    __FILE__,
+                    __LINE__,
+                    0,
+                    "(lineBufferEndPos >= 0)",
+                    (const char*)&pBlock))
+                    __debugbreak();
+                v3 = lineBufferEndPos;
+            }
+            memmove(lineBuffer, &lineBuffer[lineBufferStartPos], v3);
+            v2 = lineBufferEndPos;
+            v4 = 0;
+            lineBufferStartPos = 0;
+            if ((signed int)lineBufferEndPos > 0)
+            {
+                while (lineBuffer[v4] != 10)
+                {
+                    if (++v4 >= (signed int)lineBufferEndPos)
+                        goto LABEL_12;
+                }
+                if (v4 + 1 != lineBufferEndPos)
+                {
+                    v8 = *(unsigned char*)(v4 + 127084113) == 13;
+                    lineBuffer[v4] = 0;
+                    if (v8)
+                        lineBufferStartPos = v4 + 2;
+                    else
+                        lineBufferStartPos = v4 + 1;
+                    goto LABEL_18;
+                }
+            }
+        LABEL_12:
+            v5 = 4095 - lineBufferEndPos;
+            v6 = fread(&lineBuffer[lineBufferEndPos], 1u, 4095 - lineBufferEndPos, fp);
+            if (v6 > v5
+                && !(unsigned char)Assert_MyHandler(
+                    __FILE__,
+                    __LINE__,
+                    0,
+                    "(bytesRead <= readSize)",
+                    (const char*)&pBlock))
+            {
+                __debugbreak();
+            }
+            v2 = v6 + lineBufferEndPos;
+            lineBufferEndPos = v2;
+            lineBuffer[v2] = 0;
+        } while (v6);
+        if (!v2)
+            return 0;
+        lineBufferStartPos = v2;
+    LABEL_18:
+        if (++i >= lineCount)
+            return 1;
+    }
+}
+
+bool ParseMapFile(_iobuf* fp, bool a2, unsigned int baseAddress, const char* mapName) {
     _iobuf* v4; // edi
     unsigned int v5; // esi
     char result; // al
@@ -559,7 +550,112 @@ bool assertive::ParseMapFile(_iobuf* fp, bool a2, unsigned int baseAddress, cons
     return 0;
 }
 
-int assertive::StackTrace_Generate(int len, char* msg)
+HMODULE GetModuleBase(int a1, const char* name)
+{
+    unsigned int v2; // esi
+    int v3; // ecx
+    char v4; // al
+    char* v5; // esi
+    HMODULE result; // eax
+    char moduleName[260]; // [esp+8h] [ebp-108h]
+
+    v2 = strlen(name);
+    v3 = v2 - 1;
+    if ((signed int)(v2 - 1) >= 0)
+    {
+        while (1)
+        {
+            v4 = name[v3];
+            if (v4 == 46 || v4 == 47 || v4 == 92)
+                break;
+            if (--v3 < 0)
+                goto LABEL_10;
+        }
+        if (v3 >= 0 && name[v3] == 46)
+            v2 = v3;
+    }
+LABEL_10:
+    memcpy(moduleName, (char*)name, v2);
+    v5 = &moduleName[v2];
+    *(unsigned int*)v5 = *(unsigned int*)aExe;
+    v5[4] = 0;
+    result = GetModuleHandleA(moduleName);
+    if (!result)
+    {
+        *(unsigned int*)v5 = *(unsigned int*)aDll;
+        v5[4] = 0;
+        result = GetModuleHandleA(moduleName);
+    }
+    return result;
+}
+
+void LoadMapFilesForDir(const char* dir)
+{
+    const char* v1; // eax
+    const char* v2; // eax
+    int v3; // ecx
+    HMODULE v4; // edi
+    char* v5; // eax
+    _iobuf* v6; // esi
+    int v7; // eax
+    char v8; // cl
+    HANDLE hFindFile; // [esp+0h] [ebp-1148h]
+    _WIN32_FIND_DATAA FindFileData; // [esp+4h] [ebp-1144h]
+    char string; // [esp+144h] [ebp-1004h]
+    char v12[4]; // [esp+940h] [ebp-808h]
+    char file[2048]; // [esp+944h] [ebp-804h]
+
+    if (*dir)
+    {
+        v1 = Sys_DefaultInstallPath();
+        sprintf(&string, "%s\\%s\\*.map", v1, dir);
+    }
+    else
+    {
+        v2 = Sys_DefaultInstallPath();
+        sprintf(&string, "%s\\*.map", v2);
+    }
+    hFindFile = FindFirstFileA(&string, &FindFileData);
+    if (hFindFile != (HANDLE)-1)
+    {
+        do
+        {
+            v4 = GetModuleBase(v3, FindFileData.cFileName);
+            if (v4)
+            {
+                v5 = Sys_DefaultInstallPath();
+                sprintf(file, "%s\\%s", v5, FindFileData.cFileName);
+                v6 = fopen(file, "rb");
+                if (v6)
+                {
+                    v7 = 0;
+                    do
+                    {
+                        v8 = FindFileData.cFileName[v7];
+                        file[v7++] = v8;
+                    } while (v8);
+                    v12[strlen(file)] = 0;
+                    ParseMapFile(v6, (bool)v6, (unsigned int)v4, file);
+                    fclose(v6);
+                }
+            }
+        } while (FindNextFileA(hFindFile, &FindFileData));
+        FindClose(hFindFile);
+    }
+}
+
+int StackTrace_ResolveSymbols()
+{
+    if (!g_inStackTrace)
+    {
+        g_inStackTrace = 1;
+        LoadMapFilesForDir((const char*)&pBlock);
+        g_inStackTrace = 0;
+    }
+    return 0;
+}
+
+int StackTrace_Generate(int len, char* msg)
 {
     char* v3; // ecx
     char* v4; // ebx
@@ -607,30 +703,7 @@ int assertive::StackTrace_Generate(int len, char* msg)
     return v5 - v3;
 }
 
-assertive::AddressInfo_s* assertive::StackTrace_GetAddressInfo(int* addressCount)
-{
-    if (addressCount)
-        *addressCount = g_assertAddressCount;
-    return g_assertAddress;
-}
-
-void assertive::StackTrace_ResetAddressInfo()
-{
-    g_assertAddressCount = 0;
-}
-
-int assertive::StackTrace_ResolveSymbols()
-{
-    if (!g_inStackTrace)
-    {
-        g_inStackTrace = 1;
-        LoadMapFilesForDir((const char*)&pBlock);
-        g_inStackTrace = 0;
-    }
-    return 0;
-}
-
-int assertive::StackTrace_Walk(int ignoreCount, void* context)
+int StackTrace_Walk(int ignoreCount, void* context)
 {
     int result; // eax
     int i; // edx
@@ -666,165 +739,16 @@ int assertive::StackTrace_Walk(int ignoreCount, void* context)
     return result;
 }
 
-char assertive::ReadLine(_iobuf* fp)
+AddressInfo_s* StackTrace_GetAddressInfo(int* addressCount)
 {
-    int v1; // eax
-    signed int v2; // esi
-    signed int v3; // edi
-    int v4; // eax
-    bool v6; // zf
-
-    while (1)
-    {
-        lineBufferEndPos -= lineBufferStartPos;
-        if ((lineBufferEndPos & 0x80000000) != 0
-            && !(unsigned char)Assert_MyHandler(
-                __FILE__,
-                __LINE__,
-                0,
-                "(lineBufferEndPos >= 0)",
-                (const char*)&pBlock))
-        {
-            __debugbreak();
-        }
-        memmove(lineBuffer, &lineBuffer[lineBufferStartPos], lineBufferEndPos);
-        v1 = 0;
-        lineBufferStartPos = 0;
-        if ((signed int)lineBufferEndPos > 0)
-        {
-            while (lineBuffer[v1] != 10)
-            {
-                if (++v1 >= (signed int)lineBufferEndPos)
-                    goto LABEL_9;
-            }
-            if (v1 + 1 != lineBufferEndPos)
-                break;
-        }
-    LABEL_9:
-        v2 = 4095 - lineBufferEndPos;
-        v3 = fread(&lineBuffer[lineBufferEndPos], 1u, 4095 - lineBufferEndPos, fp);
-        if (v3 > v2
-            && !(unsigned char)Assert_MyHandler(
-                __FILE__,
-                __LINE__,
-                0,
-                "(bytesRead <= readSize)",
-                (const char*)&pBlock))
-        {
-            __debugbreak();
-        }
-        v4 = v3 + lineBufferEndPos;
-        lineBufferEndPos = v4;
-        lineBuffer[v4] = 0;
-        if (!v3)
-        {
-            if (!v4)
-                return 0;
-            goto LABEL_18;
-        }
-    }
-    v6 = *(unsigned char*)(v1 + 127084113) == 13;
-    lineBuffer[v1] = 0;
-    if (v6)
-    {
-        lineBufferStartPos = v1 + 2;
-        return 1;
-    }
-    v4 = v1 + 1;
-LABEL_18:
-    lineBufferStartPos = v4;
-    return 1;
+    if (addressCount)
+        *addressCount = g_assertAddressCount;
+    return g_assertAddress;
 }
 
-char assertive::SkipLines(int lineCount, _iobuf* fp)
+void StackTrace_ResetAddressInfo()
 {
-    unsigned int v2; // eax
-    signed int v3; // eax
-    int v4; // ecx
-    signed int v5; // esi
-    signed int v6; // edi
-    bool v8; // zf
-    int i; // [esp+Ch] [ebp-4h]
-
-    i = 0;
-    if (lineCount <= 0)
-        return 1;
-    v2 = lineBufferEndPos;
-    while (1)
-    {
-        do
-        {
-            v3 = v2 - lineBufferStartPos;
-            lineBufferEndPos = v3;
-            if (v3 < 0)
-            {
-                if (!(unsigned char)Assert_MyHandler(
-                    __FILE__,
-                    __LINE__,
-                    0,
-                    "(lineBufferEndPos >= 0)",
-                    (const char*)&pBlock))
-                    __debugbreak();
-                v3 = lineBufferEndPos;
-            }
-            memmove(lineBuffer, &lineBuffer[lineBufferStartPos], v3);
-            v2 = lineBufferEndPos;
-            v4 = 0;
-            lineBufferStartPos = 0;
-            if ((signed int)lineBufferEndPos > 0)
-            {
-                while (lineBuffer[v4] != 10)
-                {
-                    if (++v4 >= (signed int)lineBufferEndPos)
-                        goto LABEL_12;
-                }
-                if (v4 + 1 != lineBufferEndPos)
-                {
-                    v8 = *(unsigned char*)(v4 + 127084113) == 13;
-                    lineBuffer[v4] = 0;
-                    if (v8)
-                        lineBufferStartPos = v4 + 2;
-                    else
-                        lineBufferStartPos = v4 + 1;
-                    goto LABEL_18;
-                }
-            }
-        LABEL_12:
-            v5 = 4095 - lineBufferEndPos;
-            v6 = fread(&lineBuffer[lineBufferEndPos], 1u, 4095 - lineBufferEndPos, fp);
-            if (v6 > v5
-                && !(unsigned char)Assert_MyHandler(
-                    __FILE__,
-                    __LINE__,
-                    0,
-                    "(bytesRead <= readSize)",
-                    (const char*)&pBlock))
-            {
-                __debugbreak();
-            }
-            v2 = v6 + lineBufferEndPos;
-            lineBufferEndPos = v2;
-            lineBuffer[v2] = 0;
-        } while (v6);
-        if (!v2)
-            return 0;
-        lineBufferStartPos = v2;
-    LABEL_18:
-        if (++i >= lineCount)
-            return 1;
-    }
-}
-
-void Com_PrintStackTrace(int code, void(__cdecl* cb)(const char*))
-{
-    Com_Printf(10, "STACKBEGIN -------------------------------------------------------------------\n");
-    assertive::StackTrace_Walk(1, 0);
-    assertive::StackTrace_ResolveSymbols();
-    assertive::StackTrace_Generate(0x2000, g_stackTrace);
-    Com_Printf(10, "%s", g_stackTrace);
-    Com_Printf(10, "STACKEND ---------------------------------------------------------------------\n");
-    if (cb)
-        cb(g_stackTrace);
+    g_assertAddressCount = 0;
 }
 
 void CopyMessageToClipboard(const char* msg)
@@ -864,67 +788,13 @@ void CopyMessageToClipboard(const char* msg)
     }
 }
 
-void FixWindowsDesktop()
-{
-    DWORD v0; // eax
-    HWND v1; // esi
-    HDC v2; // edi
-    int v3; // eax
-    unsigned short* v4; // ecx
-    signed int v5; // edx
-    unsigned short ramp[3][256]; // [esp+8h] [ebp-604h]
-
-    ChangeDisplaySettingsA(0, 0);
-    v0 = GetCurrentThreadId();
-    EnumThreadWindows(v0, (WNDENUMPROC)HideWindowCallback, 0);
-    v1 = GetDesktopWindow();
-    v2 = GetDC(v1);
-    v3 = 0;
-    v4 = ramp[1];
-    v5 = 256;
-    do
-    {
-        *(v4 - 256) = v3;
-        *v4 = v3;
-        v4[256] = v3;
-        v3 += 257;
-        ++v4;
-        --v5;
-    } while (v5);
-    SetDeviceGammaRamp(v2, ramp);
-    ReleaseDC(v1, v2);
-}
-
-int HideWindowCallback(HWND__* hwnd, int lParam)
-{
-    LONG v2; // esi
-    LONG v3; // edi
-    int v4; // eax
-    char caption[1024]; // [esp+8h] [ebp-404h]
-
-    if (!GetWindowTextA(hwnd, caption, 1024) || !strcmp(caption, Com_GetBuildDisplayNameR()))
-    {
-        v2 = GetWindowLongA(hwnd, -16);
-        v3 = GetWindowLongA(hwnd, -20);
-        if (v2 & 0x10000000)
-        {
-            v4 = g_hiddenCount;
-            g_hwndGame[g_hiddenCount] = hwnd;
-            g_hiddenCount = v4 + 1;
-            SetWindowLongA(hwnd, -16, v2 & 0xEFFFFFFF);
-            SetWindowLongA(hwnd, -20, v3 & 0xFFFFFFF7);
-        }
-    }
-    return 1;
-}
-
 char AssertNotify(int type, AssertOccurance occurance)
 {
     const char* v2; // edi
     HWND v3; // eax
 
     if (AssertCallback)
-        AssertCallback(assertive::assertMessage);
+        AssertCallback(assertMessage);
     if (type)
     {
         if (type == 1)
@@ -939,7 +809,7 @@ char AssertNotify(int type, AssertOccurance occurance)
     ShowCursor(1);
     ShowCursor(1);
     v3 = GetActiveWindow();
-    if (MessageBoxA(v3, assertive::assertMessage, v2, 0x12011u) == 1 && occurance != 1)
+    if (MessageBoxA(v3, assertMessage, v2, 0x12011u) == 1 && occurance != 1)
     {
         if (Sys_IsMiniDumpStarted() && !IsDebuggerPresent())
             RaiseException(1u, 0, 0, 0);
@@ -947,4 +817,160 @@ char AssertNotify(int type, AssertOccurance occurance)
         exit(-1);
     }
     return 1;
+}
+
+int Assert_BuildAssertMessageWithStack(const char* extra, int line, char* message, const char* expr, const char* filename, int type, int messageLen)
+{
+    void* v7; // esi
+    int v8; // eax
+    char* v9; // esi
+    const char* v10; // ST28_4
+    const char* v11; // eax
+    int v13; // [esp+0h] [ebp-20h]
+    const char* v14; // [esp+8h] [ebp-18h]
+    void* v15; // [esp+Ch] [ebp-14h]
+    char unknown[10]; // [esp+10h] [ebp-10h]
+
+    v7 = (void*)filename;
+    v14 = extra;
+    v13 = line;
+    v15 = (void*)expr;
+    strcpy(unknown, "<unknown>");
+    if (!filename)
+        v7 = unknown;
+    if (!expr)
+        v15 = unknown;
+    if (!GetModuleFileNameA(0, g_module, 0x104u))
+    {
+        _mm_storel_epi64((__m128i*)g_module, _mm_loadl_epi64((const __m128i*)"<unknown application>"));
+        _mm_storel_epi64((__m128i*) & g_module[8], _mm_loadl_epi64((const __m128i*)" application>"));
+        *(unsigned int*)&g_module[16] = *(unsigned int*)"tion>";
+        *(unsigned short*)&g_module[20] = *(unsigned short*)">";
+    }
+    v8 = _snprintf(message, messageLen, "%s\n%s\n%s\n%s:%d\n", v15, v14, g_module, v7, v13);
+    v9 = &message[v8 + StackTrace_Generate(messageLen - v8, &message[v8])];
+    v10 = Com_GetBuildVersion();
+    v11 = Com_GetBuildName();
+    return v9 - message + _snprintf(v9, &message[messageLen] - v9, "%s %s\n", v11, v10);
+}
+
+int IsDebuggerConnected()
+{
+    return IsDebuggerPresent();
+}
+
+void RefreshQuitOnErrorCondition()
+{
+    int rvcCompile; // eax
+
+    if (Dvar_IsSystemActive())
+    {
+        if (Dvar_GetBool(quit_on_error) || (rvcCompile = Dvar_GetInt(r_vc_compile), shouldQuitOnError = 0, rvcCompile == 2))
+            shouldQuitOnError = 1;
+    }
+}
+
+bool QuitOnError()
+{
+    bool result; // al
+
+    if (!Dvar_IsSystemActive())
+        return shouldQuitOnError;
+    if (Dvar_GetBool(quit_on_error) || Dvar_GetInt(r_vc_compile) == 2)
+    {
+        result = 1;
+        shouldQuitOnError = 1;
+    }
+    else
+    {
+        result = 0;
+        shouldQuitOnError = 0;
+    }
+    return result;
+}
+
+bool Assert_MyHandler(const char* filename, int line, int type, const char* expr, const char* fmt, ...)
+{
+    const char* v5; // eax
+    int v6; // edi
+    HWND v7; // eax
+    char v8; // bl
+    const char* lpCaption; // [esp+0h] [ebp-4h]
+    va_list ap; // [esp+20h] [ebp+1Ch]
+
+    va_start(ap, fmt);
+    Sys_EnterCriticalSection(CRITSECT_ASSERT);
+    _vsnprintf(message, 0x400u, fmt, ap);
+    message[1023] = 0;
+    StackTrace_Walk(1, 0);
+    if (!g_inStackTrace)
+    {
+        g_inStackTrace = 1;
+        LoadMapFilesForDir((const char*)&pBlock);
+        g_inStackTrace = 0;
+    }
+    if (isHandlingAssert)
+    {
+        v5 = va("Assert Expression:\n    %s\nFile:    %s\nLine:    %d\n\n", message, filename, line);
+        Com_Printf(10, v5);
+        CopyMessageToClipboard(assertMessage);
+        v6 = lastAssertType;
+        if (AssertCallback)
+            AssertCallback(assertMessage);
+        if (v6)
+        {
+            if (v6 == 1)
+                lpCaption = "SANITY CHECK FAILURE... (this text is on the clipboard)";
+            else
+                lpCaption = "INTERNAL ERROR";
+        }
+        else
+        {
+            lpCaption = "ASSERTION FAILURE... (this text is on the clipboard)";
+        }
+        ShowCursor(1);
+        ShowCursor(1);
+        v7 = GetActiveWindow();
+        MessageBoxA(v7, assertMessage, lpCaption, 0x12011u);
+        Assert_BuildAssertMessageWithStack(message, line, assertMessage, expr, filename, type, 4096);
+        BB_Alert(filename, line, "assert", message);
+        if (isHandlingAssert == 1)
+        {
+            isHandlingAssert = 2;
+            Com_Printf(10, "ASSERTBEGIN - ( Recursive assert )---------------------------------------------\n");
+            Com_Printf(10, "%s", assertMessage);
+            Com_Printf(10, "ASSERTEND - ( Recursive assert ) ----------------------------------------------\n\n");
+        }
+        // LiveSteam_Shutdown();
+        exit(-1);
+    }
+    lastAssertType = type;
+    isHandlingAssert = 1;
+    FixWindowsDesktop();
+    Assert_BuildAssertMessageWithStack(message, line, assertMessage, expr, filename, type, 4096);
+    BB_Alert(filename, line, "assert", message);
+    Com_Printf(10, "ASSERTBEGIN -------------------------------------------------------------------\n");
+    Com_Printf(10, "%s", assertMessage);
+    Com_Printf(10, "ASSERTEND ---------------------------------------------------------------------\n");
+    OutputDebugStringA(assertMessage);
+    if (!Dvar_IsSystemActive())
+    {
+        if (!shouldQuitOnError)
+            goto LABEL_19;
+    LABEL_22:
+        //LiveSteam_Shutdown();
+        ExitProcess(0xFFFFFFFF);
+    }
+    if (Dvar_GetBool(quit_on_error) || Dvar_GetInt(r_vc_compile) == 2)
+    {
+        shouldQuitOnError = 1;
+        goto LABEL_22;
+    }
+    shouldQuitOnError = 0;
+LABEL_19:
+    CopyMessageToClipboard(assertMessage);
+    v8 = AssertNotify(type, (AssertOccurance)0);
+    isHandlingAssert = 0;
+    Sys_LeaveCriticalSection(CRITSECT_ASSERT);
+    return v8 == 0;
 }

@@ -25,7 +25,3 @@ void Com_Memset(void* dest, const int val, int count);
 void* Z_Malloc(int size, const char* name, int type);
 char* Z_MallocGarbage(int size, const char* name, int type);
 
-class com_memory
-{
-};
-

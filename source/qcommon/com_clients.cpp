@@ -41,7 +41,7 @@ LocalClientNum_t Com_LocalClients_GetPrimary()
     result = primaryLocalClient;
     if (primaryLocalClient == -1)
     {
-        if (!assertive::Assert_MyHandler(
+        if (!Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,

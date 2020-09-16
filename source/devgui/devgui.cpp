@@ -13,7 +13,7 @@ void DevGui_Toggle()
             goto LABEL_15;
 #ifdef _DEBUG
         if (DevGuiActive
-            && !assertive::Assert_MyHandler(
+            && !Assert_MyHandler(
                 __FILE__,
                 __LINE__,
                 0,
@@ -38,7 +38,7 @@ void DevGui_Toggle()
     }
 #ifdef _DEBUG
     else if (DevGuiActive
-        && !assertive::Assert_MyHandler(
+        && !Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,

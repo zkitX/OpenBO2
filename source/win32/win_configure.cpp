@@ -6,16 +6,12 @@
 
 int Sys_SystemMemoryMB()
 {
-    HMODULE v0; // eax
-    FARPROC v1; // eax
-    char* v2; // ST08_4
-    char* v3; // ST04_4
+    HMODULE kernel32; // eax
+    FARPROC procAddress; // eax
     HWND v4; // eax
     float v5; // ST20_4
     signed int v6; // edx
     int result; // eax
-    char* v8; // ST08_4
-    char* v9; // ST04_4
     HWND v10; // eax
     float v11; // ST20_4
     signed int v12; // ecx
@@ -24,17 +20,14 @@ int Sys_SystemMemoryMB()
     _MEMORYSTATUSEX statusEx; // [esp+14h] [ebp-64h]
     _MEMORYSTATUS status; // [esp+54h] [ebp-24h]
 
-    v0 = GetModuleHandleA("kernel32.dll");
-    if (v0 && (v1 = GetProcAddress(v0, "GlobalMemoryStatusEx")) != 0)
+    kernel32 = GetModuleHandleA("kernel32.dll");
+    if (kernel32 && (procAddress = GetProcAddress(kernel32, "GlobalMemoryStatusEx")) != 0)
     {
         statusEx.dwLength = 64;
-        ((void(__stdcall*)(_MEMORYSTATUSEX*))v1)(&statusEx);
+        ((void(__stdcall*)(_MEMORYSTATUSEX*))procAddress)(&statusEx);
         if (statusEx.ullAvailVirtual < 0x8000000)
         {
-            v2 = Win_LocalizeRef("WIN_LOW_MEMORY_TITLE");
-            v3 = Win_LocalizeRef("WIN_LOW_MEMORY_BODY");
-            v4 = GetActiveWindow();
-            if (MessageBoxA(v4, v3, v2, 0x34u) != 6)
+            if (MessageBoxA(GetActiveWindow(), Win_LocalizeRef("WIN_LOW_MEMORY_BODY"), Win_LocalizeRef("WIN_LOW_MEMORY_BODY"), 0x34u) != 6)
                 exit(0);
         }
         v5 = (double)statusEx.ullTotalPhys * 0.00000095367432;
@@ -49,10 +42,7 @@ int Sys_SystemMemoryMB()
         GlobalMemoryStatus(&status);
         if (status.dwAvailVirtual < 0x8000000)
         {
-            v8 = Win_LocalizeRef("WIN_LOW_MEMORY_TITLE");
-            v9 = Win_LocalizeRef("WIN_LOW_MEMORY_BODY");
-            v10 = GetActiveWindow();
-            if (MessageBoxA(v10, v9, v8, 0x34u) != 6)
+            if (MessageBoxA(GetActiveWindow(), Win_LocalizeRef("WIN_LOW_MEMORY_BODY"), Win_LocalizeRef("WIN_LOW_MEMORY_TITLE"), 0x34u) != 6)
                 exit(0);
         }
         v11 = (double)status.dwTotalPhys * 0.00000095367432;
@@ -117,7 +107,22 @@ void Sys_DetectCpuVendorAndName(char* vendor, char* name)
 
 void Sys_GetPhysicalCpuCount(SysInfo* sysInfo)
 {
+    unsigned int logicalPerPhysical;
+    unsigned regs[4];
+
+    __cpuid((int*)regs, (int)1);
+    sysInfo->logicalCpuCount = (regs[1] >> 16) & 0xff;
     sysInfo->physicalCpuCount = sysInfo->logicalCpuCount;
+
+    if (strcmp(sysInfo->cpuVendor, "GenuineIntel"))
+    {
+        __cpuid((int*)regs, (int)4);
+        sysInfo->physicalCpuCount = ((regs[0] >> 26) & 0x3f) + 1;
+    }
+    else if (sysInfo->cpuVendor, "AuthenticAMD") {
+        __cpuid((int*)regs, (int)0x80000008);
+        sysInfo->physicalCpuCount = ((unsigned)(regs[2] & 0xff)) + 1;
+    }
 }
 
 long double Sys_BenchmarkGHz()
@@ -153,8 +158,8 @@ void Sys_SetAutoConfigureGHz(SysInfo* sysInfo)
 #ifdef _DEBUG
     if (v1 < 1
         && !Assert_MyHandler(
-            "c:\\t6\\code\\src_noserver\\win32\\win_configure.cpp",
-            457,
+            __FILE__,
+            __LINE__,
             0,
             "(sysInfo->physicalCpuCount) >= (1)",
             "sysInfo->physicalCpuCount >= 1\n\t%i, %i",

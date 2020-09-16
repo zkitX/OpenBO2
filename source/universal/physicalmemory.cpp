@@ -22,7 +22,7 @@ char* _PMem_AllocNamed(unsigned int size, unsigned int alignment, unsigned int t
     memprim = &g_mem.prim[allocType];
 #ifdef _DEBUG
     if (!size
-        && !(unsigned char)assertive::Assert_MyHandler(
+        && !(unsigned char)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -32,7 +32,7 @@ char* _PMem_AllocNamed(unsigned int size, unsigned int alignment, unsigned int t
         __debugbreak();
     }
     if (!alignment
-        && !(unsigned char)assertive::Assert_MyHandler(
+        && !(unsigned char)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -45,7 +45,7 @@ char* _PMem_AllocNamed(unsigned int size, unsigned int alignment, unsigned int t
     v7 = alignment - 1;
 #ifdef _DEBUG
     if (allocType >= 2
-        && !(unsigned char)assertive::Assert_MyHandler(
+        && !(unsigned char)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -62,7 +62,7 @@ char* _PMem_AllocNamed(unsigned int size, unsigned int alignment, unsigned int t
     if (allocType) {
 #ifdef _DEBUG
         if (allocType != 1
-            && !(unsigned char)assertive::Assert_MyHandler(
+            && !(unsigned char)Assert_MyHandler(
                 __FILE__,
                 __LINE__,
                 0,
@@ -79,7 +79,7 @@ char* _PMem_AllocNamed(unsigned int size, unsigned int alignment, unsigned int t
         {
 #ifdef _DEBUG
             if (allocType >= 2
-                && !(unsigned char)assertive::Assert_MyHandler(
+                && !(unsigned char)Assert_MyHandler(
                     __FILE__,
                     __LINE__,
                     0,
@@ -120,7 +120,7 @@ char* _PMem_AllocNamed(unsigned int size, unsigned int alignment, unsigned int t
     allocedSize = v10;
 #ifdef _DEBUG
     if (v11 >= 2
-        && !(unsigned char)assertive::Assert_MyHandler(
+        && !(unsigned char)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,

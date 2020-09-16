@@ -8,7 +8,7 @@ void BB_Alert(const char* filename, int line, const char* type, const char* msg)
 {
 	const char* v4; // esi
 	unsigned int v5; // edi
-	assertive::AddressInfo_s* v6; // eax
+	AddressInfo_s* v6; // eax
 	int v7; // ebx
 	int v8; // esi
 	int v9; // eax
@@ -22,7 +22,7 @@ void BB_Alert(const char* filename, int line, const char* type, const char* msg)
 	v4 = msg;
 	stacktrace[0] = 0;
 	v5 = 0;
-	v6 = assertive::StackTrace_GetAddressInfo(&addressCount);
+	v6 = StackTrace_GetAddressInfo(&addressCount);
 	if (addressCount <= 0)
 		goto LABEL_14;
 	v7 = 0;
@@ -118,7 +118,7 @@ void BB_Init()
 {
 	#ifdef _DEBUG
 	if (s_blackboxInitialized
-		&& !(unsigned __int8)assertive::Assert_MyHandler(
+		&& !(unsigned __int8)Assert_MyHandler(
 			__FILE__,
 			__LINE__,
 			0,
@@ -219,7 +219,7 @@ void BB_Start()
 	int v2; // ebx
 
 	if (s_blackboxInitialized
-		&& !(unsigned __int8)assertive::Assert_MyHandler(
+		&& !(unsigned __int8)Assert_MyHandler(
 			__FILE__,
 			__LINE__,
 			0,

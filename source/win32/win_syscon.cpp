@@ -13,7 +13,7 @@ void Conbuf_AppendText(const char* pMsg)
 
 #ifdef _DEBUG
 	if (!s_wcd.hwndBuffer
-		&& !(unsigned char)assertive::Assert_MyHandler(
+		&& !(unsigned char)Assert_MyHandler(
 			__FILE__,
 			__LINE__,
 			0,
@@ -285,7 +285,7 @@ void Sys_ShowConsole()
 		Sys_CreateConsole(GetModuleHandleA(0));
 		#ifdef _DEBUG
 		if (!s_wcd.hWnd
-			&& !(unsigned __int8)assertive::Assert_MyHandler(
+			&& !(unsigned __int8)Assert_MyHandler(
 				__FILE__,
 				__LINE__,
 				0,

@@ -32,15 +32,15 @@ void Com_Error(errorParm_t code, const char* fmt, ...)
         printf((const char*)&com_errorMessage);
         Com_Printf(10, (const char*)&com_errorMessage);
         Com_Printf(10, "STACKBEGIN -------------------------------------------------------------------\n");
-        assertive::StackTrace_Walk(1, 0);
-        assertive::StackTrace_ResolveSymbols();
-        assertive::StackTrace_Generate(0x2000, g_stackTrace);
+        StackTrace_Walk(1, 0);
+        StackTrace_ResolveSymbols();
+        StackTrace_Generate(0x2000, g_stackTrace);
         Com_Printf(10, "%s", g_stackTrace);
         Com_Printf(10, "STACKEND ---------------------------------------------------------------------\n");
         return;
     }
     Sys_EnterCriticalSection(CRITSECT_COM_ERROR);
-    assertive::StackTrace_ResetAddressInfo();
+    StackTrace_ResetAddressInfo();
     if (!Demo_IsIdle() && code != 5)
         Demo_End(1);
     if (g_taskProcessNesting > 0)
@@ -84,9 +84,9 @@ void Com_Error(errorParm_t code, const char* fmt, ...)
                 __debugbreak();
             }
             Com_Printf(10, "STACKBEGIN -------------------------------------------------------------------\n");
-            assertive::StackTrace_Walk(1, 0);
-            assertive::StackTrace_ResolveSymbols();
-            assertive::StackTrace_Generate(0x2000, g_stackTrace);
+            StackTrace_Walk(1, 0);
+            StackTrace_ResolveSymbols();
+            StackTrace_Generate(0x2000, g_stackTrace);
             Com_Printf(10, "%s", g_stackTrace);
             Com_Printf(10, "STACKEND ---------------------------------------------------------------------\n");
             v7 = "err_drop";
@@ -125,9 +125,9 @@ void Com_Error(errorParm_t code, const char* fmt, ...)
         Sys_LeaveCriticalSection(CRITSECT_DEMONWARE);
     }
     Com_Printf(10, "STACKBEGIN -------------------------------------------------------------------\n");
-    assertive::StackTrace_Walk(1, 0);
-    assertive::StackTrace_ResolveSymbols();
-    assertive::StackTrace_Generate(0x2000, g_stackTrace);
+    StackTrace_Walk(1, 0);
+    StackTrace_ResolveSymbols();
+    StackTrace_Generate(0x2000, g_stackTrace);
     Com_Printf(10, "%s", g_stackTrace);
     Com_Printf(10, "STACKEND ---------------------------------------------------------------------\n");
     if (errorcode == 3 || (v4 = "MENU_ERROR", Com_ErrorIsNotice((const char*)&com_errorMessage)))

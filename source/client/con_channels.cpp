@@ -11,7 +11,7 @@ bool Con_IsChannelVisible(print_msg_dest_t dest, int channel, int errorFlags)
 
     #ifdef _DEBUG
     if ((channel < 0 || channel >= 256)
-        && !(unsigned char)assertive::Assert_MyHandler(
+        && !(unsigned char)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,

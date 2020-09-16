@@ -96,7 +96,7 @@ char* Win_LocalizeRef(const char* ref)
             {
                 Com_EndParseSession();
                 v7 = va("missing value: %s", ref);
-                v6 = assertive::Assert_MyHandler(
+                v6 = Assert_MyHandler(
                     __FILE__,
                     __LINE__,
                     0,
@@ -118,7 +118,7 @@ char* Win_LocalizeRef(const char* ref)
     LABEL_7:
         Com_EndParseSession();
         v5 = va("unlocalized: %s", ref);
-        v6 = assertive::Assert_MyHandler(__FILE__, __LINE__, 0, (const char*)&pBlock, v5);
+        v6 = Assert_MyHandler(__FILE__, __LINE__, 0, (const char*)&pBlock, v5);
     LABEL_8:
         if (!v6)
             __debugbreak();

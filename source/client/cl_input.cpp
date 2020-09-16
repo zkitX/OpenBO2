@@ -16,7 +16,7 @@ int CL_MouseEvent(LocalClientNum_t localClientNum, int x, int y, int dx, int dy)
     else
     {
         if (localClientNum
-            && !assertive::Assert_MyHandler(
+            && !Assert_MyHandler(
                 "c:\\t6\\code\\src_noserver\\client_mp\\../client/client.h",
                 644,
                 0,

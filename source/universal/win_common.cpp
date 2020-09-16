@@ -271,7 +271,7 @@ void Sys_EnterCriticalSection(CriticalSection critSect)
 {
 #ifdef _DEBUG
     if ((unsigned int)critSect >= 0x4D
-        && !(unsigned char)assertive::Assert_MyHandler(
+        && !(unsigned char)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -290,7 +290,7 @@ bool Sys_TryEnterCriticalSection(CriticalSection critSect)
 {
 #ifdef _DEBUG
     if ((unsigned int)critSect >= 0x4D
-        && !assertive::Assert_MyHandler(
+        && !Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -309,7 +309,7 @@ void Sys_LeaveCriticalSection(CriticalSection critSect)
 {
 #ifdef _DEBUG
     if ((unsigned int)critSect >= 0x4D
-        && !(unsigned char)assertive::Assert_MyHandler(
+        && !(unsigned char)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,

@@ -41,7 +41,7 @@ void Sys_CreateEvent(int manualReset, int initialState, void** evt)
         v5 = GetLastError();
         Com_Printf(1, "error %d while creating event\n", v5);
 #ifdef _DEBUG
-        if (!(unsigned char)assertive::Assert_MyHandler(
+        if (!(unsigned char)Assert_MyHandler(
             __FILE__,
             __LINE__,
             (int)v4,
@@ -59,7 +59,7 @@ void Sys_CreateThread(unsigned int threadContext, void(*function)(unsigned int))
     DWORD v3; // eax
 #ifdef _DEBUG
     if (threadFunc[threadContext]
-        && !(unsigned __int8)assertive::Assert_MyHandler(
+        && !(unsigned __int8)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -69,7 +69,7 @@ void Sys_CreateThread(unsigned int threadContext, void(*function)(unsigned int))
         __debugbreak();
     }
     if (threadContext >= 0x11
-        && !(unsigned __int8)assertive::Assert_MyHandler(
+        && !(unsigned __int8)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -84,7 +84,7 @@ void Sys_CreateThread(unsigned int threadContext, void(*function)(unsigned int))
     threadHandle[threadContext] = newThread;
 #ifdef _DEBUG
     if (!newThread
-        && !(unsigned __int8)assertive::Assert_MyHandler(
+        && !(unsigned __int8)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -112,7 +112,7 @@ void Sys_DatabaseCompleted()
         v0 = WaitForSingleObject(serverCompletedEvent, 0xFFFFFFFF);
         if (v0)
         {
-            if (!(unsigned __int8)assertive::Assert_MyHandler(
+            if (!(unsigned __int8)Assert_MyHandler(
                 __FILE__,
                 __LINE__,
                 0,
@@ -140,7 +140,7 @@ int Sys_GetThreadContext()
     for (result = 0; threadId[result] != curthreadid; result++) {
         if (++result >= 17) {
             Com_Printf(1, "Current thread is not in thread table\n");
-            if (!(unsigned __int8)assertive::Assert_MyHandler(
+            if (!(unsigned __int8)Assert_MyHandler(
                 __FILE__,
                 __LINE__,
                 0,
@@ -168,7 +168,7 @@ void Sys_InitDemoStreamingEvent()
     {
         v1 = GetLastError();
         Com_Printf(1, "error %d while creating event\n", v1);
-        if (!(unsigned __int8)assertive::Assert_MyHandler(
+        if (!(unsigned __int8)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -264,7 +264,7 @@ unsigned int Sys_ThreadMain(void* parameter)
 {
 #ifdef _DEBUG
     if ((unsigned int)parameter >= 0x11
-        && !(unsigned __int8)assertive::Assert_MyHandler(
+        && !(unsigned __int8)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -276,7 +276,7 @@ unsigned int Sys_ThreadMain(void* parameter)
         __debugbreak();
     }
     if (!threadFunc[(unsigned int)parameter]
-        && !(unsigned __int8)assertive::Assert_MyHandler(
+        && !(unsigned __int8)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,

@@ -32,7 +32,7 @@ void CG_UpdateVehicleBindings(Bind_t a1, LocalClientNum_t localClientNum)
 
     v2 = localClientNum;
     if (((localClientNum & 0x80000000) != 0 || (signed int)localClientNum >= 1)
-        && !assertive::Assert_MyHandler(
+        && !Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,

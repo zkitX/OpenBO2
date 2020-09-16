@@ -38,7 +38,7 @@ void Dvar_AddConfigFlag_f()
 			Dvar_AddFlags(v1, 0x20000);
 		}
 #ifdef _DEBUG
-		else if (!(unsigned char)assertive::Assert_MyHandler(
+		else if (!(unsigned char)Assert_MyHandler(
 			__FILE__,
 			__LINE__,
 			0,
@@ -605,12 +605,12 @@ void Dvar_UpdateEnumDomain(const dvar_t* dvar, const char** stringTable)
 
 #ifdef _DEBUG
 	if (!dvar
-		&& !assertive::Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", (const char*)&pBlock))
 	{
 		__debugbreak();
 	}
 	if (!dvar->name
-		&& !assertive::Assert_MyHandler(
+		&& !Assert_MyHandler(
 			__FILE__,
 			__LINE__,
 			0,
@@ -620,7 +620,7 @@ void Dvar_UpdateEnumDomain(const dvar_t* dvar, const char** stringTable)
 		__debugbreak();
 	}
 	if (!stringTable
-		&& !assertive::Assert_MyHandler(
+		&& !Assert_MyHandler(
 			__FILE__,
 			__LINE__,
 			0,
@@ -633,7 +633,7 @@ void Dvar_UpdateEnumDomain(const dvar_t* dvar, const char** stringTable)
 	if (dvar->type != 7)
 	{
 		v2 = va("dvar %s type %i", dvar->name, dvar->type);
-		if (!assertive::Assert_MyHandler(
+		if (!Assert_MyHandler(
 			__FILE__,
 			__LINE__,
 			0,
@@ -655,7 +655,7 @@ void Dvar_UpdateEnumDomain(const dvar_t* dvar, const char** stringTable)
 	{
 		v5 = va("name %s reset %i count %i", dvar->name, v4, v3);
 #ifdef _DEBUG
-		if (!assertive::Assert_MyHandler(
+		if (!Assert_MyHandler(
 			__FILE__,
 			__LINE__,
 			0,
@@ -696,7 +696,7 @@ void Dvar_UpdateResetValue(DvarValue value)
 	resetString = value;
 #ifdef _DEBUG
 	if (!dvar
-		&& !assertive::Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", (const char*)&pBlock))
 	{
 		__debugbreak();
 	}
@@ -756,7 +756,7 @@ void Dvar_UpdateValue(dvar_t* dvar, DvarValue value)
 
 	currentString = value;
 	if (!dvar
-		&& !assertive::Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", (const char*)&pBlock))
 	{
 		__debugbreak();
 	}
@@ -838,7 +838,7 @@ bool Dvar_ValueInDomain(dvarType_t type, DvarValue value, DvarLimits domain)
 #ifdef _DEBUG
 		if (v11.enabled != 1
 			&& v11.enabled
-			&& !assertive::Assert_MyHandler(
+			&& !Assert_MyHandler(
 				__FILE__,
 				__LINE__,
 				0,
@@ -883,7 +883,7 @@ bool Dvar_ValueInDomain(dvarType_t type, DvarValue value, DvarLimits domain)
 	case 6:
 #ifdef _DEBUG
 		if (domain.enumeration.stringCount > domain.integer.max
-			&& !assertive::Assert_MyHandler(
+			&& !Assert_MyHandler(
 				__FILE__,
 				__LINE__,
 				0,
@@ -916,7 +916,7 @@ bool Dvar_ValueInDomain(dvarType_t type, DvarValue value, DvarLimits domain)
 	case 10:
 #ifdef _DEBUG
 		if (domain.integer64.min > domain.integer64.max
-			&& !assertive::Assert_MyHandler(
+			&& !Assert_MyHandler(
 				__FILE__,
 				__LINE__,
 				0,
@@ -987,7 +987,7 @@ int Dvar_ValuesEqual(DvarValue val0, DvarValue val1)
 		break;
 	case 8:
 		if (!LODWORD(a.v[0])
-			&& !assertive::Assert_MyHandler(
+			&& !Assert_MyHandler(
 				__FILE__,
 				__LINE__,
 				0,
@@ -997,7 +997,7 @@ int Dvar_ValuesEqual(DvarValue val0, DvarValue val1)
 			__debugbreak();
 		}
 		if (!LODWORD(b.v[0])
-			&& !assertive::Assert_MyHandler(
+			&& !Assert_MyHandler(
 				__FILE__,
 				__LINE__,
 				0,
@@ -1197,7 +1197,7 @@ dvar_t* dvar::Dvar_RegisterVariant(const char* dvarName, dvarType_t type, unsign
 	dvar_t* dvart;
 	if (!(flags & 0x4000)
 		&& !CanKeepStringPointer(dvarName)
-		&& !(unsigned __int8)assertive::Assert_MyHandler(
+		&& !(unsigned __int8)Assert_MyHandler(
 			__FILE__,
 			__LINE__,
 			0,
@@ -1249,7 +1249,7 @@ void dvar::Dvar_Set_f()
 bool dvar::Dvar_StringToBool(const char* string)
 {
 	if (!string
-		&& !assertive::Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
 	{
 		__debugbreak();
 	}
@@ -1316,12 +1316,12 @@ int dvar::Dvar_StringToEnum(const DvarLimits* domain, const char* string)
 	int v6; // ebx
 
 	if (!domain
-		&& !assertive::Assert_MyHandler(__FILE__, __LINE__, 0, "(domain)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(domain)", (const char*)&pBlock))
 	{
 		__debugbreak();
 	}
 	if (!string
-		&& !assertive::Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
 	{
 		__debugbreak();
 	}
@@ -1380,7 +1380,7 @@ double dvar::Dvar_StringToFloat(const char* string)
 	int result; // eax
 
 	if (!string
-		&& !assertive::Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
 	{
 		__debugbreak();
 	}
@@ -1391,7 +1391,7 @@ double dvar::Dvar_StringToFloat(const char* string)
 int dvar::Dvar_StringToInt(const char* string)
 {
 	if (!string
-		&& !assertive::Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
 	{
 		__debugbreak();
 	}
@@ -1401,7 +1401,7 @@ int dvar::Dvar_StringToInt(const char* string)
 long long dvar::Dvar_StringToInt64(const char* string)
 {
 	if (!string
-		&& !assertive::Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
 	{
 		__debugbreak();
 	}
@@ -1417,7 +1417,7 @@ DvarValue* dvar::Dvar_StringToValue(const dvarType_t type, const char* string, d
 	v5 = string;
 	dvarType = type;
 	if (!string
-		&& !assertive::Assert_MyHandler("c:\\t6\\code\\src_noserver\\universal\\dvar.cpp", 582, 0, "(string)", (const char*)&pBlock))
+		&& !Assert_MyHandler("c:\\t6\\code\\src_noserver\\universal\\dvar.cpp", 582, 0, "(string)", (const char*)&pBlock))
 	{
 		__debugbreak();
 	}
@@ -1462,7 +1462,7 @@ DvarValue* dvar::Dvar_StringToValue(const dvarType_t type, const char* string, d
 void dvar::Dvar_StringToVec2(const char* string, vec2_t* vector)
 {
 	if (!string
-		&& !assertive::Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
 	{
 		__debugbreak();
 	}
@@ -1475,7 +1475,7 @@ void dvar::Dvar_StringToVec3(const char* string, vec3_t* vector)
 	char* v3; // [esp-4h] [ebp-4h]
 
 	if (!string
-		&& !assertive::Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
 	{
 		__debugbreak();
 	}
@@ -1493,7 +1493,7 @@ void dvar::Dvar_StringToVec4(const char* string, vec4_t* vector)
 {
 #ifdef _DEBUG
 	if (!string
-		&& !assertive::Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
 	{
 		__debugbreak();
 	}
@@ -1565,7 +1565,7 @@ bool dvar::Dvar_ToggleInternal()
 	{
 #ifdef _DEBUG
 		if (!Cmd_Argv(0)
-			&& !assertive::Assert_MyHandler(
+			&& !Assert_MyHandler(
 				__FILE__,
 				__LINE__,
 				0,
@@ -1583,7 +1583,7 @@ bool dvar::Dvar_ToggleInternal()
 	dvarName = (const char*)v2;
 #ifdef _DEBUG
 	if (!v2
-		&& !assertive::Assert_MyHandler(
+		&& !Assert_MyHandler(
 			__FILE__,
 			__LINE__,
 			0,
@@ -1758,7 +1758,7 @@ void dvar::Dvar_TogglePrint_f()
 		{
 			v0 = Cmd_Argc();
 #ifdef _DEBUG
-			if (!assertive::Assert_MyHandler(
+			if (!Assert_MyHandler(
 				__FILE__,
 				__LINE__,
 				0,
@@ -1771,7 +1771,7 @@ void dvar::Dvar_TogglePrint_f()
 		v1 = Cmd_Argv(1);
 #ifdef _DEBUG
 		if (!v1
-			&& !assertive::Assert_MyHandler(
+			&& !Assert_MyHandler(
 				__FILE__,
 				__LINE__,
 				1,
@@ -1784,7 +1784,7 @@ void dvar::Dvar_TogglePrint_f()
 		v2 = Dvar_FindVar((const char*)v1);
 #ifdef _DEBUG
 		if (!v2
-			&& !assertive::Assert_MyHandler(
+			&& !Assert_MyHandler(
 				__FILE__,
 				__LINE__,
 				1,
@@ -1797,7 +1797,7 @@ void dvar::Dvar_TogglePrint_f()
 		v3 = Dvar_DisplayableValue(v2);
 #ifdef _DEBUG
 		if (!v3
-			&& !assertive::Assert_MyHandler(
+			&& !Assert_MyHandler(
 				__FILE__,
 				__LINE__,
 				1,
@@ -1828,7 +1828,7 @@ char dvar::Dvar_ToggleSimple(const dvar_t* dvar)
 	float domain_value_min; // [esp+18h] [ebp-4h]
 #ifdef _DEBUG
 	if (!dvar
-		&& !assertive::Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", (const char*)&pBlock))
 	{
 		__debugbreak();
 	}
@@ -1965,7 +1965,7 @@ const char* dvar::Dvar_ValueToString(const dvar_t* dvar, DvarValue value)
 			v3 = value.integer == 0;
 		LABEL_15:
 			if (!v3
-				&& !assertive::Assert_MyHandler(
+				&& !Assert_MyHandler(
 					__FILE__,
 					__LINE__,
 					0,
@@ -1983,7 +1983,7 @@ const char* dvar::Dvar_ValueToString(const dvar_t* dvar, DvarValue value)
 		break;
 	case 8:
 		if (!value.integer
-			&& !assertive::Assert_MyHandler(
+			&& !Assert_MyHandler(
 				__FILE__,
 				__LINE__,
 				value.integer,
@@ -2052,7 +2052,7 @@ void dvar::Dvar_VectorDomainToString(int components, char* outBuffer, int outBuf
 void dvar::Dvar_WeakCopyString(const char* string, DvarValue* value)
 {
 	if (!string
-		&& !assertive::Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
 	{
 		__debugbreak();
 	}

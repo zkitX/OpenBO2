@@ -1,5 +1,6 @@
 #pragma once
 
-#include "../universal/dvar.h"
+#include <universal/dvar.h>
 
-const dvar_t* r_fullscreen;
+static const dvar_t* r_fullscreen;
+static const dvar_t* r_vc_compile;

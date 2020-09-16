@@ -24,7 +24,7 @@ void I_strncpyz(char* dest, const char* src, int destsize)
     char v5; // cl
 #ifdef _DEBUG
     if (!src
-        && !(unsigned char)assertive::Assert_MyHandler(
+        && !(unsigned char)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -34,7 +34,7 @@ void I_strncpyz(char* dest, const char* src, int destsize)
         __debugbreak();
     }
     if (!dest
-        && !(unsigned char)assertive::Assert_MyHandler(
+        && !(unsigned char)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -44,7 +44,7 @@ void I_strncpyz(char* dest, const char* src, int destsize)
         __debugbreak();
     }
     if (destsize < 1
-        && !(unsigned char)assertive::Assert_MyHandler(
+        && !(unsigned char)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -62,7 +62,7 @@ int I_stricmp(const char* s0, const char* s1)
 {
 #ifdef _DEBUG
     if (!s0
-        && !(unsigned char)assertive::Assert_MyHandler(
+        && !(unsigned char)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -72,7 +72,7 @@ int I_stricmp(const char* s0, const char* s1)
         __debugbreak();
     }
     if (!s1
-        && !(unsigned char)assertive::Assert_MyHandler(
+        && !(unsigned char)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -94,7 +94,7 @@ int I_strncmp(const char* s0, const char* s1, int n)
     int v7; // ebx
 
     if (!s0
-        && !(unsigned __int8)assertive::Assert_MyHandler(
+        && !(unsigned __int8)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -105,7 +105,7 @@ int I_strncmp(const char* s0, const char* s1, int n)
     }
     v3 = s1;
     if (!s1
-        && !(unsigned __int8)assertive::Assert_MyHandler(
+        && !(unsigned __int8)Assert_MyHandler(
             __FILE__,
             __LINE__,
             (int)s1,
@@ -143,7 +143,7 @@ int I_strnicmp(const char* s0, const char* s1, int n)
     int v7; // ebx
     #ifdef _DEBUG
     if (!s0
-        && !(unsigned char)assertive::Assert_MyHandler(
+        && !(unsigned char)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -156,7 +156,7 @@ int I_strnicmp(const char* s0, const char* s1, int n)
     v3 = s1;
     #ifdef _DEBUG
     if (!s1
-        && !(unsigned char)assertive::Assert_MyHandler(
+        && !(unsigned char)Assert_MyHandler(
             __FILE__,
             __LINE__,
             (int)s1,
@@ -196,7 +196,7 @@ int I_strnicmp(const char* s0, const char* s1, int n)
 bool Com_BitCheckAssert(const unsigned int* array, int bitNum, int size)
 {
     if (!array
-        && !(unsigned char)assertive::Assert_MyHandler(
+        && !(unsigned char)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -206,7 +206,7 @@ bool Com_BitCheckAssert(const unsigned int* array, int bitNum, int size)
         __debugbreak();
     }
     if (bitNum >= (unsigned int)(8 * size)
-        && !(unsigned char)assertive::Assert_MyHandler(
+        && !(unsigned char)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -241,7 +241,7 @@ const char* I_stristr(const char* s0, const char* substr)
     const char* substra; // [esp+18h] [ebp+Ch]
 
     if (!s0
-        && !(unsigned char)assertive::Assert_MyHandler(
+        && !(unsigned char)Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
@@ -252,7 +252,7 @@ const char* I_stristr(const char* s0, const char* substr)
     }
     v2 = substr;
     if (!substr
-        && !(unsigned char)assertive::Assert_MyHandler(
+        && !(unsigned char)Assert_MyHandler(
             __FILE__,
             __LINE__,
             (int)substr,

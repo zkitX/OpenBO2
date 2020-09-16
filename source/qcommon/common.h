@@ -31,6 +31,8 @@ enum errorParm_t
 	ERR_LOCALIZATION = 0x7,
 };
 
+static const dvar_t* quit_on_error;
+
 char pBlock;
 
 int com_errorEntered;

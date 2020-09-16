@@ -276,3 +276,103 @@ sysEvent_t* Win_GetEvent(sysEvent_t* result)
 	}
 	return v2;
 }
+
+void Sys_LoadingKeepAlive()
+{
+	// TODO
+}
+
+sysEvent_t* Sys_GetEvent(sysEvent_t* result)
+{
+	sysEvent_t* event; // eax
+	sysEvent_t v3; // [esp+0h] [ebp-30h]
+	int evTime; // [esp+18h] [ebp-18h]
+	sysEventType_t v5; // [esp+1Ch] [ebp-14h]
+	int v6; // [esp+20h] [ebp-10h]
+	int v7; // [esp+24h] [ebp-Ch]
+	int v8; // [esp+28h] [ebp-8h]
+	void* v9; // [esp+2Ch] [ebp-4h]
+
+	event = Win_GetEvent(&v3);
+	evTime = event->evTime;
+	v5 = event->evType;
+	v6 = event->evValue;
+	v7 = event->evValue2;
+	v8 = event->evPtrLength;
+	v9 = event->evPtr;
+	result->evTime = v4;
+	result->evType = v5;
+	result->evValue = v6;
+	result->evValue2 = v7;
+	result->evPtrLength = v8;
+	result->evPtr = v9;
+	return result;
+}
+
+void Sys_Net_Restart_f()
+{
+	NET_Restart();
+}
+
+void Sys_Init()
+{
+	const char* v0; // eax
+	const char* v1; // eax
+	const char* v2; // eax
+	const char* v3; // eax
+	const char* v4; // eax
+	const char* v5; // eax
+	_OSVERSIONINFOA osversion; // [esp+8h] [ebp-98h]
+
+	timeBeginPeriod(1u);
+	Cmd_AddCommandInternal("net_restart", Sys_Net_Restart_f, &Sys_Net_Restart_f_VAR);
+	osversion.dwOSVersionInfoSize = 148;
+	if (!GetVersionExA(&osversion))
+		Sys_Error("Couldn't get OS info");
+	if (osversion.dwMajorVersion < 4)
+	{
+		v0 = Com_GetBuildDisplayNameR();
+		v1 = va("%s requires Windows version 4 or greater", v0);
+		Sys_Error(v1);
+	}
+	if (!osversion.dwPlatformId)
+	{
+		v2 = Com_GetBuildDisplayNameR();
+		v3 = va("%s doesn't run on Win32s", v2);
+		Sys_Error(v3);
+	}
+	Com_Printf(10, "CPU vendor is \"%s\"\n", sys_info.cpuVendor);
+	Com_Printf(10, "CPU name is \"%s\"\n", sys_info.cpuName);
+	v4 = (const char*)&pBlock;
+	if (sys_info.logicalCpuCount != 1)
+		v4 = "s";
+	Com_Printf(10, "%i logical CPU%s reported\n", sys_info.logicalCpuCount, v4);
+	v5 = (const char*)&pBlock;
+	if (sys_info.physicalCpuCount != 1)
+		v5 = "s";
+	Com_Printf(10, "%i physical CPU%s detected\n", sys_info.physicalCpuCount, v5);
+	Com_Printf(10, "Measured CPU speed is %.2lf GHz\n", sys_info.cpuGHz);
+	Com_Printf(10, "Total CPU performance is estimated as %.2lf GHz\n", sys_info.configureGHz);
+	Com_Printf(10, "System memory is %i MB (capped at 1 GB)\n", sys_info.sysMB);
+	Com_Printf(10, "Video card is \"%s\"\n", sys_info.gpuDescription);
+	Com_Printf(10, "\n");
+}
+
+char* Sys_GetIdentityParam(IdentityParam p)
+{
+#ifdef _DEBUG
+	if ((unsigned int)p >= 7
+		&& !Assert_MyHandler(
+			"c:\\t6\\code\\src_noserver\\win32\\win_main.cpp",
+			1527,
+			0,
+			"(unsigned)(p) < (unsigned)(IDENTITY_PARAM_COUNT)",
+			"p doesn't index IDENTITY_PARAM_COUNT\n\t%i not in [0, %i)",
+			p,
+			7))
+	{
+		__debugbreak();
+	}
+#endif
+	return &g_identityParams[256 * p];
+}

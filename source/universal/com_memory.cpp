@@ -1201,8 +1201,8 @@ char* Hunk_AllocLow(int size, const char* name, int type)
 {
     if (!Sys_IsMainThread()
         && !Assert_MyHandler(
-            "c:\\t6\\code\\src_noserver\\universal\\com_memory.cpp",
-            1364,
+            __FILE__,
+            __LINE__,
             0,
             "(Sys_IsMainThread())",
             (const char*)&pBlock))

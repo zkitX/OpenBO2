@@ -88,7 +88,16 @@ struct XModel
 	float lightingOriginRange;
 };
 
-class xmodel
+struct XModelPartsLoad
 {
+	char numBones;
+	char numRootBones;
+	unsigned __int16* boneNames;
+	char* parentList;
+	__int16* quats;
+	float* trans;
+	char* partClassification;
+	DObjAnimMat* baseMat;
 };
 
+void XModelPartsFree(XModelPartsLoad* modelParts);

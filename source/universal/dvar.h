@@ -87,12 +87,14 @@ struct enumDvarDef_s
 	const char* enumDvarName;
 };
 
-static const dvar_t* ClickToContinue;
+const dvar_t* ClickToContinue;
 
-static const dvar_t* cl_socketpool_enabled;
-static const dvar_t* cl_socketpool_size;
+const dvar_t* cl_socketpool_enabled;
+const dvar_t* cl_socketpool_size;
 
 const dvar_t* net_broadcast;
+
+const dvar_t* useFastFile;
 
 void Dvar_AddCommands();
 void Dvar_AddConfigFlag_f();

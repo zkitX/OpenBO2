@@ -305,6 +305,7 @@
     <ClInclude Include="source\win32\win_shared.h" />
     <ClInclude Include="source\win32\win_configure.h" />
     <ClInclude Include="source\win32\timing.h" />
+    <ClInclude Include="source\xanim\xanim.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\cgame\cg_visionsets.cpp" />
@@ -467,6 +468,7 @@
     <ClCompile Include="source\win32\win_shared.cpp" />
     <ClCompile Include="source\win32\win_configure.cpp" />
     <ClCompile Include="source\win32\timing.cpp" />
+    <ClCompile Include="source\xanim\xanim.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LICENSE" />

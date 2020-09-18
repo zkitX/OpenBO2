@@ -2,6 +2,7 @@
 #include "win_localize.h"
 #include "win_net.h"
 #include "win_input.h"
+#include "win_syscon.h"
 #include "miniDumper.h"
 #include "timing.h"
 
@@ -664,7 +665,7 @@ int __stdcall WinMain(HINSTANCE* hInstance, HINSTANCE* hPrevInstance, char* lpCm
 		FreeLibrary(v5);
 	}
 	InitMiniDumper(lpCmdLine);
-	Sys_CreateConsole(hInstance);
+	Sys_CreateConsole((HINSTANCE__*)hInstance);
 	Sys_ShowConsole();
 	if (I_stristr(lpCmdLine, "usedevlsg"))
 	{
@@ -680,7 +681,7 @@ int __stdcall WinMain(HINSTANCE* hInstance, HINSTANCE* hPrevInstance, char* lpCm
 	Com_InitParse();
 	DedicatedInit(lpCmdLine);
 	PMem_Init();
-	track_init();
+	//track_init();
 	v7 = Win_CheckForZombieMode(lpCmdLine);
 	R_SetIsMultiplayer(1);
 	R_SetIsZombie(v7);
@@ -753,6 +754,6 @@ int __stdcall WinMain(HINSTANCE* hInstance, HINSTANCE* hPrevInstance, char* lpCm
 		Sys_Error("Error quit was not requested in the main thread\n");
 	}
 	Win_ShutdownLocalization();
-	track_shutdown(0);
+	//track_shutdown(0);
 	return 0;
 }

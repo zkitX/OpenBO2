@@ -1,5 +1,6 @@
 #include "win_syscon.h"
-
+#include "win_main.h"
+#include "win_localize.h"
 #include "win_net.h"
 
 #include "../qcommon/common.h"
@@ -241,7 +242,7 @@ void Sys_CreateConsole(HINSTANCE__* hInstance) {
 				hInstance,
 				0);
 			SendMessageA(s_wcd.hwndBuffer, 0x30u, (WPARAM)s_wcd.hfBufferFont, 0);
-			s_wcd.SysInputLineWndProc = (HWND__*)SetWindowLongA(
+			s_wcd.SysInputLineWndProc = (HWND*)SetWindowLongA(
 				s_wcd.hwndInputLine,
 				-4,
 				(LONG)InputLineWndProc);

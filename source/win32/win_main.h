@@ -23,6 +23,14 @@ enum sysEventType_t
 	SE_CONSOLE = 0x3,
 };
 
+struct cmdlineArg_t
+{
+	char key[64];
+	char val[128];
+	bool optional;
+	IdentityParam id;
+};
+
 struct sysEvent_t
 {
 	int evTime;
@@ -49,6 +57,14 @@ cmd_function_s Sys_Net_Restart_f_VAR;
 
 char g_identityParams[1792];
 
+cmdlineArg_t s_cmdlineArgs[7];
+
+char theOtherExeName[256];
+
+char errPtr[4096];
+
+char sys_cmdline[1024];
+
 void Sys_FindInfo();
 void Sys_OutOfMemErrorInternal(const char* filename, int line);
 void Sys_QuitAndStartProcess(const char* exeName, const char* parameters);
@@ -64,5 +80,15 @@ void Sys_LoadingKeepAlive();
 sysEvent_t* Sys_GetEvent(sysEvent_t* result);
 void Sys_Net_Restart_f();
 void Sys_Init();
-bool Sys_ReadIdentity(char const* id); // for dedicated server
 char* Sys_GetIdentityParam(IdentityParam p);
+char* getArgFromString(char const *src, char const *marker, char *dest, unsigned int dstSize);
+void checkdmlineValid();
+#ifdef DEDICATED_SERVER
+bool Sys_ReadIdentity(char const* id);
+void DedicatedInit(const char* cmdline);
+#endif
+void InitMiniDumper(char *lpCmdLine);
+char* Win_GetTheOtherExeName(const char* mode);
+void Sys_CheckQuitRequest();
+void Sys_Quit();
+int __stdcall WinMain(HINSTANCE* hInstance, HINSTANCE* hPrevInstance, char* lpCmdLine, int nCmdShow);

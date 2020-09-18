@@ -33,7 +33,6 @@ bool g_miniDumperStarted;
 static miniDumper* s_pMiniDumper;
 cmd_function_s SetDumpDir_f_VAR;
 
-void InitMiniDumper(char* lpCmdLine);
 bool Sys_IsMiniDumpStarted();
 void Sys_StartMiniDump(bool prompt);
 

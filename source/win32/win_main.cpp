@@ -1,6 +1,8 @@
 #include "win_main.h"
 #include "win_localize.h"
 #include "win_net.h"
+#include "win_input.h"
+#include "miniDumper.h"
 #include "timing.h"
 
 #include <qcommon/threads.h>
@@ -375,4 +377,382 @@ char* Sys_GetIdentityParam(IdentityParam p)
 	}
 #endif
 	return &g_identityParams[256 * p];
+}
+
+char* getArgFromString(char const* src, char const* marker, char* dst, unsigned int dstSize)
+{
+	const char* v4; // eax
+	unsigned int v5; // kr00_4
+	char* v6; // edx
+	char* v7; // eax
+	unsigned int v8; // esi
+	char v9; // cl
+
+	v4 = I_stristr(src, marker);
+	if (!v4 || v4 != src && *(v4 - 1) != 32)
+		return 0;
+	v5 = strlen(marker);
+	v6 = dst;
+	v7 = (char*)&v4[v5];
+	v8 = 0;
+	if (dstSize != 1)
+	{
+		do
+		{
+			v9 = *v7;
+			if (!*v7)
+				break;
+			if (v9 == 32)
+				break;
+			if (v9 == 9)
+				break;
+			*v6 = v9;
+			++v8;
+			++v7;
+			++v6;
+		} while (v8 < dstSize - 1);
+	}
+	*v6 = 0;
+	return v6;
+}
+
+void checkdmlineValid()
+{
+	char* v0; // esi
+	signed int v1; // edi
+	const char* v2; // eax
+
+	v0 = s_cmdlineArgs[0].val;
+	v1 = 7;
+	do
+	{
+		if (!v0[128] && !*v0)
+		{
+			v2 = va("Missing cmdline argument %s\n ", v0 - 64);
+			Sys_Error(v2);
+		}
+		v0 += 200;
+		--v1;
+	} while (v1);
+}
+
+#ifdef DEDICATED_SERVER
+
+bool Sys_ReadIdentity(char const* id)
+{
+	return false;
+}
+
+void DedicatedInit(const char* cmdline)
+{
+	char* v1; // esi
+	const char* v2; // eax
+	const char* v3; // eax
+	signed int v4; // [esp+Ch] [ebp-88h]
+	char identity[128]; // [esp+10h] [ebp-84h]
+
+	if (getArgFromString(cmdline, "id:", identity, 0x80u))
+	{
+		Com_Printf(10, "Using identity: %s\n", identity);
+		if (!Sys_ReadIdentity(identity))
+			Sys_Error("Could not find identity '%s' in %s", identity, "identities.csv");
+	}
+	else
+	{
+		v1 = s_cmdlineArgs[0].val;
+		v4 = 7;
+		do
+		{
+			if (getArgFromString(cmdline, v1 - 64, v1, 0x80u))
+			{
+				Com_Printf(26, "%s: %s\t%s\n", "DedicatedInit", v1 - 64, v1);
+				strncpy(&g_identityParams[256 * *((_DWORD*)v1 + 33)], v1, 0x100u);
+			}
+			v1 += 200;
+			--v4;
+		} while (v4);
+		Live_SetLsgAddrFromCommandLine();
+		Live_SetAuthAddrFromCommandLine();
+		Live_SetTitleIDFromCommandLine();
+	}
+	Com_Printf(10, "Platform: %s\n", &g_identityParams[1536]);
+	if (I_stricmp(&g_identityParams[1536], "ps3"))
+	{
+		if (I_stricmp(&g_identityParams[1536], "xenon"))
+		{
+			if (I_stricmp(&g_identityParams[1536], "pc"))
+			{
+				if (I_stricmp(&g_identityParams[1536], "wiiu"))
+					Com_PrintError(26, "No clientplatform found on cmdline, defaulting to PC!\n");
+				else
+					g_clientPlatform = 3;
+			}
+			else
+			{
+				g_clientPlatform = 0;
+			}
+		}
+		else
+		{
+			g_clientPlatform = 2;
+		}
+	}
+	else
+	{
+		g_clientPlatform = 1;
+	}
+	Com_Printf(10, "Environment: %s\n", &g_identityParams[1280]);
+	if (I_stricmp(&g_identityParams[1280], "dev"))
+	{
+		if (I_stricmp(&g_identityParams[1280], "cert"))
+		{
+			if (I_stricmp(&g_identityParams[1280], "live"))
+				Com_PrintWarning(26, "No client lsg found, defaulting to dev!\n");
+			else
+				g_clientLSG = 2;
+		}
+		else
+		{
+			g_clientLSG = 1;
+		}
+	}
+	else
+	{
+		g_clientLSG = 0;
+	}
+	if (Sys_IsMiniDumpStarted())
+	{
+		v2 = Sys_DefaultHomePath();
+		v3 = va("%s\\dumps\\", v2);
+		Sys_SetMiniDumpDir(v3);
+	}
+}
+#endif
+
+void InitMiniDumper(char *lpCmdLine)
+{
+	if (I_stristr(lpCmdLine, "autodump"))
+	{
+		Sys_StartMiniDump(0);
+	}
+	else if (I_stristr(lpCmdLine, "minidump") || !I_stristr(lpCmdLine, "nodump"))
+	{
+		Sys_StartMiniDump(1);
+	}
+	else
+	{
+		SetUnhandledExceptionFilter((LPTOP_LEVEL_EXCEPTION_FILTER)PrivateUnhandledExceptionFilter);
+	}
+}
+
+char* Win_GetTheOtherExeName(const char* mode)
+{
+	const char* v1; // eax
+	const char* v2; // ebx
+	int v3; // esi
+	int v4; // eax
+	const char* v5; // eax
+	bool zm; // [esp+Fh] [ebp-309h]
+	char fullpath[260]; // [esp+10h] [ebp-308h]
+	char ext[256]; // [esp+114h] [ebp-204h]
+	char filename[256]; // [esp+214h] [ebp-104h]
+
+#ifdef _DEBUG
+	if ((!*mode || !mode[1] || mode[2])
+		&& !Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(mode[0] && mode[1] && !mode[2])",
+			(const char*)&pBlock))
+	{
+		__debugbreak();
+	}
+#endif
+	if (tolower(*mode) != 122 || (zm = 1, tolower(mode[1]) != 109))
+		zm = 0;
+#ifdef _DEBUG
+	if ((tolower(*mode) != 115 || tolower(mode[1]) != 112)
+		&& (tolower(*mode) != 109 || tolower(mode[1]) != 112)
+		&& !zm
+		&& !Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(( tolower( mode[0] ) == 's' && tolower( mode[1] ) == 'p' ) || ( tolower( mode[0] ) == 'm' && tolower( mode[1]"
+			" ) == 'p' ) || ( zm ))",
+			(const char*)&pBlock))
+	{
+		__debugbreak();
+	}
+#endif
+	GetModuleFileNameA(0, fullpath, 0x104u);
+	_splitpath(fullpath, 0, 0, filename, ext);
+	strrchr(filename, 95);
+	v2 = v1;
+	if (v1)
+		v3 = v1 - filename;
+	else
+		v3 = strlen(filename);
+#ifdef _DEBUG
+	if (v3 <= 2
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(2 < len)", (const char*)&pBlock))
+	{
+		__debugbreak();
+	}
+#endif
+	v4 = v3 - 1;
+	if (v3 - 1 > 256)
+		v4 = 256;
+	I_strncpyz(theOtherExeName, filename, v4);
+	v5 = "mp";
+	if (!zm)
+		v5 = mode;
+	I_strncat(theOtherExeName, 256, v5);
+	if (v2)
+		I_strncat(theOtherExeName, 256, v2);
+	I_strncat(theOtherExeName, 256, ext);
+	return theOtherExeName;
+}
+
+void Sys_CheckQuitRequest()
+{
+	if (g_quitRequested && (unsigned __int8)Sys_IsMainThread())
+	{
+		if (errPtr[0])
+			Sys_Error(errPtr);
+		Sys_Error("Error quit was not requested in the main thread\n");
+	}
+}
+
+void Sys_Quit()
+{
+	Sys_EnterCriticalSection(CRITSECT_COM_ERROR);
+	timeEndPeriod(1u);
+	Sys_SpawnQuitProcess();
+	IN_Shutdown();
+	Key_Shutdown();
+	Sys_DestroyConsole();
+	Win_ShutdownLocalization();
+	RefreshQuitOnErrorCondition();
+	Dvar_Shutdown();
+	Cmd_Shutdown();
+	Sys_ShutdownEvents();
+	SL_Shutdown();
+	if (!com_errorEntered)
+		track_shutdown(0);
+	Con_ShutdownChannels();
+	LiveSteam_Shutdown();
+	ExitProcess(0);
+}
+
+int __stdcall WinMain(HINSTANCE* hInstance, HINSTANCE* hPrevInstance, char* lpCmdLine, int nCmdShow)
+{
+	HMODULE v4; // eax
+	HMODULE v5; // edi
+	void (*v6)(void); // eax
+	bool v7; // bl
+	char pnbuf; // [esp+10h] [ebp-104h]
+
+	v4 = LoadLibraryA("user32.dll");
+	v5 = v4;
+	if (v4)
+	{
+		v6 = (void (*)(void))GetProcAddress(v4, "SetProcessDPIAware");
+		if (v6)
+			v6();
+		FreeLibrary(v5);
+	}
+	InitMiniDumper(lpCmdLine);
+	Sys_CreateConsole(hInstance);
+	Sys_ShowConsole();
+	if (I_stristr(lpCmdLine, "usedevlsg"))
+	{
+		g_dwUseDevLSG = 1;
+	}
+	else if (I_stristr(lpCmdLine, "useprodlsg"))
+	{
+		g_dwUseDevLSG = 0;
+	}
+	Sys_InitializeCriticalSections();
+	Sys_InitMainThread();
+	g_quitRequested = 0;
+	Com_InitParse();
+	DedicatedInit(lpCmdLine);
+	PMem_Init();
+	track_init();
+	v7 = Win_CheckForZombieMode(lpCmdLine);
+	R_SetIsMultiplayer(1);
+	R_SetIsZombie(v7);
+	Win_InitLocalization(v7);
+	if (G_ExitAfterConnectPaths())
+	{
+		g_pc_nosnd = 1;
+	}
+	else if (GetSystemMetrics(4096))
+	{
+		g_pc_nosnd = 1;
+	}
+	else if (I_stristr(lpCmdLine, "nosnd"))
+	{
+		g_pc_nosnd = 1;
+	}
+	else if (I_stristr(lpCmdLine, "shield"))
+	{
+		g_pc_snd_defaultdevice = 1;
+	}
+	if (!hPrevInstance)
+	{
+		SL_Init();
+		Dvar_Init();
+		InitTiming();
+		Sys_FindInfo();
+		I_strncpyz(sys_cmdline, lpCmdLine, 1024);
+		SetErrorMode(1u);
+		Sys_Milliseconds();
+		tlPrintf("Hello from the wonderful world of TL\n");
+		Sys_SetupTLCallbacks(0x900000);
+		Con_InitChannels();
+		TaskManager2_Init();
+		if (v7)
+		{
+			Com_Printf(10, "----> Zombie Session Mode Set! <----\n");
+			Com_SessionMode_SetMode(SESSIONMODE_ZOMBIES, 1);
+		}
+		Win_CheckForEnv(lpCmdLine);
+		Live_Base_Init();
+		Live_Base_Pump();
+		if (!(unsigned __int8)Sys_IsMainThread()
+			&& !Assert_MyHandler(
+				__FILE__,
+				__LINE__,
+				0,
+				"(Sys_IsMainThread())",
+				(const char*)&clientinfo))
+		{
+			__debugbreak();
+		}
+		Com_Init(sys_cmdline, 0);
+		Live_Base_Pump();
+		_getcwd(&pnbuf, 256);
+		Com_Printf(10, "Working directory: %s\n", &pnbuf);
+		if (Dvar_GetBool(com_script_debugger_smoke_test))
+			exit(31415);
+		while (1)
+		{
+			Sleep(5u);
+			if (g_quitRequested)
+			{
+				if ((unsigned __int8)Sys_IsMainThread())
+					break;
+			}
+			Com_Frame();
+		}
+		if (errPtr[0])
+			Sys_Error(errPtr);
+		Sys_Error("Error quit was not requested in the main thread\n");
+	}
+	Win_ShutdownLocalization();
+	track_shutdown(0);
+	return 0;
 }

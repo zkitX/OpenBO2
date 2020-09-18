@@ -22,22 +22,6 @@ bool miniDumper::enablePrivilege(const char* pszPriv, void* hToken, _TOKEN_PRIVI
     return result;
 }
 
-void InitMiniDumper(char* lpCmdLine)
-{
-    if (I_stristr(lpCmdLine, "autodump"))
-    {
-        Sys_StartMiniDump(0);
-    }
-    else if (I_stristr(lpCmdLine, "minidump") || !I_stristr(lpCmdLine, "nodump"))
-    {
-        Sys_StartMiniDump(1);
-    }
-    else
-    {
-        SetUnhandledExceptionFilter((LPTOP_LEVEL_EXCEPTION_FILTER)PrivateUnhandledExceptionFilter);
-    }
-}
-
 void miniDumper::setMiniDumpFileName(miniDumper*, const char* tag)
 {
 }

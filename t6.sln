@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30330.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "t6", "t6.vcxproj", "{732B9E9A-1F86-43C1-A8F3-F3FC3691B5F5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{42109FEE-B0B9-4FCD-9E56-2863BF8C55D2} = {42109FEE-B0B9-4FCD-9E56-2863BF8C55D2}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tommath", "libs\libtommath\libtommath_VS2008.vcxproj", "{42109FEE-B0B9-4FCD-9E56-2863BF8C55D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,6 +16,8 @@ Global
 		Debug|x86 = Debug|x86
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
+		t6mp-Debug|x64 = t6mp-Debug|x64
+		t6mp-Debug|x86 = t6mp-Debug|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{732B9E9A-1F86-43C1-A8F3-F3FC3691B5F5}.Debug|x64.ActiveCfg = Debug|x64
@@ -21,6 +28,22 @@ Global
 		{732B9E9A-1F86-43C1-A8F3-F3FC3691B5F5}.Release|x64.Build.0 = Release|x64
 		{732B9E9A-1F86-43C1-A8F3-F3FC3691B5F5}.Release|x86.ActiveCfg = Release|Win32
 		{732B9E9A-1F86-43C1-A8F3-F3FC3691B5F5}.Release|x86.Build.0 = Release|Win32
+		{732B9E9A-1F86-43C1-A8F3-F3FC3691B5F5}.t6mp-Debug|x64.ActiveCfg = t6mp-Debug|x64
+		{732B9E9A-1F86-43C1-A8F3-F3FC3691B5F5}.t6mp-Debug|x64.Build.0 = t6mp-Debug|x64
+		{732B9E9A-1F86-43C1-A8F3-F3FC3691B5F5}.t6mp-Debug|x86.ActiveCfg = t6mp-Debug|Win32
+		{732B9E9A-1F86-43C1-A8F3-F3FC3691B5F5}.t6mp-Debug|x86.Build.0 = t6mp-Debug|Win32
+		{42109FEE-B0B9-4FCD-9E56-2863BF8C55D2}.Debug|x64.ActiveCfg = Debug|x64
+		{42109FEE-B0B9-4FCD-9E56-2863BF8C55D2}.Debug|x64.Build.0 = Debug|x64
+		{42109FEE-B0B9-4FCD-9E56-2863BF8C55D2}.Debug|x86.ActiveCfg = Debug|Win32
+		{42109FEE-B0B9-4FCD-9E56-2863BF8C55D2}.Debug|x86.Build.0 = Debug|Win32
+		{42109FEE-B0B9-4FCD-9E56-2863BF8C55D2}.Release|x64.ActiveCfg = Release|x64
+		{42109FEE-B0B9-4FCD-9E56-2863BF8C55D2}.Release|x64.Build.0 = Release|x64
+		{42109FEE-B0B9-4FCD-9E56-2863BF8C55D2}.Release|x86.ActiveCfg = Release|Win32
+		{42109FEE-B0B9-4FCD-9E56-2863BF8C55D2}.Release|x86.Build.0 = Release|Win32
+		{42109FEE-B0B9-4FCD-9E56-2863BF8C55D2}.t6mp-Debug|x64.ActiveCfg = Debug|x64
+		{42109FEE-B0B9-4FCD-9E56-2863BF8C55D2}.t6mp-Debug|x64.Build.0 = Debug|x64
+		{42109FEE-B0B9-4FCD-9E56-2863BF8C55D2}.t6mp-Debug|x86.ActiveCfg = Debug|Win32
+		{42109FEE-B0B9-4FCD-9E56-2863BF8C55D2}.t6mp-Debug|x86.Build.0 = Debug|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

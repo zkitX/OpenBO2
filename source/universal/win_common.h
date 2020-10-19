@@ -114,7 +114,7 @@ char* Sys_Cwd();
 char const* Sys_DefaultHomePath();
 char const* Sys_DefaultInstallPath();
 bool Sys_FileExists(char const* path);
-void Sys_ListFilteredFiles(const char* baseDir, const char* subDirs, const char* filter, int* numFiles, HunkUser* user, char** list);
+void Sys_ListFilteredFiles(HunkUser* user, const char* baseDir, const char* subDirs, const char* filter, char** list, int* numFiles);
 char** Sys_ListFiles(char const* directory, char const* extension, char const* filter, int* numfiles, int wantsubs);
 int Sys_DirectoryHasContents(char const* directory);
 void Sys_InitializeCriticalSections();

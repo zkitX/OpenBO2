@@ -28,6 +28,7 @@ struct PhysicalMemory
 PhysicalMemory g_mem;
 bool g_physicalMemoryInit;
 int g_overAllocatedSize;
+bool g_restrictMemory;
 __declspec(thread) int g_alloc_type;
 
 void PMem_InitPhysicalMemory(PhysicalMemory* pmem, unsigned int memorySize, const char* name, void* memory);

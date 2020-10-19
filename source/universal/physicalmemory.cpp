@@ -21,7 +21,7 @@ void PMem_InitPhysicalMemory(PhysicalMemory* pmem, unsigned int memorySize, cons
             __LINE__,
             0,
             "(pmem)",
-            (const char*)&pBlock))
+            (const char*)&scratch))
     {
         __debugbreak();
     }
@@ -31,7 +31,7 @@ void PMem_InitPhysicalMemory(PhysicalMemory* pmem, unsigned int memorySize, cons
             __LINE__,
             0,
             "(memory)",
-            (const char*)&pBlock))
+            (const char*)&scratch))
     {
         __debugbreak();
     }
@@ -53,7 +53,7 @@ void PMem_Init()
             __LINE__,
             0,
             "(g_physicalMemoryInit == 0)",
-            (const char*)&pBlock))
+            (const char*)&scratch))
     {
         __debugbreak();
     }

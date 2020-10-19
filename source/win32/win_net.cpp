@@ -189,7 +189,7 @@ int Sys_GetPacket(netadr_t* net_from, msg_t* net_message)
 	fromlen = 0xFFFF;
 #ifdef _DEBUG
 	if ((!shim_addr || !shim_port)
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(shim_addr && shim_port)", &pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(shim_addr && shim_port)", &scratch))
 	{
 		__debugbreak();
 	}
@@ -366,7 +366,7 @@ bool Sys_SendPacket(netsrc_t sock, int length, const void* data, netadr_t to)
 			__LINE__,
 			0,
 			"(sock >= NS_CLIENT1 && sock <= NS_SERVER)",
-			&pBlock))
+			&scratch))
 	{
 		__debugbreak();
 	}
@@ -379,7 +379,7 @@ bool Sys_SendPacket(netsrc_t sock, int length, const void* data, netadr_t to)
 			__LINE__,
 			0,
 			"(to.localNetID >= NS_CLIENT1 && to.localNetID <= NS_SERVER)",
-			&pBlock))
+			&scratch))
 	{
 		__debugbreak();
 	}
@@ -656,7 +656,7 @@ void NET_OpenIP()
 	{
 		shim_addr = _Dvar_RegisterString(
 			"shim_addr",
-			&pBlock,
+			&scratch,
 			0,
 			"Address to expect packets from. Should be the internal addr in the shim config");
 		shim_port = _Dvar_RegisterInt(
@@ -702,16 +702,16 @@ int NET_GetDvars()
 	net_socksEnabled = _Dvar_RegisterBool("net_socksEnabled", 0, 0x21u, "Enable network sockets");
 	if (net_socksServer && Dvar_GetModified(net_socksServer))
 		result = 1;
-	net_socksServer = _Dvar_RegisterString("net_socksServer", &pBlock, 0x21u, "Network socket server");
+	net_socksServer = _Dvar_RegisterString("net_socksServer", &scratch, 0x21u, "Network socket server");
 	if (net_socksPort && Dvar_GetModified(net_socksPort))
 		result = 1;
 	net_socksPort = _Dvar_RegisterInt("net_socksPort", 1080, 0, 0xFFFF, 0x21u, "Network socket port");
 	if (net_socksUsername && Dvar_GetModified(net_socksUsername))
 		result = 1;
-	net_socksUsername = _Dvar_RegisterString("net_socksUsername", &pBlock, 0x21u, "Network socket username");
+	net_socksUsername = _Dvar_RegisterString("net_socksUsername", &scratch, 0x21u, "Network socket username");
 	if (net_socksPassword && Dvar_GetModified(net_socksPassword))
 		result = 1;
-	net_socksPassword = _Dvar_RegisterString("net_socksPassword", &pBlock, 0x21u, "Network socket password");
+	net_socksPassword = _Dvar_RegisterString("net_socksPassword", &scratch, 0x21u, "Network socket password");
 	return result;
 }
 

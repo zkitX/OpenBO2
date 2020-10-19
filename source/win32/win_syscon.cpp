@@ -19,7 +19,7 @@ void Conbuf_AppendText(const char* pMsg)
 			__LINE__,
 			0,
 			"(s_wcd.hwndBuffer)",
-			&pBlock))
+			&scratch))
 	{
 		__debugbreak();
 	}
@@ -152,7 +152,7 @@ LRESULT InputLineWndProc(HWND__* hWnd, unsigned int uMsg, unsigned int wParam, i
 		GetWindowTextA(s_wcd.hwndInputLine, inputBuffer, 1024);
 		strncat(s_wcd.consoleText, inputBuffer, 507 - strlen(s_wcd.consoleText));
 		strcat(s_wcd.consoleText, "\n");
-		SetWindowTextA(s_wcd.hwndInputLine, (LPCSTR)&pBlock);
+		SetWindowTextA(s_wcd.hwndInputLine, (LPCSTR)&scratch);
 		Com_sprintf(displayBuffer, 1024, "]%s\n", inputBuffer);
 		Sys_Print(displayBuffer);
 		return 0;
@@ -291,7 +291,7 @@ void Sys_ShowConsole()
 				__LINE__,
 				0,
 				"(s_wcd.hWnd)",
-				&pBlock))
+				&scratch))
 		{
 			__debugbreak();
 		}

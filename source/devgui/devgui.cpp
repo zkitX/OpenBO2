@@ -18,7 +18,7 @@ void DevGui_Toggle()
                 __LINE__,
                 0,
                 "(!devguiGlob.isActive)",
-                (const char*)&pBlock))
+                (const char*)&scratch))
         {
             __debugbreak();
         }
@@ -43,7 +43,7 @@ void DevGui_Toggle()
             __LINE__,
             0,
             "(!devguiGlob.isActive)",
-            (const char*)&pBlock))
+            (const char*)&scratch))
     {
         __debugbreak();
     }

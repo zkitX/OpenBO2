@@ -123,7 +123,7 @@ void BB_Init()
 			__LINE__,
 			0,
 			"(s_blackboxInitialized == 0)",
-			&pBlock))
+			&scratch))
 	{
 		__debugbreak();
 	}
@@ -224,7 +224,7 @@ void BB_Start()
 			__LINE__,
 			0,
 			"(s_blackboxInitialized == 0)",
-			&pBlock))
+			&scratch))
 	{
 		__debugbreak();
 	}

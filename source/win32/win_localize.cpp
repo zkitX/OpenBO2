@@ -25,7 +25,7 @@ _iobuf* Win_InitLocalization(bool isZombies)
         v4 = FS_FileGetFileSize(v2);
 #ifdef _DEBUG
         if (v4 >= 4096
-            && !Assert_MyHandler(__FILE__, __LINE__, 0, "(size < 4096)", &pBlock))
+            && !Assert_MyHandler(__FILE__, __LINE__, 0, "(size < 4096)", &scratch))
         {
             __debugbreak();
         }
@@ -100,7 +100,7 @@ char* Win_LocalizeRef(const char* ref)
                     __FILE__,
                     __LINE__,
                     0,
-                    (const char*)&pBlock,
+                    (const char*)&scratch,
                     v7);
                 goto LABEL_8;
             }
@@ -118,7 +118,7 @@ char* Win_LocalizeRef(const char* ref)
     LABEL_7:
         Com_EndParseSession();
         v5 = va("unlocalized: %s", ref);
-        v6 = Assert_MyHandler(__FILE__, __LINE__, 0, (const char*)&pBlock, v5);
+        v6 = Assert_MyHandler(__FILE__, __LINE__, 0, (const char*)&scratch, v5);
     LABEL_8:
         if (!v6)
             __debugbreak();

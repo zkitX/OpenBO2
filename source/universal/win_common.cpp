@@ -1,6 +1,8 @@
 #include "win_common.h"
 #include "assertive.h"
 
+#include <universal/com_memory.h>
+
 #include <direct.h>
 #include <io.h>
 #include <synchapi.h>
@@ -85,7 +87,7 @@ bool Sys_FileExists(char const* path)
     return GetFileAttributesA(path) != -1;
 }
 
-void Sys_ListFilteredFiles(const char* baseDir, const char* subDirs, const char* filter, int* numFiles, HunkUser* user, char** list)
+void Sys_ListFilteredFiles(HunkUser* user, const char* baseDir, const char* subDirs, const char* filter, char** list, int* numFiles)
 {
     int v6; // ebx
     char* v7; // [esp+4h] [ebp-338h]
@@ -125,122 +127,102 @@ void Sys_ListFilteredFiles(const char* baseDir, const char* subDirs, const char*
 
 char** Sys_ListFiles(char const* directory, char const* extension, char const* filter, int* numfiles, int wantsubs)
 {
-    const char* v5; // esi
-    int v6; // ebx
-    int* v7; // edx
     char** result; // eax
-    HunkUser* v9; // esi
-    char* v10; // eax
-    bool v11; // zf
-    HunkUser* v12; // edi
-    HunkUser* v13; // eax
-    int v14; // ST1C_4
-    int v15; // ecx
-    char* list[65536]; // [esp+Ch] [ebp-40338h]
-    int* v17; // [esp+4000Ch] [ebp-338h]
-    int numfilesa; // [esp+40010h] [ebp-334h]
-    HunkUser* user; // [esp+40014h] [ebp-330h]
-    _finddata64i32_t pfd; // [esp+40018h] [ebp-32Ch]
-    char wild; // [esp+40140h] [ebp-204h]
-    char dest; // [esp+40240h] [ebp-104h]
+    char* v6; // eax
+    _finddata64i32_t pfd; // [esp+0h] [ebp-10248h]
+    int v8; // [esp+12Ch] [ebp-1011Ch]
+    char** v9; // [esp+130h] [ebp-10118h]
+    int hFile; // [esp+134h] [ebp-10114h]
+    char* list[16384]; // [esp+138h] [ebp-10110h]
+    int numfilesa; // [esp+10138h] [ebp-110h]
+    HunkUser* user; // [esp+1013Ch] [ebp-10Ch]
+    char dest; // [esp+10140h] [ebp-108h]
+    int i; // [esp+10244h] [ebp-4h]
 
-    v5 = extension;
-    v17 = numfiles;
     if (filter)
     {
-        user = Hunk_UserCreate(0x100000, 0, 0, 0, "Sys_ListFiles", 3);
+        user = Hunk_UserCreate(0x20000, 0, 0, 0, "Sys_ListFiles", 3);
         numfilesa = 0;
-        Sys_ListFilteredFiles(directory, &pBlock, filter, &numfilesa, user, list);
-        v6 = numfilesa;
-        v7 = v17;
+        Sys_ListFilteredFiles(user, directory, &scratch, filter, list, &numfilesa);
         list[numfilesa] = 0;
-        *v7 = v6;
-        if (!v6)
+        *numfiles = numfilesa;
+        if (numfilesa)
+        {
+            v9 = (char**)Hunk_UserAlloc(user, 4 * numfilesa + 8, 4, 0);
+            *v9 = (char*)user;
+            ++v9;
+            for (i = 0; i < numfilesa; ++i)
+                v9[i] = list[i];
+            v9[i] = 0;
+            result = v9;
+        }
+        else
         {
             Hunk_UserDestroy(user);
-            return 0;
-        }
-        v9 = user;
-        v10 = (char*)Hunk_UserAlloc(user, 4 * v6 + 8, 4, 0);
-        *(unsigned int*)v10 = v9;
-        goto LABEL_31;
-    }
-    if (extension)
-    {
-        if (*extension == 47 && !extension[1])
-        {
-            v5 = &pBlock;
-            user = 0;
-            goto LABEL_12;
+            result = 0;
         }
     }
     else
     {
-        v5 = &pBlock;
+        if (!extension)
+            extension = &scratch;
+        if (*extension != 47 || extension[1])
+        {
+            v8 = 16;
+        }
+        else
+        {
+            extension = &scratch;
+            v8 = 0;
+        }
+        if (*extension)
+            Com_sprintf(&dest, 256, "%s\\*.%s", directory, extension);
+        else
+            Com_sprintf(&dest, 256, "%s\\*", directory);
+        numfilesa = 0;
+        hFile = _findfirst64i32(&dest, &pfd);
+        if (hFile == -1)
+        {
+            *numfiles = 0;
+            result = 0;
+        }
+        else
+        {
+            user = Hunk_UserCreate(0x20000, 0, 0, 0, "Sys_ListFiles", 3);
+            do
+            {
+                if ((!wantsubs && v8 != (pfd.attrib & 0x10) || wantsubs && pfd.attrib & 0x10)
+                    && (!(pfd.attrib & 0x10) || I_stricmp(pfd.name, ".")
+                        && I_stricmp(pfd.name, "..")
+                        && I_stricmp(pfd.name, "CVS"))
+                    && (!*extension || HasFileExtension(pfd.name, extension)))
+                {
+                    v6 = Hunk_CopyString(user, pfd.name);
+                    list[numfilesa++] = v6;
+                    if (numfilesa == 0x3FFF)
+                        break;
+                }
+            } while (_findnext64i32(hFile, &pfd) != -1);
+            list[numfilesa] = 0;
+            _findclose(hFile);
+            *numfiles = numfilesa;
+            if (numfilesa)
+            {
+                v9 = (char**)Hunk_UserAlloc(user, 4 * numfilesa + 8, 4, 0);
+                *v9 = (char*)user;
+                ++v9;
+                for (i = 0; i < numfilesa; ++i)
+                    v9[i] = list[i];
+                v9[i] = 0;
+                result = v9;
+            }
+            else
+            {
+                Hunk_UserDestroy(user);
+                result = 0;
+            }
+        }
     }
-    v11 = *v5 == 0;
-    user = (HunkUser*)16;
-    if (v11)
-    {
-    LABEL_12:
-        Com_sprintf(&dest, 256, "%s\\*", directory);
-        goto LABEL_13;
-    }
-    Com_sprintf(&dest, 256, "%s\\*.%s", directory, v5);
-LABEL_13:
-    v6 = 0;
-    numfilesa = _findfirst64i32(&dest, &pfd);
-    if (numfilesa == -1)
-    {
-        *v17 = 0;
-        return 0;
-    }
-    v12 = Hunk_UserCreate(0x40000, 0, 0, 0, "Sys_ListFiles", 3);
-    while (!wantsubs)
-    {
-        v13 = (HunkUser*)(pfd.attrib & 0x10);
-        if (user != v13)
-            goto LABEL_20;
-    LABEL_27:
-        if (_findnext64i32(numfilesa, &pfd) == -1)
-            goto LABEL_28;
-    }
-    v13 = (HunkUser*)(pfd.attrib & 0x10);
-    if (!(pfd.attrib & 0x10))
-        goto LABEL_27;
-LABEL_20:
-    if (v13 && (!I_stricmp(pfd.name, ".") || !I_stricmp(pfd.name, "..") || !I_stricmp(pfd.name, "CVS")))
-        goto LABEL_27;
-    if (*v5)
-    {
-        Com_sprintf(&wild, 256, "*.%s", v5);
-        if (I_stricmpwild(&wild, pfd.name))
-            goto LABEL_27;
-    }
-    list[v6++] = Hunk_CopyString(v12, pfd.name);
-    if (v6 != 0xFFFF)
-        goto LABEL_27;
-LABEL_28:
-    v14 = numfilesa;
-    list[v6] = 0;
-    _findclose(v14);
-    *v17 = v6;
-    if (!v6)
-    {
-        Hunk_UserDestroy(v12);
-        return 0;
-    }
-    v10 = (char*)Hunk_UserAlloc(v12, 4 * v6 + 8, 4, 0);
-    *(unsigned int*)v10 = v12;
-LABEL_31:
-    result = (char**)(v10 + 4);
-    v15 = 0;
-    if (v6 > 0)
-    {
-        qmemcpy(result, list, 4 * v6);
-        v15 = v6;
-    }
-    result[v15] = 0;
     return result;
 }
 

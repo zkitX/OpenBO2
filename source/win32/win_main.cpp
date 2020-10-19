@@ -10,6 +10,8 @@
 #include <universal/assertive.h>
 #include <universal/blackbox.h>
 #include <universal/com_memory.h>
+#include <universal/q_shared.h>
+#include <universal/physicalmemory.h>
 #include <universal/win_common.h>
 
 void Sys_FindInfo()
@@ -346,11 +348,11 @@ void Sys_Init()
 	}
 	Com_Printf(10, "CPU vendor is \"%s\"\n", sys_info.cpuVendor);
 	Com_Printf(10, "CPU name is \"%s\"\n", sys_info.cpuName);
-	v4 = (const char*)&pBlock;
+	v4 = (const char*)&scratch;
 	if (sys_info.logicalCpuCount != 1)
 		v4 = "s";
 	Com_Printf(10, "%i logical CPU%s reported\n", sys_info.logicalCpuCount, v4);
-	v5 = (const char*)&pBlock;
+	v5 = (const char*)&scratch;
 	if (sys_info.physicalCpuCount != 1)
 		v5 = "s";
 	Com_Printf(10, "%i physical CPU%s detected\n", sys_info.physicalCpuCount, v5);
@@ -565,7 +567,7 @@ char* Win_GetTheOtherExeName(const char* mode)
 			__LINE__,
 			0,
 			"(mode[0] && mode[1] && !mode[2])",
-			(const char*)&pBlock))
+			(const char*)&scratch))
 	{
 		__debugbreak();
 	}
@@ -582,7 +584,7 @@ char* Win_GetTheOtherExeName(const char* mode)
 			0,
 			"(( tolower( mode[0] ) == 's' && tolower( mode[1] ) == 'p' ) || ( tolower( mode[0] ) == 'm' && tolower( mode[1]"
 			" ) == 'p' ) || ( zm ))",
-			(const char*)&pBlock))
+			(const char*)&scratch))
 	{
 		__debugbreak();
 	}
@@ -597,7 +599,7 @@ char* Win_GetTheOtherExeName(const char* mode)
 		v3 = strlen(filename);
 #ifdef _DEBUG
 	if (v3 <= 2
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(2 < len)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(2 < len)", (const char*)&scratch))
 	{
 		__debugbreak();
 	}
@@ -614,6 +616,16 @@ char* Win_GetTheOtherExeName(const char* mode)
 		I_strncat(theOtherExeName, 256, v2);
 	I_strncat(theOtherExeName, 256, ext);
 	return theOtherExeName;
+}
+
+bool Win_CheckForZombieMode(char const* cmdline)
+{
+	char fullpath[260]; // [esp+0h] [ebp-208h]
+	char filename[256]; // [esp+104h] [ebp-104h]
+
+	GetModuleFileNameA(0, fullpath, 260u);
+	_splitpath(fullpath, 0, 0, filename, 0);
+	return !I_strcmp(filename, "t6zm") || I_stristr(cmdline, "+zm");
 }
 
 void Sys_CheckQuitRequest()
@@ -679,7 +691,7 @@ int __stdcall WinMain(HINSTANCE* hInstance, HINSTANCE* hPrevInstance, char* lpCm
 	Sys_InitMainThread();
 	g_quitRequested = 0;
 	Com_InitParse();
-	DedicatedInit(lpCmdLine);
+	//DedicatedInit(lpCmdLine);
 	PMem_Init();
 	//track_init();
 	v7 = Win_CheckForZombieMode(lpCmdLine);

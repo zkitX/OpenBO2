@@ -43,7 +43,7 @@ void Dvar_AddConfigFlag_f()
 			__LINE__,
 			0,
 			"(dvar)",
-			(const char*)&pBlock))
+			(const char*)&scratch))
 		{
 			__debugbreak();
 		}
@@ -605,7 +605,7 @@ void Dvar_UpdateEnumDomain(const dvar_t* dvar, const char** stringTable)
 
 #ifdef _DEBUG
 	if (!dvar
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", (const char*)&scratch))
 	{
 		__debugbreak();
 	}
@@ -615,7 +615,7 @@ void Dvar_UpdateEnumDomain(const dvar_t* dvar, const char** stringTable)
 			__LINE__,
 			0,
 			"(dvar->name)",
-			(const char*)&pBlock))
+			(const char*)&scratch))
 	{
 		__debugbreak();
 	}
@@ -696,7 +696,7 @@ void Dvar_UpdateResetValue(DvarValue value)
 	resetString = value;
 #ifdef _DEBUG
 	if (!dvar
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", (const char*)&scratch))
 	{
 		__debugbreak();
 	}
@@ -756,7 +756,7 @@ void Dvar_UpdateValue(dvar_t* dvar, DvarValue value)
 
 	currentString = value;
 	if (!dvar
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", (const char*)&scratch))
 	{
 		__debugbreak();
 	}
@@ -843,7 +843,7 @@ bool Dvar_ValueInDomain(dvarType_t type, DvarValue value, DvarLimits domain)
 				__LINE__,
 				0,
 				"(value.enabled == 1 || value.enabled == 0)",
-				(const char*)&pBlock))
+				(const char*)&scratch))
 		{
 			__debugbreak();
 		}
@@ -888,7 +888,7 @@ bool Dvar_ValueInDomain(dvarType_t type, DvarValue value, DvarLimits domain)
 				__LINE__,
 				0,
 				"(domain.integer.min <= domain.integer.max)",
-				(const char*)&pBlock))
+				(const char*)&scratch))
 		{
 			__debugbreak();
 		}
@@ -921,7 +921,7 @@ bool Dvar_ValueInDomain(dvarType_t type, DvarValue value, DvarLimits domain)
 				__LINE__,
 				0,
 				"(domain.integer64.min <= domain.integer64.max)",
-				(const char*)&pBlock))
+				(const char*)&scratch))
 		{
 			__debugbreak();
 		}
@@ -992,7 +992,7 @@ int Dvar_ValuesEqual(DvarValue val0, DvarValue val1)
 				__LINE__,
 				0,
 				"(val0.string)",
-				(const char*)&pBlock))
+				(const char*)&scratch))
 		{
 			__debugbreak();
 		}
@@ -1002,7 +1002,7 @@ int Dvar_ValuesEqual(DvarValue val0, DvarValue val1)
 				__LINE__,
 				0,
 				"(val1.string)",
-				(const char*)&pBlock))
+				(const char*)&scratch))
 		{
 			__debugbreak();
 		}
@@ -1249,7 +1249,7 @@ void dvar::Dvar_Set_f()
 bool dvar::Dvar_StringToBool(const char* string)
 {
 	if (!string
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&scratch))
 	{
 		__debugbreak();
 	}
@@ -1316,12 +1316,12 @@ int dvar::Dvar_StringToEnum(const DvarLimits* domain, const char* string)
 	int v6; // ebx
 
 	if (!domain
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(domain)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(domain)", (const char*)&scratch))
 	{
 		__debugbreak();
 	}
 	if (!string
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&scratch))
 	{
 		__debugbreak();
 	}
@@ -1380,7 +1380,7 @@ double dvar::Dvar_StringToFloat(const char* string)
 	int result; // eax
 
 	if (!string
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&scratch))
 	{
 		__debugbreak();
 	}
@@ -1391,7 +1391,7 @@ double dvar::Dvar_StringToFloat(const char* string)
 int dvar::Dvar_StringToInt(const char* string)
 {
 	if (!string
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&scratch))
 	{
 		__debugbreak();
 	}
@@ -1401,7 +1401,7 @@ int dvar::Dvar_StringToInt(const char* string)
 long long dvar::Dvar_StringToInt64(const char* string)
 {
 	if (!string
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&scratch))
 	{
 		__debugbreak();
 	}
@@ -1417,7 +1417,7 @@ DvarValue* dvar::Dvar_StringToValue(const dvarType_t type, const char* string, d
 	v5 = string;
 	dvarType = type;
 	if (!string
-		&& !Assert_MyHandler("c:\\t6\\code\\src_noserver\\universal\\dvar.cpp", 582, 0, "(string)", (const char*)&pBlock))
+		&& !Assert_MyHandler("c:\\t6\\code\\src_noserver\\universal\\dvar.cpp", 582, 0, "(string)", (const char*)&scratch))
 	{
 		__debugbreak();
 	}
@@ -1462,7 +1462,7 @@ DvarValue* dvar::Dvar_StringToValue(const dvarType_t type, const char* string, d
 void dvar::Dvar_StringToVec2(const char* string, vec2_t* vector)
 {
 	if (!string
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&scratch))
 	{
 		__debugbreak();
 	}
@@ -1475,7 +1475,7 @@ void dvar::Dvar_StringToVec3(const char* string, vec3_t* vector)
 	char* v3; // [esp-4h] [ebp-4h]
 
 	if (!string
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&scratch))
 	{
 		__debugbreak();
 	}
@@ -1493,7 +1493,7 @@ void dvar::Dvar_StringToVec4(const char* string, vec4_t* vector)
 {
 #ifdef _DEBUG
 	if (!string
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&scratch))
 	{
 		__debugbreak();
 	}
@@ -1570,7 +1570,7 @@ bool dvar::Dvar_ToggleInternal()
 				__LINE__,
 				0,
 				"(Cmd_Argv( 0 ))",
-				(const char*)&pBlock))
+				(const char*)&scratch))
 		{
 			__debugbreak();
 		}
@@ -1588,7 +1588,7 @@ bool dvar::Dvar_ToggleInternal()
 			__LINE__,
 			0,
 			"(dvarName)",
-			(const char*)&pBlock))
+			(const char*)&scratch))
 	{
 		__debugbreak();
 	}
@@ -1776,7 +1776,7 @@ void dvar::Dvar_TogglePrint_f()
 				__LINE__,
 				1,
 				"(dvarName)",
-				(const char*)&pBlock))
+				(const char*)&scratch))
 		{
 			__debugbreak();
 		}
@@ -1789,7 +1789,7 @@ void dvar::Dvar_TogglePrint_f()
 				__LINE__,
 				1,
 				"(dvar)",
-				(const char*)&pBlock))
+				(const char*)&scratch))
 		{
 			__debugbreak();
 		}
@@ -1802,7 +1802,7 @@ void dvar::Dvar_TogglePrint_f()
 				__LINE__,
 				1,
 				"(string)",
-				(const char*)&pBlock))
+				(const char*)&scratch))
 		{
 			__debugbreak();
 		}
@@ -1828,7 +1828,7 @@ char dvar::Dvar_ToggleSimple(const dvar_t* dvar)
 	float domain_value_min; // [esp+18h] [ebp-4h]
 #ifdef _DEBUG
 	if (!dvar
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", (const char*)&scratch))
 	{
 		__debugbreak();
 	}
@@ -1979,7 +1979,7 @@ const char* dvar::Dvar_ValueToString(const dvar_t* dvar, DvarValue value)
 		if (dvar->domain.enumeration.stringCount)
 			result = *(const char**)(dvar->domain.integer.max + 4 * value.integer);
 		else
-			result = (const char*)&pBlock;
+			result = (const char*)&scratch;
 		break;
 	case 8:
 		if (!value.integer
@@ -2052,7 +2052,7 @@ void dvar::Dvar_VectorDomainToString(int components, char* outBuffer, int outBuf
 void dvar::Dvar_WeakCopyString(const char* string, DvarValue* value)
 {
 	if (!string
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&pBlock))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&scratch))
 	{
 		__debugbreak();
 	}

@@ -18,11 +18,11 @@ void GPad_UpdateDigitals(ControllerIndex_t portIndex, const _XINPUT_GAMEPAD* xpa
             __LINE__,
             0,
             "((portIndex >= 0) && (portIndex < 1))",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }
-    if (!xpad && !Assert_MyHandler(__FILE__, __LINE__, 0, "(xpad)", &pBlock))
+    if (!xpad && !Assert_MyHandler(__FILE__, __LINE__, 0, "(xpad)", &scratch))
         __debugbreak();
 #endif
     v2 = &s_gamePads[portIndex];
@@ -59,11 +59,11 @@ void GPad_UpdateAnalogs(ControllerIndex_t portIndex, const _XINPUT_GAMEPAD* xpad
             __LINE__,
             0,
             "((portIndex >= 0) && (portIndex < 1))",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }
-    if (!xpad && !Assert_MyHandler(__FILE__, __LINE__, 0, "(xpad)", &pBlock))
+    if (!xpad && !Assert_MyHandler(__FILE__, __LINE__, 0, "(xpad)", &scratch))
         __debugbreak();
 #endif
     v3 = &s_gamePads[v2];
@@ -170,7 +170,7 @@ void GPad_UpdateSticksDown(GamePad* gPad)
                         __LINE__,
                         0,
                         "(dir == GPAD_STICK_NEG)",
-                        &pBlock))
+                        &scratch))
                 {
                     __debugbreak();
                 }
@@ -209,11 +209,11 @@ void GPad_UpdateSticks(ControllerIndex_t portIndex, const _XINPUT_GAMEPAD* xpad)
             __LINE__,
             0,
             "((portIndex >= 0) && (portIndex < 1))",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }
-    if (!xpad && !Assert_MyHandler(__FILE__, __LINE__, 0, "(xpad)", &pBlock))
+    if (!xpad && !Assert_MyHandler(__FILE__, __LINE__, 0, "(xpad)", &scratch))
         __debugbreak();
 #endif
     v2 = &s_gamePads[portIndex];
@@ -275,7 +275,7 @@ bool GPad_IsActive(ControllerIndex_t portIndex)
             __LINE__,
             0,
             "((portIndex >= 0) && (portIndex < 1))",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }
@@ -297,7 +297,7 @@ double GPad_GetButton(ControllerIndex_t portIndex, GamePadButton button)
             __LINE__,
             0,
             "(( portIndex >= 0 ) && ( portIndex < 1 ))",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }
@@ -307,7 +307,7 @@ double GPad_GetButton(ControllerIndex_t portIndex, GamePadButton button)
             __LINE__,
             0,
             "(button & ( 0x10000000 | 0x20000000 ))",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }
@@ -351,7 +351,7 @@ signed int GPad_IsButtonPressed(ControllerIndex_t portIndex, GamePadButton butto
             __LINE__,
             0,
             "(( portIndex >= 0 ) && ( portIndex < 1 ))",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }
@@ -361,7 +361,7 @@ signed int GPad_IsButtonPressed(ControllerIndex_t portIndex, GamePadButton butto
             __LINE__,
             0,
             "(button & ( 0x10000000 | 0x20000000 ))",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }
@@ -422,7 +422,7 @@ signed int GPad_IsButtonReleased(ControllerIndex_t portIndex, GamePadButton butt
             __LINE__,
             0,
             "(( portIndex >= 0 ) && ( portIndex < 1 ))",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }
@@ -432,7 +432,7 @@ signed int GPad_IsButtonReleased(ControllerIndex_t portIndex, GamePadButton butt
             __LINE__,
             0,
             "(button & ( 0x10000000 | 0x20000000 ))",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }
@@ -464,12 +464,12 @@ double GPad_GetStick(ControllerIndex_t portIndex, GamePadStick stick)
             __LINE__,
             0,
             "(( portIndex >= 0 ) && ( portIndex < 1 ))",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }
     if (!(stick & 0x40000000)
-        && !Assert_MyHandler(__FILE__, __LINE__, 0, "(stick & 0x40000000)", &pBlock))
+        && !Assert_MyHandler(__FILE__, __LINE__, 0, "(stick & 0x40000000)", &scratch))
     {
         __debugbreak();
     }
@@ -486,7 +486,7 @@ void GPad_SetLowRumble(ControllerIndex_t portIndex, float rumble)
             __LINE__,
             0,
             "(( portIndex >= 0 ) && ( portIndex < 1 ))",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }
@@ -497,7 +497,7 @@ void GPad_SetLowRumble(ControllerIndex_t portIndex, float rumble)
             __LINE__,
             0,
             "((rumble >= 0.0f) || (rumble <= 1.0f))",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }
@@ -514,7 +514,7 @@ void GPad_SetHighRumble(ControllerIndex_t portIndex, float rumble)
             __LINE__,
             0,
             "((portIndex >= 0) && (portIndex < 1))",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }
@@ -525,7 +525,7 @@ void GPad_SetHighRumble(ControllerIndex_t portIndex, float rumble)
             658,
             0,
             "((rumble >= 0.0f) || (rumble <= 1.0f))",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }
@@ -549,12 +549,12 @@ bool GPad_GetStickChangedToPressedState(ControllerIndex_t portIndex, GamePadStic
             __LINE__,
             0,
             "(( portIndex >= 0 ) && ( portIndex < 1 ))",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }
     if (!(v5 & 0x40000000)
-        && !Assert_MyHandler(__FILE__, __LINE__, 0, "(stick & 0x40000000)", &pBlock))
+        && !Assert_MyHandler(__FILE__, __LINE__, 0, "(stick & 0x40000000)", &scratch))
     {
         __debugbreak();
     }
@@ -565,7 +565,7 @@ bool GPad_GetStickChangedToPressedState(ControllerIndex_t portIndex, GamePadStic
             __LINE__,
             0,
             "(( stickDir == GPAD_STICK_POS ) || ( stickDir == GPAD_STICK_NEG ))",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }
@@ -577,7 +577,7 @@ bool GPad_GetStickChangedToPressedState(ControllerIndex_t portIndex, GamePadStic
             __LINE__,
             0,
             "((unsigned)stickIndex < 4)",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }

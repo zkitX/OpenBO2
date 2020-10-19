@@ -35,7 +35,7 @@ LPVOID Z_VirtualReserve(int size)
             __LINE__,
             0,
             "(buf)",
-            (const char*)&pBlock))
+            (const char*)&scratch))
     {
         __debugbreak();
     }
@@ -214,7 +214,7 @@ bool Hunk_DataOnHunk(void* data)
             __LINE__,
             0,
             "(Sys_IsMainThread())",
-            (const char*)&pBlock))
+            (const char*)&scratch))
     {
         __debugbreak();
     }
@@ -224,7 +224,7 @@ bool Hunk_DataOnHunk(void* data)
             __LINE__,
             0,
             "(s_hunkData)",
-            (const char*)&pBlock))
+            (const char*)&scratch))
     {
         __debugbreak();
     }
@@ -249,7 +249,7 @@ char* Hunk_SetDataForFile(int type, const char* name, void* data, void* (*alloc)
             __LINE__,
             0,
             "(Sys_IsMainThread())",
-            (const char*)&pBlock))
+            (const char*)&scratch))
     {
         __debugbreak();
     }
@@ -262,7 +262,7 @@ char* Hunk_SetDataForFile(int type, const char* name, void* data, void* (*alloc)
             __LINE__,
             0,
             "(!Hunk_FindDataForFileInternal( type, name, hash ))",
-            (const char*)&pBlock))
+            (const char*)&scratch))
     {
         __debugbreak();
     }
@@ -273,7 +273,7 @@ char* Hunk_SetDataForFile(int type, const char* name, void* data, void* (*alloc)
             814,
             0,
             "(Hunk_DataOnHunk( fileData ))",
-            (const char*)&pBlock))
+            (const char*)&scratch))
     {
         __debugbreak();
     }
@@ -285,7 +285,7 @@ char* Hunk_SetDataForFile(int type, const char* name, void* data, void* (*alloc)
             819,
             0,
             "(type == fileData->type)",
-            (const char*)&pBlock))
+            (const char*)&scratch))
     {
         __debugbreak();
     }
@@ -1148,7 +1148,7 @@ void Com_InitHunkMemory()
             __LINE__,
             0,
             "(Sys_IsMainThread())",
-            (const char*)&pBlock))
+            (const char*)&scratch))
     {
         __debugbreak();
     }
@@ -1158,7 +1158,7 @@ void Com_InitHunkMemory()
             __LINE__,
             0,
             "(!s_hunkData)",
-            (const char*)&pBlock))
+            (const char*)&scratch))
     {
         __debugbreak();
     }
@@ -1190,7 +1190,7 @@ char* Hunk_Alloc(int size, const char* name, int type)
             __LINE__,
             0,
             "(Sys_IsMainThread() || Sys_IsRenderThread())",
-            (const char*)&pBlock))
+            (const char*)&scratch))
     {
         __debugbreak();
     }
@@ -1205,7 +1205,7 @@ char* Hunk_AllocLow(int size, const char* name, int type)
             __LINE__,
             0,
             "(Sys_IsMainThread())",
-            (const char*)&pBlock))
+            (const char*)&scratch))
     {
         __debugbreak();
     }

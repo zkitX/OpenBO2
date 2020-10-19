@@ -89,6 +89,7 @@ void DedicatedInit(const char* cmdline);
 #endif
 void InitMiniDumper(char *lpCmdLine);
 char* Win_GetTheOtherExeName(const char* mode);
+bool Win_CheckForZombieMode(char const* cmdline);
 void Sys_CheckQuitRequest();
 void Sys_Quit();
 int __stdcall WinMain(HINSTANCE* hInstance, HINSTANCE* hPrevInstance, char* lpCmdLine, int nCmdShow);

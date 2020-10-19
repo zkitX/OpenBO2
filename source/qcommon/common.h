@@ -33,7 +33,7 @@ enum errorParm_t
 
 static const dvar_t* quit_on_error;
 
-char pBlock;
+char scratch;
 
 int com_errorEntered;
 int com_fixedConsolePosition;

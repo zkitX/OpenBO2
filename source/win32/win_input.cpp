@@ -88,7 +88,7 @@ void IN_ActivateMouse(int force)
 	{
 #ifdef _DEBUG
 		if (!r_fullscreen
-			&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(r_fullscreen)", &pBlock))
+			&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(r_fullscreen)", &scratch))
 		{
 			__debugbreak();
 		}
@@ -157,7 +157,7 @@ HWND IN_MouseMove()
 			__LINE__,
 			0,
 			"(s_wmv.mouseInitialized)",
-			(const char*)&pBlock))
+			(const char*)&scratch))
 	{
 		__debugbreak();
 	}
@@ -167,7 +167,7 @@ HWND IN_MouseMove()
 			__LINE__,
 			0,
 			"(r_fullscreen)",
-			(const char*)&pBlock))
+			(const char*)&scratch))
 	{
 		__debugbreak();
 	}

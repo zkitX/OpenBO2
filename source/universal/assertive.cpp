@@ -88,7 +88,7 @@ char ReadLine(_iobuf* fp)
                 __LINE__,
                 0,
                 "(lineBufferEndPos >= 0)",
-                (const char*)&pBlock))
+                (const char*)&scratch))
         {
             __debugbreak();
         }
@@ -114,7 +114,7 @@ char ReadLine(_iobuf* fp)
                 __LINE__,
                 0,
                 "(bytesRead <= readSize)",
-                (const char*)&pBlock))
+                (const char*)&scratch))
         {
             __debugbreak();
         }
@@ -168,7 +168,7 @@ char SkipLines(int lineCount, _iobuf* fp)
                     __LINE__,
                     0,
                     "(lineBufferEndPos >= 0)",
-                    (const char*)&pBlock))
+                    (const char*)&scratch))
                     __debugbreak();
                 v3 = lineBufferEndPos;
             }
@@ -203,7 +203,7 @@ char SkipLines(int lineCount, _iobuf* fp)
                     __LINE__,
                     0,
                     "(bytesRead <= readSize)",
-                    (const char*)&pBlock))
+                    (const char*)&scratch))
             {
                 __debugbreak();
             }
@@ -649,7 +649,7 @@ int StackTrace_ResolveSymbols()
     if (!g_inStackTrace)
     {
         g_inStackTrace = 1;
-        LoadMapFilesForDir((const char*)&pBlock);
+        LoadMapFilesForDir((const char*)&scratch);
         g_inStackTrace = 0;
     }
     return 0;
@@ -906,7 +906,7 @@ bool Assert_MyHandler(const char* filename, int line, int type, const char* expr
     if (!g_inStackTrace)
     {
         g_inStackTrace = 1;
-        LoadMapFilesForDir((const char*)&pBlock);
+        LoadMapFilesForDir((const char*)&scratch);
         g_inStackTrace = 0;
     }
     if (isHandlingAssert)

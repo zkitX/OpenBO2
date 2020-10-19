@@ -11,6 +11,87 @@ void Com_InitThreadData(int threadContext)
     Sys_SetValue(4, g_cmd_args);
 }
 
+char const* Info_ValueForKey(char const*, char const*)
+{
+    return nullptr;
+}
+
+void Info_NextPair(char const**, char*, char*)
+{
+}
+
+void Info_RemoveKey(char*, char const*)
+{
+}
+
+void Info_RemoveKey_Big(char*, char const*)
+{
+}
+
+int Info_Validate(char const*)
+{
+    return 0;
+}
+
+void Info_SetValueForKey(char*, char const*, char const*)
+{
+}
+
+void Info_SetValueForKey_Big(char*, char const*, char const*)
+{
+}
+
+int KeyValueToField(unsigned char*, cspField_t const*, char const*, int, int(*)(unsigned char*, char const*, int, int), void(*)(unsigned char*, char const*))
+{
+    return 0;
+}
+
+int ParseConfigStringToStruct(unsigned char*, cspField_t const*, int, char const*, int, int(*)(unsigned char*, char const*, int, int), void(*)(unsigned char*, char const*))
+{
+    return 0;
+}
+
+int ParseConfigStringToStructMerged(unsigned char*, cspField_t const*, int, char const*, char const** const, char const** const, char*, int, int(*)(unsigned char*, char const*, int, int), void(*)(unsigned char*, char const*), int(*)(char const*, char** const, char*, int))
+{
+    return 0;
+}
+
+float GetLeanFraction(float)
+{
+    return 0.0f;
+}
+
+float UnGetLeanFraction(float)
+{
+    return 0.0f;
+}
+
+void AddLeanToPosition(vec3_t&, float, float, float, float)
+{
+}
+
+void OrientationConcatenate(orientation_t const*, orientation_t const*, orientation_t*)
+{
+}
+
+void OrientationInvert(orientation_t const*, orientation_t*)
+{
+}
+
+int Com_IsLegacyXModelName(char const*)
+{
+    return 0;
+}
+
+void Com_DefaultExtension(char*, int, char const*)
+{
+}
+
+float CMD_GetAnalogButtonValue(usercmd_s*, int)
+{
+    return 0.0f;
+}
+
 void SetThreadName(unsigned int dwThreadID, const char* szThreadName)
 {
     tagTHREADNAME_INFO info; // [esp+10h] [ebp-28h]
@@ -46,7 +127,7 @@ void Sys_CreateEvent(int manualReset, int initialState, void** evt)
             __LINE__,
             (int)v4,
             "(e != 0)",
-            (const char*)&pBlock))
+            (const char*)&scratch))
             __debugbreak();
 #endif // _DEBUG
         *evt = v4;
@@ -64,7 +145,7 @@ void Sys_CreateThread(unsigned int threadContext, void(*function)(unsigned int))
             __LINE__,
             0,
             "(threadFunc[threadContext] == 0)",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }
@@ -74,7 +155,7 @@ void Sys_CreateThread(unsigned int threadContext, void(*function)(unsigned int))
             __LINE__,
             0,
             "(threadContext < THREAD_CONTEXT_COUNT)",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }
@@ -89,7 +170,7 @@ void Sys_CreateThread(unsigned int threadContext, void(*function)(unsigned int))
             __LINE__,
             0,
             "(threadHandle[threadContext] != 0)",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }
@@ -145,7 +226,7 @@ int Sys_GetThreadContext()
                 __LINE__,
                 0,
                 "(0)",
-                &pBlock))
+                &scratch))
                 __debugbreak();
             return 17;
         }
@@ -173,7 +254,7 @@ void Sys_InitDemoStreamingEvent()
             __LINE__,
             0,
             "(e != 0)",
-            &pBlock))
+            &scratch))
             __debugbreak();
     }
     demoStreamingReady = demoStreamingEvent;
@@ -281,7 +362,7 @@ unsigned int Sys_ThreadMain(void* parameter)
             __LINE__,
             0,
             "(threadFunc[threadContext])",
-            &pBlock))
+            &scratch))
     {
         __debugbreak();
     }

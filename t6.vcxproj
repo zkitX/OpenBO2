@@ -204,6 +204,7 @@
     <ClInclude Include="source\cgame\cg_vehicle.h" />
     <ClInclude Include="source\cgame\cg_hudelem.h" />
     <ClInclude Include="source\database\db_load.h" />
+    <ClInclude Include="source\gfx_d3d\r_gpu_timer.h" />
     <ClInclude Include="source\gfx_d3d\r_xsurface.h" />
     <ClInclude Include="source\xanim\dobj.h" />
     <ClInclude Include="source\xanim\dobj_skel.h" />
@@ -371,6 +372,7 @@
     <ClCompile Include="source\cgame\cg_vehicle.cpp" />
     <ClCompile Include="source\cgame\cg_hudelem.cpp" />
     <ClCompile Include="source\database\db_load.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_gpu_timer.cpp" />
     <ClCompile Include="source\gfx_d3d\r_xsurface.cpp" />
     <ClCompile Include="source\xanim\dobj.cpp" />
     <ClCompile Include="source\xanim\dobj_skel.cpp" />

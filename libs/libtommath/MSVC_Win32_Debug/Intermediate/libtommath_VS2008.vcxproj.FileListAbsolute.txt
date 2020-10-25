@@ -1,2 +1,0 @@
-C:\Dev\t6\libs\libtommath\MSVC_Win32_Debug\Intermediate\tommath.pdb
-C:\Dev\t6\libs\libtommath\MSVC_Win32_Debug\tommath.pdb

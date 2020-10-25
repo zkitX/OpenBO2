@@ -498,6 +498,9 @@
     <ClCompile Include="source\xanim\xanim.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\gfx_d3d\r_gpu_timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\win32\win_main.h">
@@ -993,6 +996,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\xanim\xanim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\gfx_d3d\r_gpu_timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

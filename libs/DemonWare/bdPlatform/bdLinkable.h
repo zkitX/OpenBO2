@@ -8,7 +8,6 @@ private:
 public:
 	void unlink();
 	void link(bdLinkable** head);
-	bdLinkable* getNext();
+	static bdLinkable* getNext(bdLinkable* linkable);
 	char find(const bdLinkable* const list);
 };
-

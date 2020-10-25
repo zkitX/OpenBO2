@@ -57,7 +57,10 @@
     <ClCompile Include="bdPlatform\bdPlatformLog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bdPlatform\bdPlatformStreamSocket.cpp">
+    <ClCompile Include="bdPlatform\bdPlatformStreamSocket-win32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdAddr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -108,6 +111,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bdPlatform\bdPlatformStreamSocket-win32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdAddr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

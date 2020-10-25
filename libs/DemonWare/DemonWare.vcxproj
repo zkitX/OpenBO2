@@ -19,10 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bdCore\bdAddr.cpp" />
     <ClCompile Include="bdCore\bdMutex.cpp" />
     <ClCompile Include="bdCore\bdRandom.cpp" />
     <ClCompile Include="bdCore\bdRunnable.cpp" />
-    <ClCompile Include="bdPlatform\bdPlatformStreamSocket.cpp" />
+    <ClCompile Include="bdPlatform\bdPlatformStreamSocket-win32.cpp" />
     <ClCompile Include="bdPlatform\bdPlatformLog.cpp" />
     <ClCompile Include="bdPlatform\bdInAddr.cpp" />
     <ClCompile Include="bdPlatform\bdPlatformTiming-win32.cpp" />
@@ -36,6 +37,7 @@
     <ClCompile Include="pch.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bdCore\bdAddr.h" />
     <ClInclude Include="bdCore\bdMutex.h" />
     <ClInclude Include="bdCore\bdRandom.h" />
     <ClInclude Include="bdCore\bdRunnable.h" />

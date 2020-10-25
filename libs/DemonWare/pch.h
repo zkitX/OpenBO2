@@ -33,7 +33,9 @@ inline iobuf* __iob_func() {
 #include "bdPlatform/bdPlatformThread-win32.h"
 #include "bdPlatform/bdPlatformTiming-win32.h"
 #include "bdPlatform/bdPlatformTrulyRandom-win32.h"
+#include "bdCore/bdAddr.h"
 #include "bdPlatform/bdPlatformLog.h"
+#include "bdPlatform/bdPlatformStreamSocket-win32.h"
 
 #include "bdCore/bdMutex.h"
 #include "bdCore/bdRandom.h"

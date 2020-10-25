@@ -1,6 +1,6 @@
 #include "pch.h"
 
-bdLogSubscriber* g_logSubscriberList;
+static bdLogSubscriber* g_logSubscriberList;
 
 int bdPrintf(char const* format, ...)
 {
@@ -10,6 +10,52 @@ int bdPrintf(char const* format, ...)
 	va_start(ap, format);
 	v1 = __iob_func();
 	return vfprintf((FILE*)v1 + 1, format, ap);
+}
+
+void bdLogMessage(const bdLogMessageType type, const char* const baseChannel, const char* const channel, const char* const file, const char* const function, const unsigned int line, const char* const format, ...)
+{
+	unsigned int v7; // edi
+	const char* v8; // edi
+	bdLogSubscriber* i; // esi
+	char channelNameBuffer[256]; // [esp+10h] [ebp-204h]
+	char message[256]; // [esp+110h] [ebp-104h]
+	va_list ap; // [esp+238h] [ebp+24h]
+
+	va_start(ap, format);
+	if (g_logSubscriberList)
+	{
+		memset(message, 0, 0x100u);
+		v7 = _vscprintf(format, ap);
+		vsnprintf_s(message, 0x100u, 0xFFFFFFFF, format, ap);
+		if (v7 >= 0x100)
+			bdLogMessage(
+				bdLogMessageType::BD_LOG_WARNING,
+				"warn/",
+				"bdPlatformLog",
+				__FILE__,
+				__FUNCTION__,
+				0xDAu,
+				"Message truncated.",
+				0);
+		v8 = baseChannel;
+		if (baseChannel && channel)
+		{
+			if (bdSnprintf(channelNameBuffer, 0x100u, "%s%s", baseChannel, channel) >= 256)
+				bdLogMessage(
+					bdLogMessageType::BD_LOG_WARNING,
+					"warn/",
+					"bdPlatformLog",
+					__FILE__,
+					__FUNCTION__,
+					0xE8u,
+					"Channel name truncated: %s%s",
+					baseChannel,
+					channel);
+			v8 = channelNameBuffer;
+		}
+		for (i = g_logSubscriberList; i; i = (bdLogSubscriber*)bdLinkable::getNext(i))
+			i->bdLogSubscriber::logMessage(i, type, v8, file, function, line, message);
+	}
 }
 
 bdLogSubscriber::bdLogSubscriber()
@@ -48,7 +94,7 @@ char bdLogSubscriber::addChannel(char* channel)
 	return v3;
 }
 
-void bdLogSubscriber::logMessage(const bdLogMessageType type, const char* const channelName, const char* const file, const char* const function, const unsigned int line, const char* const msg)
+void bdLogSubscriber::logMessage(bdLogSubscriber* logsub, const bdLogMessageType type, const char* const channelName, const char* const file, const char* const function, const unsigned int line, const char* const msg)
 {
 	int v8; // [esp+Ch] [ebp-8h]
 	const char** v9; // [esp+10h] [ebp-4h]

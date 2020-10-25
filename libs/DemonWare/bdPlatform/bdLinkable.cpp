@@ -37,9 +37,9 @@ void bdLinkable::link(bdLinkable** head)
     }
 }
 
-bdLinkable* bdLinkable::getNext()
+bdLinkable* bdLinkable::getNext(bdLinkable *linkable)
 {
-    return this->m_next;
+    return linkable->m_next;
 }
 
 char bdLinkable::find(const bdLinkable* const list)
@@ -53,7 +53,7 @@ char bdLinkable::find(const bdLinkable* const list)
     {
         if (!v1)
             break;
-        v1 = bdLinkable::getNext();
+        v1 = bdLinkable::getNext(v1);
     } while (!v2);
     return v2;
 }

@@ -6,6 +6,6 @@ private:
 public:
 	bdMutex();
 	~bdMutex();
-	void unlock();
-	void lock();
+	static void unlock(bdMutex* instance);
+	static void lock(bdMutex* instance);
 };

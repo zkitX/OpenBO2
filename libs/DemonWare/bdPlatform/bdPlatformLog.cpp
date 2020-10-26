@@ -54,16 +54,8 @@ void bdLogMessage(const bdLogMessageType type, const char* const baseChannel, co
 			v8 = channelNameBuffer;
 		}
 		for (i = g_logSubscriberList; i; i = (bdLogSubscriber*)bdLinkable::getNext(i))
-			i->bdLogSubscriber::logMessage(i, type, v8, file, function, line, message);
+			bdLogSubscriber::logMessage(i, type, v8, file, function, line, message);
 	}
-}
-
-bdLogSubscriber::bdLogSubscriber()
-{
-}
-
-bdLogSubscriber::~bdLogSubscriber()
-{
 }
 
 char bdLogSubscriber::addChannel(char* channel)
@@ -99,14 +91,14 @@ void bdLogSubscriber::logMessage(bdLogSubscriber* logsub, const bdLogMessageType
 	int v8; // [esp+Ch] [ebp-8h]
 	const char** v9; // [esp+10h] [ebp-4h]
 
-	v9 = (const char**)this->m_channels;
+	v9 = (const char**)logsub->m_channels;
 	v8 = 5;
 	do
 	{
 		if (*v9)
 		{
 			if (bdDelimSubstr(channelName, *v9, "\\/"))
-				this->publish(type, channelName, file, function, line, msg);
+				logsub->publish(type, channelName, file, function, line, msg);
 		}
 		++v9;
 		--v8;

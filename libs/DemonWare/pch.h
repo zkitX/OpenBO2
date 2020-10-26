@@ -23,6 +23,7 @@ iobuf _iob[20];
 inline iobuf* __iob_func() {
 	return _iob;
 }
+#include <idadefs.h>
 
 #include "bdPlatform/bdLinkable.h"
 #include "bdPlatform/bdPlatformMutex-win32.h"
@@ -40,7 +41,10 @@ inline iobuf* __iob_func() {
 #include "bdCore/bdMutex.h"
 #include "bdCore/bdRandom.h"
 #include "bdCore/bdRunnable.h"
-
-#include <idadefs.h>
+#include "bdCore/bdBytePacker.h"
+#include "bdCore/bdAlignedOffsetMemory.h"
+#include "bdCore/bdMallocMemory.h"
+#include "bdCore/bdMemory.h"
+#include "bdCore/bdCore.h"
 
 #endif //PCH_H

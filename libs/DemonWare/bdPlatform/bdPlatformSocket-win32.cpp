@@ -7,7 +7,7 @@ SOCKET bdPlatformSocket::create(const bool blocking, const bool broadcast) {
     newSocket = socket(2, 2, 17);
     if (broadcast)
     {
-        *(int*)&broadcast = 1;
+        *(_DWORD *)&broadcast = 1;
         if (setsockopt(newSocket, 0xFFFF, 32, (const char*)&broadcast, 4))
             return -1;
     }

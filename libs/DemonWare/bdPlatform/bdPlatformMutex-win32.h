@@ -2,8 +2,8 @@
 class bdPlatformMutex
 {
 public:
-	HANDLE createMutex();
-	void unlock(void** handle);
-	void destroy(void** handle);
-	void lock(void** handle);
+	static HANDLE createMutex();
+	static void unlock(void** handle);
+	static void destroy(void** handle);
+	static void lock(void** handle);
 };

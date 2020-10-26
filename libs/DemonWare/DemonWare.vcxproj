@@ -19,10 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bdCore\bdAlignedOffsetMemory.cpp" />
+    <ClCompile Include="bdCore\bdCore.cpp" />
+    <ClCompile Include="bdCore\bdBytePacker.cpp" />
+    <ClCompile Include="bdConnection\bdChunk.cpp" />
     <ClCompile Include="bdCore\bdAddr.cpp" />
     <ClCompile Include="bdCore\bdMutex.cpp" />
     <ClCompile Include="bdCore\bdRandom.cpp" />
     <ClCompile Include="bdCore\bdRunnable.cpp" />
+    <ClCompile Include="bdCore\bdMallocMemory.cpp" />
+    <ClCompile Include="bdCore\bdMemory.cpp" />
     <ClCompile Include="bdPlatform\bdPlatformStreamSocket-win32.cpp" />
     <ClCompile Include="bdPlatform\bdPlatformLog.cpp" />
     <ClCompile Include="bdPlatform\bdInAddr.cpp" />
@@ -37,10 +43,16 @@
     <ClCompile Include="pch.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bdCore\bdAlignedOffsetMemory.h" />
+    <ClInclude Include="bdCore\bdCore.h" />
+    <ClInclude Include="bdCore\bdBytePacker.h" />
+    <ClInclude Include="bdConnection\bdChunk.h" />
     <ClInclude Include="bdCore\bdAddr.h" />
     <ClInclude Include="bdCore\bdMutex.h" />
     <ClInclude Include="bdCore\bdRandom.h" />
     <ClInclude Include="bdCore\bdRunnable.h" />
+    <ClInclude Include="bdCore\bdMallocMemory.h" />
+    <ClInclude Include="bdCore\bdMemory.h" />
     <ClInclude Include="bdPlatform\bdPlatformStreamSocket-win32.h" />
     <ClInclude Include="bdPlatform\bdPlatformLog.h" />
     <ClInclude Include="bdPlatform\bdInAddr.h" />

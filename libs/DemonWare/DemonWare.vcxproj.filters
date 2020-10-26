@@ -63,6 +63,24 @@
     <ClCompile Include="bdCore\bdAddr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="bdConnection\bdChunk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdBytePacker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdCore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdMallocMemory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdAlignedOffsetMemory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdMemory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bdCore\bdMutex.h">
@@ -114,6 +132,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bdCore\bdAddr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdChunk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdBytePacker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdCore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdMallocMemory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdAlignedOffsetMemory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdMemory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

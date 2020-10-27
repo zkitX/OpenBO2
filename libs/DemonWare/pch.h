@@ -45,6 +45,7 @@ inline iobuf* __iob_func() {
 #include "bdCore/bdAlignedOffsetMemory.h"
 #include "bdCore/bdMallocMemory.h"
 #include "bdCore/bdMemory.h"
+#include "bdCore/bdHashMD5.h"
 #include "bdCore/bdCore.h"
 
 #endif //PCH_H

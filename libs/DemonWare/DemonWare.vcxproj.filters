@@ -81,6 +81,9 @@
     <ClCompile Include="bdCore\bdMemory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="bdCore\bdHashMD5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bdCore\bdMutex.h">
@@ -150,6 +153,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bdCore\bdMemory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdHashMD5.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

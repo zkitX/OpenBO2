@@ -29,6 +29,7 @@
     <ClCompile Include="bdCore\bdRunnable.cpp" />
     <ClCompile Include="bdCore\bdMallocMemory.cpp" />
     <ClCompile Include="bdCore\bdMemory.cpp" />
+    <ClCompile Include="bdCore\bdHashMD5.cpp" />
     <ClCompile Include="bdPlatform\bdPlatformStreamSocket-win32.cpp" />
     <ClCompile Include="bdPlatform\bdPlatformLog.cpp" />
     <ClCompile Include="bdPlatform\bdInAddr.cpp" />
@@ -53,6 +54,7 @@
     <ClInclude Include="bdCore\bdRunnable.h" />
     <ClInclude Include="bdCore\bdMallocMemory.h" />
     <ClInclude Include="bdCore\bdMemory.h" />
+    <ClInclude Include="bdCore\bdHashMD5.h" />
     <ClInclude Include="bdPlatform\bdPlatformStreamSocket-win32.h" />
     <ClInclude Include="bdPlatform\bdPlatformLog.h" />
     <ClInclude Include="bdPlatform\bdInAddr.h" />
@@ -121,6 +123,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\compiledlibs</OutDir>
+    <LibraryPath>($ProjectDir)..\compiledlibs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -140,13 +144,17 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\libtomcrypt-1.17\src\headers;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
       </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>($ProjectDir)..\compiledlibs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>tomcrypt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

@@ -339,3 +339,8 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /t6mp-Debug
+/libs/compiledlibs/DemonWare.lib
+/libs/compiledlibs/tomcrypt.lib
+/libs/libtomcrypt-1.17/gcc_2.txt
+/libs/libtomcrypt-1.17/gcc_1.txt
+/libs/DemonWare/tomcrypt.lib

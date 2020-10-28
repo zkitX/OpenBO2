@@ -84,6 +84,609 @@
     <ClCompile Include="bdCore\bdHashMD5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="bdCore\bdCommonAddr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdInetAddr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdSecurityID.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdSecurityKey.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdStreamSocket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdTrulyRandom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdBase64.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdBitBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdBitOperations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdByteBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdCommonAddrInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdCryptoUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdCypher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdCypher3Des.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdCypherAES.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdECCKey.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdEndpoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdHashTiger192.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdHMac.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdHMacSHA1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdRSAKey.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdSecurityInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdSemaphore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdSequenceNumber.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdSequenceNumberStore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdSingleton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdSocket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdStopwatch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdThread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdAntiCheat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdAntiCheatChallenge.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdAntiCheatChallenges.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdAuthTicket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdBoolResult.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdChannelInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdCommerce.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdCounter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdCounterValue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdDML.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdEventLog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdEventLogID.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdFacebook.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdFeatureBan.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdGenericLeagueID.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdGroup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdKeyValuePair.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdLeague.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdLeagueStatsInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdLeagueSubdivisionInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdLeagueSubdivisionResult.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdLinkCode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdLobbyEventHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdMarketplace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdMatchMakingInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdMessaging.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdRichPresenceService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdStatsInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdSubscription.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdTeams.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdTimeStamp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdTitleUtilities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdTwitch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdTwitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdUCDAccountStatus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdYouTube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdYouTubeRegistrationResult.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdAntiCheatChallengeParam.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdAntiCheatResponses.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdAuthCommon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdAuthService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdAuthServiceSteam.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdBandwidthTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdBandwidthTestResults.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdChannelMember.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdContentStreaming.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdContentStreamingBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdContentUnlock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdDMLHierarchicalInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdDMLInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdDownloadInterceptor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdEventInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdFeatureBanInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdFileData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdFileID.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdFileInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdFileMetaData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdFriends.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdGroupCount.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdHTTPWrapperBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdHTTPWrapperCURL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdKeyArchive.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdLeagueSubdivisionHistoryResult.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdLeagueTeamInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdLeagueTeamMemberInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdLeagueUserTeamResult.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdLobbyConnection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdLobbyConnectionListener.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdLobbyService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdMatchMaking.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdNotification.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdPerformanceValue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdPooledStorage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdPreCopyResult.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdProfiles.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdRatingInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdRemoteTask.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdRemoteTaskManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdSecurityKeyMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdSessionID.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdSessionInvite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdStats.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdStorage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdSubscriptionInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdSummaryMetaHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdTag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdTags.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdTaskByteBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdTaskResult.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdTeamInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdTeamMember.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdTeamProfile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdTencentAASRecord.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdTwitchUserInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdTwitterAccount.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdTwitterSearchResult.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdTwitterUserAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdUCD.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdUCDAccountInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdUCDPublicKeyInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdUploadInterceptor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdURL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdVoteRank.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdVoteRankStatsInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdYouTubeAuthorizationCode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdYouTubeUserToken.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdNet\bdGetHostByName.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdNet\bdGetHostByNameConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdNet\bdGetHostByName-win32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdNet\bdNet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdNet\bdNetStartParams.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdNet\bdUPnP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdNet\bdUPnPConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdNet\bdUPnPDevice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdAddressMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdAddrHandle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdAddrHandleRefWrapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdDTLSAssociation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdDTLSCookieAck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdDTLSCookieEcho.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdDTLSData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdDTLSError.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdDTLSInit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdDTLSInitAck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdIPDiscoveryClient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdIPDiscoveryConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdIPDiscoveryPacket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdIPDiscoveryPacketReply.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdNATTravClient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdNATTravClientData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdNATTraversalPacket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdNATTravListener.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdNATTypeDiscoveryClient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdNATTypeDiscoveryPacket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdNATTypeDiscoveryPacketReply.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdPacketBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdPacketInterceptor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdQoSProbe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdQoSProbeListener.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdQoSReplyPacket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdQoSRequestPacket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdServiceBandwidthArbitrator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdSocketRouter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdSocketRouterConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdSocketSecurityKeyMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdConnection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdConnectionStatistics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdConnectionStore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdConnectionStoreConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdCookie.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdCookieAckChunk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdCookieEchoChunk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdDataChunk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdDispatcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdHeartbeatAckChunk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdHeartbeatChunk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdInitAckChunk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdInitChunk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdLoopbackConnection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdMessage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdPacket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdReceivedMessage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdReliableReceiveWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdReliableSendWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdSAckChunk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdShutdownAckChunk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdShutdownChunk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdShutdownCompleteChunk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdUnicastConnection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdUnreliableReceiveWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdConnection\bdUnreliableSendWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bdCore\bdMutex.h">
@@ -156,6 +759,609 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bdCore\bdHashMD5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdTrulyRandom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdCommonAddr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdInetAddr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdSecurityID.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdSecurityKey.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdStreamSocket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdThread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdBase64.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdBitBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdBitOperations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdByteBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdCommonAddrInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdCryptoUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdCypher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdCypher3Des.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdCypherAES.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdECCKey.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdEndpoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdHashTiger192.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdHMac.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdHMacSHA1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdRSAKey.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdSecurityInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdSemaphore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdSequenceNumber.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdSequenceNumberStore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdSingleton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdSocket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdStopwatch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdYouTubeRegistrationResult.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdAntiCheat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdAntiCheatChallenge.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdAntiCheatChallenges.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdAuthTicket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdBoolResult.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdChannelInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdCommerce.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdCounter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdCounterValue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdDML.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdEventLog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdEventLogID.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdFacebook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdFeatureBan.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdGenericLeagueID.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdGroup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdKeyValuePair.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdLeague.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdLeagueStatsInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdLeagueSubdivisionInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdLeagueSubdivisionResult.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdLinkCode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdLobbyEventHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdMarketplace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdMatchMakingInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdMessaging.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdRichPresenceService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdStatsInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdSubscription.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdTeams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdTimeStamp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdTitleUtilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdTwitch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdTwitter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdUCDAccountStatus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdYouTube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdAntiCheatChallengeParam.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdAntiCheatResponses.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdAuthCommon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdAuthService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdAuthServiceSteam.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdBandwidthTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdBandwidthTestResults.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdChannelMember.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdContentStreaming.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdContentStreamingBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdContentUnlock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdDMLHierarchicalInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdDMLInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdDownloadInterceptor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdEventInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdFeatureBanInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdFileData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdFileID.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdFileInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdFileMetaData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdFriends.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdGroupCount.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdHTTPWrapperBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdHTTPWrapperCURL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdKeyArchive.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdLeagueSubdivisionHistoryResult.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdLeagueTeamInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdLeagueTeamMemberInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdLeagueUserTeamResult.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdLobbyConnection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdLobbyConnectionListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdLobbyService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdMatchMaking.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdNotification.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdPerformanceValue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdPooledStorage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdPreCopyResult.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdProfiles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdRatingInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdRemoteTask.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdRemoteTaskManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdSecurityKeyMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdSessionID.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdSessionInvite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdStats.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdStorage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdSubscriptionInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdSummaryMetaHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdTag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdTags.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdTaskByteBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdTaskResult.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdTeamInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdTeamMember.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdTeamProfile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdTencentAASRecord.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdTwitchUserInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdTwitterAccount.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdTwitterSearchResult.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdTwitterUserAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdUCD.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdUCDAccountInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdUCDPublicKeyInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdUploadInterceptor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdURL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdVoteRank.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdVoteRankStatsInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdYouTubeAuthorizationCode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdYouTubeUserToken.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdNet\bdUPnPDevice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdNet\bdGetHostByName.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdNet\bdGetHostByNameConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdNet\bdGetHostByName-win32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdNet\bdNet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdNet\bdNetStartParams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdNet\bdUPnP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdNet\bdUPnPConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdAddressMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdAddrHandle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdAddrHandleRefWrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdDTLSAssociation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdDTLSCookieAck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdDTLSCookieEcho.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdDTLSData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdDTLSError.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdDTLSInit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdDTLSInitAck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdIPDiscoveryClient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdIPDiscoveryConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdIPDiscoveryPacket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdIPDiscoveryPacketReply.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdNATTravClient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdNATTravClientData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdNATTraversalPacket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdNATTravListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdNATTypeDiscoveryClient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdNATTypeDiscoveryPacket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdNATTypeDiscoveryPacketReply.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdPacketBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdPacketInterceptor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdQoSProbe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdQoSProbeListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdQoSReplyPacket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdQoSRequestPacket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdServiceBandwidthArbitrator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdSocketRouter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdSocketRouterConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdSocketSecurityKeyMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdConnection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdConnectionStatistics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdConnectionStore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdConnectionStoreConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdCookie.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdCookieAckChunk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdCookieEchoChunk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdDataChunk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdDispatcher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdHeartbeatAckChunk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdHeartbeatChunk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdInitAckChunk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdInitChunk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdLoopbackConnection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdPacket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdReceivedMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdReliableReceiveWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdReliableSendWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdSAckChunk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdShutdownAckChunk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdShutdownChunk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdShutdownCompleteChunk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdUnicastConnection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdUnreliableReceiveWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdConnection\bdUnreliableSendWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -22,7 +22,7 @@ bool bdHashMD5::hash(const char* data, const unsigned int dataSize, char* result
     unsigned int* v5; // esi
     int v6; // eax
     int v7; // eax
-    char v8; // al
+    bool v8; // al
 
     v5 = resultSize;
     if (*resultSize > 0x10)

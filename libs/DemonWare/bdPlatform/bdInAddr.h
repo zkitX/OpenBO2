@@ -36,7 +36,7 @@ public:
 	}
 
 	bdInAddr(unsigned int);
-	bdInAddr(void);
+	bdInAddr();
 	void fromString(char const*);
 	bdInAddr(char const*);
 	unsigned int toString(char* const, unsigned int)const;

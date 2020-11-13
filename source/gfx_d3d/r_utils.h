@@ -1,42 +1,7 @@
 #pragma once
 
 #include <d3d11.h>
-
-union vec2_t
-{
-	float v[2];
-	struct {
-		float x;
-		float y;
-	};
-};
-
-union vec3_t
-{
-	struct {
-		float x;
-		float y;
-		float z;
-	};
-	float v[3];
-};
-
-union vec4_t
-{
-	float v[4];
-	struct {
-		float x;
-		float y;
-		float z;
-		float w;
-	};
-	struct {
-		float r;
-		float g;
-		float b;
-		float a;
-	};
-};
+#include <universal/com_math.h>
 
 struct GfxMatrix
 {

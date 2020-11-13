@@ -285,8 +285,3 @@ void BB_WriteVarUInt32(bb_msg_t* msg, unsigned int c)
 void BB_WriteVarUInt64(unsigned long long c)
 {
 }
-
-double random()
-{
-	return (double)rand() * 0.000030517578;
-}

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -42,6 +42,7 @@
     <ClCompile Include="bdConnection\bdShutdownAckChunk.cpp" />
     <ClCompile Include="bdConnection\bdShutdownChunk.cpp" />
     <ClCompile Include="bdConnection\bdShutdownCompleteChunk.cpp" />
+    <ClCompile Include="bdCore\bdReferenceable.cpp" />
     <ClCompile Include="bdSocket\bdAddressMap.cpp" />
     <ClCompile Include="bdSocket\bdAddrHandle.cpp" />
     <ClCompile Include="bdSocket\bdAddrHandleRefWrapper.cpp" />
@@ -66,8 +67,8 @@
     <ClCompile Include="bdNet\bdGetHostByName-win32.cpp" />
     <ClCompile Include="bdNet\bdGetHostByName.cpp" />
     <ClCompile Include="bdNet\bdGetHostByNameConfig.cpp" />
-    <ClCompile Include="bdLobby\bdAntiCheatChallengeParam.cpp" />
-    <ClCompile Include="bdLobby\bdAntiCheatResponses.cpp" />
+    <ClCompile Include="bdLobby\bdAntiCheat\bdAntiCheatChallengeParam.cpp" />
+    <ClCompile Include="bdLobby\bdAntiCheat\bdAntiCheatResponses.cpp" />
     <ClCompile Include="bdLobby\bdAuthCommon.cpp" />
     <ClCompile Include="bdLobby\bdAuthService.cpp" />
     <ClCompile Include="bdLobby\bdAuthServiceSteam.cpp" />
@@ -98,15 +99,15 @@
     <ClCompile Include="bdLobby\bdLobbyConnection.cpp" />
     <ClCompile Include="bdLobby\bdLobbyConnectionListener.cpp" />
     <ClCompile Include="bdLobby\bdLobbyService.cpp" />
-    <ClCompile Include="bdLobby\bdAntiCheat.cpp" />
-    <ClCompile Include="bdLobby\bdAntiCheatChallenge.cpp" />
-    <ClCompile Include="bdLobby\bdAntiCheatChallenges.cpp" />
+    <ClCompile Include="bdLobby\bdAntiCheat\bdAntiCheat.cpp" />
+    <ClCompile Include="bdLobby\bdAntiCheat\bdAntiCheatChallenge.cpp" />
+    <ClCompile Include="bdLobby\bdAntiCheat\bdAntiCheatChallenges.cpp" />
     <ClCompile Include="bdLobby\bdAuthTicket.cpp" />
     <ClCompile Include="bdLobby\bdBoolResult.cpp" />
     <ClCompile Include="bdLobby\bdChannelInfo.cpp" />
     <ClCompile Include="bdLobby\bdCommerce.cpp" />
     <ClCompile Include="bdCore\bdBase64.cpp" />
-    <ClCompile Include="bdCore\bdBitBuffer.cpp" />
+    <ClCompile Include="bdCore\bdContainers\bdBitBuffer.cpp" />
     <ClCompile Include="bdCore\bdBitOperations.cpp" />
     <ClCompile Include="bdCore\bdByteBuffer.cpp" />
     <ClCompile Include="bdCore\bdCommonAddrInfo.cpp" />
@@ -179,7 +180,6 @@
     <ClCompile Include="bdCore\bdSemaphore.cpp" />
     <ClCompile Include="bdCore\bdSequenceNumber.cpp" />
     <ClCompile Include="bdCore\bdSequenceNumberStore.cpp" />
-    <ClCompile Include="bdCore\bdSingleton.cpp" />
     <ClCompile Include="bdCore\bdSocket.cpp" />
     <ClCompile Include="bdCore\bdStopwatch.cpp" />
     <ClCompile Include="bdCore\bdThread.cpp" />
@@ -200,7 +200,7 @@
     <ClCompile Include="bdLobby\bdRatingInfo.cpp" />
     <ClCompile Include="bdLobby\bdRemoteTask.cpp" />
     <ClCompile Include="bdLobby\bdRemoteTaskManager.cpp" />
-    <ClCompile Include="bdLobby\bdSecurityKeyMap.cpp" />
+    <ClCompile Include="bdSocket\bdSecurityKeyMap.cpp" />
     <ClCompile Include="bdLobby\bdSessionID.cpp" />
     <ClCompile Include="bdLobby\bdSessionInvite.cpp" />
     <ClCompile Include="bdLobby\bdStats.cpp" />
@@ -268,6 +268,8 @@
     <ClInclude Include="bdConnection\bdShutdownAckChunk.h" />
     <ClInclude Include="bdConnection\bdShutdownChunk.h" />
     <ClInclude Include="bdConnection\bdShutdownCompleteChunk.h" />
+    <ClInclude Include="bdCore\bdReferenceable.h" />
+    <ClInclude Include="bdSingleton.h" />
     <ClInclude Include="bdSocket\bdAddressMap.h" />
     <ClInclude Include="bdSocket\bdAddrHandle.h" />
     <ClInclude Include="bdSocket\bdAddrHandleRefWrapper.h" />
@@ -292,8 +294,8 @@
     <ClInclude Include="bdNet\bdGetHostByName-win32.h" />
     <ClInclude Include="bdNet\bdGetHostByName.h" />
     <ClInclude Include="bdNet\bdGetHostByNameConfig.h" />
-    <ClInclude Include="bdLobby\bdAntiCheatChallengeParam.h" />
-    <ClInclude Include="bdLobby\bdAntiCheatResponses.h" />
+    <ClInclude Include="bdLobby\bdAntiCheat\bdAntiCheatChallengeParam.h" />
+    <ClInclude Include="bdLobby\bdAntiCheat\bdAntiCheatResponses.h" />
     <ClInclude Include="bdLobby\bdAuthCommon.h" />
     <ClInclude Include="bdLobby\bdAuthService.h" />
     <ClInclude Include="bdLobby\bdAuthServiceSteam.h" />
@@ -324,15 +326,15 @@
     <ClInclude Include="bdLobby\bdLobbyConnection.h" />
     <ClInclude Include="bdLobby\bdLobbyConnectionListener.h" />
     <ClInclude Include="bdLobby\bdLobbyService.h" />
-    <ClInclude Include="bdLobby\bdAntiCheat.h" />
-    <ClInclude Include="bdLobby\bdAntiCheatChallenge.h" />
-    <ClInclude Include="bdLobby\bdAntiCheatChallenges.h" />
+    <ClInclude Include="bdLobby\bdAntiCheat\bdAntiCheat.h" />
+    <ClInclude Include="bdLobby\bdAntiCheat\bdAntiCheatChallenge.h" />
+    <ClInclude Include="bdLobby\bdAntiCheat\bdAntiCheatChallenges.h" />
     <ClInclude Include="bdLobby\bdAuthTicket.h" />
     <ClInclude Include="bdLobby\bdBoolResult.h" />
     <ClInclude Include="bdLobby\bdChannelInfo.h" />
     <ClInclude Include="bdLobby\bdCommerce.h" />
     <ClInclude Include="bdCore\bdBase64.h" />
-    <ClInclude Include="bdCore\bdBitBuffer.h" />
+    <ClInclude Include="bdCore\bdContainers\bdBitBuffer.h" />
     <ClInclude Include="bdCore\bdBitOperations.h" />
     <ClInclude Include="bdCore\bdByteBuffer.h" />
     <ClInclude Include="bdCore\bdCommonAddrInfo.h" />
@@ -405,7 +407,6 @@
     <ClInclude Include="bdCore\bdSemaphore.h" />
     <ClInclude Include="bdCore\bdSequenceNumber.h" />
     <ClInclude Include="bdCore\bdSequenceNumberStore.h" />
-    <ClInclude Include="bdCore\bdSingleton.h" />
     <ClInclude Include="bdCore\bdSocket.h" />
     <ClInclude Include="bdCore\bdStopwatch.h" />
     <ClInclude Include="bdCore\bdThread.h" />
@@ -426,7 +427,7 @@
     <ClInclude Include="bdLobby\bdRatingInfo.h" />
     <ClInclude Include="bdLobby\bdRemoteTask.h" />
     <ClInclude Include="bdLobby\bdRemoteTaskManager.h" />
-    <ClInclude Include="bdLobby\bdSecurityKeyMap.h" />
+    <ClInclude Include="bdSocket\bdSecurityKeyMap.h" />
     <ClInclude Include="bdLobby\bdSessionID.h" />
     <ClInclude Include="bdLobby\bdSessionInvite.h" />
     <ClInclude Include="bdLobby\bdStats.h" />

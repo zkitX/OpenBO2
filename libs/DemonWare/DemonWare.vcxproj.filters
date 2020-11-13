@@ -108,9 +108,6 @@
     <ClCompile Include="bdCore\bdBase64.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bdCore\bdBitBuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="bdCore\bdBitOperations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -162,9 +159,6 @@
     <ClCompile Include="bdCore\bdSequenceNumberStore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bdCore\bdSingleton.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="bdCore\bdSocket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -172,15 +166,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bdCore\bdThread.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bdLobby\bdAntiCheat.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bdLobby\bdAntiCheatChallenge.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bdLobby\bdAntiCheatChallenges.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bdLobby\bdAuthTicket.cpp">
@@ -283,12 +268,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bdLobby\bdYouTubeRegistrationResult.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bdLobby\bdAntiCheatChallengeParam.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bdLobby\bdAntiCheatResponses.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bdLobby\bdAuthCommon.cpp">
@@ -406,9 +385,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bdLobby\bdRemoteTaskManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bdLobby\bdSecurityKeyMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bdLobby\bdSessionID.cpp">
@@ -687,6 +663,30 @@
     <ClCompile Include="bdConnection\bdUnreliableSendWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="bdCore\bdReferenceable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdAntiCheat\bdAntiCheatChallengeParam.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdAntiCheat\bdAntiCheatResponses.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdAntiCheat\bdAntiCheat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdAntiCheat\bdAntiCheatChallenge.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdLobby\bdAntiCheat\bdAntiCheatChallenges.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdCore\bdContainers\bdBitBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bdSocket\bdSecurityKeyMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bdCore\bdMutex.h">
@@ -788,9 +788,6 @@
     <ClInclude Include="bdCore\bdBase64.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="bdCore\bdBitBuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="bdCore\bdBitOperations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -842,9 +839,6 @@
     <ClInclude Include="bdCore\bdSequenceNumberStore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="bdCore\bdSingleton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="bdCore\bdSocket.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -852,15 +846,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bdLobby\bdYouTubeRegistrationResult.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bdLobby\bdAntiCheat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bdLobby\bdAntiCheatChallenge.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bdLobby\bdAntiCheatChallenges.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bdLobby\bdAuthTicket.h">
@@ -960,12 +945,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bdLobby\bdYouTube.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bdLobby\bdAntiCheatChallengeParam.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bdLobby\bdAntiCheatResponses.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bdLobby\bdAuthCommon.h">
@@ -1083,9 +1062,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bdLobby\bdRemoteTaskManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bdLobby\bdSecurityKeyMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bdLobby\bdSessionID.h">
@@ -1362,6 +1338,33 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bdConnection\bdUnreliableSendWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdReferenceable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdAntiCheat\bdAntiCheatChallengeParam.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdAntiCheat\bdAntiCheatResponses.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdAntiCheat\bdAntiCheat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdAntiCheat\bdAntiCheatChallenge.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdLobby\bdAntiCheat\bdAntiCheatChallenges.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdCore\bdContainers\bdBitBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSocket\bdSecurityKeyMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bdSingleton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -121,7 +121,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>source/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>source/;$(ProjectDir)libs\libtommath-1.2.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -199,6 +199,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\universal\com_math.h" />
     <ClInclude Include="source\cgame\cg_visionsets.h" />
     <ClInclude Include="source\game\g_weapon.h" />
     <ClInclude Include="source\cgame\cg_vehicle.h" />
@@ -367,6 +368,7 @@
     <ClInclude Include="source\xanim\xanim.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\universal\com_math.cpp" />
     <ClCompile Include="source\cgame\cg_visionsets.cpp" />
     <ClCompile Include="source\game\g_weapon.cpp" />
     <ClCompile Include="source\cgame\cg_vehicle.cpp" />

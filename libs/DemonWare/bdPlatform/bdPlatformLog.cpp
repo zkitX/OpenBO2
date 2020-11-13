@@ -53,9 +53,18 @@ void bdLogMessage(const bdLogMessageType type, const char* const baseChannel, co
 					channel);
 			v8 = channelNameBuffer;
 		}
-		for (i = g_logSubscriberList; i; i = (bdLogSubscriber*)bdLinkable::getNext(i))
-			bdLogSubscriber::logMessage(i, type, v8, file, function, line, message);
+		for (i = g_logSubscriberList; i; i = bdLinkable::getNext(i))
+			i->bdLogSubscriber::logMessage(type, v8, file, function, line, message);
 	}
+}
+
+bdLogSubscriber::bdLogSubscriber()
+{
+	this->m_channels[0] = 0;
+	this->m_channels[1] = 0;
+	this->m_channels[2] = 0;
+	this->m_channels[3] = 0;
+	this->m_channels[4] = 0;
 }
 
 char bdLogSubscriber::addChannel(char* channel)
@@ -86,25 +95,6 @@ char bdLogSubscriber::addChannel(char* channel)
 	return v3;
 }
 
-void bdLogSubscriber::logMessage(bdLogSubscriber* logsub, const bdLogMessageType type, const char* const channelName, const char* const file, const char* const function, const unsigned int line, const char* const msg)
-{
-	int v8; // [esp+Ch] [ebp-8h]
-	const char** v9; // [esp+10h] [ebp-4h]
-
-	v9 = (const char**)logsub->m_channels;
-	v8 = 5;
-	do
-	{
-		if (*v9)
-		{
-			if (bdDelimSubstr(channelName, *v9, "\\/"))
-				logsub->publish(type, channelName, file, function, line, msg);
-		}
-		++v9;
-		--v8;
-	} while (v8);
-}
-
 void bdLogSubscriber::publish(bdLogMessageType type, char const* const __formal, char const* const file, char const* const a5, unsigned int line, char const* const msg)
 {
 	const char* startMsg;
@@ -128,4 +118,23 @@ void bdLogSubscriber::publish(bdLogMessageType type, char const* const __formal,
 	else
 		fileMsg = file;
 	bdPrintf("%s(%u):%s%s\n", fileMsg, line, startMsg, msg);
+}
+
+void bdLogSubscriber::logMessage(const bdLogMessageType type, const char* const channelName, const char* const file, const char* const function, const unsigned int line, const char* const msg)
+{
+	int v8; // [esp+Ch] [ebp-8h]
+	const char** v9; // [esp+10h] [ebp-4h]
+
+	v9 = (const char**)this->m_channels;
+	v8 = 5;
+	do
+	{
+		if (*v9)
+		{
+			if (bdDelimSubstr(channelName, *v9, "\\/"))
+				publish(type, channelName, file, function, line, msg);
+		}
+		++v9;
+		--v8;
+	} while (v8);
 }

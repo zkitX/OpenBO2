@@ -22,6 +22,7 @@
     <ProjectName>tommath</ProjectName>
     <ProjectGuid>{42109FEE-B0B9-4FCD-9E56-2863BF8C55D2}</ProjectGuid>
     <RootNamespace>tommath</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -68,7 +69,7 @@
     <_ProjectFileVersion>16.0.30523.133</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>MSVC_$(Platform)_$(Configuration)\</OutDir>
+    <OutDir>..\compiledlibs</OutDir>
     <IntDir>MSVC_$(Platform)_$(Configuration)\Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

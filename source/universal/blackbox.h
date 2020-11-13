@@ -90,7 +90,6 @@ void BB_WriteInt8(bb_msg_t* msg, int c);
 void BB_WriteString(bb_msg_t* msg, const char* str, int len);
 void BB_WriteVarUInt32(bb_msg_t* msg, unsigned int c);
 void BB_WriteVarUInt64(unsigned long long c);
-double random();
 
 class blackbox
 {

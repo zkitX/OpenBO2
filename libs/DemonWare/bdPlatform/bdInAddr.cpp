@@ -6,7 +6,7 @@ bdInAddr::bdInAddr(unsigned int addr)
     this->inUn.m_iaddr = addr;
 }
 
-bdInAddr::bdInAddr(void)
+bdInAddr::bdInAddr()
 {
     this->inUn.m_iaddr = 0xFF00FF00;
 }

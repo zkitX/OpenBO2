@@ -5,8 +5,8 @@ class bdPlatformSemaphore
 {
 private:
 public:
-	HANDLE createSemaphore(unsigned int initialCount, unsigned int maxCount);
-	void destroy(void** handle);
-	void release(void** handle);
-	bool wait(void** handle);
+	static HANDLE createSemaphore(unsigned int initialCount, unsigned int maxCount);
+	static void destroy(void** handle);
+	static void release(void** handle);
+	static bool wait(void** handle);
 };

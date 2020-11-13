@@ -2,13 +2,13 @@
 class bdPlatformStreamSocket
 {
 public:
-	int create(bool blocking);
-	bdSocketStatusCode connect1(int handle, bdInAddr addr, unsigned short port);
-	bool close(int handle);
-	bool checkSocketException(int handle);
-	bool isWritable(int handle, bdSocketStatusCode* error);
-	char getSocketAddr(int handle, bdInAddr* socketAddr);
-	int send(int handle, void const* const data, unsigned int length);
-	int recieve(int handle, void const* const data, unsigned int length);
-	bool isWritable(int handle);
+	static int create(bool blocking);
+	static bdSocketStatusCode connect1(int handle, bdInAddr addr, unsigned short port);
+	static bool close(int handle);
+	static bool checkSocketException(int handle);
+	static bool isWritable(int handle, bdSocketStatusCode* error);
+	static char getSocketAddr(int handle, bdInAddr* socketAddr);
+	static int send(int handle, void const* const data, unsigned int length);
+	static int recieve(int handle, void const* const data, unsigned int length);
+	static bool isWritable(int handle);
 };

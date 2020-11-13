@@ -28,10 +28,10 @@ private:
 	unsigned __int64 m_totalBytesRecvd;
 	const char* magicCase = "255.255.255.255";
 public:
-	SOCKET create(const bool blocking, const bool broadcast);
-	bdSocketStatusCode bind1(int* handle, const bdInAddr addr, const unsigned __int16 port);
-	int sendTo(int handle, bdInAddr addr, unsigned __int16 port, void* data, unsigned int length);
-	int receiveFrom(int handle, bdInAddr* addr, unsigned __int16* port, void* data, unsigned int size);
-	bool close(int* handle);
-	unsigned int getHostByName(const char* const name, bdInAddr* adresses, unsigned int numAdresses);
+	static SOCKET create(const bool blocking, const bool broadcast);
+	static bdSocketStatusCode bind1(int* handle, const bdInAddr addr, const unsigned __int16 port);
+	static int sendTo(int handle, bdInAddr addr, unsigned __int16 port, void* data, unsigned int length);
+	static int receiveFrom(int handle, bdInAddr* addr, unsigned __int16* port, void* data, unsigned int size);
+	static bool close(int* handle);
+	static unsigned int getHostByName(const char* const name, bdInAddr* adresses, unsigned int numAdresses);
 };

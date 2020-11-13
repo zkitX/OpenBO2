@@ -344,3 +344,5 @@ healthchecksdb
 /libs/libtomcrypt-1.17/gcc_2.txt
 /libs/libtomcrypt-1.17/gcc_1.txt
 /libs/DemonWare/tomcrypt.lib
+*.lib
+/libs/libtommath-1.2.0/MSVC_Win32_Debug/Intermediate

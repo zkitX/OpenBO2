@@ -19,7 +19,7 @@ public:
 	void* (*getAllocateFunc())(const unsigned int);
 	void(*getDeallocateFunc())(void*);
 	void* (*getReallocateFunc())(void*, const unsigned int);
-	void* allocate(const unsigned int size);
-	void deallocate(void* p);
-	void* reallocate(void* p, const unsigned int size);
+	static void* allocate(const unsigned int size);
+	static void deallocate(void* p);
+	static void* reallocate(void* p, const unsigned int size);
 };

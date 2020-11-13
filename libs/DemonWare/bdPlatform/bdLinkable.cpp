@@ -37,23 +37,22 @@ void bdLinkable::link(bdLinkable** head)
     }
 }
 
-bdLinkable* bdLinkable::getNext(bdLinkable *linkable)
+bdLinkable* bdLinkable::getNext()
 {
-    return linkable->m_next;
+    return this->m_next;
 }
 
 char bdLinkable::find(const bdLinkable* const list)
 {
-    bdLinkable* v1; // eax
     char v2; // dl
 
-    v1 = (bdLinkable*)list;
+    this->m_next = (bdLinkable*)list;
     v2 = 0;
     do
     {
-        if (!v1)
+        if (!this->m_next)
             break;
-        v1 = bdLinkable::getNext(v1);
+        this->m_next = bdLinkable::getNext();
     } while (!v2);
     return v2;
 }

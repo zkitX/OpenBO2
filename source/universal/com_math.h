@@ -1,7 +1,15 @@
 #pragma once
 
+#include <xmmintrin.h>
+#include <emmintrin.h>
+#include <Directxmath.h>
+
+using namespace DirectX;
+
 #define NUMVERTEXNORMALS 162
 #define M_PI 3.14159265358979323846
+
+const float _mask__NegFloat_ = 0x80000000;
 
 #define	PITCH 0	// up / down
 #define	YAW	1	// left / right
@@ -50,7 +58,40 @@ union vec4_t
 		float b;
 		float a;
 	};
+
+	XMVECTOR operator =(const vec4_t vec) {
+		XMVECTOR out;
+
+		out.vector4_f32[0] = vec.x;
+		out.vector4_f32[1] = vec.y;
+		out.vector4_f32[2] = vec.z;
+		out.vector4_f32[3] = vec.w;
+
+		return out;
+	}
 };
+
+inline vec4_t operator +(const vec4_t vec1, const vec4_t vec2) {
+	vec4_t out;
+
+	out.x = vec1.x + vec2.x;
+	out.y = vec1.y + vec2.y;
+	out.z = vec1.z + vec2.z;
+	out.w = vec1.w + vec2.w;
+
+	return out;
+}
+
+inline vec4_t operator *(const vec4_t vec1, const vec4_t vec2) {
+	vec4_t out;
+
+	out.x = vec1.x * vec2.x; 
+	out.y = vec1.y * vec2.y;
+	out.z = vec1.z * vec2.z;
+	out.w = vec1.w * vec2.w;
+
+	return out;
+}
 
 double AngleDelta(const float a1, const float a2);
 double I_normCDF(double);
@@ -75,28 +116,28 @@ float vectopitch(union vec3_t const*);
 void vectoangles(union vec3_t const*, union vec3_t*);
 void YawVectors(float, union vec3_t*, union vec3_t*);
 void YawVectors2D(float, union vec2_t*, union vec2_t*);
-void PerpendicularVector(union vec3_t const&, union vec3_t&);
-float PointToLineSegmentDistSq2D(union vec2_t const&, union vec2_t const&, union vec2_t const&);
+void PerpendicularVector(union vec3_t const*, union vec3_t*);
+float PointToLineSegmentDistSq2D(union vec2_t const*, union vec2_t const*, union vec2_t const*);
 float PointToLineSegmentDistSq(union vec3_t const&, union vec3_t const&, union vec3_t const&);
-int BoxInPlanes(union vec4_t const*, unsigned int, union vec3_t const&, union vec3_t const&);
-int SphereInPlanes(union vec4_t const*, unsigned int, union vec3_t const&, float);
+int BoxInPlanes(union vec4_t const*, unsigned int, union vec3_t const*, union vec3_t const*);
+int SphereInPlanes(const vec4_t*, unsigned int, const vec3_t*, const float);
 
 // ----------------------------------------
 // Matrix manipulation
 // ----------------------------------------
 
-void MatrixIdentity33(union vec3_t* const);
-void MatrixIdentity44(union vec4_t* const);
-void MatrixMultiply(union vec3_t const* const, union vec3_t const* const, union vec3_t* const);
-void MatrixVecMultiply(union vec3_t const* const, union vec3_t const&, union vec3_t&);
-void MatrixVecMultiplyProject(union vec4_t const* const, union vec3_t const&, union vec3_t&);
-void MatrixMultiply43(union vec3_t const* const, union vec3_t const* const, union vec3_t* const);
-void MatrixMultiply44(union vec4_t const* const, union vec4_t const* const, union vec4_t* const);
-void MatrixTranspose(union vec3_t const* const, union vec3_t* const);
-void MatrixTranspose44(union vec4_t const* const, union vec4_t* const);
-void MatrixInverse(union vec3_t const* const, union vec3_t* const);
-void MatrixInverseOrthogonal43(union vec3_t const* const, union vec3_t* const);
-void MatrixInverse44(union vec4_t const* const, union vec4_t* const);
+void MatrixIdentity33(union vec3_t*);
+void MatrixIdentity44(union vec4_t*);
+void MatrixMultiply(const vec3_t*, const vec3_t*, vec3_t*);
+void MatrixVecMultiply(const vec3_t*, const vec3_t*, vec3_t*);
+void MatrixVecMultiplyProject(const vec4_t*, const vec3_t*, vec3_t*);
+void MatrixMultiply43(const vec3_t*, const vec3_t*, vec3_t*);
+void MatrixMultiply44(const vec4_t*, const vec4_t*, vec4_t*);
+void MatrixTranspose(const vec3_t*, vec3_t*);
+void MatrixTranspose44(const vec4_t*, vec4_t*);
+void MatrixInverse(const vec3_t*, vec3_t*);
+void MatrixInverseOrthogonal43(const vec3_t*, vec3_t*);
+void MatrixInverse44(const vec4_t*, vec4_t*);
 void MatrixTransformVector44(union vec4_t const&, union vec4_t const* const, union vec4_t&);
 void MatrixTransformVector43(union vec3_t const&, union vec3_t const* const, union vec3_t&);
 void MatrixTransposeTransformVector43(union vec3_t const&, union vec3_t const* const, union vec3_t&);

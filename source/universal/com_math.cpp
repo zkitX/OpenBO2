@@ -1215,17 +1215,36 @@ void MatrixForViewer(vec3_t const&, vec3_t const* const, vec4_t* const)
 {
 }
 
-void AnglesSubtract(vec3_t const&, vec3_t const&, vec3_t&)
+float AngleSubtract(float a1, float a2)
 {
+	float a;
+
+	a = a1 - a2;
+	while (a > 180) {
+		a -= 360;
+	}
+	while (a < -180) {
+		a += 360;
+	}
+	return a;
 }
 
-void AnglesSubtract(vec2_t const&, vec2_t const&, vec2_t&)
+void AnglesSubtract(const vec3_t* v1, const vec3_t* v2, vec3_t* out)
 {
+	out->x = AngleSubtract(v1->x, v2->x);
+	out->y = AngleSubtract(v1->y, v2->y);
+	out->z = AngleSubtract(v1->z, v2->z);
 }
 
-float AngleNormalize360(float)
+void AnglesSubtract(const vec2_t* v1, const vec2_t* v2, vec2_t* out)
 {
-	return 0.0f;
+	out->x = AngleSubtract(v1->x, v2->x);
+	out->y = AngleSubtract(v1->y, v2->y);
+}
+
+float AngleNormalize360(float angle)
+{
+	return (360.0 / 65536) * ((int)(angle * (65536 / 360.0)) & 65535);
 }
 
 float RadiusFromBounds2DSq(const vec2_t* mins, const vec2_t* maxs)
@@ -1401,20 +1420,45 @@ void ExpandBounds(const vec3_t* addedmins, const vec3_t* addedmaxs, vec3_t* mins
 		maxs->z = v7;
 }
 
-void AxisClear(vec3_t* const)
+void AxisClear(vec3_t* axis)
 {
+	axis->x = 1.0;
+	axis->v[2] = 0.0;
+	axis[1].v[1] = 1.0;
+	axis[2].x = 0.0;
+	axis[2].z = 1.0;
 }
 
-void AxisCopy(vec3_t const* const, vec3_t* const)
+void AxisCopy(const vec3_t* in, vec3_t* out)
 {
+	*out = *in;
+	out[1] = in[1];
+	out[2] = in[2];
 }
 
-void AxisTranspose(vec3_t const* const, vec3_t* const)
+void AxisTranspose(const vec3_t* in, vec3_t* out)
 {
+	if (in == out
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(in != out)", nullptr))
+	{
+		__debugbreak();
+	}
+	out->x = in->x;
+	out->y = in[1].x;
+	out->z = in[2].x;
+	out[1].x = in->y;
+	out[1].y = in[1].y;
+	out[1].z = in[2].y;
+	out[2].x = in->z;
+	out[2].y = in[1].z;
+	out[2].z = in[2].z;
 }
 
-void AxisTransformVec3(vec3_t const* const, vec3_t const&, vec3_t&)
+void AxisTransformVec3(const vec3_t* axes, const vec3_t* vec, vec3_t* out)
 {
+	out->x = ((axes[1].x * vec->y) + (axes->x * vec->x)) + (axes[2].x * vec->z);
+	out->y = ((axes[1].y * vec->y) + (axes->y * vec->x)) + (axes[2].y * vec->z);
+	out->z = ((axes[1].z * vec->y) + (axes->z * vec->x)) + (axes[2].z * vec->z);
 }
 
 void YawToAxis(float, vec3_t* const)

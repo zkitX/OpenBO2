@@ -58,17 +58,6 @@ union vec4_t
 		float b;
 		float a;
 	};
-
-	XMVECTOR operator =(const vec4_t vec) {
-		XMVECTOR out;
-
-		out.vector4_f32[0] = vec.x;
-		out.vector4_f32[1] = vec.y;
-		out.vector4_f32[2] = vec.z;
-		out.vector4_f32[3] = vec.w;
-
-		return out;
-	}
 };
 
 inline vec4_t operator +(const vec4_t vec1, const vec4_t vec2) {
@@ -144,27 +133,27 @@ void MatrixTransposeTransformVector43(union vec3_t const&, union vec3_t const* c
 void MatrixTransformVector43Equals(union vec3_t&, union vec3_t const* const);
 
 void VectorAngleMultiply(union vec2_t&, float);
-void UnitQuatToAxis(union vec4_t const&, union vec3_t* const);
-void UnitQuatToForward(union vec4_t const&, union vec3_t&);
+void UnitQuatToAxis(const vec4_t*, vec3_t*);
+void UnitQuatToForward(const vec4_t*, vec3_t*);
 void QuatSlerp(union vec4_t const&, union vec4_t const&, float, union vec4_t&);
-float RotationToYaw(union vec2_t const&);
-void FinitePerspectiveMatrix(float, float, float, float, union vec4_t* const);
+float RotationToYaw(const vec2_t*);
+void FinitePerspectiveMatrix(float, float, float, float, vec4_t*);
 void SpotLightViewMatrix(union vec3_t const&, float, union vec4_t* const);
-void SpotLightViewMatrixDir3(union vec3_t const&, union vec3_t const&, union vec3_t const&, union vec4_t* const);
+void SpotLightViewMatrixDir3(const vec3_t*, const vec3_t*, const vec3_t*, vec4_t*);
 void SpotLightProjectionMatrix(float, float, float, union vec4_t* const);
 void InfinitePerspectiveMatrix(float, float, float, union vec4_t* const);
 void MatrixForViewer(union vec3_t const&, union vec3_t const* const, union vec4_t* const);
 void AnglesSubtract(union vec3_t const&, union vec3_t const&, union vec3_t&);
 void AnglesSubtract(union vec2_t const&, union vec2_t const&, union vec2_t&);
 float AngleNormalize360(float);
-float RadiusFromBounds2DSq(union vec2_t const&, union vec2_t const&);
-void ExtendBounds(union vec3_t&, union vec3_t&, union vec3_t const&);
-void ExpandBoundsToWidth(union vec3_t&, union vec3_t&);
+float RadiusFromBounds2DSq(const vec2_t*, const vec2_t*);
+void ExtendBounds(vec3_t*, vec3_t*, const vec3_t*);
+void ExpandBoundsToWidth(vec3_t*, vec3_t*);
 void ClearBounds(vec3_t* mins, vec3_t* maxs);
-void AddPointToBounds(union vec3_t const&, union vec3_t&, union vec3_t&);
-void AddPointToBounds2D(union vec2_t const&, union vec2_t&, union vec2_t&);
-int BoundsOverlap(union vec3_t const&, union vec3_t const&, union vec3_t const&, union vec3_t const&);
-void ExpandBounds(union vec3_t const&, union vec3_t const&, union vec3_t&, union vec3_t&);
+void AddPointToBounds(const vec3_t*, vec3_t*, vec3_t*);
+void AddPointToBounds2D(const vec2_t*, vec2_t*, vec2_t*);
+int BoundsOverlap(const vec3_t*, const vec3_t*, const vec3_t*, const vec3_t*);
+void ExpandBounds(const vec3_t*, const vec3_t*, vec3_t*, vec3_t*);
 void AxisClear(union vec3_t* const);
 void AxisCopy(union vec3_t const* const, union vec3_t* const);
 void AxisTranspose(union vec3_t const* const, union vec3_t* const);

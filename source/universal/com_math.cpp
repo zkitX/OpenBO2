@@ -954,8 +954,7 @@ void MatrixInverse(const vec3_t* in, vec3_t* out)
 	{
 		__debugbreak();
 	}
-	det = ((((in[1].y * in[2].z) - (in[1].z * in[2].y)) * in->x) - (((in->y * in[2].z) - (in->z * in[2].y)) * in[1].x))
-		+ (((in->y * in[1].z) - (in->z * in[1].y)) * in[2].x);
+	det = ((((in[1].y * in[2].z) - (in[1].z * in[2].y)) * in->x) - (((in->y * in[2].z) - (in->z * in[2].y)) * in[1].x)) + (((in->y * in[1].z) - (in->z * in[1].y)) * in[2].x);
 	if (det == 0.0)
 	{
 		if (!Assert_MyHandler(__FILE__, __LINE__, 0, "(det)", false))
@@ -1000,33 +999,32 @@ void MatrixInverseOrthogonal43(const vec3_t* in, vec3_t* out)
 
 void MatrixInverse44(const vec4_t* mat, vec4_t* dst)
 {
-	vec4_t v2; // xmm1
-	vec4_t v3; // xmm2
-	vec4_t v4; // xmm3
-	vec4_t* v5; // esi
-	XMMATRIX v6; // eax
-	__int128 v7; // xmm1
-	__int128 v8; // xmm2
-	__int128 v9; // xmm3
-	XMMATRIX M; // [esp+Ch] [ebp-90h]
-	__m128 pDeterminant; // [esp+4Ch] [ebp-50h]
+	unsigned int i;
+	float det;
+	vec4_t row1;
+	vec4_t row2;
+	vec4_t row3;
+	vec4_t row4;
 
-	v2 = mat[1];
-	v3 = mat[2];
-	v4 = mat[3];
-	v5 = dst;
-	M.r[0] = *mat;
-	M.r[1] = v2;
-	M.r[2] = v3;
-	M.r[3] = v4;
-	v6 = DirectX::XMMatrixInverse(nullptr, &M);
-	v7 = *&v6.m[1][0];
-	v8 = *&v6.m[2][0];
-	v9 = *&v6.m[3][0];
-	*(v5 & 0xFFFFFFF0) = v6.r[0];
-	*(&v5[1] & 0xFFFFFFF0) = v7;
-	*(&v5[2] & 0xFFFFFFF0) = v8;
-	*(&v5[3] & 0xFFFFFFF0) = v9;
+	row1 = mat[0]; // |  x  y  z  w  |
+	row2 = mat[1]; // |  x  y  z  w  |
+	row3 = mat[2]; // |  x  y  z  w  |
+	row4 = mat[3]; // |  x  y  z  w  |
+
+	det = row1.w * row2.z * row3.y * row4.x - row1.z * row2.w * row3.y * row4.x -
+		row1.w * row2.y * row3.z * row4.x + row1.y * row2.w * row3.z * row4.x +
+		row1.z * row2.y * row3.w * row4.x - row1.y * row2.z * row3.w * row4.x -
+		row1.w * row2.z * row3.x * row4.y + row1.z * row2.w * row3.x * row4.y +
+		row1.w * row2.x * row3.z * row4.y - row1.x * row2.w * row3.z * row4.y -
+		row1.z * row2.x * row3.w * row4.y + row1.x * row2.z * row3.w * row4.y +
+		row1.w * row2.y * row3.x * row4.z - row1.y * row2.w * row3.x * row4.z -
+		row1.w * row2.x * row3.y * row4.z + row1.x * row2.w * row3.y * row4.z +
+		row1.y * row2.x * row3.w * row4.z - row1.x * row2.y * row3.w * row4.z -
+		row1.z * row2.y * row3.x * row4.w + row1.y * row2.z * row3.x * row4.w +
+		row1.z * row2.x * row3.y * row4.w - row1.x * row2.z * row3.y * row4.w -
+		row1.y * row2.x * row3.z * row4.w + row1.x * row2.y * row3.z * row4.w;
+
+	dst[0].x = 0;
 }
 
 void MatrixTransformVector44(vec4_t const&, vec4_t const* const, vec4_t&)
@@ -1043,4 +1041,400 @@ void MatrixTransposeTransformVector43(vec3_t const&, vec3_t const* const, vec3_t
 
 void MatrixTransformVector43Equals(vec3_t&, vec3_t const* const)
 {
+}
+
+void VectorAngleMultiply(vec2_t&, float)
+{
+}
+
+void UnitQuatToAxis(const vec4_t* quat, vec3_t* axis)
+{
+	float v2; // xmm6_4
+	const char* v3; // eax
+	float v4; // xmm3_4
+	float v5; // xmm0_4
+	float v6; // xmm4_4
+	float v7; // xmm5_4
+	float v8; // xmm1_4
+	float v9; // xmm3_4
+	float v10; // xmm0_4
+	float v11; // xmm4_4
+	float xw; // [esp+24h] [ebp-10h]
+	float xx; // [esp+28h] [ebp-Ch]
+	float xz; // [esp+2Ch] [ebp-8h]
+	float yy; // [esp+30h] [ebp-4h]
+	float zw; // [esp+3Ch] [ebp+8h]
+
+	if ((((((quat->v[0] * quat->v[0]) + (quat->v[1] * quat->v[1])) + (quat->v[2] * quat->v[2])) + (quat->v[3] * quat->v[3])) - 1.0) >= 0.0020000001) {
+		if (!Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(Vec4IsNormalized( quat ))",
+			"%s\n\t%s",
+			"Vec4IsNormalized( quat )",
+			va("%g %g %g %g", quat->v[0], quat->v[1], quat->v[2], quat->v[3])))
+			__debugbreak();
+	}
+	v4 = quat->v[1];
+	v5 = quat->v[0] * 2.0;
+	xz = quat->v[2] * v5;
+	v6 = quat->v[3];
+	xw = quat->v[3] * v5;
+	xx = quat->v[0] * v5;
+	v7 = v4 * 2.0;
+	v8 = v4 * v5;
+	yy = v4 * (v4 * 2.0);
+	v9 = v6 * (v4 * 2.0);
+	v10 = quat->v[2];
+	zw = v6 * (v10 * 2.0);
+	v11 = v10 * (v10 * 2.0);
+	axis->x = v2 - (v11 + yy);
+	axis->z = xz - v9;
+	axis[1].y = v2 - (v11 + xx);
+	axis->y = zw + v8;
+	axis[1].x = v8 - zw;
+	axis[1].z = (v10 * v7) + xw;
+	axis[2].x = v9 + xz;
+	axis[2].y = (v10 * v7) - xw;
+	axis[2].z = v2 - (yy + xx);
+}
+
+void UnitQuatToForward(const vec4_t* quat, vec3_t* forward)
+{
+	if (
+		((((quat->v[0] * quat->v[0]) + (quat->v[1] * quat->v[1])) + (quat->v[2] * quat->v[2])) + (quat->v[3] * quat->v[3])) - 1.0 >= 0.0020000001)
+	{
+		if (!Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(Vec4IsNormalized( quat ))",
+			"%s\n\t%s",
+			"Vec4IsNormalized( quat )",
+			va("%g %g %g %g", quat->v[0], quat->v[1], quat->v[2], quat->v[3])))
+			__debugbreak();
+	}
+
+	forward->x = 1.0 - (((quat->v[1] * quat->v[1]) + (quat->v[2] * quat->v[2])) * 2.0);
+	forward->y = ((quat->v[0] * quat->v[1]) + (quat->v[3] * quat->v[2])) * 2.0;
+	forward->z = ((quat->v[0] * quat->v[2]) - (quat->v[3] * quat->v[1])) * 2.0;
+}
+
+void QuatSlerp(vec4_t const&, vec4_t const&, float, vec4_t&)
+{
+}
+
+float RotationToYaw(const vec2_t* rot)
+{
+	float zz; // [esp+4h] [ebp-4h]
+	float r; // [esp+10h] [ebp+8h]
+
+	zz = rot->v[0] * rot->v[0];
+	r = (rot->v[1] * rot->v[1]) + zz;
+	if (r == 0.0 && !Assert_MyHandler(__FILE__, __LINE__, 0, "(r)", false))
+		__debugbreak();
+	return atan2(rot->v[1] * rot->v[0] * (2.0 / r), 1.0 - 2.0 / r * zz) * 57.295776;
+}
+
+void FinitePerspectiveMatrix(float tanHalfFovX, float tanHalfFovY, float zNear, float zFar, vec4_t* mtx)
+{
+	if (!mtx && !Assert_MyHandler(__FILE__, __LINE__, 0, "(mtx)", false))
+		__debugbreak();
+	if (zNear <= 0.0)
+	{
+		if (!Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(zNear) > (0.0f)",
+			"zNear > 0.0f\n\t%g, %g",
+			zNear,
+			0.0))
+			__debugbreak();
+	}
+	if (zFar <= zNear
+		&& !Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(zFar) > (zNear)",
+			"zFar > zNear\n\t%g, %g",
+			zFar,
+			zNear))
+	{
+		__debugbreak();
+	}
+	memset(mtx, 0, 0x40u);
+	mtx->v[0] = 1.0 / tanHalfFovX;
+	mtx[1].v[1] = 1.0 / tanHalfFovY;
+	mtx[2].v[2] = -(zNear / (zFar - zNear));
+	mtx[2].v[3] = 1.0;
+	mtx[3].v[2] = (zNear * zFar) / (zFar - zNear);
+}
+
+void SpotLightViewMatrix(vec3_t const&, float, vec4_t* const)
+{
+}
+
+void SpotLightViewMatrixDir3(const vec3_t* dirx, const vec3_t* diry, const vec3_t* dirz, vec4_t* mtx)
+{
+	float v15;
+	float v20;
+
+	vec3_t axis[3];
+	vec4_t lookAtMatrix[4];
+
+	v20 = diry->x;
+	lookAtMatrix[0].g = __PAIR64__(LODWORD(dirz->y), LODWORD(diry->y));
+	lookAtMatrix[2].b = 0;
+	lookAtMatrix[0].v[0] = 0.0;
+	lookAtMatrix[1].v[0] = 0.0;
+	*lookAtMatrix[2].v = 0;
+	lookAtMatrix[1].g = __PAIR64__(LODWORD(dirz->z), LODWORD(diry->z));
+	lookAtMatrix[0].v[3] = dirx->y;
+	lookAtMatrix[1].v[3] = dirx->z;
+	lookAtMatrix[3].v[0] = 1.0;
+	memset(&v15, 0, 0x40u);
+	v15 = 3.141592741012573;
+	axis[0].z = 3.141592741012573;
+	axis[0].y = 3.141592741012573;
+	axis[2].y = 1.0;
+	MatrixMultiply44((const vec4_t * )&v20, (const vec4_t *)&v15, mtx);
+}
+
+void SpotLightProjectionMatrix(float, float, float, vec4_t* const)
+{
+}
+
+void InfinitePerspectiveMatrix(float, float, float, vec4_t* const)
+{
+}
+
+void MatrixForViewer(vec3_t const&, vec3_t const* const, vec4_t* const)
+{
+}
+
+void AnglesSubtract(vec3_t const&, vec3_t const&, vec3_t&)
+{
+}
+
+void AnglesSubtract(vec2_t const&, vec2_t const&, vec2_t&)
+{
+}
+
+float AngleNormalize360(float)
+{
+	return 0.0f;
+}
+
+float RadiusFromBounds2DSq(const vec2_t* mins, const vec2_t* maxs)
+{
+	float v2; // xmm0_4
+	float v4; // [esp+0h] [ebp-10h]
+
+	v2 = mins->v[0];
+	if (v2 <= maxs->v[0])
+		v2 = maxs->v[0];
+	if (mins->v[1] <= maxs->v[1])
+		v4 = maxs->v[1];
+	else
+		v4 = mins->v[1];
+	return v4 * v4 + v2 * v2;
+}
+
+void ExtendBounds(vec3_t* mins, vec3_t* maxs, const vec3_t* offset)
+{
+	float v3; // xmm0_4
+	float v4; // xmm0_4
+	float v5; // xmm0_4
+
+	v3 = offset->x;
+	if (offset->x <= 0.0)
+		mins->x = mins->x + v3;
+	else
+		maxs->x = maxs->x + v3;
+	v4 = offset->y;
+	if (v4 <= 0.0)
+		mins->y = mins->y + v4;
+	else
+		maxs->y = maxs->y + v4;
+	v5 = offset->z;
+	if (v5 <= 0.0)
+		mins->z = mins->z + v5;
+	else
+		maxs->z = maxs->z + v5;
+}
+
+void ExpandBoundsToWidth(vec3_t* mins, vec3_t* maxs)
+{
+	float v2; // xmm0_4
+	float v3; // xmm2_4
+	float v4; // xmm0_4
+
+	if (maxs->x < mins->x
+		&& !Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(maxs[0] >= mins[0])",
+			false))
+	{
+		__debugbreak();
+	}
+	if (maxs->y < mins->y
+		&& !Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(maxs[1] >= mins[1])",
+			false))
+	{
+		__debugbreak();
+	}
+	if (maxs->z < mins->z
+		&& !Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(maxs[2] >= mins[2])",
+			false))
+	{
+		__debugbreak();
+	}
+	v2 = maxs->x - mins->x;
+	v3 = maxs->z - mins->z;
+	if ((v2 - (maxs->y - mins->y)) < 0.0)
+		v2 = maxs->y - mins->y;
+	if (v2 > v3)
+	{
+		v4 = (v2 - v3) * 0.5;
+		mins->z = mins->z - v4;
+		maxs->z = maxs->z + v4;
+	}
+}
+
+void ClearBounds(vec3_t* mins, vec3_t* maxs)
+{
+	mins->x = 131072.0;
+	mins->y = 131072.0;
+	mins->z = 131072.0;
+	maxs->x = -131072.0;
+	maxs->y = -131072.0;
+	maxs->z = -131072.0;
+}
+
+void AddPointToBounds(const vec3_t* v, vec3_t* mins, vec3_t* maxs)
+{
+	float v3; // xmm0_4
+	float v4; // xmm0_4
+	float v5; // xmm0_4
+	float v6; // xmm0_4
+
+	if (mins->x > v->x)
+		mins->x = v->x;
+	if (v->x > maxs->x)
+		maxs->x = v->x;
+	v3 = v->y;
+	if (mins->y > v3)
+		mins->y = v3;
+	v4 = v->y;
+	if (v4 > maxs->y)
+		maxs->y = v4;
+	v5 = v->z;
+	if (mins->z > v5)
+		mins->z = v5;
+	v6 = v->z;
+	if (v6 > maxs->z)
+		maxs->z = v6;
+}
+
+void AddPointToBounds2D(const vec2_t* v, vec2_t* mins, vec2_t* maxs)
+{
+	float v3; // xmm0_4
+	float v4; // xmm0_4
+
+	if (mins->v[0] > v->v[0])
+		mins->v[0] = v->v[0];
+	if (v->v[0] > maxs->v[0])
+		maxs->v[0] = v->v[0];
+	v3 = v->v[1];
+	if (mins->v[1] > v3)
+		mins->v[1] = v3;
+	v4 = v->v[1];
+	if (v4 > maxs->v[1])
+		maxs->v[1] = v4;
+}
+
+int BoundsOverlap(const vec3_t* mins0, const vec3_t* maxs0, const vec3_t* mins1, const vec3_t* maxs1)
+{
+	return mins0->x <= maxs1->x
+		&& mins1->x <= maxs0->x
+		&& mins0->y <= maxs1->y
+		&& mins1->y <= maxs0->y
+		&& mins0->z <= maxs1->z
+		&& mins1->z <= maxs0->z;
+}
+
+void ExpandBounds(const vec3_t* addedmins, const vec3_t* addedmaxs, vec3_t* mins, vec3_t* maxs)
+{
+	float v4; // xmm0_4
+	float v5; // xmm0_4
+	float v6; // xmm0_4
+	float v7; // xmm0_4
+
+	if (mins->x > addedmins->x)
+		mins->x = addedmins->x;
+	if (addedmaxs->x > maxs->x)
+		maxs->x = addedmaxs->x;
+	v4 = addedmins->y;
+	if (mins->y > v4)
+		mins->y = v4;
+	v5 = addedmaxs->y;
+	if (v5 > maxs->y)
+		maxs->y = v5;
+	v6 = addedmins->z;
+	if (mins->z > v6)
+		mins->z = v6;
+	v7 = addedmaxs->z;
+	if (v7 > maxs->z)
+		maxs->z = v7;
+}
+
+void AxisClear(vec3_t* const)
+{
+}
+
+void AxisCopy(vec3_t const* const, vec3_t* const)
+{
+}
+
+void AxisTranspose(vec3_t const* const, vec3_t* const)
+{
+}
+
+void AxisTransformVec3(vec3_t const* const, vec3_t const&, vec3_t&)
+{
+}
+
+void YawToAxis(float, vec3_t* const)
+{
+}
+
+void AxisToAngles(vec3_t const* const, vec3_t&)
+{
+}
+
+void Axis4ToAngles(vec4_t const* const, vec3_t&)
+{
+}
+
+int IntersectPlanes(float const** const, vec3_t&)
+{
+	return 0;
+}
+
+int ProjectedWindingContainsCoplanarPoint(vec3_t const* const, int, int, int, vec3_t const&)
+{
+	return 0;
 }

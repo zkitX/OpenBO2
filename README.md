@@ -9,8 +9,11 @@ Just a little side project I'm working on to create a playable open source versi
 
 ## Contact
 If you would like to contact me, you can on:
+
 Twitter: **[zkitx](https://twitter.com/zkitx)**
+
 Discord: **Evan#3333**
+
 Keybase: **zkitx**
 
 Please include reason to contacting me in the initial message so I don't ignored it!

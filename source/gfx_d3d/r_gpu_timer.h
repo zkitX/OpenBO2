@@ -1,5 +1,9 @@
 #pragma once
 
+#include <d3d11.h>
+
+#include "r_font.h"
+
 enum PerfTimerDisplayMode
 {
 	PERF_TIMER_MODE_TOP = 0x0,
@@ -82,6 +86,27 @@ enum GPUTimerDisplayMode
 	GPU_TIMER_DISPLAY_MODE_COUNT = 0xE,
 };
 
+struct TxaaCtxDX
+{
+	unsigned int pad[256];
+};
+
+struct DxCmdBuf
+{
+	int isInUse[33];
+	ID3D11DeviceContext* context[33];
+	ID3D11CommandList* list[33];
+};
+
+struct GfxWindowTarget
+{
+	HWND__* hwnd;
+	IDXGISwapChain* swapChain;
+	ID3D11RenderTargetView* view;
+	int width;
+	int height;
+};
+
 struct PerfTimer
 {
 	unsigned int beginTime;
@@ -92,6 +117,39 @@ struct PerfTimer
 	bool isActive;
 	bool hide;
 	char bucket;
+};
+
+struct PerfTimerFrame
+{
+	unsigned int beginTime;
+	unsigned int totalTime;
+	PerfTimer* timers[80];
+};
+
+struct PerfTimerFrameHistory
+{
+	unsigned int currentFrame;
+	unsigned int frameCount;
+	PerfTimerFrame frames[64];
+};
+
+struct PerfTimerStyle
+{
+	Font_s* font;
+	float fontWidth;
+	float fontHeight;
+	PerfTimerDisplayMode displayMode;
+	PerfTimerDisplayType displayType;
+	float(* convertTime)(unsigned int);
+	unsigned int timerCount;
+	unsigned int timerNameCharCount;
+	const char** timerNames;
+	const GfxColor* timerColors;
+	float totalBarY;
+	float budgetMs;
+	float budgetPixels;
+	unsigned int bucketCount;
+	const char** bucketNames;
 };
 
 struct GPUTimeStamp
@@ -118,16 +176,86 @@ struct GPUTimerFrame
 	GPUTimer timers[40];
 };
 
+struct DxGlobals
+{
+	HINSTANCE__* hinst;
+	ID3D11Device* device;
+	ID3D11DeviceContext* context;
+	ID3D11Buffer* constBuffer[4];
+	unsigned int vendorId;
+	bool adapterNativeIsValid;
+	int adapterNativeWidth;
+	int adapterNativeHeight;
+	int adapterFullscreenWidth;
+	int adapterFullscreenHeight;
+	bool nvInitialized;
+	bool nvStereoActivated;
+	void* nvStereoHandle;
+	TxaaCtxDX txaaCtx;
+	int adapterIndex;
+	bool vidRestart;
+	bool needResizeBuffers;
+	bool doResizeBuffers;
+	bool ignoreResize;
+	bool needsShaderWarming;
+	int lastMaterialWarmed;
+	DXGI_FORMAT depthStencilFormat;
+	DxCmdBuf cmdBuf[4];
+	unsigned int monitorCount;
+	unsigned int displayModeCount[8];
+	DXGI_MODE_DESC displayModes[8][512];
+	const char* resolutionNameTable[513];
+	char modeText[10240];
+	const char* monitorResolutionNameTable[8][513];
+	char monitorModeText[81920];
+	ID3D11Query* fencePool[8];
+	unsigned int nextFence;
+	int gpuCount;
+	void(__cdecl* resolutionCallback)(bool);
+	unsigned int multiSampleType;
+	unsigned int multiSampleQuality;
+	unsigned __int16 sunShadowPartition;
+	unsigned __int16 spotShadowPartition;
+	ID3D11DepthStencilView* singleSampleDepthStencilSurface;
+	int targetWindowIndex;
+	int windowCount;
+	GfxWindowTarget windows[1];
+	IDXGISwapChain* swapChain;
+	ID3D11Texture2D* backBuffer;
+	ID3D11Query* flushGpuQuery;
+	int linearMippedAnisotropy;
+	int anisotropyFor2x;
+	int anisotropyFor4x;
+	int mipFilterMode;
+	unsigned int mipBias;
+};
+
 const char* g_gpuTimerNames[40] = { "UI3D", "sonar", "ShadowTotal", "SunShadowTotal", "SpotShadowTotal", "SunShadow0", "SunShadow1", "SpotShadow0", "SpotShadow1", "SpotShadow2", "SpotShadow3", "Mainpass Total", "ClearScreen", "Depth Hack", "DepthPrepass", "ZCull Reload", "Lit BSP", "Lit SModel", "Lit", "Lightmap", "Emissive Opaque", "LitQuasiOpaque", "ResolveScene", "LitPostResolve", "LightmapPostResolve", "Trans", "Sun+corona", "Emissive Total", "Emissive FX", "Trans post FX", "ViewModelFX", "ViewModelTrans", "Superflare", "ExtraCam", "FXAA", "Bloom", "Dof", "Upscale", "2D", "2D Toral" };
 
 const char* g_gpuTimerSimpleNames[40] = { "UI3D", "sonar", "ShadowTotal", "SunShadowTotal", "SpotShadowTotal", "Dynamic sun shadows", "SunShadow1", "Dynamic primary shadows", "SpotShadow1", "SpotShadow2", "SpotShadow3", "Mainpass Total", "ClearScreen", "View Model", "DepthPrepass", "ZCull Reload", "Lit BSP Surfaces (In Dyn Shadow)", "Lit Static Models (In Dyn Shadow)", "Lit Other (In Dyn Shadow)", "Lightmap", "Emissive Opaque", "LitQuasiOpaque (eg foliage)", "ResolveScene", "Scene Reflection (In Dyn Shadow)", "Scene Reflection", "Transparent", "Sun Flare", "Emissive Total", "Particle FX", "Trans post FX", "ViewModelFX", "ViewModelTrans", "Superflare", "ExtraCam", "FXAA", "Bloom", "Dof", "Upscale", "2D", "Bloom,ADS,2D,HUD" };
 
+int g_gpuTimerNamesMaxLength;
+int g_gpuTimerSimpleNamesMaxLength;
+
 PerfTimerDisplayMode* s_gpuPerfMode;
 PerfTimerDisplayType* s_gpuPerfType;
+PerfTimerFrameHistory s_gpuTimerFrameHistory;
+PerfTimerStyle s_gpuTimerStyle;
 
+GPUTimer* s_currentTimer;
 GPUTimeStamp* s_firstFreeTimeStamp;
 GPUTimerDisplayMode s_displayMode;
+GPUTimerFrame s_timerFrames[64];
+
+unsigned int LastGoodElapsed[40];
+unsigned int LastGoodTime;
+
+int s_callbackIndex;
+unsigned int s_frameIndex;
+int s_lastReadIndex;
+int s_readIndex;
 volatile unsigned int s_totalTime;
+int s_writeIndex;
 
 void R_GPU_CalcDerivedTimers(GPUTimerFrame*);
 void R_GPU_CalcTimers(GPUTimerFrame*);

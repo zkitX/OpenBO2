@@ -143,7 +143,7 @@ char** Sys_ListFiles(char const* directory, char const* extension, char const* f
     {
         user = Hunk_UserCreate(0x20000, 0, 0, 0, "Sys_ListFiles", 3);
         numfilesa = 0;
-        Sys_ListFilteredFiles(user, directory, &scratch, filter, list, &numfilesa);
+        Sys_ListFilteredFiles(user, directory, nullptr, filter, list, &numfilesa);
         list[numfilesa] = 0;
         *numfiles = numfilesa;
         if (numfilesa)

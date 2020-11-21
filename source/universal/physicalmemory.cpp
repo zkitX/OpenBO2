@@ -21,7 +21,7 @@ void PMem_InitPhysicalMemory(PhysicalMemory* pmem, unsigned int memorySize, cons
             __LINE__,
             0,
             "(pmem)",
-            (const char*)&scratch))
+            nullptr))
     {
         __debugbreak();
     }
@@ -31,7 +31,7 @@ void PMem_InitPhysicalMemory(PhysicalMemory* pmem, unsigned int memorySize, cons
             __LINE__,
             0,
             "(memory)",
-            (const char*)&scratch))
+            nullptr))
     {
         __debugbreak();
     }
@@ -53,7 +53,7 @@ void PMem_Init()
             __LINE__,
             0,
             "(g_physicalMemoryInit == 0)",
-            (const char*)&scratch))
+            nullptr))
     {
         __debugbreak();
     }
@@ -116,7 +116,7 @@ void PMem_BeginAlloc(const char* name, unsigned int allocType, EMemTrack memTrac
 
 void PMem_EndAllocInPrim(PhysicalMemoryPrim* prim, const char* name, unsigned int allocType)
 {
-    if (I_stricmp(prim->allocName, name)
+    if (I_stricmp(prim->allocName, (char)name)
         && !(unsigned __int8)Assert_MyHandler(
             __FILE__,
             __LINE__,

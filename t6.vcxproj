@@ -199,6 +199,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\universal\com_vector.h" />
+    <ClInclude Include="source\universal\com_math_anglevectors.h" />
     <ClInclude Include="source\universal\com_math.h" />
     <ClInclude Include="source\cgame\cg_visionsets.h" />
     <ClInclude Include="source\game\g_weapon.h" />
@@ -368,6 +370,7 @@
     <ClInclude Include="source\xanim\xanim.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\universal\com_math_anglevectors.cpp" />
     <ClCompile Include="source\universal\com_math.cpp" />
     <ClCompile Include="source\cgame\cg_visionsets.cpp" />
     <ClCompile Include="source\game\g_weapon.cpp" />

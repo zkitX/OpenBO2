@@ -2,6 +2,8 @@
 
 #include <cmath>
 #include <universal/assertive.h>
+#include <universal/com_math_anglevectors.h>
+#include <universal/com_vector.h>
 
 #include <defs.h>
 
@@ -106,6 +108,9 @@ float identityMatrix33[] =
    0.0, 0.0, 1.0,
 };
 
+unsigned int holdrand_0 = 2309737967;
+const float DCONSTcg_hudSplitscreenCompassScale = 1.0;
+
 /*
 =================
 AngleDelta
@@ -124,28 +129,24 @@ double AngleDelta(const float a1, const float a2)
 
 double I_normCDF(double x)
 {
-	float fVar1;
-	float fVar2;
-	double dVar3;
-	int local_8;
+	long double v1; // st7
+	long double t; // [esp+0h] [ebp-Ch]
+	int sign; // [esp+8h] [ebp-4h]
+	long double xa; // [esp+14h] [ebp+8h]
 
-	local_8 = 1;
-	if (x < 0.0) {
-		local_8 = -1;
-	}
-	dVar3 = (double)((unsigned long long)x & 0x7fffffffffffffff) / 1.414213562373095;
-	fVar1 = (float)dVar3;
-	fVar2 = (float)1.442695040888963 * -(fVar1 * fVar1);
-	fVar1 = round(fVar2);
-	fVar2 = (powf(2, fVar2 - fVar1)) - 1;
-	fVar1 = (float)scale((float)1 + fVar2, fVar1);
-	fVar2 = (float)(1.0 / (dVar3 * 0.3275911 + 1.0));
-	return (double)(((float)1 +
-		(float)local_8 *
-		((float)1 -
-			(((((float)1.061405429 * fVar2 - (float)1.453152027) * fVar2 +
-				(float)1.421413741) * fVar2 - (float)0.284496736) * fVar2 +
-				(float)0.254829592) * fVar2 * fVar1)) * (float)0.5);
+	sign = 1;
+	if (x < 0.0)
+		sign = -1;
+	xa = x / sqrtf(2.0);
+	t = 1.0 / (xa * 0.3275911 + 1.0);
+	v1 = -(xa * xa) * 1.442695040888963387;
+	return ((1.0
+		- ((2 ^ (int)v1) - v1 + 1.0)
+		* (t
+			* ((((1.061405429 * t - 1.453152027) * t + 1.421413741) * t - 0.284496736) * t + 0.254829592)))
+		* sign
+		+ 1.0)
+		* 0.5;
 }
 
 float random(void)
@@ -1461,24 +1462,1406 @@ void AxisTransformVec3(const vec3_t* axes, const vec3_t* vec, vec3_t* out)
 	out->z = ((axes[1].z * vec->y) + (axes->z * vec->x)) + (axes[2].z * vec->z);
 }
 
-void YawToAxis(float, vec3_t* const)
+void YawToAxis(float yaw, vec3_t* axis)
 {
+	float v2;
+
+	v2 = (yaw * 0.017453292);
+	if (axis) {
+		axis->x = cosf(v2);
+		axis->v[1] = sinf(v2);
+	}
+	axis[2].x = 0;
+	axis[2].z = 1.0;
+	axis[1].x = 0.0 - sinf(v2);
+	axis[1].y = 0.0 - -cosf(v2);
+	axis[1].z = vec3_origin.z;
 }
 
-void AxisToAngles(vec3_t const* const, vec3_t&)
+void AxisToAngles(const vec3_t* axis, vec3_t* angles)
 {
+	vec3_t* v2; // edi
+	const vec3_t* v3; // esi
+	int v4; // xmm4_4
+	float v5; // xmm1_4
+	float v6; // xmm3_4
+	float v7; // xmm2_4
+	float v8; // xmm7_4
+	float v9; // xmm0_4
+	float v10; // xmm1_4
+	float v11; // xmm3_4
+	float v12; // xmm0_4
+	float v13; // xmm3_4
+	float v14; // xmm2_4
+	float v15; // xmm3_4
+	float v16; // xmm2_4
+	double v17; // st7
+	float _X; // [esp+4h] [ebp-30h]
+	float fCos; // [esp+14h] [ebp-20h]
+	float fSin; // [esp+18h] [ebp-1Ch]
+	float rad; // [esp+1Ch] [ebp-18h]
+	float v22; // [esp+20h] [ebp-14h]
+	float v23; // [esp+24h] [ebp-10h]
+	vec3_t right; // [esp+28h] [ebp-Ch]
+
+	v2 = angles;
+	v3 = axis;
+	vectoangles(axis, angles);
+	v4 = _mask__NegFloat_;
+	v5 = v3[1].x;
+	v6 = v3[1].y;
+	v7 = v3[1].z;
+	rad = -v2->y * 0.017453292;
+	v23 = fCos;
+	v22 = fSin;
+	fCos = cos(rad);
+	fSin = sin(rad);
+	v8 = v6;
+	v9 = v5;
+	v10 = (v5 * fSin) + (v6 * fCos);
+	v11 = -v2->x * 0.017453292;
+	v12 = (v9 * fCos) - (v8 * fSin);
+	right.y = v10;
+	rad = v11;
+	v22 = fCos;
+	v23 = fSin;
+	fCos = cos(v11);
+	fSin = sin(v11);
+	v13 = v7;
+	v14 = (v7 * fCos) - (v12 * fSin);
+	v15 = (v13 * fSin) + (v12 * fCos);
+	right.z = v14;
+	if (v10 != 0.0 || v15 != 0.0)
+	{
+		_X = sqrtf((v15 * v15) + (v10 * v10));
+		v17 = atan2f(right.z, _X);
+		v10 = right.y;
+		v23 = v17 * -180.0 * 0.31830987;
+		v16 = v23;
+	}
+	else if ((-v14) < 0.0)
+	{
+		v16 = -90.0;
+	}
+	else
+	{
+		v16 = 90.0;
+	}
+	if (v10 >= 0.0)
+	{
+		v2->z = -v16;
+	}
+	else if (v16 >= 0.0)
+	{
+		v2->z = v16 + -180.0;
+	}
+	else
+	{
+		v2->z = v16 + 180.0;
+	}
 }
 
-void Axis4ToAngles(vec4_t const* const, vec3_t&)
+void Axis4ToAngles(const vec4_t* axis, vec3_t* angles)
 {
+	vec3_t* v2; // edi
+	const vec4_t* v3; // esi
+	int v4; // xmm4_4
+	float v5; // xmm1_4
+	float v6; // xmm3_4
+	float v7; // xmm2_4
+	float v8; // xmm7_4
+	float v9; // xmm0_4
+	float v10; // xmm1_4
+	float v11; // xmm3_4
+	float v12; // xmm0_4
+	float v13; // xmm3_4
+	float v14; // xmm2_4
+	float v15; // xmm3_4
+	float v16; // xmm2_4
+	double v17; // st7
+	float _X; // [esp+4h] [ebp-30h]
+	float fCos; // [esp+10h] [ebp-24h]
+	float fSin; // [esp+14h] [ebp-20h]
+	float rad; // [esp+18h] [ebp-1Ch]
+	float v22; // [esp+1Ch] [ebp-18h]
+	float v23; // [esp+20h] [ebp-14h]
+	vec4_t right; // [esp+24h] [ebp-10h]
+
+	v2 = angles;
+	v3 = axis;
+	vectoangles((const vec3_t *)axis, angles);
+	v5 = v3[1].v[0];
+	v6 = v3[1].v[1];
+	v7 = v3[1].v[2];
+	rad = -v2->y * 0.017453292;
+	v23 = fCos;
+	v22 = fSin;
+	fCos = cos(rad);
+	fSin = sin(rad);
+	v8 = v6;
+	v9 = v5;
+	v10 = (v5 * fSin) + (v6 * fCos);
+	v11 = -v2->x * 0.017453292;
+	v12 = (v9 * fCos) - (v8 * fSin);
+	right.v[1] = v10;
+	rad = v11;
+	v22 = fCos;
+	v23 = fSin;
+	fCos = cos(v11);
+	fSin = sin(v11);
+	v13 = v7;
+	v14 = (v7 * fCos) - (v12 * fSin);
+	v15 = (v13 * fSin) + (v12 * fCos);
+	right.v[2] = v14;
+	if (v10 != 0.0 || v15 != 0.0)
+	{
+		_X = sqrtf((v15 * v15) + (v10 * v10));
+		v17 = atan2f(right.v[2], _X);
+		v10 = right.v[1];
+		v23 = v17 * -180.0 * 0.31830987;
+		v16 = v23;
+	}
+	else if ((-v14) < 0.0)
+	{
+		v16 = -90.0;
+	}
+	else
+	{
+		v16 = 90.0;
+	}
+	if (v10 >= 0.0)
+	{
+		v2->z = -v16;
+	}
+	else if (v16 >= 0.0)
+	{
+		v2->z = v16 + -180.0;
+	}
+	else
+	{
+		v2->z = v16 + 180.0;
+	}
 }
 
-int IntersectPlanes(float const** const, vec3_t&)
+int IntersectPlanes(const float** planein, vec3_t* xyz)
 {
+	double v2; // xmm6_8
+	const float* v3; // eax
+	double v4; // xmm3_8
+	double v5; // xmm1_8
+	double v6; // xmm5_8
+	float v7; // xmm0_4
+	const float* v8; // eax
+	double v9; // xmm2_8
+	double v10; // xmm4_8
+	double v11; // xmm0_8
+	float v13; // xmm4_4
+	float v14; // xmm2_4
+	double plane; // [esp+0h] [ebp-88h]
+	double plane_8; // [esp+8h] [ebp-80h]
+	double plane_16; // [esp+10h] [ebp-78h]
+	double plane_24; // [esp+18h] [ebp-70h]
+	double plane_56; // [esp+38h] [ebp-50h]
+	double plane_72; // [esp+48h] [ebp-40h]
+	double plane_88; // [esp+58h] [ebp-30h]
+	double determinant; // [esp+78h] [ebp-10h]
+	double v23; // [esp+80h] [ebp-8h]
+
+	plane = **planein;
+	v2 = (*planein)[1];
+	plane_16 = (*planein)[2];
+	v3 = planein[1];
+	plane_24 = (*planein)[3];
+	v4 = *v3;
+	v5 = v3[1];
+	v6 = v3[2];
+	v7 = v3[3];
+	v8 = planein[2];
+	plane_72 = v8[1];
+	plane_88 = v8[3];
+	v9 = v8[2];
+	v10 = v9 * v5 - plane_72 * v6;
+	plane_8 = (*planein)[1];
+	plane_56 = v7;
+	v23 = v6 * v2 - v5 * plane_16;
+	v11 = *v8;
+	determinant = (plane_72 * plane_16 - v9 * v2) * v4 + v10 * plane + v23 * v11;
+	if (determinant < 0.001000000047497451)
+		return 0;
+	v13 = ((plane_72 * plane_16 - v9 * v2) * plane_56 + v10 * plane_24 + v23 * plane_88) * (1.0 / determinant);
+	xyz->x = v13;
+	v14 = ((v9 * plane - v11 * plane_16) * plane_56
+		+ (v11 * v6 - v9 * v4) * plane_24
+		+ (v4 * plane_16 - v6 * plane) * plane_88)
+		* (1.0
+			/ determinant);
+	xyz->y = v14;
+	xyz->z = ((v11 * plane_8 - plane_72 * plane) * plane_56
+		+ (plane_72 * v4 - v11 * v5) * plane_24
+		+ (v5 * plane - v4 * plane_8) * plane_88)
+		* (1.0
+			/ determinant);
+	return 1;
+}
+
+int ProjectedWindingContainsCoplanarPoint(const vec3_t* verts, int vertCount, int x, int y, const vec3_t* point)
+{
+	int v5; // eax
+	float v6; // ebx
+	float i; // edi
+	int v9; // [esp+Ch] [ebp-8h]
+	int vertIndex; // [esp+10h] [ebp-4h]
+
+	vertIndex = 0;
+	if (vertCount <= 0)
+		return 1;
+	v9 = 0;
+	v5 = 4 * (3 * vertCount - 3);
+	v6 = verts->x + x;
+	for (i = verts->x + y;
+		(((*(&point->x + y) - *(&verts->x + 4 * y + v5)) * (*(&verts->x + 4 * x + v5) - v6))
+			+ ((*(&point->x + x) - *(&verts->x + 4 * x + v5)) * (i - *(&verts->x + 4 * y + v5)))) >= 0.0;
+		i += 3)
+	{
+		v5 = v9;
+		++vertIndex;
+		v9 += 12;
+		v6 += 3;
+		if (vertIndex >= vertCount)
+			return 1;
+	}
 	return 0;
 }
 
-int ProjectedWindingContainsCoplanarPoint(vec3_t const* const, int, int, int, vec3_t const&)
+int PlaneFromPoints(vec4_t* plane, const vec3_t* v0, const vec3_t* v1, const vec3_t* v2)
 {
+	float v4; // xmm0_4
+	unsigned int v5; // xmm1_4
+	unsigned int v6; // xmm2_4
+	float v7; // xmm3_4
+	float v8; // xmm0_4
+	float v9; // xmm0_4
+	float v11; // xmm1_4
+	vec3_t v1_v0; // [esp+8h] [ebp-1Ch]
+	vec3_t v2_v0; // [esp+14h] [ebp-10h]
+
+	v4 = v2->y - v0->y;
+	*&v5 = v1->x - v0->x;
+	*&v6 = v1->y - v0->y;
+	v1_v0.z = v1->z - v0->z;
+	v7 = v2->x - v0->x;
+	v2_v0.y = v4;
+	v8 = v2->z - v0->z;
+	*&v1_v0.x = __PAIR64__(v6, v5);
+	v2_v0.x = v7;
+	v2_v0.z = v8;
+	Vec3Cross(&v2_v0, &v1_v0, (vec3_t*)plane);
+	v9 = ((plane->v[0] * plane->v[0]) + (plane->v[1] * plane->v[1])) + (plane->v[2] * plane->v[2]);
+	if (v9 < 2.0)
+	{
+		if (v9 == 0.0)
+			return 0;
+		if ((((((v2_v0.y * v2_v0.y) + (v2_v0.x * v2_v0.x)) + (v2_v0.z * v2_v0.z))
+			* (((v1_v0.y * v1_v0.y) + (v1_v0.x * v1_v0.x)) + (v1_v0.z * v1_v0.z)))
+			* 0.0000010000001) >= v9)
+		{
+			v1_v0.x = v2->x - v1->x;
+			v1_v0.y = v2->y - v1->y;
+			v1_v0.z = v2->z - v1->z;
+			v2_v0.x = v0->x - v1->x;
+			v2_v0.y = v0->y - v1->y;
+			v2_v0.z = v0->z - v1->z;
+			Vec3Cross(&v2_v0, &v1_v0, (vec3_t*)plane);
+			if ((((((v2_v0.y * v2_v0.y) + (v2_v0.x * v2_v0.x)) + (v2_v0.z * v2_v0.z))
+				* (((v1_v0.y * v1_v0.y) + (v1_v0.x * v1_v0.x)) + (v1_v0.z * v1_v0.z)))
+				* 0.0000010000001) >= v9)
+				return 0;
+		}
+	}
+	v11 = sqrtf(v9);
+	plane->v[0] = (1.0 / v11) * plane->v[0];
+	plane->v[1] = plane->v[1] * (1.0 / v11);
+	plane->v[2] = plane->v[2] * (1.0 / v11);
+	plane->v[3] = ((plane->v[1] * v0->y) + (v0->x * plane->v[0])) + (plane->v[2] * v0->z);
+	return 1;
+}
+
+void ProjectPointOnPlane(const vec3_t* p, const vec3_t* normal, vec3_t* dst)
+{
+	const char* v3; // eax
+	float v4; // xmm0_4
+
+	if (sqrtf(((normal->x * normal->x) + (normal->y * normal->y)) + (normal->z * normal->z)) - 1.0 >= 0.0020000001)
+	{
+		v3 = va(
+			"(%g %g %g) len %g",
+			normal->x,
+			normal->y,
+			normal->z,
+			sqrtf(((normal->x * normal->x) + (normal->y * normal->y)) + (normal->z * normal->z)));
+		if (!Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(Vec3IsNormalized( normal ))",
+			"%s\n\t%s",
+			"Vec3IsNormalized( normal )",
+			v3))
+			__debugbreak();
+	}
+	v4 = -(((p->y * normal->y) + (normal->x * p->x)) + (p->z * normal->z));
+	dst->x = (normal->x * v4) + p->x;
+	dst->y = (v4 * normal->y) + p->y;
+	dst->z = (v4 * normal->z) + p->z;
+}
+
+void SetPlaneSignbits(cplane_s* out)
+{
+	char v1; // al
+
+	v1 = out->normal.x < 0.0;
+	if (out->normal.y < 0.0)
+		v1 |= 2u;
+	if (out->normal.z < 0.0)
+		v1 |= 4u;
+	out->signbits = v1;
+}
+
+int BoxOnPlaneSide(const vec3_t* emins, const vec3_t* emaxs, const cplane_s* p)
+{
+	float	dist1, dist2;
+	int		sides;
+
+	if (!bops_initialized) {
+		bops_initialized = true;
+		switch (p->signbits)
+		{
+		case 0:
+			dist1 = p->normal.x * emaxs->x + p->normal.y * emaxs->y + p->normal.z * emaxs->y;
+			dist2 = p->normal.x * emins->x + p->normal.y * emins->y + p->normal.z * emins->y;
+			break;
+		case 1:
+			dist1 = p->normal.x * emins->x + p->normal.y * emaxs->y + p->normal.z * emaxs->y;
+			dist2 = p->normal.x * emaxs->x + p->normal.y * emins->y + p->normal.z * emins->y;
+			break;
+		case 2:
+			dist1 = p->normal.x * emaxs->x + p->normal.y * emins->y + p->normal.z * emaxs->y;
+			dist2 = p->normal.x * emins->x + p->normal.y * emaxs->y + p->normal.z * emins->y;
+			break;
+		case 3:
+			dist1 = p->normal.x * emins->x + p->normal.y * emins->y + p->normal.z * emaxs->y;
+			dist2 = p->normal.x * emaxs->x + p->normal.y * emaxs->y + p->normal.z * emins->y;
+			break;
+		case 4:
+			dist1 = p->normal.x * emaxs->x + p->normal.y * emaxs->y + p->normal.z * emins->y;
+			dist2 = p->normal.x * emins->x + p->normal.y * emins->y + p->normal.z * emaxs->y;
+			break;
+		case 5:
+			dist1 = p->normal.x * emins->x + p->normal.y * emaxs->y + p->normal.z * emins->y;
+			dist2 = p->normal.x * emaxs->x + p->normal.y * emins->y + p->normal.z * emaxs->y;
+			break;
+		case 6:
+			dist1 = p->normal.x * emaxs->x + p->normal.y * emins->y + p->normal.z * emins->y;
+			dist2 = p->normal.x * emins->x + p->normal.y * emaxs->y + p->normal.z * emaxs->y;
+			break;
+		case 7:
+			dist1 = p->normal.x * emins->x + p->normal.y * emins->y + p->normal.z * emins->y;
+			dist2 = p->normal.x * emaxs->x + p->normal.y * emaxs->y + p->normal.z * emaxs->y;
+			break;
+		default:
+			dist1 = dist2 = 0;
+			break;
+		}
+
+	}
+
+	sides = 0;
+	if (dist1 >= p->dist)
+		sides = 1;
+	if (dist2 < p->dist)
+		sides |= 2;
+
+	return sides;
+}
+
+int IsPosInsideArc(const vec3_t* pos, const vec3_t* arcOrigin, float posRadius, float arcRadius, float arcAngle0, float arcAngle1)
+{
+	float v6; // xmm0_4
+	float v7; // xmm2_4
+	float v8; // xmm3_4
+	long double v9; // st7
+	float v10; // xmm2_4
+	float v11; // xmm0_4
+	float v13; // [esp+8h] [ebp-18h]
+	float v14; // [esp+10h] [ebp-10h]
+	vec3_t originDelta; // [esp+14h] [ebp-Ch]
+
+	v6 = pos->x - arcOrigin->x;
+	v7 = pos->z;
+	v8 = arcOrigin->z;
+	originDelta.y = pos->y - arcOrigin->y;
+	originDelta.x = v6;
+	v14 = v7;
+	originDelta.z = v7 - v8;
+	v9 = sqrtf((originDelta.y * originDelta.y) + (v6 * v6));
+	if (-v9 < 0.0)
+		v10 = v9;
+	else
+		v10 = DCONSTcg_hudSplitscreenCompassScale;
+	originDelta.x = (1.0 / v10) * originDelta.x;
+	originDelta.y = originDelta.y * (1.0 / v10);
+	v13 = v9;
+	if (((v13 - 15.0) * (v13 - 15.0)) <= (posRadius * posRadius) && (v8 - arcAngle1) <= v14 && v14 <= (v8 + arcAngle1))
+	{
+		v11 = vectoyaw((const vec2_t *)&originDelta);
+		v11 = AngleNormalize360(v11);
+		if (arcAngle0 <= arcRadius)
+		{
+			if (arcAngle0 > v11 || v11 > arcRadius)
+				return 1;
+		}
+		else if (arcAngle0 > v11 && v11 > arcRadius)
+		{
+			return 1;
+		}
+	}
 	return 0;
+}
+
+float Q_rint(float in)
+{
+	return floorf(in + 0.5f);
+}
+
+float ColorNormalize(const vec3_t* in, vec3_t* out)
+{
+	const vec3_t* v2; // ecx
+	float v3; // xmm2_4
+	float v4; // xmm0_4
+	float v5; // xmm1_4
+	double result; // st7
+	float max; // [esp+4h] [ebp+4h]
+
+	v2 = in;
+	v3 = in->x;
+	v4 = in->y;
+	max = in->x;
+	v5 = max;
+	if (v4 > max)
+	{
+		v5 = v4;
+		max = v4;
+	}
+	if (v2->z > v5)
+	{
+		v5 = v2->z;
+		max = v2->z;
+	}
+	if (v5 == 0.0)
+	{
+		result = 0.0;
+		out->z = 1.0;
+		out->y = 1.0;
+		out->x = 1.0;
+	}
+	else
+	{
+		result = max;
+		out->x = v3 * (1.0 / v5);
+		out->y = v2->y * (1.0 / v5);
+		out->z = v2->z * (1.0 / v5);
+	}
+	return result;
+}
+
+void ColorSRGBtoLinear(vec3_t const&, vec3_t&)
+{
+}
+
+float PitchForYawOnNormal(const float fYaw, const vec3_t* normal)
+{
+	long double v2; // st7
+	long double result; // st7
+	float v4; // [esp+0h] [ebp-18h]
+	float v5; // [esp+4h] [ebp-14h]
+	float v6; // [esp+8h] [ebp-10h]
+	float* v7; // [esp+Ch] [ebp-Ch]
+	float* v8; // [esp+10h] [ebp-8h]
+
+	if (normal->x == 0.0
+		&& normal->y == 0.0
+		&& normal->z == 0.0
+		&& !Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(normal[0] || normal[1] || normal[2])",
+			nullptr))
+	{
+		__debugbreak();
+	}
+	v5 = fYaw * 0.017453292;
+	v8 = &v4;
+	v7 = &v6;
+	v2 = (float)(fYaw * 0.017453292);
+	v4 = cosf(v2);
+	v6 = sinf(v2);
+	v5 = normal->z;
+	if (v5 == 0.0)
+		result = 270.0;
+	else
+		result = atan2f((normal->y * v6 + normal->x * v4) / v5, 1.0) * 180.0 * 0.31830987;
+	return result;
+}
+
+void NearestPitchAndYawOnPlane(const vec3_t* angles, const vec3_t* normal, vec3_t* result)
+{
+	vec3_t forward; // [esp+0h] [ebp-1Ch]
+	vec3_t projected; // [esp+Ch] [ebp-10h]
+
+	if (normal->x == 0.0
+		&& normal->y == 0.0
+		&& normal->z == 0.0
+		&& !Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(normal[0] || normal[1] || normal[2])",
+			nullptr))
+	{
+		__debugbreak();
+	}
+	AngleVectors(angles, &forward, 0, 0);
+	ProjectPointOnPlane(&forward, normal, &projected);
+	vectoangles(&projected, result);
+}
+
+void Rand_Init(int seed)
+{
+	holdrand_0 = seed;
+}
+
+unsigned int* GetRandSeed()
+{
+	return &holdrand_0;
+}
+
+float flrand(float min, float max)
+{
+	holdrand_0 = 214013 * holdrand_0 + 2531011;
+	return min + (max - min) * (double)(holdrand_0 >> 17) * 0.000030517578;
+}
+
+int irand(int min, int max)
+{
+	holdrand_0 = 214013 * holdrand_0 + 2531011;
+	return min + (((max - min) * (unsigned __int64)(holdrand_0 >> 17)) >> 15);
+}
+
+void AxisToQuat(const vec3_t* mat, vec4_t* out)
+{
+	float v2; // xmm5_4
+	float v3; // xmm0_4
+	float v4; // xmm4_4
+	float v5; // xmm3_4
+	float v6; // xmm2_4
+	float v7; // xmm5_4
+	float v8; // xmm0_4
+	float v9; // xmm0_4
+	float v10; // xmm1_4
+	float v11; // xmm7_4
+	float v12; // xmm4_4
+	float v13; // xmm1_4
+	float v14; // xmm3_4
+	float v15; // xmm6_4
+	float v16; // xmm3_4
+	float v17; // xmm0_4
+	int v18; // esi
+	unsigned int v19; // xmm7_4
+	float v20; // xmm4_4
+	unsigned int v21; // xmm3_4
+	float v22; // xmm7_4
+	float v23; // xmm3_4
+	float v24; // xmm0_4
+	float v25; // xmm3_4
+	float v26; // xmm2_4
+	float v27; // xmm1_4
+	vec4_t* v28; // eax
+	float testSizeSq; // [esp+10h] [ebp-70h]
+	float v30; // [esp+14h] [ebp-6Ch]
+	float v31; // [esp+18h] [ebp-68h]
+	float v32; // [esp+1Ch] [ebp-64h]
+	float v33; // [esp+20h] [ebp-60h]
+	float v34; // [esp+24h] [ebp-5Ch]
+	float v35; // [esp+28h] [ebp-58h]
+	float v36; // [esp+30h] [ebp-50h]
+	float v37; // [esp+34h] [ebp-4Ch]
+	float v38; // [esp+38h] [ebp-48h]
+	vec4_t test[4]; // [esp+3Ch] [ebp-44h]
+
+	v2 = mat[1].z;
+	v3 = mat[2].y;
+	v4 = mat->y;
+	v5 = mat->x;
+	v6 = mat[1].y;
+	v33 = v3;
+	v31 = v2;
+	v7 = v2 - v3;
+	v8 = mat[2].x;
+	v38 = v8;
+	v9 = v8 - mat->z;
+	v35 = mat->z;
+	v10 = mat[1].x;
+	v11 = v9 * v9;
+	test[0].v[1] = v9;
+	v32 = v5;
+	v34 = v4;
+	v12 = v4 - v10;
+	v36 = v10;
+	v30 = mat[2].z;
+	v13 = 1.0;
+	v14 = ((v5 + v6) + mat[2].z) + 1.0;
+	test[0].v[3] = v14;
+	v15 = v12 * v12;
+	v16 = v14 * v14;
+	v17 = (((v7 * v7) + (v9 * v9)) + (v12 * v12)) + v16;
+	test[0].v[0] = v7;
+	test[0].v[2] = v12;
+	v37 = v11;
+	testSizeSq = (((v7 * v7) + v11) + (v12 * v12)) + v16;
+	if (v17 < 1.0)
+	{
+		v19 = v33 + v31;
+		test[1].v[0] = v35 + v38;
+		test[1].v[3] = v12;
+		v20 = (v35 + v38) * (v35 + v38);
+		v21 = ((v30 - v6) - v32) + 1.0;
+		test[1].g = __PAIR64__(v21, v19);
+		v22 = *&v19 * *&v19;
+		v23 = *&v21 * *&v21;
+		v17 = ((v20 + v22) + v23) + v15;
+		testSizeSq = ((v20 + v22) + v23) + v15;
+		if (v17 < 1.0)
+		{
+			v24 = ((v32 - v6) - v30) + 1.0;
+			test[2].v[0] = v24;
+			test[2].b = __PAIR64__(LODWORD(v7), LODWORD(test[1].v[0]));
+			v25 = (v36 + v34) * (v36 + v34);
+			v17 = (((v24 * v24) + v25) + v20) + (v7 * v7);
+			test[2].v[1] = v36 + v34;
+			testSizeSq = v17;
+			if (v17 < 1.0)
+			{
+				test[3].v[3] = test[0].v[1];
+				v26 = ((v6 - v32) - v30) + 1.0;
+				v17 = (((v26 * v26) + v25) + v22) + v37;
+				test[3].v[0] = v36 + v34;
+				test[3].g = __PAIR64__(LODWORD(test[1].v[1]), LODWORD(v26));
+				testSizeSq = (((v26 * v26) + v25) + v22) + v37;
+				if (v17 < 1.0)
+				{
+					if (!Assert_MyHandler(
+						__FILE__,
+						__LINE__,
+						0,
+						"((testSizeSq >= 1.0f))",
+						"(testSizeSq) = %g",
+						v26))
+						__debugbreak();
+					v13 = 1.0;
+					v17 = (((v26 * v26) + v25) + v22) + v37;
+				}
+				v18 = 3;
+			}
+			else
+			{
+				v18 = 2;
+			}
+		}
+		else
+		{
+			v18 = 1;
+		}
+	}
+	else
+	{
+		v18 = 0;
+	}
+	if (v17 == 0.0)
+	{
+		if (!Assert_MyHandler(__FILE__, __LINE__, 0, "(testSizeSq)", nullptr))
+			__debugbreak();
+		v13 = 1.0;
+		v17 = testSizeSq;
+	}
+	v27 = v13 / sqrtf(v17);
+	v28 = &test[v18];
+	out->v[0] = v28->v[0] * v27;
+	out->v[1] = v28->v[1] * v27;
+	out->v[2] = v28->v[2] * v27;
+	out->v[3] = v28->v[3] * v27;
+}
+
+void QuatLerp(const vec4_t* qa, const vec4_t* qb, float frac, vec4_t* out)
+{
+	float v4; // xmm0_4
+	float v5; // xmm2_4
+	float v6; // xmm2_4
+
+	v4 = qb->v[0];
+	if (((((qb->v[1] * qa->v[1]) + (qa->v[0] * qb->v[0])) + (qa->v[2] * qb->v[2])) + (qa->v[3] * qb->v[3])) < 0.0)
+	{
+		out->v[0] = -v4;
+		v6 = out->v[0];
+		out->v[1] = -qb->v[1];
+		out->v[2] = -qb->v[2];
+		out->v[3] = -qb->v[3];
+		out->v[0] = ((v6 - qa->v[0]) * frac) + qa->v[0];
+		out->v[1] = ((out->v[1] - qa->v[1]) * frac) + qa->v[1];
+		out->v[2] = ((out->v[2] - qa->v[2]) * frac) + qa->v[2];
+		v5 = ((out->v[3] - qa->v[3]) * frac) + qa->v[3];
+	}
+	else
+	{
+		out->v[0] = ((v4 - qa->v[0]) * frac) + qa->v[0];
+		out->v[1] = ((qb->v[1] - qa->v[1]) * frac) + qa->v[1];
+		out->v[2] = ((qb->v[2] - qa->v[2]) * frac) + qa->v[2];
+		v5 = ((qb->v[3] - qa->v[3]) * frac) + qa->v[3];
+	}
+	out->v[3] = v5;
+}
+
+bool CullBoxFromCone(const vec3_t* coneOrg, const vec3_t* coneDir, float cosHalfFov, const vec3_t* boxCenter, const vec3_t* boxHalfSize)
+{
+	float v5; // xmm0_4
+	float v6; // xmm4_4
+	float v7; // xmm5_4
+	float v8; // xmm1_4
+	float v9; // xmm5_4
+	float v10; // xmm2_4
+	float v11; // xmm7_4
+	float v12; // xmm2_4
+	float v13; // xmm6_4
+	float v14; // xmm5_4
+	bool result; // al
+	float v16; // xmm0_4
+	float v17; // xmm1_4
+	float v18; // xmm2_4
+	float v19; // xmm4_4
+	float v20; // xmm5_4
+	float v21; // xmm4_4
+	float v22; // [esp+0h] [ebp-2Ch]
+	float v23; // [esp+14h] [ebp-18h]
+	float v24; // [esp+18h] [ebp-14h]
+
+	if (cosHalfFov < 0.0
+		&& !Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(cosHalfFov >= 0.0f)",
+			nullptr))
+	{
+		__debugbreak();
+	}
+	v5 = coneDir->x;
+	v6 = -1.0;
+	if (coneDir->x < 0.0)
+		v7 = -1.0;
+	else
+		v7 = 1.0;
+	v8 = (boxCenter->x - coneOrg->x) - (boxHalfSize->x * v7);
+	v22 = coneDir->y;
+	if (coneDir->y < 0.0)
+		v9 = -1.0;
+	else
+		v9 = 1.0;
+	v10 = boxHalfSize->y;
+	v23 = v10;
+	v11 = (boxCenter->y - coneOrg->y) - (v10 * v9);
+	v12 = coneDir->z;
+	if (v12 >= 0.0)
+		v6 = 1.0;
+	v13 = (boxCenter->z - coneOrg->z) - (boxHalfSize->z * v6);
+	v14 = ((v22 * v11) + (v5 * v8)) + (v12 * v13);
+	result = 1;
+	if (v14 < 0.0)
+	{
+		v16 = (v5 * -v14) + v8;
+		v17 = (v22 * -v14) + v11;
+		v18 = (v12 * -v14) + v13;
+		v19 = ((v17 * v17) + (v16 * v16)) + (v18 * v18);
+		v24 = v14 * v14;
+		v20 = 1.0 - (cosHalfFov * cosHalfFov);
+		if ((v24 * v20) >= ((cosHalfFov * cosHalfFov) * v19)
+			|| (v21 = cosHalfFov / sqrtf(v20 * v19),
+				((((((((v16 * v21) + coneDir->x) * (boxCenter->x - coneOrg->x))
+					+ (((v17 * v21) + v22) * (boxCenter->y - coneOrg->y)))
+					+ (((v18 * v21) + coneDir->z) * (boxCenter->z - coneOrg->z)))
+					- boxHalfSize->x * ((v16 * v21) + coneDir->x))
+					- v23 * ((v17 * v21) + v22))
+					- boxHalfSize->z * ((v18 * v21) + coneDir->z)) < 0.0))
+		{
+			result = 0;
+		}
+	}
+	return result;
+}
+
+bool CullBoxFromSphere(const vec3_t* sphereOrg, float radius, const vec3_t* boxCenter, const vec3_t* boxHalfSize)
+{
+	float v4; // xmm3_4
+	float v5; // xmm2_4
+	float v6; // xmm0_4
+
+	if ((sphereOrg->x - boxCenter->x - boxHalfSize->x) < 0.0)
+		v4 = 0.0;
+	else
+		v4 = sphereOrg->x - boxCenter->x - boxHalfSize->x;
+	if ((sphereOrg->y - boxCenter->y - boxHalfSize->y) < 0.0)
+		v5 = 0.0;
+	else
+		v5 = sphereOrg->y - boxCenter->y - boxHalfSize->y;
+	v6 = sphereOrg->z - boxCenter->z - boxHalfSize->z;
+	if (v6 < 0.0)
+		v6 = 0.0;
+	return (((v4 * v4) + (v5 * v5)) + (v6 * v6)) > (radius * radius);
+}
+
+bool CullBoxFromConicSectionOfSphere(const vec3_t* coneOrg, const vec3_t* coneDir, float cosHalfFov, float radius, const vec3_t* boxCenter, const vec3_t* boxHalfSize)
+{
+	float v6; // xmm1_4
+	float v7; // xmm2_4
+	float v8; // xmm7_4
+	float v9; // xmm3_4
+	float v10; // xmm5_4
+	bool result; // al
+	float v12; // xmm0_4
+	float v13; // xmm5_4
+	float v14; // xmm3_4
+	float v15; // xmm5_4
+	float v16; // xmm1_4
+	float v17; // xmm6_4
+	float v18; // xmm3_4
+	float v19; // xmm3_4
+	float v20; // xmm6_4
+	float v21; // xmm2_4
+	float v22; // xmm5_4
+	float v23; // xmm0_4
+	float v24; // xmm1_4
+	float v25; // xmm2_4
+	float v26; // xmm4_4
+	float v27; // xmm5_4
+	float v28; // xmm4_4
+	float influenceRadiusa; // [esp+Ch] [ebp-38h]
+	float influenceRadius; // [esp+Ch] [ebp-38h]
+	float v31; // [esp+10h] [ebp-34h]
+	float sinHalfFovSq; // [esp+14h] [ebp-30h]
+	float v33; // [esp+1Ch] [ebp-28h]
+	float v34; // [esp+20h] [ebp-24h]
+	float distFromBoxToMid; // [esp+28h] [ebp-1Ch]
+	float deltaMid; // [esp+34h] [ebp-10h]
+	float deltaMid_4; // [esp+38h] [ebp-Ch]
+	float deltaMid_8; // [esp+3Ch] [ebp-8h]
+
+	if (cosHalfFov < 0.0
+		&& !Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(cosHalfFov >= 0.0f)",
+			nullptr))
+	{
+		__debugbreak();
+	}
+	v6 = boxCenter->x - coneOrg->x;
+	v7 = boxCenter->y - coneOrg->y;
+	deltaMid = boxCenter->x - coneOrg->x;
+	deltaMid_4 = boxCenter->y - coneOrg->y;
+	deltaMid_8 = boxCenter->z - coneOrg->z;
+	if ((v6 - boxHalfSize->x) < 0.0)
+		distFromBoxToMid = 0.0;
+	else
+		distFromBoxToMid = v6 - boxHalfSize->x;
+	if ((v7 - boxHalfSize->y) < 0.0)
+		v8 = 0.0;
+	else
+		v8 = v7 - boxHalfSize->y;
+	v9 = boxCenter->z - coneOrg->z - boxHalfSize->z;
+	if (v9 < 0.0)
+		v9 = 0.0;
+	v10 = radius;
+	if (cosHalfFov > 0.000001)
+	{
+		influenceRadiusa = ceil((radius / cosHalfFov));
+		v10 = influenceRadiusa;
+		v6 = deltaMid;
+		v7 = deltaMid_4;
+	}
+	if ((((v8 * v8) + (distFromBoxToMid * distFromBoxToMid)) + (v9 * v9)) > (v10 * v10))
+		goto LABEL_30;
+	v31 = coneDir->x;
+	v12 = -1.0;
+	v13 = coneDir->x < 0.0 ? -1.0 : 1.0;
+	v14 = boxHalfSize->x * v13;
+	v15 = coneDir->y;
+	v16 = v6 - v14;
+	influenceRadius = coneDir->y;
+	v17 = v15 < 0.0 ? -1.0 : 1.0;
+	v18 = boxHalfSize->y;
+	v33 = v18;
+	v19 = v18 * v17;
+	v20 = coneDir->z;
+	v21 = v7 - v19;
+	if (v20 >= 0.0)
+		v12 = 1.0;
+	sinHalfFovSq = boxHalfSize->z * v12;
+	v22 = ((v15 * v21) + (v31 * v16)) + (v20 * (deltaMid_8 - sinHalfFovSq));
+	if (v22 >= 0.0
+		|| (v23 = (v31 * -v22) + v16,
+			v24 = (influenceRadius * -v22) + v21,
+			v25 = (v20 * -v22) + (deltaMid_8 - sinHalfFovSq),
+			v26 = ((v24 * v24) + (v23 * v23)) + (v25 * v25),
+			v34 = v22 * v22,
+			v27 = 1.0 - (cosHalfFov * cosHalfFov),
+			(v34 * v27) < ((cosHalfFov * cosHalfFov) * v26))
+		&& (v28 = cosHalfFov / sqrtf(v27 * v26),
+			((((((((v23 * v28) + v31) * deltaMid) + (((v24 * v28) + influenceRadius) * deltaMid_4))
+				+ (((v25 * v28) + coneDir->z) * deltaMid_8))
+				- boxHalfSize->x * ((v23 * v28) + v31))
+				- v33 * ((v24 * v28) + influenceRadius))
+				- boxHalfSize->z * ((v25 * v28) + coneDir->z)) >= 0.0))
+	{
+	LABEL_30:
+		result = 1;
+	}
+	else
+	{
+		result = 0;
+	}
+	return result;
+}
+
+bool CullSphereFromCone(const vec3_t* coneOrg, const vec3_t* coneDir, float cosHalfFov, const vec3_t* sphereCenter, float radius)
+{
+	float v5; // xmm5_4
+	float v6; // xmm6_4
+	float v7; // xmm7_4
+	float v8; // xmm1_4
+	bool result; // al
+	float v10; // xmm0_4
+
+	if (cosHalfFov < 0.0
+		&& !Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(cosHalfFov >= 0.0f)",
+			nullptr))
+	{
+		__debugbreak();
+	}
+	v5 = sphereCenter->x - coneOrg->x;
+	v6 = sphereCenter->y - coneOrg->y;
+	v7 = sphereCenter->z - coneOrg->z;
+	v8 = ((coneDir->y * v6) + (coneDir->x * v5)) + (coneDir->z * v7);
+	result = 1;
+	if (v8 < radius)
+	{
+		v10 = sqrtf(1.0 - (cosHalfFov * cosHalfFov));
+		if (((((((coneDir->y * -v8) + v6)
+			* ((coneDir->y * -v8) + v6))
+			+ (((coneDir->x * -v8) + v5)
+				* ((coneDir->x * -v8) + v5)))
+			+ (((coneDir->z * -v8) + v7)
+				* ((coneDir->z * -v8) + v7)))
+			* (cosHalfFov * cosHalfFov)) < (((v10 * v8) - radius) * ((v10 * v8) - radius)))
+			result = 0;
+	}
+	return result;
+}
+
+void colorTempToXYZ(float colorTemp, vec4_t* finalVec)
+{
+}
+
+void colorTempMatrix(vec4_t* const, float)
+{
+}
+
+void colorHueMatrix(vec4_t* const, float)
+{
+}
+
+void colorSaturationMatrix(vec4_t* finalMatrix, float saturation)
+{
+	float v2; // xmm1_4
+	unsigned int v3; // xmm0_4
+	float v4; // xmm2_4
+
+	v2 = (1.0 - saturation) * 0.25;
+	v3 = (1.0 - saturation) * 0.5;
+	v4 = (1.0 - saturation) * 0.25;
+	finalMatrix->v[0] = v2 + saturation;
+	finalMatrix->v[1] = v4;
+	finalMatrix->v[2] = v4;
+	finalMatrix[2].v[0] = v2;
+	finalMatrix[2].v[1] = v2;
+	finalMatrix->v[3] = 0.0;
+	finalMatrix[1].v[0] = *&v3;
+	finalMatrix[1].v[1] = *&v3 + saturation;
+	*&finalMatrix[1].b = v3;
+	finalMatrix[2].v[2] = v2 + saturation;
+	*finalMatrix[3].v = 0i64;
+	finalMatrix[3].v[2] = 0.0;
+	finalMatrix[3].v[3] = 1.0;
+}
+
+float I_fnormPDF(float x)
+{
+	double v1; // st7
+
+	v1 = x * x * -0.5 * 1.442695040888963387;
+	return ((2 ^ (int)v1) - v1 + 1.0) * 0.3989422804014327;
+}
+
+float I_fnormCDF(float x)
+{
+	return I_normCDF(x);
+}
+
+void RotatePointAroundVector(vec3_t* dst, const vec3_t* dir, const vec3_t* point, const float degrees)
+{
+	float v4; // xmm1_4
+	float v5; // xmm2_4
+	float v6; // xmm0_4
+	const char* v7; // eax
+	float v8; // xmm2_4
+	unsigned int v9; // xmm3_4
+	int v10; // eax
+	float v11; // xmm1_4
+	float v12; // xmm4_4
+	float v13; // xmm0_4
+	float v14; // xmm2_4
+	float v15; // xmm4_4
+	float v16; // xmm0_4
+	float v17; // xmm5_4
+	float v18; // xmm1_4
+	float v19; // xmm2_4
+	float v20; // xmm6_4
+	float v21; // xmm3_4
+	float v22; // xmm4_4
+	float v23; // xmm0_4
+	float v24; // xmm5_4
+	float v25; // xmm2_4
+	float rad; // [esp+2Ch] [ebp-9Ch]
+	vec3_t vup; // [esp+34h] [ebp-94h]
+	vec3_t vf; // [esp+40h] [ebp-88h]
+	vec3_t vr; // [esp+4Ch] [ebp-7Ch]
+	vec3_t m[3]; // [esp+58h] [ebp-70h]
+	vec3_t tmpmat[3]; // [esp+7Ch] [ebp-4Ch]
+	vec3_t rot[3]; // [esp+A0h] [ebp-28h]
+
+	if (dir->x == 0.0
+		&& dir->y == 0.0
+		&& dir->z == 0.0
+		&& !Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(dir[0] || dir[1] || dir[2])",
+			nullptr))
+	{
+		__debugbreak();
+	}
+	v4 = dir->y;
+	v5 = dir->z;
+	vf.x = dir->x;
+	vf.z = v5;
+	v6 = 1.0;
+	if (sqrtf(((v4 * v4) + (vf.x * vf.x)) + (v5 * v5)) - 1.0 >= 0.0020000001)
+	{
+		v7 = va(
+			"(%g %g %g) len %g",
+			dir->x,
+			dir->y,
+			dir->z,
+			sqrtf(((dir->x * dir->x) + (dir->y * dir->y)) + (dir->z * dir->z)));
+		if (!Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(Vec3IsNormalized( src ))",
+			"%s\n\t%s",
+			"Vec3IsNormalized( src )",
+			v7))
+			__debugbreak();
+		v6 = 1.0;
+	}
+	v8 = dir->y * dir->y;
+	v9 = dir->z * dir->z;
+	vup.x = dir->x * dir->x;
+	vup.v[1] = __PAIR64__(v9, v8);
+	v10 = vup.x > v8;
+	if (*(&vup.x + v10) > * &v9)
+		v10 = 2;
+	v11 = -(dir->x + v10);
+	vr.x = dir->x * v11;
+	vr.y = dir->y * v11;
+	vr.z = dir->z * v11;
+	*(&vr.x + v10) = *(&vr.x + v10) + v6;
+	v12 = sqrtf(((vr.y * vr.y) + (vr.x * vr.x)) + (vr.z * vr.z));
+	if (-v12 >= 0.0)
+		v12 = v6;
+	v13 = v6 / v12;
+	vr.x = vr.x * v13;
+	vr.y = vr.y * v13;
+	vr.z = vr.z * v13;
+	Vec3Cross(&vr, &vf, &vup);
+	m[0].x = vr.x;
+	m[1].y = vup.y;
+	m[2].z = vf.z;
+	rot[0].v[2] = 0;
+	rot[2].x = 0;
+	rot[2].z = 1.0;
+	rot[1].v[1] = 1.0;
+	rot[0].x = 1.0;
+	rad = degrees * 0.017453292;
+	if ((COERCE_UNSIGNED_INT(degrees * 0.017453292) & 0x7F800000) == 2139095040
+		&& !Assert_MyHandler("c:\\t6\\code\\src_noserver\\universal\\com_math.cpp", 908, 0, "(!IS_NAN(rad))", nullptr))
+	{
+		__debugbreak();
+	}
+	rot[0].x = cosf(rad);
+	rot[0].y = sinf(rad);
+	if ((LODWORD(rot[0].y) & 0x7F800000) == 2139095040
+		&& !Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(!IS_NAN(zrot[0][1]))",
+			nullptr))
+	{
+		__debugbreak();
+	}
+	v14 = rot[0].x;
+	if ((LODWORD(rot[0].x) & 0x7F800000) == 2139095040)
+	{
+		if (!Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(!IS_NAN(zrot[0][0]))",
+			nullptr))
+			__debugbreak();
+		v14 = rot[0].x;
+	}
+	v15 = ((-rot[0].y * vup.x) + (v14 * vr.x)) + (rot[2].x * vf.x);
+	v16 = ((v14 * vup.x) + (rot[0].y * vr.x)) + (rot[2].y * vf.x);
+	v17 = ((rot[1].z * vup.x) + (rot[0].z * vr.x)) + (rot[2].z * vf.x);
+	tmpmat[1].x = ((-rot[0].y * vup.y) + (v14 * vr.y)) + (rot[2].x * vf.y);
+	v18 = ((v14 * vup.y) + (rot[0].y * vr.y)) + (rot[2].y * vf.y);
+	tmpmat[2].x = ((-rot[0].y * vup.z) + (v14 * vr.z)) + (rot[2].x * vf.z);
+	v19 = ((v14 * vup.z) + (rot[0].y * vr.z)) + (rot[2].y * vf.z);
+	tmpmat[1].z = ((rot[1].z * vup.y) + (rot[0].z * vr.y)) + (rot[2].z * vf.y);
+	tmpmat[2].z = ((rot[1].z * vup.z) + (rot[0].z * vr.z)) + (rot[2].z * vf.z);
+	rot[0].x = ((v16 * vup.x) + (v15 * m[0].x)) + (v17 * vf.x);
+	rot[0].z = ((v16 * vup.z) + (v15 * vr.z)) + (v17 * m[2].z);
+	v20 = (((v16 * m[1].y) + (v15 * vr.y)) + (v17 * vf.y)) * point->y;
+	v21 = ((v18 * vup.x) + (tmpmat[1].x * m[0].x)) + (tmpmat[1].z * vf.x);
+	rot[1].z = ((v18 * vup.z) + (tmpmat[1].x * vr.z)) + (tmpmat[1].z * m[2].z);
+	v22 = ((v18 * m[1].y) + (tmpmat[1].x * vr.y)) + (tmpmat[1].z * vf.y);
+	v23 = ((v19 * vup.x) + (tmpmat[2].x * m[0].x)) + (tmpmat[2].z * vf.x);
+	v24 = ((v19 * m[1].y) + (tmpmat[2].x * vr.y)) + (tmpmat[2].z * vf.y);
+	v25 = ((v19 * vup.z) + (tmpmat[2].x * vr.z)) + (tmpmat[2].z * m[2].z);
+	dst->x = (v20 + (rot[0].x * point->x)) + (rot[0].z * point->z);
+	dst->y = ((v22 * point->y) + (v21 * point->x)) + (rot[1].z * point->z);
+	dst->z = ((v24 * point->y) + (v23 * point->x)) + (v25 * point->z);
+}
+
+void Vec3Basis_RightHanded(const vec3_t* forward, vec3_t* left, vec3_t* up)
+{
+	float v3; // xmm3_4
+	const char* v4; // eax
+	float v5; // xmm1_4
+	float v6; // xmm2_4
+	int v7; // eax
+	float v8; // xmm0_4
+	float v9; // xmm0_4
+	float v10; // xmm3_4
+	float v11; // [esp+2Ch] [ebp-10h]
+	float v12; // [esp+30h] [ebp-Ch]
+	float v13; // [esp+34h] [ebp-8h]
+
+	v3 = 1.0;
+	if (sqrtf(
+		((forward->x * forward->x) + (forward->y * forward->y))
+		+ (forward->z * forward->z)) - 1.0 >= 0.0020000001)
+	{
+		v4 = va(
+			"(%g %g %g) len %g",
+			forward->x,
+			forward->y,
+			forward->z,
+			sqrtf(((forward->x * forward->x) + (forward->y * forward->y)) + (forward->z * forward->z)));
+		if (!Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(Vec3IsNormalized( src ))",
+			"%s\n\t%s",
+			"Vec3IsNormalized( src )",
+			v4))
+			__debugbreak();
+		v3 = 1.0;
+	}
+	v5 = forward->y * forward->y;
+	v6 = forward->z * forward->z;
+	v11 = forward->x * forward->x;
+	v12 = v5;
+	v13 = v6;
+	v7 = v11 > v5;
+	if (*(&v11 + v7) > v6)
+		v7 = 2;
+	v8 = -(forward->x + v7);
+	up->x = forward->x * v8;
+	up->y = v8 * forward->y;
+	up->z = v8 * forward->z;
+	*(&up->x + v7) = *(&up->x + v7) + v3;
+	v9 = sqrtf(((up->x * up->x) + (up->y * up->y)) + (up->z * up->z));
+	if (-v9 >= 0.0)
+		v9 = v3;
+	v10 = v3 / v9;
+	up->x = up->x * v10;
+	up->y = up->y * v10;
+	up->z = up->z * v10;
+	Vec3Cross(up, forward, left);
+}
+
+void UnitQuatToAngles(const vec4_t* quat, vec3_t* angles)
+{
+	vec3_t axis[3]; // [esp+4h] [ebp-28h]
+
+	UnitQuatToAxis(quat, axis);
+	AxisToAngles(axis, angles);
+}
+
+float RadiusFromBounds(const vec3_t* mins, const vec3_t* maxs)
+{
+	float v2; // xmm0_4
+	float v3; // xmm0_4
+	float v5; // [esp+0h] [ebp-14h]
+	float v6; // [esp+4h] [ebp-10h]
+
+	v2 = mins->x;
+	if (v2 <= maxs->x)
+		v2 = maxs->x;
+	v6 = v2;
+	v3 = mins->y;
+	if (v3 <= maxs->y)
+		v3 = maxs->y;
+	if (mins->z <= maxs->z)
+		v5 = maxs->z;
+	else
+		v5 = mins->z;
+	return sqrtf(v5 * v5 + v3 * v3 + v6 * v6);
+}
+
+float RadiusFromBounds2D(const vec2_t* mins, const vec2_t* maxs)
+{
+	float v2; // xmm0_4
+	float v4; // [esp+0h] [ebp-10h]
+
+	v2 = mins->v[0];
+	if (v2 <= maxs->v[0])
+		v2 =maxs->v[0];
+	if (mins->v[1] <= maxs->v[1])
+		v4 = maxs->v[1];
+	else
+		v4 =mins->v[1];
+	return sqrtf(v4 * v4 + v2 * v2);
+}
+
+void SnapPointToIntersectingPlanes(const float** planes, vec3_t* xyz, float snapGrid, float snapEpsilon)
+{
+	float v4; // xmm3_4
+	vec3_t* v5; // eax
+	int v6; // edx
+	int v7; // esi
+	float v8; // xmm0_4
+	const float* v9; // eax
+	float v10; // xmm2_4
+	float v11; // xmm4_4
+	float v12; // xmm5_4
+	const float* v13; // eax
+	const float* v14; // eax
+	float v15; // xmm6_4
+	vec3_t snapped; // [esp+10h] [ebp-10h]
+
+	v4 = snapEpsilon;
+	v5 = xyz;
+	v6 = &snapped - xyz;
+	v7 = 3;
+	do
+	{
+		v8 = (((1.0 / snapGrid) * v5->x) + 9.313225746154785e-10) * snapGrid;
+		if (snapEpsilon <= (v8 - v5->x))
+			*(&v5->x + v6) = v5->x;
+		else
+			*(&v5->x + v6) = v8;
+		v5 = (v5 + 4);
+		--v7;
+	} while (v7);
+	if (snapped.x != xyz->x || snapped.y != xyz->y || snapped.z != xyz->z)
+	{
+		v10 = 0.0;
+		if (
+			((((*planes)[1] * snapped.y) + (**planes * snapped.x)) + ((*planes)[2] * snapped.z))
+			- (*planes)[3] > 0.0)
+			v10 = ((((*planes)[1] * snapped.y) + (**planes * snapped.x)) + ((*planes)[2] * snapped.z)) - (*planes)[3];
+		v11 = xyz->y;
+		v12 = xyz->x;
+		v9 = *planes;
+		if ((((v9[1] * v11) + (*v9 * xyz->x)) + (v9[2] * xyz->z)) - v9[3] > snapEpsilon)
+			v4 = (((v9[1] * v11) + (*v9 * xyz->x)) + (v9[2] * xyz->z)) - v9[3];
+		v13 = planes[1];
+		if ((((v13[1] * snapped.y) + (*v13 * snapped.x)) + (v13[2] * snapped.z)) - v13[3] > v10)
+			v10 = (((v13[1] * snapped.y) + (*v13 * snapped.x)) + (v13[2] * snapped.z)) - v13[3];
+		if ((((v13[1] * v11) + (*v13 * v12)) + (v13[2] * xyz->z)) - v13[3] > v4)
+			v4 = (((v13[1] * v11) + (*v13 * v12)) + (v13[2] * xyz->z)) - v13[3];
+		v14 = planes[2];
+		v15 = snapped.z;
+		if ((((v14[1] * snapped.y) + (*v14 * snapped.x)) + (v14[2] * snapped.z)) - v14[3] > v10)
+			v10 = (((v14[1] * snapped.y) + (*v14 * snapped.x)) + (v14[2] * snapped.z)) - v14[3];
+		if ((((v14[1] * v11) + (*v14 * v12)) + (v14[2] * xyz->z)) - v14[3] > v4)
+			v4 = (((v14[1] * v11) + (*v14 * v12)) + (v14[2] * xyz->z)) - v14[3];
+		if (v4 > v10)
+		{
+			*&xyz->x = *&snapped.x;
+			xyz->z = v15;
+		}
+	}
+}
+
+void MatrixSet44(vec4_t* out, const vec3_t* origin, const vec3_t* axis, float scale)
+{
+	double v4; // st7
+
+	out->v[0] = axis->x * scale;
+	out->v[1] = axis->y * scale;
+	out->v[2] = axis->z * scale;
+	out->v[3] = 0.0;
+	out[1].v[0] = axis[1].x * scale;
+	out[1].v[1] = axis[1].y * scale;
+	out[1].v[2] = axis[1].z * scale;
+	out[1].v[3] = 0.0;
+	out[2].v[0] = axis[2].x * scale;
+	out[2].v[1] = axis[2].y * scale;
+	out[2].v[2] = axis[2].z * scale;
+	out[2].v[3] = 0.0;
+	out[3].v[0] = origin->x;
+	out[3].v[1] = origin->y;
+	v4 = origin->z;
+	out[3].v[3] = 1.0;
+	out[3].v[2] = v4;
 }

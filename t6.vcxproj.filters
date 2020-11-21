@@ -504,6 +504,9 @@
     <ClCompile Include="source\universal\com_math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\universal\com_math_anglevectors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\win32\win_main.h">
@@ -1005,6 +1008,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\universal\com_math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\universal\com_math_anglevectors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\universal\com_vector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -82,6 +82,8 @@ inline vec4_t operator *(const vec4_t vec1, const vec4_t vec2) {
 	return out;
 }
 
+bool bops_initialized;
+
 double AngleDelta(const float a1, const float a2);
 double I_normCDF(double);
 float random(void);
@@ -110,11 +112,6 @@ float PointToLineSegmentDistSq2D(union vec2_t const*, union vec2_t const*, union
 float PointToLineSegmentDistSq(union vec3_t const&, union vec3_t const&, union vec3_t const&);
 int BoxInPlanes(union vec4_t const*, unsigned int, union vec3_t const*, union vec3_t const*);
 int SphereInPlanes(const vec4_t*, unsigned int, const vec3_t*, const float);
-
-// ----------------------------------------
-// Matrix manipulation
-// ----------------------------------------
-
 void MatrixIdentity33(union vec3_t*);
 void MatrixIdentity44(union vec4_t*);
 void MatrixMultiply(const vec3_t*, const vec3_t*, vec3_t*);
@@ -131,7 +128,6 @@ void MatrixTransformVector44(union vec4_t const&, union vec4_t const* const, uni
 void MatrixTransformVector43(union vec3_t const&, union vec3_t const* const, union vec3_t&);
 void MatrixTransposeTransformVector43(union vec3_t const&, union vec3_t const* const, union vec3_t&);
 void MatrixTransformVector43Equals(union vec3_t&, union vec3_t const* const);
-
 void VectorAngleMultiply(union vec2_t&, float);
 void UnitQuatToAxis(const vec4_t*, vec3_t*);
 void UnitQuatToForward(const vec4_t*, vec3_t*);
@@ -159,41 +155,41 @@ void AxisClear(vec3_t*);
 void AxisCopy(const vec3_t*, vec3_t*);
 void AxisTranspose(const vec3_t*, vec3_t*);
 void AxisTransformVec3(const vec3_t*, const vec3_t*, vec3_t*);
-void YawToAxis(float, union vec3_t* const);
-void AxisToAngles(union vec3_t const* const, union vec3_t&);
-void Axis4ToAngles(union vec4_t const* const, union vec3_t&);
-int IntersectPlanes(float const** const, union vec3_t&);
-int ProjectedWindingContainsCoplanarPoint(union vec3_t const* const, int, int, int, union vec3_t const&);
-int PlaneFromPoints(union vec4_t&, union vec3_t const&, union vec3_t const&, union vec3_t const&);
-void ProjectPointOnPlane(union vec3_t const&, union vec3_t const&, union vec3_t&);
+void YawToAxis(float yaw, vec3_t* axis);
+void AxisToAngles(const vec3_t*, vec3_t*);
+void Axis4ToAngles(const vec4_t*, vec3_t*);
+int IntersectPlanes(const float**, vec3_t*);
+int ProjectedWindingContainsCoplanarPoint(const vec3_t*, int, int, int, const vec3_t*);
+int PlaneFromPoints(vec4_t*, const vec3_t*, const vec3_t*, const vec3_t*);
+void ProjectPointOnPlane(const vec3_t*, const vec3_t*, vec3_t*);
 void SetPlaneSignbits(struct cplane_s*);
-int BoxOnPlaneSide(union vec3_t const&, union vec3_t const&, struct cplane_s const*);
-int IsPosInsideArc(union vec3_t const&, float, union vec3_t const&, float, float, float, float);
+int BoxOnPlaneSide(const vec3_t*, const vec3_t*, const cplane_s*);
+int IsPosInsideArc(const vec3_t* pos, const vec3_t* arcOrigin, float posRadius, float arcRadius, float arcAngle0, float arcAngle1);
 float Q_rint(float);
-float ColorNormalize(union vec3_t const&, union vec3_t&);
+float ColorNormalize(const vec3_t*, vec3_t*);
 void ColorSRGBtoLinear(union vec3_t const&, union vec3_t&);
-float PitchForYawOnNormal(float, union vec3_t const&);
-void NearestPitchAndYawOnPlane(union vec3_t const&, union vec3_t const&, union vec3_t&);
+float PitchForYawOnNormal(const float, const vec3_t*);
+void NearestPitchAndYawOnPlane(const vec3_t*, const vec3_t*, vec3_t*);
 void Rand_Init(int);
-unsigned int* GetRandSeed(void);
+unsigned int* GetRandSeed();
 float flrand(float, float);
 int irand(int, int);
-void AxisToQuat(union vec3_t const* const, union vec4_t&);
-void QuatLerp(union vec4_t const&, union vec4_t const&, float, union vec4_t&);
-bool CullBoxFromCone(union vec3_t const&, union vec3_t const&, float, union vec3_t const&, union vec3_t const&);
-bool CullBoxFromSphere(union vec3_t const&, float, union vec3_t const&, union vec3_t const&);
-bool CullBoxFromConicSectionOfSphere(union vec3_t const&, union vec3_t const&, float, float, union vec3_t const&, union vec3_t const&);
-bool CullSphereFromCone(union vec3_t const&, union vec3_t const&, float, union vec3_t const&, float);
-void colorTempToXYZ(float, union vec4_t&);
+void AxisToQuat(const vec3_t*, vec4_t*);
+void QuatLerp(const vec4_t*, const vec4_t*, float, vec4_t*);
+bool CullBoxFromCone(const vec3_t*, const vec3_t*, float, const vec3_t*, const vec3_t*);
+bool CullBoxFromSphere(const vec3_t*, float, const vec3_t*, const vec3_t*);
+bool CullBoxFromConicSectionOfSphere(const vec3_t*, const vec3_t*, float, float, const vec3_t*, const vec3_t*);
+bool CullSphereFromCone(const vec3_t*, const vec3_t*, float, const vec3_t*, float);
+void colorTempToXYZ(float, vec4_t*);
 void colorTempMatrix(union vec4_t* const, float);
 void colorHueMatrix(union vec4_t* const, float);
-void colorSaturationMatrix(union vec4_t* const, float);
+void colorSaturationMatrix(vec4_t*, float);
 float I_fnormPDF(float);
 float I_fnormCDF(float);
-void RotatePointAroundVector(union vec3_t&, union vec3_t const&, union vec3_t const&, float);
-void Vec3Basis_RightHanded(union vec3_t const&, union vec3_t&, union vec3_t&);
-void UnitQuatToAngles(union vec4_t const&, union vec3_t&);
-float RadiusFromBounds(union vec3_t const&, union vec3_t const&);
-float RadiusFromBounds2D(union vec2_t const&, union vec2_t const&);
-void SnapPointToIntersectingPlanes(float const** const, union vec3_t&, float, float);
-void MatrixSet44(union vec4_t* const, union vec3_t const&, union vec3_t const* const, float);
+void RotatePointAroundVector(vec3_t*, const vec3_t*, const vec3_t*, const float);
+void Vec3Basis_RightHanded(const vec4_t*, vec3_t*);
+void UnitQuatToAngles(const vec4_t*, vec3_t*);
+float RadiusFromBounds(const vec3_t*, const vec3_t*);
+float RadiusFromBounds2D(const vec2_t*, const vec2_t*);
+void SnapPointToIntersectingPlanes(const float**, vec3_t*, float, float);
+void MatrixSet44(vec4_t*, const vec3_t*, const vec3_t*, float);

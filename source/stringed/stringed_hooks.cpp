@@ -7,7 +7,7 @@ void SEH_UpdateCurrentLanguage()
     int v0; // eax
 
     if (!loc_language
-        && !Assert_MyHandler("c:\\t6\\code\\src_noserver\\stringed\\stringed_hooks.cpp", 121, 0, "(loc_language)", nullptr))
+        && !Assert_MyHandler(__FILE__, __LINE__, 0, "(loc_language)", nullptr))
     {
         __debugbreak();
     }

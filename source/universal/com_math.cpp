@@ -7,7 +7,6 @@
 
 #include <defs.h>
 
-vec3_t vec3_origin = { 0,0,0 };
 vec3_t axisDefault[3] = { { 1, 0, 0 }, { 0, 1, 0 }, { 0, 0, 1 } };
 
 vec3_t bytedirs[NUMVERTEXNORMALS] =

@@ -510,6 +510,9 @@
     <ClCompile Include="source\gfx_d3d\r_font.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\universal\memfile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\win32\win_main.h">
@@ -1020,6 +1023,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\gfx_d3d\r_font.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\universal\memfile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,611 +1,203 @@
 #include "dvar.h"
 
-#include <emmintrin.h>
-
-#include "../qcommon/cmd.h"
-#include "com_memory.h"
-#include "assertive.h"
-
-void Dvar_AddCommands()
-{
-	Cmd_AddCommandInternal("toggle", (void(__cdecl*)())dvar::Dvar_Toggle_f, &Dvar_Toggle_f_VAR);
-	Cmd_AddCommandInternal("togglep", (void(__cdecl*)())dvar::Dvar_TogglePrint_f, &Dvar_TogglePrint_f_VAR);
-	Cmd_AddCommandInternal("set", (void(__cdecl*)())dvar::Dvar_Set_f, &Dvar_Set_f_VAR);
-	Cmd_AddCommandInternal("seta", (void(__cdecl*)())dvar::Dvar_SetA_f, &Dvar_SetA_f_VAR);
-	Cmd_AddCommandInternal("setdvartotime", (void(__cdecl*)())Dvar_SetToTime_f, &Dvar_SetToTime_f_VAR);
-	Cmd_AddCommandInternal("reset", (void(__cdecl*)())dvar::Dvar_Reset_f, &Dvar_Reset_f_VAR);
-	Cmd_AddCommandInternal("dvarlist", (void(__cdecl*)())dvar::Dvar_List_f, &Dvar_List_f_VAR);
-	Cmd_AddCommandInternal("dvardump", Dvar_Dump_f, &Dvar_Dump_f_VAR);
-	Cmd_AddCommandInternal("dvar_bool", (void(__cdecl*)())dvar::Dvar_RegisterBool_f, &Dvar_RegisterBool_f_VAR);
-	Cmd_AddCommandInternal("dvar_int", (void(__cdecl*)())dvar::Dvar_RegisterInt_f, &Dvar_RegisterInt_f_VAR);
-	Cmd_AddCommandInternal("dvar_float", (void(__cdecl*)())dvar::Dvar_RegisterFloat_f, &Dvar_RegisterFloat_f_VAR);
-	Cmd_AddCommandInternal("dvar_color", Dvar_RegisterColor_f, &Dvar_RegisterColor_f_VAR);
-	Cmd_AddCommandInternal("dvarAddConfigFlag", Dvar_AddConfigFlag_f, &Dvar_AddConfigFlag_f_VAR);
-	Cmd_AddCommandInternal("restoreDvars", (void(__cdecl*)())BG_EvalVehicleName, &Dvar_RestoreDvars_VAR);
-}
-
-void Dvar_AddConfigFlag_f()
-{
-	const char* v0; // eax
-	dvar_t* v1; // eax
-
-	if (Cmd_Argc() == 2)
-	{
-		v0 = Cmd_Argv(1);
-		v1 = Dvar_FindVar((const char*)v0);
-		if (v1)
-		{
-			Dvar_AddFlags(v1, 0x20000);
-		}
-#ifdef _DEBUG
-		else if (!(unsigned char)Assert_MyHandler(
-			__FILE__,
-			__LINE__,
-			0,
-			"(dvar)",
-			(const char*)&scratch))
-		{
-			__debugbreak();
-		}
-#endif // _DEBUG
-	}
-}
-
-void Dvar_AddFlags(const dvar_t* dvar, int flags)
-{
-}
-
-char Dvar_CanSetConfigDvar(const dvar_t* dvar)
-{
-	return 0;
-}
-
-void Dvar_ChangeResetValue(const dvar_t* dvar, DvarValue value)
-{
-}
-
-void Dvar_ClearModified(const dvar_t* dvar)
-{
-}
-
-dvar_t* Dvar_Command()
-{
-	return nullptr;
-}
-
-const char* Dvar_DisplayableLatchedValue(const dvar_t* dvar)
-{
-	return nullptr;
-}
-
-const char* Dvar_DisplayableResetValue(const dvar_t* dvar)
-{
-	return nullptr;
-}
-
-const char* Dvar_DisplayableValue(const dvar_t* dvar)
-{
-	return nullptr;
-}
-
-void Dvar_DoModifiedCallbacks()
-{
-}
-
-const char* Dvar_DomainToString_GetLines(dvarType_t type, DvarLimits domain, char* outBuffer, int outBufferLen, int* outLineCount)
-{
-	return nullptr;
-}
-
-void Dvar_Dump_f()
-{
-}
-
-GfxViewParms* Dvar_EnumToString(const dvar_t* dvar)
-{
-	return nullptr;
-}
-
-dvar_t* Dvar_FindVar(int dvarHash)
-{
-	return nullptr;
-}
-
-dvar_t* Dvar_FindVar(const char* dvarName)
-{
-	return nullptr;
-}
-
-void Dvar_ForEach(void(__cdecl* callback)(const dvar_t*, void*), void* userData)
-{
-}
-
-void Dvar_ForEachName(LocalClientNum_t localClientNum, void(__cdecl* callback)(LocalClientNum_t, const char*))
-{
-}
-
-void Dvar_ForEachName(void(__cdecl* callback)(const char*))
-{
-}
-
-bool Dvar_GetBool(const dvar_t* dvar)
-{
-	return false;
-}
-
-void Dvar_GetColor(const dvar_t* dvar, char* color)
-{
-}
-
-double Dvar_GetColorAlpha(const dvar_t* dvar)
-{
-	return 0.0;
-}
-
-double Dvar_GetColorAlpha(int dvarHash)
-{
-	return 0.0;
-}
-
-double Dvar_GetColorBlue(const dvar_t* dvar)
-{
-	return 0.0;
-}
-
-double Dvar_GetColorBlue(int dvarHash)
-{
-	return 0.0;
-}
-
-double Dvar_GetColorGreen(const dvar_t* dvar)
-{
-	return 0.0;
-}
-
-double Dvar_GetColorGreen(int dvarHash)
-{
-	return 0.0;
-}
-
-double Dvar_GetColorRed(const dvar_t* dvar)
-{
-	return 0.0;
-}
-
-double Dvar_GetColorRed(int dvarHash)
-{
-	return 0.0;
-}
-
-DvarValue* Dvar_GetCurrent(DvarValue* result, const dvar_t* dvar)
-{
-	return nullptr;
-}
-
-const char* Dvar_GetDescription(const dvar_t* dvar)
-{
-	return nullptr;
-}
-
-DvarLimits* Dvar_GetDomain(DvarLimits* result, const dvar_t* dvar)
-{
-	return nullptr;
-}
-
-int Dvar_GetDomainEnumStringCount(const dvar_t* dvar)
-{
-	return 0;
-}
-
-const char** Dvar_GetDomainEnumStrings(const char** result)
-{
-	return nullptr;
-}
-
-double Dvar_GetDomainFloatMax(const dvar_t* dvar)
-{
-	return 0.0;
-}
-
-double Dvar_GetDomainFloatMin(const dvar_t* dvar)
-{
-	return 0.0;
-}
-
-long long Dvar_GetDomainInt64Max(const dvar_t* dvar)
-{
-	return 0;
-}
-
-long long Dvar_GetDomainInt64Min(const dvar_t* dvar)
-{
-	return 0;
-}
-
-int Dvar_GetDomainIntMax(const dvar_t* dvar)
-{
-	return 0;
-}
-
-int Dvar_GetDomainIntMin(const dvar_t* dvar)
-{
-	return 0;
-}
-
-double Dvar_GetDomainVecMax(const dvar_t* dvar)
-{
-	return 0.0;
-}
-
-double Dvar_GetDomainVecMin(const dvar_t* dvar)
-{
-	return 0.0;
-}
-
-const dvar_t* Dvar_GetFlags(const dvar_t* dvar)
-{
-	return nullptr;
-}
-
-double Dvar_GetFloat(const dvar_t* dvar)
-{
-	return 0.0;
-}
-
-double Dvar_GetFloat(int dvarHash)
-{
-	return 0.0;
-}
-
-int Dvar_GetInt(const dvar_t* dvar)
-{
-	return 0;
-}
-
-int Dvar_GetInt(int dvarHash)
-{
-	return 0;
-}
-
-long long Dvar_GetInt64(const dvar_t* dvar)
-{
-	return 0;
-}
-
-long long Dvar_GetInt64(int dvarHash)
-{
-	return 0;
-}
-
-bool Dvar_GetLatchedBool(const dvar_t* dvar)
-{
-	return false;
-}
-
-void Dvar_GetLatchedColor(const dvar_t* dvar, char* color)
-{
-}
-
-double Dvar_GetLatchedFloat(const dvar_t* dvar)
-{
-	return 0.0;
-}
-
-int Dvar_GetLatchedInt(const dvar_t* dvar)
-{
-	return 0;
-}
-
-void Dvar_GetLatchedVec2(const dvar_t* dvar, vec2_t* result)
-{
-}
-
-void Dvar_GetLatchedVec3(const dvar_t* dvar, vec3_t* result)
-{
-}
-
-void Dvar_GetLatchedVec4(const dvar_t* dvar, vec4_t* result)
-{
-}
-
-bool Dvar_GetModified(const dvar_t* dvar)
-{
-	return false;
-}
-
-const char* Dvar_GetName(const dvar_t* dvar)
-{
-	return nullptr;
-}
-
-int Dvar_GetResetInt(const dvar_t* dvar)
-{
-	return 0;
-}
-
-const char* Dvar_GetResetString(const dvar_t* dvar)
-{
-	return nullptr;
-}
-
-void Dvar_GetResetVec3(const dvar_t* dvar, vec3_t* result)
-{
-}
-
-const char* Dvar_GetString(const dvar_t* dvar)
-{
-	return nullptr;
-}
-
-dvarType_t Dvar_GetType(const dvar_t* dvar)
-{
-	return dvarType_t();
-}
-
-void Dvar_GetUnpackedColor(const dvar_t* dvar, vec4_t* expandedColor)
-{
-}
-
-const dvar_t* Dvar_GetUnsignedInt(const dvar_t* dvar)
-{
-	return nullptr;
-}
-
-const char* Dvar_GetVariantString(const dvar_t* dvar)
-{
-	return nullptr;
-}
-
-const char* Dvar_GetVariantString(int dvarHash)
-{
-	return nullptr;
-}
-
-void Dvar_GetVec2(const dvar_t* dvar, vec2_t* result)
-{
-}
-
-void Dvar_GetVec3(const dvar_t* dvar, vec3_t* result)
-{
-}
-
-void Dvar_GetVec4(const dvar_t* dvar, vec4_t* result)
-{
-}
-
-bool Dvar_HasLatchedValue(const dvar_t* dvar)
-{
-	return false;
-}
-
-GfxViewParms* Dvar_IndexStringToEnumString(const dvar_t* dvar, const char* indexString)
-{
-	return nullptr;
-}
-
-char* Dvar_InfoString(LocalClientNum_t localClientNum, int bit)
-{
-	return nullptr;
-}
-
-void Dvar_InfoStringSingle(const dvar_t* dvar, void* userData)
-{
-}
-
-void Dvar_InfoStringSingle_Big(const dvar_t* dvar, void* userData)
-{
-}
-
-char* Dvar_InfoString_Big(int bit)
-{
-	return nullptr;
+#include <devgui/devgui.h>
+#include <qcommon/common.h>
+#include <universal/assertive.h>
+#include <universal/com_math.h>
+#include <universal/com_memory.h>
+#include <win32/win_net.h>
+
+void Dvar_SetInAutoExec(bool inAutoExec)
+{
+	s_isLoadingAutoExecGlobalFlag = inAutoExec;
 }
 
 bool Dvar_IsSystemActive()
 {
+	return s_isDvarSystemActive;
+}
+
+bool Dvar_IsValidName(const char* dvarName)
+{
+	const char* v1; // esi
+	char v3; // bl
+
+	v1 = dvarName;
+	if (!dvarName)
+		return false;
+	if (!*dvarName)
+		return true;
+	while (1)
+	{
+		v3 = *v1;
+		if (!isalnum(*v1) && v3 != 95)
+			break;
+		if (!*++v1)
+			return true;
+	}
 	return false;
 }
 
-char Dvar_IsValidName(const char* dvarName)
+void Dvar_CopyString(const char* string, DvarValue* value)
 {
-	return 0;
+	if (!string && !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", nullptr))
+		__debugbreak();
+	value->integer = (int)CopyString(string);
 }
 
-void Dvar_ListSingle(const dvar_t* dvar, void* userData)
+void Dvar_WeakCopyString(const char* string, DvarValue* value)
 {
-}
-
-void Dvar_MakeLatchedValueCurrent(const dvar_t* dvar)
-{
-}
-
-void Dvar_RegisterColor_f()
-{
-}
-
-void Dvar_Reset(const dvar_t* dvar, DvarSetSource setSource)
-{
-}
-
-void Dvar_ResetDvars(unsigned int filter, DvarSetSource setSource)
-{
-}
-
-void Dvar_SetBool(const dvar_t* dvar, bool value)
-{
-}
-
-void Dvar_SetBoolFromSource(const dvar_t* dvar, bool value, DvarSetSource source)
-{
-}
-
-void Dvar_SetBoolIfChanged(const dvar_t* dvar, bool value)
-{
-}
-
-void Dvar_SetCanSetConfigDvars(bool canSetConfigDvars)
-{
-}
-
-void Dvar_SetCheatState()
-{
-}
-
-void Dvar_SetColor(const dvar_t* dvar, float r, float g, float b, float a)
-{
-}
-
-void Dvar_SetColorFromSource(const dvar_t* dvar, float r, float g, float b, float a, DvarSetSource source)
-{
-}
-
-void Dvar_SetCommand(const char* dvarName, const char* string)
-{
-}
-
-void Dvar_SetFloat(const dvar_t* dvar, float value)
-{
-}
-
-void Dvar_SetFloatFromSource(const dvar_t* dvar, float value, DvarSetSource source)
-{
-}
-
-void Dvar_SetFloatIfChanged(const dvar_t* dvar, float value)
-{
-}
-
-void Dvar_SetFromString(const dvar_t* dvar, const char* string)
-{
-}
-
-void Dvar_SetFromStringByName(const char* dvarName, const char* string)
-{
-}
-
-const dvar_t* Dvar_SetFromStringByNameFromSource(const char* dvarName, const char* string, DvarSetSource source, unsigned int flags)
-{
-	return nullptr;
-}
-
-void Dvar_SetFromStringFromSource(const dvar_t* dvar, const char* string, DvarSetSource source)
-{
-}
-
-void Dvar_SetInAutoExec(bool inAutoExec)
-{
-}
-
-void Dvar_SetInt(const dvar_t* dvar, int value)
-{
-}
-
-void Dvar_SetInt64FromSource(const dvar_t* dvar, long long value, DvarSetSource source)
-{
-}
-
-void Dvar_SetIntFromSource(const dvar_t* dvar, int value, DvarSetSource source)
-{
-}
-
-void Dvar_SetIntIfChanged(const dvar_t* dvar, int value)
-{
-}
-
-void Dvar_SetLatchedValue(DvarValue value)
-{
-}
-
-void Dvar_SetModified(const dvar_t* dvar)
-{
-}
-
-void Dvar_SetModifiedCallback(const dvar_t* dvar, void(__cdecl* callback)(const dvar_t*))
-{
-}
-
-const dvar_t* Dvar_SetOrRegisterString(const dvar_t* dvar, const char* dvarName, const char* value)
-{
-	return nullptr;
-}
-
-void Dvar_SetString(const dvar_t* dvar, const char* value)
-{
-}
-
-void Dvar_SetStringIfChanged(const dvar_t* dvar, const char* newString)
-{
-}
-
-void Dvar_SetVec2(const dvar_t* dvar, float x, float y)
-{
-}
-
-void Dvar_SetVec2FromSource(const dvar_t* dvar, float x, float y, DvarSetSource source)
-{
-}
-
-void Dvar_SetVec3(const dvar_t* dvar, float x, float y, float z)
-{
-}
-
-void Dvar_SetVec3FromSource(const dvar_t* dvar, float x, float y, float z, DvarSetSource source)
-{
-}
-
-void Dvar_SetVec4(const dvar_t* dvar, float x, float y, float z, float w)
-{
-}
-
-void Dvar_SetVec4FromSource(const dvar_t* dvar, float x, float y, float z, float w, DvarSetSource source)
-{
-}
-
-void Dvar_SetVec4FromVec4(const dvar_t* dvar, vec4_t* vecin)
-{
+	if (!string && !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", nullptr))
+		__debugbreak();
+	value->integer = (int)string;
 }
 
 bool Dvar_ShouldFreeCurrentString(dvar_t* dvar)
 {
-	return false;
+	return dvar->current.integer && dvar->current.integer != dvar->latched.integer && dvar->current.integer != dvar->reset.integer;
 }
 
 bool Dvar_ShouldFreeLatchedString(dvar_t* dvar)
 {
-	return false;
+	return dvar->latched.integer && dvar->latched.integer != dvar->current.integer && dvar->latched.integer != dvar->reset.integer;
 }
 
 bool Dvar_ShouldFreeResetString(dvar_t* dvar)
 {
-	return false;
+	return dvar->reset.integer && dvar->reset.integer != dvar->current.integer && dvar->reset.integer != dvar->latched.integer;
 }
 
-void Dvar_Shutdown()
+void Dvar_FreeString(DvarValue* value)
 {
+	FreeString(value->string);
+	value->integer = 0;
 }
 
-void Dvar_Sort()
+void Dvar_AssignCurrentStringValue(dvar_t* dvar, DvarValue* dest, const char* string)
 {
+	const char* v3; // esi
+	const char* v4; // esi
+
+	if (!string
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", nullptr))
+	{
+		__debugbreak();
+	}
+	v3 = dvar->latched.string;
+	if (v3 && (string == v3 || !strcmp(string, dvar->latched.string)))
+	{
+		dest->integer = (int)v3;
+	}
+	else
+	{
+		v4 = dvar->reset.string;
+		if (v4 && (string == v4 || !strcmp(string, dvar->reset.string)))
+		{
+			dest->integer = (int)v4;
+		}
+		else
+		{
+			if (!string
+				&& !Assert_MyHandler(
+					__FILE__,
+					__LINE__,
+					0,
+					"(string)",
+					nullptr))
+			{
+				__debugbreak();
+			}
+			dest->integer = (int)CopyString(string);
+		}
+	}
 }
 
-void Dvar_UpdateEnumDomain(const dvar_t* dvar, const char** stringTable)
+void Dvar_AssignLatchedStringValue(dvar_t* dvar, DvarValue* dest, const char* string)
 {
-	char* v2; // eax
-	int v3; // esi
-	int v4; // eax
-	char* v5; // eax
-	dvarType_t v6; // ecx
-	DvarLimits v7; // ST20_16
-	DvarValue v8; // ST10_16
-	DvarValue v9; // ST00_16
-	DvarValue* v10; // eax
-	__m128i v11; // xmm0
-	__m128i v12; // xmm1
-	char v13; // [esp+Ch] [ebp-10h]
+	const char* v3; // esi
+	const char* v4; // esi
 
-#ifdef _DEBUG
+	if (!string
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", nullptr))
+	{
+		__debugbreak();
+	}
+	v3 = dvar->current.string;
+	if (v3 && (string == v3 || !strcmp(string, dvar->current.string)))
+	{
+		dest->integer = (int)v3;
+	}
+	else
+	{
+		v4 = dvar->reset.string;
+		if (v4 && (string == v4 || !strcmp(string, dvar->reset.string)))
+		{
+			dest->integer = (int)v4;
+		}
+		else
+		{
+			if (!string
+				&& !Assert_MyHandler(
+					__FILE__,
+					__LINE__,
+					0,
+					"(string)",
+					nullptr))
+			{
+				__debugbreak();
+			}
+			dest->integer = (int)CopyString(string);
+		}
+	}
+}
+
+void Dvar_AssignResetStringValue(dvar_t* dvar, DvarValue* dest, const char* string)
+{
+	const char* v3; // esi
+	const char* v4; // esi
+
+	if (!string
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", nullptr))
+	{
+		__debugbreak();
+	}
+	v3 = dvar->current.string;
+	if (v3 && (string == v3 || !strcmp(string, dvar->current.string)))
+	{
+		dest->integer = (int)v3;
+	}
+	else
+	{
+		v4 = dvar->latched.string;
+		if (v4 && (string == v4 || !strcmp(string, dvar->latched.string)))
+		{
+			dest->integer = (int)v4;
+		}
+		else
+		{
+			if (!string
+				&& !Assert_MyHandler(
+					__FILE__,
+					__LINE__,
+					0,
+					"(string)",
+					nullptr))
+			{
+				__debugbreak();
+			}
+			dest->integer = (int)CopyString(string);
+		}
+	}
+}
+
+char* Dvar_EnumToString(const dvar_t* dvar)
+{
+	int v1; // eax
+	bool v2; // zf
+	char* result; // eax
+
 	if (!dvar
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", (const char*)&scratch))
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", nullptr))
 	{
 		__debugbreak();
 	}
@@ -615,208 +207,457 @@ void Dvar_UpdateEnumDomain(const dvar_t* dvar, const char** stringTable)
 			__LINE__,
 			0,
 			"(dvar->name)",
-			(const char*)&scratch))
+			nullptr))
 	{
 		__debugbreak();
 	}
-	if (!stringTable
+	if (dvar->type != 7
 		&& !Assert_MyHandler(
 			__FILE__,
 			__LINE__,
 			0,
-			"((stringTable))",
+			"((dvar->type == DVAR_TYPE_ENUM))",
 			"(dvar->name) = %s",
 			dvar->name))
 	{
 		__debugbreak();
 	}
-	if (dvar->type != 7)
-	{
-		v2 = va("dvar %s type %i", dvar->name, dvar->type);
-		if (!Assert_MyHandler(
+	if (!dvar->domain.integer.max
+		&& !Assert_MyHandler(
 			__FILE__,
 			__LINE__,
 			0,
-			"(dvar->type == DVAR_TYPE_ENUM)",
-			"%s",
-			v2))
-			__debugbreak();
-	}
-#endif // _DEBUG
-	v3 = 0;
-	if (*stringTable)
+			"((dvar->domain.enumeration.strings))",
+			"(dvar->name) = %s",
+			dvar->name))
 	{
-		do
-			++v3;
-		while (stringTable[v3]);
+		__debugbreak();
 	}
-	v4 = dvar->reset.integer;
-	if (v4 < 0 || v4 >= v3 && v4)
+	v1 = dvar->current.integer;
+	v2 = v1 == 0;
+	if (v1 >= 0)
 	{
-		v5 = va("name %s reset %i count %i", dvar->name, v4, v3);
-#ifdef _DEBUG
-		if (!Assert_MyHandler(
+		if (v1 < dvar->domain.enumeration.stringCount)
+			goto LABEL_19;
+		v2 = v1 == 0;
+	}
+	if (!v2
+		&& !Assert_MyHandler(
 			__FILE__,
 			__LINE__,
 			0,
-			"(dvar->reset.integer >= 0 && (dvar->reset.integer < stringCount || dvar->reset.integer == 0))",
-			"%s",
-			v5))
+			"((dvar->current.integer >= 0 && dvar->current.integer < dvar->domain.enumeration.stringCount || dvar->current.integer == 0))",
+			"(dvar->current.integer) = %i",
+			dvar->current.integer))
+	{
+		__debugbreak();
+	}
+LABEL_19:
+	if (dvar->domain.enumeration.stringCount)
+		result = *(char**)(dvar->domain.integer.max + 4 * dvar->current.integer);
+	else
+		result = (char*)nullptr;
+	return result;
+}
+
+char* Dvar_IndexStringToEnumString(const dvar_t* dvar, const char* indexString)
+{
+	int v3; // edi
+	int v4; // esi
+	int v5; // eax
+
+	if (!dvar
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", nullptr))
+	{
+		__debugbreak();
+	}
+	if (!dvar->name
+		&& !Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(dvar->name)",
+			nullptr))
+	{
+		__debugbreak();
+	}
+	if (dvar->type != 7
+		&& !Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"((dvar->type == DVAR_TYPE_ENUM))",
+			"(dvar->name) = %s",
+			dvar->name))
+	{
+		__debugbreak();
+	}
+	if (!dvar->domain.integer.max
+		&& !Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"((dvar->domain.enumeration.strings))",
+			"(dvar->name) = %s",
+			dvar->name))
+	{
+		__debugbreak();
+	}
+	if (!indexString
+		&& !Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"((indexString))",
+			"(dvar->name) = %s",
+			dvar->name))
+	{
+		__debugbreak();
+	}
+	if (!dvar->domain.enumeration.stringCount)
+		return (char*)nullptr;
+	v3 = strlen(indexString);
+	v4 = 0;
+	if (v3 <= 0)
+	{
+		v5 = atoi(indexString);
+		if (v5 >= 0 && v5 < dvar->domain.enumeration.stringCount)
+			return *(char**)(dvar->domain.integer.max + 4 * v5);
+	}
+	else
+	{
+		while (isdigit(indexString[v4]))
+		{
+			if (++v4 >= v3) {
+				v5 = atoi(indexString);
+				if (v5 >= 0 && v5 < dvar->domain.enumeration.stringCount)
+					return *(char**)(dvar->domain.integer.max + 4 * v5);
+			}
+		}
+	}
+	return nullptr;
+}
+
+char* Dvar_ValueToString(const dvar_t* dvar, DvarValue value)
+{
+	dvarType_t v2; // eax
+	char* result; // eax
+	bool v4; // zf
+	const char* v5; // eax
+
+	v2 = dvar->type;
+	switch (v2)
+	{
+	case 1:
+		result = (char*)"1";
+		if (!value.enabled)
+			result = (char*)"0";
+		return result;
+	case 2:
+		return va("%g", value.value);
+	case 3:
+		return va("%g %g", value.value, value.vector.v[1]);
+	case 4:
+	case 11:
+	case 12:
+		return va("%g %g %g", value.value, value.vector.v[1], value.vector.v[2]);
+	case 5:
+		return va("%g %g %g %g", value.value, value.vector.v[1], value.vector.v[2], value.vector.v[3]);
+	case 6:
+		return va("%i", value.integer);
+	case 7:
+		v4 = value.integer == 0;
+		if (value.integer < 0)
+			goto LABEL_15;
+		if (value.integer >= dvar->domain.enumeration.stringCount)
+		{
+			v4 = value.integer == 0;
+		LABEL_15:
+			if (!v4
+				&& !Assert_MyHandler(
+					__FILE__,
+					__LINE__,
+					0,
+					"((value.integer >= 0 && value.integer < dvar->domain.enumeration.stringCount || value.integer == 0))",
+					"(value.integer) = %i",
+					value.integer))
+			{
+				__debugbreak();
+			}
+		}
+		if (!dvar->domain.enumeration.stringCount)
+			return nullptr;
+		return *(char**)(dvar->domain.integer.max + 4 * value.integer);
+	case 8:
+		if (!value.integer
+			&& !Assert_MyHandler(
+				__FILE__,
+				__LINE__,
+				0,
+				"((value.string))",
+				"(dvar->name) = %s",
+				dvar->name))
+		{
 			__debugbreak();
-#endif // _DEBUG
-	}
-	v6 = dvar->type;
-	dvar->domain.enumeration.stringCount = v3;
-	dvar->domain.integer.max = (int)stringTable;
-	v7.integer64.min = dvar->domain.integer64.min;
-	v7.integer64.max = dvar->domain.integer64.max;
-	v8.integer64 = dvar->reset.integer64;
-	*((unsigned long long*) & v8.string + 1) = *((unsigned long long*) & dvar->reset.string + 1);
-	v9.integer64 = dvar->current.integer64;
-	*((unsigned long long*) & v9.string + 1) = *((unsigned long long*) & dvar->current.string + 1);
-	v10 = dvar::Dvar_ClampValueToDomain(v6, (int)&v13, v9, v8, v7);
-	v11 = _mm_loadl_epi64((const __m128i*)v10);
-	v12 = _mm_loadl_epi64((const __m128i*)(&v10->string + 2));
-	_mm_storel_epi64((__m128i*) & dvar->current, v11);
-	_mm_storel_epi64((__m128i*) & dvar->latched, v11);
-	_mm_storel_epi64((__m128i*)(&dvar->current.string + 2), v12);
-	_mm_storel_epi64((__m128i*)(&dvar->latched.string + 2), v12);
-}
-
-void Dvar_UpdateResetValue(DvarValue value)
-{
-	dvar_t* dvar; // ecx
-	dvar_t* v2; // edi
-	const char* v3; // edx
-	bool v4; // bl
-	const char* oldString; // [esp+0h] [ebp-24h]
-	DvarValue resetString; // [esp+10h] [ebp-14h]
-
-	v2 = dvar;
-	resetString = value;
-#ifdef _DEBUG
-	if (!dvar
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", (const char*)&scratch))
-	{
-		__debugbreak();
-	}
-#endif // _DEBUG
-	switch (v2->type)
-	{
-	case 3:
-		v2->reset.integer64 = resetString.integer64;
-		break;
-	case 4:
-	case 0xB:
-	case 0xC:
-		v2->reset.integer64 = resetString.integer64;
-		v2->reset.vector.v[2] = resetString.vector.v[2];
-		break;
-	case 5:
-		v2->reset.integer64 = resetString.integer64;
-		*((unsigned long long*) & v2->reset.string + 1) = *((unsigned long long*) & resetString.string + 1);
-		break;
-	case 6:
-	case 7:
-	case 9:
-	case 0xA:
-		_mm_storel_epi64((__m128i*) & v2->reset, _mm_loadl_epi64((const __m128i*) & resetString));
-		_mm_storel_epi64((__m128i*)(&v2->reset.string + 2), _mm_loadl_epi64((const __m128i*)(&resetString.string + 2)));
-		break;
-	case 8:
-		if (v2->reset.integer != resetString.integer)
-		{
-			v4 = Dvar_ShouldFreeResetString(v2);
-			if (v4)
-				oldString = v3;
-			dvar::Dvar_AssignResetStringValue(v2, &resetString, resetString.string);
-			v2->reset.integer = resetString.integer;
-			if (v4)
-				FreeString(oldString, 12);
 		}
-		break;
+		return va("%s", value.string);
+	case 9:
+		return va(
+			"%g %g %g %g",
+			(value.enabled * 0.0039215689),
+			(value.color[1] * 0.0039215689),
+			(value.color[2] * 0.0039215689),
+			(value.color[3] * 0.0039215689));
+	case 10:
+		return va("%lli", value.integer64);
+	default:
+		v5 = va("unhandled dvar type '%i'", v2);
+		if (!Assert_MyHandler(__FILE__, __LINE__, 1, nullptr, v5))
+			__debugbreak();
+		return nullptr;
 	}
 }
 
-void Dvar_UpdateValue(dvar_t* dvar, DvarValue value)
+bool Dvar_StringToBool(const char* string)
 {
-	const char* v2; // edx
-	const char* v3; // esi
-	long long v4; // kr00_8
-	int v5; // xmm0_4
-	long long v6; // kr08_8
-	int v7; // xmm0_4
-	long long v8; // kr10_8
-	float v9; // xmm3_4
-	__m128i v10; // xmm0
-	__m128i v11; // xmm1
-	const char* oldString; // [esp+0h] [ebp-28h]
-	bool shouldFree; // [esp+13h] [ebp-15h]
-	DvarValue currentString; // [esp+14h] [ebp-14h]
-
-	currentString = value;
-	if (!dvar
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", (const char*)&scratch))
+	if (!string
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", nullptr))
 	{
 		__debugbreak();
 	}
-	switch (dvar->type)
+	return atoi(string) != 0;
+}
+
+int Dvar_StringToInt(const char* string)
+{
+	if (!string
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", nullptr))
 	{
+		__debugbreak();
+	}
+	return atoi(string);
+}
+
+__int64 Dvar_StringToInt64(const char* string)
+{
+	if (!string
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", nullptr))
+	{
+		__debugbreak();
+	}
+	return I_atoi64(string);
+}
+
+float Dvar_StringToFloat(const char* string)
+{
+	if (!string
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", nullptr))
+	{
+		__debugbreak();
+	}
+	return atof(string);
+}
+
+void Dvar_StringToVec2(const char* string, vec2_t* vector)
+{
+	if (!string
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", nullptr))
+	{
+		__debugbreak();
+	}
+	sscanf(string, "%g %g", vector, &vector->y);
+}
+
+void Dvar_StringToVec3(const char* string, vec3_t* vector)
+{
+	char* v2; // [esp-8h] [ebp-8h]
+	char* v3; // [esp-4h] [ebp-4h]
+
+	if (!string
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", nullptr))
+	{
+		__debugbreak();
+	}
+	v3 = (char*)&vector->v[2];
+	vector->x = 0.0;
+	vector->z = 0.0;
+	v2 = (char*)&vector->v[1];
+	if (*string == 40)
+		sscanf(string, "( %g, %g, %g )", vector, v2, v3);
+	else
+		sscanf(string, "%g %g %g", vector, v2, v3);
+}
+
+void Dvar_StringToVec4(const char* string, vec4_t* vector)
+{
+	if (!string
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", nullptr))
+	{
+		__debugbreak();
+	}
+	*vector->v = 0;
+	vector->b = 0;
+	sscanf(string, "%g %g %g %g", vector, &vector->g, &vector->b, &vector->a);
+}
+
+int Dvar_StringToEnum(DvarLimits const*, const char*)
+{
+	return 0;
+}
+
+void Dvar_StringToColor(char* color, const char* string)
+{
+	float v2; // xmm1_4
+	float v3; // xmm2_4
+	float v4; // xmm0_4
+	float v5; // xmm1_4
+	bool v6; // cf
+	float v7; // xmm1_4
+	float v8; // xmm1_4
+	int v9; // [esp+Ch] [ebp-18h]
+	int v10; // [esp+Ch] [ebp-18h]
+	int v11; // [esp+Ch] [ebp-18h]
+	vec4_t colorVec; // [esp+10h] [ebp-14h]
+
+	*colorVec.v = 0;
+	colorVec.b = 0;
+	sscanf(string, "%g %g %g %g", &colorVec, &colorVec.g, &colorVec.b, &colorVec.a);
+	v2 = colorVec.v[0];
+	v3 = 1.0;
+	v4 = 0.0;
+	if ((float)(colorVec.v[0] - 1.0) >= 0.0)
+		v2 = 1.0;
+	if (-v2 >= 0.0)
+		v2 = 0.0;
+	v9 = (int)((float)(v2 * 255.0) + 9.313225746154785e-10);
+	v5 = colorVec.v[1];
+	v6 = (float)(colorVec.v[1] - 1.0) < 0.0;
+	*color = v9;
+	if (!v6)
+		v5 = 1.0;
+	if (-v5 >= 0.0)
+		v5 = 0.0;
+	v10 = (int)((float)(v5 * 255.0) + 9.313225746154785e-10);
+	v7 = colorVec.v[2];
+	v6 = (float)(colorVec.v[2] - 1.0) < 0.0;
+	color[1] = v10;
+	if (!v6)
+		v7 = 1.0;
+	if (-v7 >= 0.0)
+		v7 = 0.0;
+	v11 = (int)((float)(v7 * 255.0) + 9.313225746154785e-10);
+	v8 = colorVec.v[3];
+	v6 = (float)(colorVec.v[3] - 1.0) < 0.0;
+	color[2] = v11;
+	if (v6)
+		v3 = v8;
+	if (-v3 < 0.0)
+		v4 = *(float*)&v3;
+	color[3] = (int)((float)(v4 * 255.0) + 9.313225746154785e-10);
+}
+
+DvarValue* Dvar_StringToValue(dvarType_t type, const char* string, DvarLimits domain)
+{
+	const char* v3; // edi
+	dvarType_t v4; // esi
+	DvarValue* result; // eax
+	const char* v7; // eax
+
+	v3 = string;
+	v4 = type;
+	if (!string
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", nullptr))
+	{
+		__debugbreak();
+	}
+	switch (v4)
+	{
+	case 1:
+		domain.enumeration.stringCount = Dvar_StringToBool(v3);
+		result = (DvarValue*)domain.enumeration.stringCount;
+		break;
+	case 2:
+		domain.enumeration.stringCount = Dvar_StringToFloat(v3);
+		result = (DvarValue*)domain.enumeration.stringCount;
+		break;
 	case 3:
-		v4 = currentString.integer64;
-		dvar->current.integer64 = currentString.integer64;
-		dvar->latched.integer64 = v4;
+		Dvar_StringToVec2(v3, (vec2_t*)domain.enumeration.stringCount);
+		result = (DvarValue*)domain.enumeration.stringCount;
 		break;
 	case 4:
-	case 0xB:
-	case 0xC:
-		v5 = currentString.integer;
-		v6 = *(long long*)((char*)&currentString.integer64 + 4);
-		dvar->current.integer = currentString.integer;
-		*(long long*)((char*)&dvar->current.integer64 + 4) = v6;
-		dvar->latched.integer = v5;
-		*(long long*)((char*)&dvar->latched.integer64 + 4) = v6;
+	case 11:
+	case 12:
+		Dvar_StringToVec3(v3, (vec3_t*)domain.enumeration.stringCount);
+		result = (DvarValue*)domain.enumeration.stringCount;
 		break;
 	case 5:
-		v7 = currentString.integer;
-		v8 = *(long long*)((char*)&currentString.integer64 + 4);
-		v9 = currentString.vector.v[3];
-		dvar->current.integer = currentString.integer;
-		*(long long*)((char*)&dvar->current.integer64 + 4) = v8;
-		dvar->current.vector.v[3] = v9;
-		dvar->latched.integer = v7;
-		*(long long*)((char*)&dvar->latched.integer64 + 4) = v8;
-		dvar->latched.vector.v[3] = v9;
+		Dvar_StringToVec4(v3, (vec4_t*)domain.enumeration.stringCount);
+		result = (DvarValue*)domain.enumeration.stringCount;
 		break;
 	case 6:
+		domain.enumeration.stringCount = Dvar_StringToInt(v3);
+		result = (DvarValue*)domain.enumeration.stringCount;
+		break;
 	case 7:
-	case 9:
-	case 0xA:
-		v10 = _mm_loadl_epi64((const __m128i*) & currentString);
-		v11 = _mm_loadl_epi64((const __m128i*)(&currentString.string + 2));
-		_mm_storel_epi64((__m128i*) & dvar->current, v10);
-		_mm_storel_epi64((__m128i*) & dvar->latched, v10);
-		_mm_storel_epi64((__m128i*)(&dvar->current.string + 2), v11);
-		_mm_storel_epi64((__m128i*)(&dvar->latched.string + 2), v11);
+		domain.enumeration.stringCount = Dvar_StringToEnum((const DvarLimits*)((char*)&domain + 4), v3);
+		result = (DvarValue*)domain.enumeration.stringCount;
 		break;
 	case 8:
-		if (currentString.integer != dvar->current.integer)
-		{
-			shouldFree = Dvar_ShouldFreeCurrentString(dvar);
-			if (shouldFree)
-				oldString = v2;
-			dvar::Dvar_AssignCurrentStringValue(dvar, &currentString, currentString.string);
-			dvar->current.integer = currentString.integer;
-			if ((unsigned char)Dvar_ShouldFreeLatchedString(dvar))
-				dvar::Dvar_FreeString(&dvar->latched);
-			v3 = dvar->current.string;
-			dvar->latched.integer = 0;
-			dvar::Dvar_WeakCopyString(v3, &dvar->latched);
-			if (shouldFree)
-				FreeString(oldString, 12);
-		}
+		domain.enumeration.stringCount = (int)v3;
+		result = (DvarValue*)domain.enumeration.stringCount;
+		break;
+	case 9:
+		Dvar_StringToColor((char*)domain.enumeration.stringCount, v3);
+		result = (DvarValue*)domain.enumeration.stringCount;
+		break;
+	case 10:
+		domain.enumeration.stringCount = Dvar_StringToInt64(v3);
+		result = (DvarValue*)domain.enumeration.stringCount;
+		break;
+	default:
+		v7 = va("unhandled dvar type '%i'", v4);
+		if (!Assert_MyHandler(__FILE__, __LINE__, 1, nullptr, v7))
+			__debugbreak();
+		domain.enumeration.stringCount = 0;
+		result = (DvarValue*)domain.enumeration.stringCount;
 		break;
 	}
+	return result;
+}
+
+char* Dvar_DisplayableValue(const dvar_t* dvar)
+{
+	if (!dvar
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", nullptr))
+	{
+		__debugbreak();
+	}
+	return Dvar_ValueToString(dvar, dvar->current);
+}
+
+char* Dvar_DisplayableResetValue(const dvar_t* dvar)
+{
+	if (!dvar
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", nullptr))
+	{
+		__debugbreak();
+	}
+	return Dvar_ValueToString(dvar, dvar->reset);
+}
+
+char* Dvar_DisplayableLatchedValue(const dvar_t* dvar)
+{
+	if (!dvar
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", nullptr))
+	{
+		__debugbreak();
+	}
+	return Dvar_ValueToString(dvar, dvar->latched);
+}
+
+DvarValue Dvar_ClampValueToDomain(dvarType_t, DvarValue, DvarValue, DvarLimits)
+{
+	return DvarValue();
 }
 
 bool Dvar_ValueInDomain(dvarType_t type, DvarValue value, DvarLimits domain)
@@ -829,35 +670,32 @@ bool Dvar_ValueInDomain(dvarType_t type, DvarValue value, DvarLimits domain)
 	float v8; // xmm0_4
 	int v9; // eax
 	float v10; // xmm0_4
-	DvarValue v11; // [esp+0h] [ebp-14h]
+	const char* v11; // eax
+	DvarValue v12; // [esp+0h] [ebp-14h]
 
-	v11 = value;
+	v12 = value;
 	switch (type)
 	{
 	case 1:
-#ifdef _DEBUG
-		if (v11.enabled != 1
-			&& v11.enabled
+		if (!v12.enabled
+			&& v12.enabled
 			&& !Assert_MyHandler(
 				__FILE__,
 				__LINE__,
 				0,
 				"(value.enabled == 1 || value.enabled == 0)",
-				(const char*)&scratch))
+				nullptr))
 		{
 			__debugbreak();
 		}
-#endif // _DEBUG
 		return 1;
 	case 2:
-		if (domain.value.min > v11.value || v11.value > domain.value.max)
-			return 0;
-		return 1;
+		return domain.value.min <= v12.value && v12.value <= domain.value.max;
 	case 3:
 		v5 = 0;
 		while (1)
 		{
-			v6 = *((float*)&v11.integer + v5);
+			v6 = *(&v12.value + v5);
 			if (domain.value.min > v6 || v6 > domain.value.max)
 				break;
 			if (++v5 >= 2)
@@ -870,7 +708,7 @@ bool Dvar_ValueInDomain(dvarType_t type, DvarValue value, DvarLimits domain)
 		v7 = 0;
 		while (1)
 		{
-			v8 = *((float*)&v11.integer + v7);
+			v8 = *(&v12.value + v7);
 			if (domain.value.min > v8 || v8 > domain.value.max)
 				break;
 			if (++v7 >= 3)
@@ -881,31 +719,29 @@ bool Dvar_ValueInDomain(dvarType_t type, DvarValue value, DvarLimits domain)
 		v9 = 0;
 		break;
 	case 6:
-#ifdef _DEBUG
 		if (domain.enumeration.stringCount > domain.integer.max
 			&& !Assert_MyHandler(
 				__FILE__,
 				__LINE__,
 				0,
 				"(domain.integer.min <= domain.integer.max)",
-				(const char*)&scratch))
+				nullptr))
 		{
 			__debugbreak();
 		}
-#endif
-		if (v11.integer < domain.enumeration.stringCount)
+		if (v12.integer < domain.enumeration.stringCount)
 			return 0;
-		return v11.integer <= domain.integer.max;
+		return v12.integer <= domain.integer.max;
 	case 7:
-		v4 = v11.integer == 0;
-		if (v11.integer < 0)
-			goto LABEL_28;
-		if (v11.integer < domain.enumeration.stringCount)
-			goto LABEL_49;
-		v4 = v11.integer == 0;
-	LABEL_28:
+		v4 = v12.integer == 0;
+		if (v12.integer < 0)
+			goto LABEL_24;
+		if (v12.integer < domain.enumeration.stringCount)
+			goto LABEL_47;
+		v4 = v12.integer == 0;
+	LABEL_24:
 		if (v4)
-			LABEL_49 :
+			LABEL_47 :
 			result = 1;
 		else
 			result = 0;
@@ -914,31 +750,26 @@ bool Dvar_ValueInDomain(dvarType_t type, DvarValue value, DvarLimits domain)
 	case 9:
 		return 1;
 	case 10:
-#ifdef _DEBUG
 		if (domain.integer64.min > domain.integer64.max
 			&& !Assert_MyHandler(
 				__FILE__,
 				__LINE__,
 				0,
 				"(domain.integer64.min <= domain.integer64.max)",
-				(const char*)&scratch))
+				nullptr))
 		{
 			__debugbreak();
 		}
-#endif
-		if (SLODWORD(v11.vector.v[1]) <= domain.integer.max
-			&& (SLODWORD(v11.vector.v[1]) < domain.integer.max || (unsigned int)v11.integer < domain.enumeration.stringCount)
-			|| SLODWORD(v11.vector.v[1]) >= *((unsigned int*)&domain.vector + 3)
-			&& (SLODWORD(v11.vector.v[1]) > * ((unsigned int*)&domain.vector + 3)
-				|| (unsigned int)v11.integer > * ((unsigned int*)&domain.vector + 2)))
-		{
-			return 0;
-		}
-		return 1;
+		return v12.integer64 >= domain.integer64.min && v12.integer64 <= domain.integer64.max;
+	default:
+		v11 = va("unhandled dvar type '%i'", type);
+		if (!Assert_MyHandler(__FILE__, __LINE__, 1, nullptr, v11))
+			__debugbreak();
+		return 0;
 	}
 	while (1)
 	{
-		v10 = *((float*)&v11.integer + v9);
+		v10 = *(&v12.value + v9);
 		if (domain.value.min > v10 || v10 > domain.value.max)
 			break;
 		if (++v9 >= 4)
@@ -947,1070 +778,7 @@ bool Dvar_ValueInDomain(dvarType_t type, DvarValue value, DvarLimits domain)
 	return 0;
 }
 
-int Dvar_ValuesEqual(DvarValue val0, DvarValue val1)
-{
-	dvarType_t type; // ecx
-	int result; // eax
-	vec4_t b; // [esp+0h] [ebp-24h]
-	vec4_t a; // [esp+10h] [ebp-14h]
-
-	a = val0.vector;
-	b = val1.vector;
-	switch (type)
-	{
-	case 1:
-		result = LOBYTE(a.v[0]) == LOBYTE(b.v[0]);
-		break;
-	case 2:
-		if (a.v[0] != b.v[0])
-			goto LABEL_24;
-		result = 1;
-		break;
-	case 3:
-		if (a.v[0] != b.v[0] || a.v[1] != b.v[1])
-			goto LABEL_24;
-		result = 1;
-		break;
-	case 4:
-	case 11:
-	case 12:
-		if (a.v[0] != b.v[0] || a.v[1] != b.v[1] || a.v[2] != b.v[2])
-			goto LABEL_24;
-		result = 1;
-		break;
-	case 5:
-		result = Vec4Compare(&a, &b);
-		break;
-	case 6:
-	case 7:
-		result = LODWORD(a.v[0]) == LODWORD(b.v[0]);
-		break;
-	case 8:
-		if (!LODWORD(a.v[0])
-			&& !Assert_MyHandler(
-				__FILE__,
-				__LINE__,
-				0,
-				"(val0.string)",
-				(const char*)&scratch))
-		{
-			__debugbreak();
-		}
-		if (!LODWORD(b.v[0])
-			&& !Assert_MyHandler(
-				__FILE__,
-				__LINE__,
-				0,
-				"(val1.string)",
-				(const char*)&scratch))
-		{
-			__debugbreak();
-		}
-		result = strcmp((const char*)LODWORD(a.v[0]), (const char*)LODWORD(b.v[0])) == 0;
-		break;
-	case 9:
-		result = LODWORD(a.v[0]) == LODWORD(b.v[0]);
-		break;
-	case 10:
-		if (*(unsigned long long*)a.v == *(unsigned long long*)b.v)
-			result = 1;
-		else
-			LABEL_24 :
-			result = 0;
-		break;
-	}
-	return result;
-}
-
-void Dvar_WriteDefaults(int f)
-{
-	Dvar_ForEach(Dvar_WriteSingleDefault, &f);
-}
-
-void Dvar_WriteSingleDefault(const dvar_t* dvar, void* userData)
-{
-	const char* v2; // eax
-	int v3; // edi
-	const char* v4; // ST0C_4
-	const char* v5; // eax
-
-	v2 = Dvar_GetName(dvar);
-	if (q_shared::I_stricmp(v2, "cl_cdkey"))
-	{
-		if (!((unsigned int)Dvar_GetFlags(dvar) & 0x40C0))
-		{
-			v3 = *(unsigned int*)userData;
-			v4 = Dvar_DisplayableResetValue(dvar);
-			v5 = Dvar_GetName(dvar);
-			FS_Printf(v3, "set %s \"%s\"\n", v5, v4);
-		}
-	}
-}
-
-void Dvar_WriteSingleVariable(const dvar_t* dvar, void* userData)
-{
-	const char* v2; // eax
-	int v3; // edi
-	const char* v4; // ST0C_4
-	const char* v5; // eax
-
-	v2 = Dvar_GetName(dvar);
-	if (q_shared::I_stricmp(v2, "cl_cdkey"))
-	{
-		if ((unsigned int)Dvar_GetFlags(dvar) & 1)
-		{
-			v3 = *(unsigned int*)userData;
-			v4 = Dvar_DisplayableLatchedValue(dvar);
-			v5 = Dvar_GetName(dvar);
-			FS_Printf(v3, "seta %s \"%s\"\n", v5, v4);
-		}
-	}
-}
-
-void Dvar_WriteVariables(int f)
-{
-	Dvar_ForEach(Dvar_WriteSingleVariable, &f);
-}
-
-dvar_t* _Dvar_RegisterBool(const char* dvarName, bool value, unsigned int flags, const char* description)
-{
-	return nullptr;
-}
-
-dvar_t* _Dvar_RegisterFloat(const char* dvarName, float value, float min, float max, unsigned int flags, const char* description)
-{
-	DvarLimits v6; // ST18_16
-	DvarValue v7; // ST08_16
-	DvarValue dvarValue; // [esp+0h] [ebp-20h]
-	DvarLimits dvarDomain; // [esp+10h] [ebp-10h]
-
-	dvarValue.value = value;
-	dvarDomain.integer64.min = __PAIR__(LODWORD(max), LODWORD(min));
-	v6.integer64.min = __PAIR__(LODWORD(max), LODWORD(min));
-	v6.integer64.max = dvarDomain.integer64.max;
-	v7.integer64 = dvarValue.integer64;
-	*((unsigned long long*)&v7.string + 1) = *((unsigned long long*)&dvarValue.string + 1);
-	return dvar::Dvar_RegisterVariant(dvarName, DVAR_TYPE_FLOAT, flags, v7, v6, description);
-}
-
-dvar_t* Dvar_RegisterVariant(const char* dvarName, dvarType_t type, unsigned int flags, DvarValue value, DvarLimits domain, const char* description)
-{
-
-}
-
-void dvar::Dvar_AssignCurrentStringValue(dvar_t* dvar, DvarValue* dest, const char* string)
-{
-}
-
-void dvar::Dvar_AssignLatchedStringValue(dvar_t* dvar, DvarValue* dest, const char* string)
-{
-}
-
-void dvar::Dvar_AssignResetStringValue(dvar_t* dvar, DvarValue* dest, const char* string)
-{
-}
-
-char dvar::Dvar_CanChangeValue(const dvar_t* dvar, DvarSetSource source, DvarValue value)
-{
-	return 0;
-}
-
-DvarValue* dvar::Dvar_ClampValueToDomain(dvarType_t type, int a2, DvarValue value, const DvarValue resetValue, const DvarLimits domain)
-{
-	return nullptr;
-}
-
-void dvar::Dvar_CopyString(const char* string, DvarValue* value)
-{
-}
-
-const char* dvar::Dvar_DomainToString_Internal(char* outBuffer, int outBufferLen, dvarType_t type, DvarLimits domain, int* outLineCount)
-{
-	return nullptr;
-}
-
-dvar_t* dvar::Dvar_FindMalleableVar(int dvarHash)
-{
-	return nullptr;
-}
-
-dvar_t* dvar::Dvar_FindMalleableVar(const char* dvarName)
-{
-	return nullptr;
-}
-
-void dvar::Dvar_FreeString(DvarValue* value)
-{
-}
-
-void dvar::Dvar_Init(int a1)
-{
-}
-
-void dvar::Dvar_List_f()
-{
-}
-
-void dvar::Dvar_LoadDvars(MemoryFile* memFile)
-{
-}
-
-void dvar::Dvar_LoadDvarsAddFlags(MemoryFile* memFile, unsigned short flags)
-{
-}
-
-void dvar::Dvar_LoadScriptInfo(MemoryFile* memFile)
-{
-}
-
-void dvar::Dvar_MakeExplicitType(dvar_t* dvar, dvarType_t type, const char* dvarName, unsigned int flags, DvarValue resetValue, DvarLimits domain)
-{
-}
-
-void dvar::Dvar_PerformUnregistration(dvar_t* dvar)
-{
-}
-
-void dvar::Dvar_PrintDomain(dvarType_t type, DvarLimits domain)
-{
-}
-
-void dvar::Dvar_RegisterBool_f()
-{
-}
-
-void dvar::Dvar_RegisterFloat_f()
-{
-}
-
-void dvar::Dvar_RegisterInt_f()
-{
-}
-
-dvar_t* dvar::Dvar_RegisterNew(const char* dvarName, dvarType_t type, unsigned int flags, DvarValue value, DvarLimits domain, const char* description)
-{
-	return nullptr;
-}
-
-dvar_t* dvar::Dvar_RegisterVariant(const char* dvarName, dvarType_t type, unsigned int flags, DvarValue value, DvarLimits domain, const char* description)
-{
-	dvar_t* dvart;
-	if (!(flags & 0x4000)
-		&& !CanKeepStringPointer(dvarName)
-		&& !(unsigned __int8)Assert_MyHandler(
-			__FILE__,
-			__LINE__,
-			0,
-			"(((flags & (1 << 14)) || CanKeepStringPointer( dvarName )))",
-			"(dvarName) = %s",
-			dvarName))
-	{
-		__debugbreak();
-	}
-	dvart = Dvar_FindMalleableVar(dvarName);
-	if (dvart)
-	{
-
-	}
-}
-
-void dvar::Dvar_ReinterpretDvar(dvar_t* dvar, unsigned int flags, const char* dvarName, dvarType_t type, DvarValue value, DvarLimits domain)
-{
-}
-
-void dvar::Dvar_Reregister(dvar_t* dvar, const char* dvarName, dvarType_t type, unsigned int flags, DvarValue resetValue, DvarLimits domain, const char* description)
-{
-}
-
-void dvar::Dvar_Reset_f()
-{
-}
-
-void dvar::Dvar_SetA_f()
-{
-}
-
-void dvar::Dvar_SetStringFromSource(const dvar_t* dvar, const char* string, DvarSetSource source)
-{
-}
-
-void dvar::Dvar_SetToTime_f()
-{
-}
-
-void dvar::Dvar_SetVariant(dvar_t* dvar, DvarValue value, DvarSetSource source)
-{
-}
-
-void dvar::Dvar_Set_f()
-{
-}
-
-bool dvar::Dvar_StringToBool(const char* string)
-{
-	if (!string
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&scratch))
-	{
-		__debugbreak();
-	}
-	return atoi(string) != 0;
-}
-
-void dvar::Dvar_StringToColor(char* color, const char* string)
-{
-	float v2; // xmm1_4
-	LocalClientNum_t v3; // xmm2_4
-	float v4; // xmm0_4
-	signed int v5; // ST24_4
-	float v6; // xmm1_4
-	bool v7; // cf
-	signed int v8; // ST24_4
-	float v9; // xmm1_4
-	signed int v10; // ST24_4
-	float v11; // xmm1_4
-	vec4_t colorVec; // [esp+10h] [ebp-14h]
-
-	*(unsigned long long*)colorVec.v = 0i64;
-	*(unsigned long long*)& colorVec.b = 0i64;
-	sscanf(string, "%g %g %g %g", &colorVec, &colorVec.g, &colorVec.b, &colorVec.a);
-	v2 = colorVec.v[0];
-	v3 = (LocalClientNum_t)1.0;
-	v4 = 0.0;
-	if ((float)(colorVec.v[0] - 1.0) >= 0.0)
-		v2 = 1.0;
-	if ((0.00000000 <= (float)((uint)v2 ^ 0x80000000)))
-		v2 = 0.0;
-	v5 = (signed int)((float)(v2 * 255.0) + 9.313225746154785e-10);
-	v6 = colorVec.v[1];
-	v7 = (float)(colorVec.v[1] - 1.0) < 0.0;
-	*color = v5;
-	if (!v7)
-		v6 = 1.0;
-	if (0.00000000 <= (float)((uint)v6 ^ 0x80000000))
-		v6 = 0.0;
-	v8 = (signed int)((float)(v6 * 255.0) + 9.313225746154785e-10);
-	v9 = colorVec.v[2];
-	v7 = (float)(colorVec.v[2] - 1.0) < 0.0;
-	color[1] = v8;
-	if (!v7)
-		v9 = 1.0;
-	if (0.00000000 <= (float)((uint)v9 ^ 0x80000000))
-		v9 = 0.0;
-	v10 = (signed int)((float)(v9 * 255.0) + 9.313225746154785e-10);
-	v11 = colorVec.v[3];
-	v7 = (float)(colorVec.v[3] - 1.0) < 0.0;
-	color[2] = v10;
-	if (v7)
-		*(float*)&v3 = v11;
-	if ((float)((uint)v3 ^ 0x80000000) < 0.00000000)
-		v4 = *(float*)&v3;
-	color[3] = (signed int)((float)(v4 * 255.0) + 9.313225746154785e-10);
-}
-
-int dvar::Dvar_StringToEnum(const DvarLimits* domain, const char* string)
-{
-	int v2; // esi
-	char v3; // cl
-	int result; // eax
-	const char* v5; // edx
-	int v6; // ebx
-
-	if (!domain
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(domain)", (const char*)&scratch))
-	{
-		__debugbreak();
-	}
-	if (!string
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&scratch))
-	{
-		__debugbreak();
-	}
-	v2 = 0;
-	if (domain->enumeration.stringCount > 0)
-	{
-		while (q_shared::I_stricmp(string, domain->enumeration.strings[v2]))
-		{
-			if (++v2 >= domain->enumeration.stringCount)
-				goto LABEL_10;
-		}
-		return v2;
-	}
-LABEL_10:
-	v3 = *string;
-	result = 0;
-	v5 = string;
-	if (*string)
-	{
-		while (v3 >= 48 && v3 <= 57)
-		{
-			++v5;
-			result = v3 + 10 * result - 48;
-			v3 = *v5;
-			if (!*v5)
-			{
-				if (result < 0)
-					goto LABEL_16;
-				goto LABEL_15;
-			}
-		}
-	}
-	else
-	{
-	LABEL_15:
-		if (result < domain->enumeration.stringCount)
-			return result;
-	LABEL_16:
-		v6 = strlen(string);
-		v2 = 0;
-		if (domain->enumeration.stringCount > 0)
-		{
-			while (q_shared::I_strnicmp(string, domain->enumeration.strings[v2], v6))
-			{
-				if (++v2 >= domain->enumeration.stringCount)
-					return -1337;
-			}
-			return v2;
-		}
-	}
-	return -1337;
-}
-
-double dvar::Dvar_StringToFloat(const char* string)
-{
-	int result; // eax
-
-	if (!string
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&scratch))
-	{
-		__debugbreak();
-	}
-	atof(string);
-	return result;
-}
-
-int dvar::Dvar_StringToInt(const char* string)
-{
-	if (!string
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&scratch))
-	{
-		__debugbreak();
-	}
-	return atoi(string);
-}
-
-long long dvar::Dvar_StringToInt64(const char* string)
-{
-	if (!string
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&scratch))
-	{
-		__debugbreak();
-	}
-	return I_atoi64(string);
-}
-
-DvarValue* dvar::Dvar_StringToValue(const dvarType_t type, const char* string, double a3, const DvarLimits domain)
-{
-	const char* v5; // edi
-	dvarType_t dvarType; // esi
-	float value;
-
-	v5 = string;
-	dvarType = type;
-	if (!string
-		&& !Assert_MyHandler("c:\\t6\\code\\src_noserver\\universal\\dvar.cpp", 582, 0, "(string)", (const char*)&scratch))
-	{
-		__debugbreak();
-	}
-	switch (dvarType)
-	{
-	case DVAR_TYPE_BOOL:
-		*(unsigned char*)domain.enumeration.stringCount = Dvar_StringToBool(v5);
-		break;
-	case DVAR_TYPE_FLOAT:
-		value = Dvar_StringToFloat(v5);
-		*(float*)domain.enumeration.stringCount = value;
-		break;
-	case 3:
-		Dvar_StringToVec2(v5, (vec2_t*)domain.enumeration.stringCount);
-		break;
-	case 4:
-	case 11:
-	case 12:
-		Dvar_StringToVec3(v5, (vec3_t*)domain.enumeration.stringCount);
-		break;
-	case 5:
-		Dvar_StringToVec4(v5, (vec4_t*)domain.enumeration.stringCount);
-		break;
-	case 6:
-		*(unsigned int*)domain.enumeration.stringCount = Dvar_StringToInt(v5);
-		break;
-	case 7:
-		*(unsigned int*)domain.enumeration.stringCount = Dvar_StringToEnum((const DvarLimits*)((char*)&domain + 4), v5);
-		break;
-	case 8:
-		*(unsigned int*)domain.enumeration.stringCount = (int)v5;
-		break;
-	case 9:
-		Dvar_StringToColor((char*)v5, (char*)domain.enumeration.stringCount);
-		break;
-	case 10:
-		*(unsigned long long*)domain.enumeration.stringCount = Dvar_StringToInt64(v5);
-		break;
-	}
-}
-
-void dvar::Dvar_StringToVec2(const char* string, vec2_t* vector)
-{
-	if (!string
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&scratch))
-	{
-		__debugbreak();
-	}
-	sscanf(string, "%g %g", vector, &vector->y);
-}
-
-void dvar::Dvar_StringToVec3(const char* string, vec3_t* vector)
-{
-	char* v2; // [esp-8h] [ebp-8h]
-	char* v3; // [esp-4h] [ebp-4h]
-
-	if (!string
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&scratch))
-	{
-		__debugbreak();
-	}
-	v3 = (char*)&vector->v[2];
-	*(unsigned long long*)& vector->x = 0i64;
-	vector->v[2] = 0.0;
-	v2 = (char*)&vector->v[1];
-	if (*string == 40)
-		sscanf(string, "( %g, %g, %g )", vector, v2, v3);
-	else
-		sscanf(string, "%g %g %g", vector, v2, v3);
-}
-
-void dvar::Dvar_StringToVec4(const char* string, vec4_t* vector)
-{
-#ifdef _DEBUG
-	if (!string
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&scratch))
-	{
-		__debugbreak();
-	}
-#endif // _DEBUG
-	* (unsigned long long*)vector->v = 0i64;
-	*(unsigned long long*)& vector->b = 0i64;
-	sscanf(string, "%g %g %g %g", vector, &vector->g, &vector->b, &vector->a);
-}
-
-bool dvar::Dvar_ToggleInternal()
-{
-	GfxViewParms* v0; // eax
-	char result; // al
-	GfxViewParms* v2; // esi
-	dvar_t* v3; // ebx
-	dvarType_t v4; // edi
-	const char* v5; // esi
-	int v6; // esi
-	GfxViewParms* v7; // eax
-	const char* v8; // edi
-	GfxViewParms* v9; // eax
-	unsigned int v10; // ecx
-	GfxViewParms* v11; // edi
-	GfxViewParms* v12; // eax
-	int v13; // edi
-	GfxViewParms* v14; // ST18_4
-	GfxViewParms* v15; // ST14_4
-	GfxViewParms* v16; // ST10_4
-	GfxViewParms* v17; // eax
-	const char* v18; // eax
-	GfxViewParms* v19; // ST18_4
-	GfxViewParms* v20; // ST14_4
-	GfxViewParms* v21; // ST10_4
-	GfxViewParms* v22; // eax
-	const char* v23; // eax
-	int v24; // edi
-	GfxViewParms* v25; // ST18_4
-	GfxViewParms* v26; // ST14_4
-	GfxViewParms* v27; // eax
-	const char* v28; // eax
-	GfxViewParms* v29; // ST18_4
-	GfxViewParms* v30; // ST14_4
-	GfxViewParms* v31; // eax
-	const char* v32; // eax
-	int v33; // edi
-	int v34; // ebx
-	GfxViewParms* v35; // ST18_4
-	GfxViewParms* v36; // eax
-	const char* v37; // eax
-	GfxViewParms* v38; // ST18_4
-	GfxViewParms* v39; // eax
-	const char* v40; // eax
-	const char* v41; // eax
-	GfxViewParms* v42; // ST18_4
-	GfxViewParms* v43; // eax
-	GfxViewParms* v44; // ST18_4
-	GfxViewParms* v45; // ST14_4
-	GfxViewParms* v46; // eax
-	GfxViewParms* v47; // ST18_4
-	GfxViewParms* v48; // ST14_4
-	GfxViewParms* v49; // ST10_4
-	GfxViewParms* v50; // eax
-	const char* string; // [esp+4h] [ebp-10h]
-	dvarType_t dvar_type; // [esp+8h] [ebp-Ch]
-	const dvar_t* dvar; // [esp+Ch] [ebp-8h]
-	const char* dvarName; // [esp+10h] [ebp-4h]
-
-	if (Cmd_Argc() < 2)
-	{
-#ifdef _DEBUG
-		if (!Cmd_Argv(0)
-			&& !Assert_MyHandler(
-				__FILE__,
-				__LINE__,
-				0,
-				"(Cmd_Argv( 0 ))",
-				(const char*)&scratch))
-		{
-			__debugbreak();
-		}
-#endif // _DEBUG
-		v0 = Cmd_Argv(0);
-		Com_Printf(0, "USAGE: %s <variable> <optional value sequence>\n", v0);
-		return 0;
-	}
-	v2 = Cmd_Argv(1);
-	dvarName = (const char*)v2;
-#ifdef _DEBUG
-	if (!v2
-		&& !Assert_MyHandler(
-			__FILE__,
-			__LINE__,
-			0,
-			"(dvarName)",
-			(const char*)&scratch))
-	{
-		__debugbreak();
-	}
-#endif // _DEBUG
-	v3 = Dvar_FindVar((const char*)v2);
-	dvar = v3;
-	if (!v3)
-	{
-		Com_Printf(0, "toggle failed: dvar '%s' not found.\n", v2);
-		return 0;
-	}
-	if (Cmd_Argc() == 2)
-		return Dvar_ToggleSimple(v3);
-	v4 = Dvar_GetType(v3);
-	dvar_type = v4;
-	v5 = Dvar_DisplayableValue(v3);
-	string = v5;
-	switch (v4)
-	{
-	case 3:
-		v33 = 2;
-		if (Cmd_Argc() <= 4)
-			goto LABEL_22;
-		v34 = 4;
-		while (1)
-		{
-			v35 = Cmd_Argv(v34 - 1);
-			v36 = Cmd_Argv(v33);
-			v37 = va("%s %s", v36, v35);
-			if (!q_shared::I_stricmp(v5, v37))
-				break;
-			v33 += 2;
-			v34 += 2;
-			if (v34 >= Cmd_Argc())
-			{
-				v3 = (dvar_t*)dvar;
-				goto LABEL_22;
-			}
-		}
-		v38 = Cmd_Argv(v33 + 3);
-		v39 = Cmd_Argv(v33 + 2);
-		v40 = va("%s %s", v39, v38);
-		Dvar_SetCommand(dvarName, v40);
-		result = 1;
-		break;
-	case 4:
-		v24 = 2;
-		if (Cmd_Argc() <= 5)
-			goto LABEL_22;
-		while (1)
-		{
-			v25 = Cmd_Argv(v24 + 2);
-			v26 = Cmd_Argv(v24 + 1);
-			v27 = Cmd_Argv(v24);
-			v28 = va("%s %s %s", v27, v26, v25);
-			if (!q_shared::I_stricmp(v5, v28))
-				break;
-			v24 += 3;
-			if (v24 + 3 >= Cmd_Argc())
-				goto LABEL_22;
-		}
-		v29 = Cmd_Argv(v24 + 5);
-		v30 = Cmd_Argv(v24 + 4);
-		v31 = Cmd_Argv(v24 + 3);
-		v32 = va("%s %s %s", v31, v30, v29);
-		Dvar_SetCommand(dvarName, v32);
-		result = 1;
-		break;
-	case 5:
-		v13 = 2;
-		if (Cmd_Argc() <= 6)
-			goto LABEL_22;
-		while (1)
-		{
-			v14 = Cmd_Argv(v13 + 3);
-			v15 = Cmd_Argv(v13 + 2);
-			v16 = Cmd_Argv(v13 + 1);
-			v17 = Cmd_Argv(v13);
-			v18 = va("%s %s %s %s", v17, v16, v15, v14);
-			if (!q_shared::I_stricmp(v5, v18))
-				break;
-			v13 += 4;
-			if (v13 + 4 >= Cmd_Argc())
-				goto LABEL_22;
-		}
-		v19 = Cmd_Argv(v13 + 7);
-		v20 = Cmd_Argv(v13 + 6);
-		v21 = Cmd_Argv(v13 + 5);
-		v22 = Cmd_Argv(v13 + 4);
-		v23 = va("%s %s %s %s", v22, v21, v20, v19);
-		Dvar_SetCommand(dvarName, v23);
-		result = 1;
-		break;
-	default:
-		v6 = 2;
-		if (Cmd_Argc() > 3)
-		{
-			while (1)
-			{
-				v7 = Cmd_Argv(v6);
-				v8 = (const char*)v7;
-				if (dvar_type == 7)
-				{
-					v9 = Dvar_IndexStringToEnumString(v3, (const char*)v7);
-					v10 = strlen((const char*)v9);
-					v3 = (dvar_t*)dvar;
-					if (v10)
-						v8 = (const char*)v9;
-				}
-				++v6;
-				if (!I_stricmp(string, v8))
-					break;
-				if (v6 + 1 >= Cmd_Argc())
-					goto LABEL_22;
-			}
-			v12 = Cmd_Argv(v6);
-			Dvar_SetCommand(dvarName, (const char*)v12);
-			return 1;
-		}
-	LABEL_22:
-		v11 = Cmd_Argv(2);
-		switch (dvar_type)
-		{
-		case 3:
-			v42 = Cmd_Argv(3);
-			v43 = Cmd_Argv(2);
-			v41 = va("%s %s", v43, v42);
-			goto LABEL_45;
-		case 4:
-			v44 = Cmd_Argv(4);
-			v45 = Cmd_Argv(3);
-			v46 = Cmd_Argv(2);
-			v41 = va("%s %s %s", v46, v45, v44);
-			goto LABEL_45;
-		case 5:
-			v47 = Cmd_Argv(5);
-			v48 = Cmd_Argv(4);
-			v49 = Cmd_Argv(3);
-			v50 = Cmd_Argv(2);
-			v41 = va("%s %s %s %s", v50, v49, v48, v47);
-			goto LABEL_45;
-		case 6:
-			break;
-		case 7:
-			v41 = (const char*)Dvar_IndexStringToEnumString(v3, (const char*)v11);
-			if (strlen(v41))
-				LABEL_45:
-			v11 = (GfxViewParms*)v41;
-			break;
-		}
-		Dvar_SetCommand(dvarName, (const char*)v11);
-		return 1;
-	}
-	return result;
-}
-
-void dvar::Dvar_TogglePrint_f()
-{
-	int v0; // eax
-	GfxViewParms* v1; // esi
-	const dvar_t* v2; // edi
-	const char* v3; // edi
-
-	if (Dvar_ToggleInternal())
-	{
-		if (Cmd_Argc() < 2)
-		{
-			v0 = Cmd_Argc();
-#ifdef _DEBUG
-			if (!Assert_MyHandler(
-				__FILE__,
-				__LINE__,
-				0,
-				"((Cmd_Argc() >= 2))",
-				"(Cmd_Argc()) = %i",
-				v0))
-				__debugbreak();
-#endif //_DEBUG
-		}
-		v1 = Cmd_Argv(1);
-#ifdef _DEBUG
-		if (!v1
-			&& !Assert_MyHandler(
-				__FILE__,
-				__LINE__,
-				1,
-				"(dvarName)",
-				(const char*)&scratch))
-		{
-			__debugbreak();
-		}
-#endif // _DEBUG
-		v2 = Dvar_FindVar((const char*)v1);
-#ifdef _DEBUG
-		if (!v2
-			&& !Assert_MyHandler(
-				__FILE__,
-				__LINE__,
-				1,
-				"(dvar)",
-				(const char*)&scratch))
-		{
-			__debugbreak();
-		}
-#endif // _DEBUG
-		v3 = Dvar_DisplayableValue(v2);
-#ifdef _DEBUG
-		if (!v3
-			&& !Assert_MyHandler(
-				__FILE__,
-				__LINE__,
-				1,
-				"(string)",
-				(const char*)&scratch))
-		{
-			__debugbreak();
-		}
-#endif // _DEBUG
-		Com_Printf((int)v2, 0, "%s toggled to %s\n", v2, v3);
-	}
-}
-
-char dvar::Dvar_ToggleSimple(const dvar_t* dvar)
-{
-	bool v1; // al
-	char result; // al
-	int value; // ebx
-	int v4; // edi
-	long long v5; // kr00_8
-	long long v6; // rax
-	long long v7; // rax
-	float v8; // xmm0_4
-	const char* v9; // eax
-	int v10; // edi
-	int v11; // eax
-	long long domain_value_max; // [esp+10h] [ebp-Ch]
-	float domain_value_min; // [esp+18h] [ebp-4h]
-#ifdef _DEBUG
-	if (!dvar
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", (const char*)&scratch))
-	{
-		__debugbreak();
-	}
-#endif // _DEBUG
-	switch (Dvar_GetType(dvar))
-	{
-	case DVAR_TYPE_BOOL:
-		v1 = Dvar_GetBool(dvar);
-		Dvar_SetBoolFromSource(dvar, v1 == 0, DVAR_SOURCE_EXTERNAL);
-		result = 1;
-		break;
-	case DVAR_TYPE_FLOAT:
-		domain_value_min = Dvar_GetDomainFloatMin(dvar);
-		*((float*)&domain_value_max + 1) = Dvar_GetDomainFloatMax(dvar);
-		if (domain_value_min > 0.0 || *((float*)&domain_value_max + 1) < 1.0)
-		{
-			if (Dvar_GetFloat(dvar) == domain_value_min)
-				v8 = *((float*)&domain_value_max + 1);
-			else
-				v8 = domain_value_min;
-		}
-		else if (Dvar_GetFloat(dvar) == 0.0)
-		{
-			v8 = 1.00000000;
-		}
-		else
-		{
-			v8 = 0.0;
-		}
-		Dvar_SetFloatFromSource(dvar, v8, DVAR_SOURCE_EXTERNAL);
-		result = 1;
-		break;
-	case DVAR_TYPE_FLOAT_2:
-	case DVAR_TYPE_FLOAT_3:
-	case DVAR_TYPE_FLOAT_4:
-	case DVAR_TYPE_STRING:
-	case DVAR_TYPE_COLOR:
-	case DVAR_TYPE_LINEAR_COLOR_RGB:
-	case DVAR_TYPE_COLOR_XYZ:
-		v9 = Dvar_GetName(dvar);
-		Com_Printf((int)dvar, 0, "'toggle' with no arguments makes no sense for dvar '%s'\n", v9);
-		result = 0;
-		break;
-	case DVAR_TYPE_INT:
-		value = Dvar_GetDomainIntMax(dvar);
-		v4 = Dvar_GetDomainIntMin(dvar);
-		if (v4 > 0 || value < 1)
-		{
-			if (Dvar_GetInt(dvar) == v4)
-				Dvar_SetIntFromSource(dvar, value, DVAR_SOURCE_EXTERNAL);
-			else
-				Dvar_SetIntFromSource(dvar, v4, DVAR_SOURCE_EXTERNAL);
-			result = 1;
-		}
-		else
-		{
-			if (Dvar_GetInt(dvar))
-				Dvar_SetIntFromSource(dvar, 0, DVAR_SOURCE_EXTERNAL);
-			else
-				Dvar_SetIntFromSource(dvar, 1, DVAR_SOURCE_EXTERNAL);
-			result = 1;
-		}
-		break;
-	case DVAR_TYPE_ENUM:
-		v10 = Dvar_GetDomainEnumStringCount(dvar);
-		if (v10)
-		{
-			v11 = Dvar_GetInt(dvar);
-			Dvar_SetIntFromSource(dvar, (v11 + 1) % v10, DVAR_SOURCE_EXTERNAL);
-		}
-		result = 1;
-		break;
-	case DVAR_TYPE_INT64:
-		v5 = Dvar_GetDomainInt64Min(dvar);
-		v6 = Dvar_GetDomainInt64Max(dvar);
-		domain_value_max = v6;
-		if (SHIDWORD(v5) > 0 || v5 >= 0 && (unsigned int)v5 || v6 < 1)
-		{
-			if (__PAIR__(HIDWORD(v6), Dvar_GetInt64(dvar)) == v5)
-				Dvar_SetInt64FromSource(dvar, domain_value_max, DVAR_SOURCE_EXTERNAL);
-			else
-				Dvar_SetInt64FromSource(dvar, v5, DVAR_SOURCE_EXTERNAL);
-			result = 1;
-		}
-		else
-		{
-			LODWORD(v7) = Dvar_GetInt64(dvar);
-			if (v7)
-				Dvar_SetInt64FromSource(dvar, 0i64, DVAR_SOURCE_EXTERNAL);
-			else
-				Dvar_SetInt64FromSource(dvar, 1i64, DVAR_SOURCE_EXTERNAL);
-			result = 1;
-		}
-		break;
-	}
-	return result;
-}
-
-bool dvar::Dvar_Toggle_f()
-{
-	return Dvar_ToggleInternal();
-}
-
-const char* dvar::Dvar_ValueToString(const dvar_t* dvar, DvarValue value)
-{
-	const char* result; // eax
-	bool v3; // zf
-
-	switch (dvar->type)
-	{
-	case 1:
-		result = "1";
-		if (!value.enabled)
-			result = "0";
-		return result;
-	case 2:
-		return va("%g", value.value);
-	case 3:
-		return va("%g %g", value.value, value.vector.v[1]);
-	case 4:
-	case 0xB:
-	case 0xC:
-		return va("%g %g %g", value.value, value.vector.v[1], value.vector.v[2]);
-	case 5:
-		return va("%g %g %g %g", value.value, value.vector.v[1], value.vector.v[2], value.vector.v[3]);
-	case 6:
-		return va("%i", value.integer);
-	case 7:
-		v3 = value.integer == 0;
-		if (value.integer < 0)
-			goto LABEL_15;
-		if (value.integer >= dvar->domain.enumeration.stringCount)
-		{
-			v3 = value.integer == 0;
-		LABEL_15:
-			if (!v3
-				&& !Assert_MyHandler(
-					__FILE__,
-					__LINE__,
-					0,
-					"((value.integer >= 0 && value.integer < dvar->domain.enumeration.stringCount || value.integer == 0))",
-					"(value.integer) = %i",
-					value.integer))
-			{
-				__debugbreak();
-			}
-		}
-		if (dvar->domain.enumeration.stringCount)
-			result = *(const char**)(dvar->domain.integer.max + 4 * value.integer);
-		else
-			result = (const char*)&scratch;
-		break;
-	case 8:
-		if (!value.integer
-			&& !Assert_MyHandler(
-				__FILE__,
-				__LINE__,
-				value.integer,
-				"((value.string))",
-				"(dvar->name) = %s",
-				dvar->name))
-		{
-			__debugbreak();
-		}
-		result = va("%s", value.integer);
-		break;
-	case 9:
-		result = va(
-			"%g %g %g %g",
-			(float)((float)value.enabled * 0.0039215689),
-			(float)((float)(unsigned char)value.color[1] * 0.0039215689),
-			(float)((float)(unsigned char)value.color[2] * 0.0039215689),
-			(float)((float)(unsigned char)value.color[3] * 0.0039215689));
-		break;
-	case 0xA:
-		result = va("%lli", value.integer64);
-		break;
-	}
-	return result;
-}
-
-void dvar::Dvar_VectorDomainToString(int components, char* outBuffer, int outBufferLen, DvarLimits domain)
+void Dvar_VectorDomainToString(int components, char* outBuffer, int outBufferLen, DvarLimits domain)
 {
 	double v4; // xmm0_8
 
@@ -2030,31 +798,904 @@ void dvar::Dvar_VectorDomainToString(int components, char* outBuffer, int outBuf
 	{
 		v4 = domain.value.min;
 		if (domain.value.max == 3.4028235e38)
-			_snprintf(
-				outBuffer,
-				outBufferLen,
-				"Domain is any %iD vector with components %g or bigger",
-				components,
-				LODWORD(v4),
-				HIDWORD(v4));
+			_snprintf(outBuffer, outBufferLen, "Domain is any %iD vector with components %g or bigger", components, v4);
 		else
 			_snprintf(
 				outBuffer,
 				outBufferLen,
 				"Domain is any %iD vector with components from %g to %g",
 				components,
-				LODWORD(v4),
-				HIDWORD(v4),
+				v4,
 				domain.value.max);
 	}
 }
 
-void dvar::Dvar_WeakCopyString(const char* string, DvarValue* value)
+char* Dvar_DomainToString_Internal(char* outBuffer, int outBufferLen, dvarType_t type, DvarLimits domain, int* outLineCount)
 {
-	if (!string
-		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(string)", (const char*)&scratch))
+	dvarType_t v5; // ebx
+	int v6; // esi
+	char* result; // eax
+	double v8; // xmm0_8
+	int v9; // eax
+	int v10; // esi
+	char* v11; // ebx
+	int v12; // eax
+	const char* v13; // eax
+	char* outBufferEnd; // [esp+20h] [ebp+8h]
+
+	v5 = type;
+	v6 = outBufferLen;
+	if (outBufferLen <= 0
+		&& !Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(outBufferLen > 0)",
+			nullptr))
 	{
 		__debugbreak();
 	}
-	value->integer = (int)string;
+	outBufferEnd = &outBuffer[v6];
+	if (outLineCount)
+		*outLineCount = 0;
+	switch (v5)
+	{
+	case 1:
+		_snprintf(outBuffer, v6, "Domain is 0 or 1");
+		*(outBufferEnd - 1) = 0;
+		result = outBuffer;
+		break;
+	case 2:
+		if (domain.value.min == -3.4028235e38)
+		{
+			if (domain.value.max == 3.4028235e38)
+				_snprintf(outBuffer, v6, "Domain is any number");
+			else
+				_snprintf(outBuffer, v6, "Domain is any number %g or smaller", domain.value.max);
+			*(outBufferEnd - 1) = 0;
+			result = outBuffer;
+		}
+		else
+		{
+			v8 = domain.value.min;
+			if (domain.value.max == 3.4028235e38)
+				_snprintf(outBuffer, v6, "Domain is any number %g or bigger", v8);
+			else
+				_snprintf(outBuffer, v6, "Domain is any number from %g to %g", v8, domain.value.max);
+			*(outBufferEnd - 1) = 0;
+			result = outBuffer;
+		}
+		break;
+	case 3:
+		Dvar_VectorDomainToString(2, outBuffer, v6, domain);
+		*(outBufferEnd - 1) = 0;
+		result = outBuffer;
+		break;
+	case 4:
+	case 11:
+	case 12:
+		Dvar_VectorDomainToString(3, outBuffer, v6, domain);
+		*(outBufferEnd - 1) = 0;
+		result = outBuffer;
+		break;
+	case 5:
+		Dvar_VectorDomainToString(4, outBuffer, v6, domain);
+		*(outBufferEnd - 1) = 0;
+		result = outBuffer;
+		break;
+	case 6:
+		if (domain.enumeration.stringCount == 0x80000000)
+		{
+			if (domain.integer.max == 0x7FFFFFFF)
+				goto LABEL_15;
+			_snprintf(outBuffer, v6, "Domain is any integer %i or smaller", domain.integer.max);
+			*(outBufferEnd - 1) = 0;
+			result = outBuffer;
+		}
+		else
+		{
+			if (domain.integer.max == 0x7FFFFFFF)
+				_snprintf(outBuffer, v6, "Domain is any integer %i or bigger", domain.enumeration.stringCount);
+			else
+				_snprintf(
+					outBuffer,
+					v6,
+					"Domain is any integer from %i to %i",
+					domain.enumeration.stringCount,
+					domain.integer.max);
+			*(outBufferEnd - 1) = 0;
+			result = outBuffer;
+		}
+		break;
+	case 7:
+		v9 = _snprintf(outBuffer, v6, "Domain is one of the following:");
+		if (v9 < 0)
+			goto LABEL_48;
+		v10 = 0;
+		v11 = &outBuffer[v9];
+		if (domain.enumeration.stringCount <= 0)
+			goto LABEL_48;
+		do
+		{
+			v12 = _snprintf(v11, outBufferEnd - v11, "\n  %2i: %s", v10, *(const char**)(domain.integer.max + 4 * v10));
+			if (v12 < 0)
+				goto LABEL_48;
+			if (outLineCount)
+				++* outLineCount;
+			++v10;
+			v11 += v12;
+		} while (v10 < domain.enumeration.stringCount);
+		*(outBufferEnd - 1) = 0;
+		result = outBuffer;
+		break;
+	case 8:
+		_snprintf(outBuffer, v6, "Domain is any text");
+		*(outBufferEnd - 1) = 0;
+		result = outBuffer;
+		break;
+	case 9:
+		_snprintf(outBuffer, v6, "Domain is any 4-component color, in RGBA format");
+		*(outBufferEnd - 1) = 0;
+		result = outBuffer;
+		break;
+	case 10:
+		if (domain.enumeration.stringCount || domain.integer.max != 0x80000000)
+		{
+			if (domain.integer64.max == 0x7FFFFFFFFFFFFFFFi64)
+				_snprintf(outBuffer, v6, "Domain is any integer %lli or bigger", domain.integer64.min);
+			else
+				_snprintf(
+					outBuffer,
+					v6,
+					"Domain is any integer from %lli to %lli",
+					domain.integer64.min,
+					domain.integer64.max);
+			*(outBufferEnd - 1) = 0;
+			result = outBuffer;
+		}
+		else if (domain.integer64.max == 0x7FFFFFFFFFFFFFFFi64)
+		{
+		LABEL_15:
+			_snprintf(outBuffer, v6, "Domain is any integer");
+			*(outBufferEnd - 1) = 0;
+			result = outBuffer;
+		}
+		else
+		{
+			_snprintf(outBuffer, v6, "Domain is any integer %lli or smaller", domain.integer64.max);
+			*(outBufferEnd - 1) = 0;
+			result = outBuffer;
+		}
+		break;
+	default:
+		v13 = va("unhandled dvar type '%i'", v5);
+		if (!Assert_MyHandler(__FILE__, __LINE__, 1, nullptr, v13))
+			__debugbreak();
+		*outBuffer = 0;
+	LABEL_48:
+		*(outBufferEnd - 1) = 0;
+		result = outBuffer;
+		break;
+	}
+	return result;
+}
+
+char* Dvar_DomainToString_GetLines(dvarType_t type, DvarLimits domain, char* outBuffer, int outBufferLen, int* outLineCount)
+{
+	if (!outLineCount
+		&& !Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(outLineCount)",
+			nullptr))
+	{
+		__debugbreak();
+	}
+	return Dvar_DomainToString_Internal(outBuffer, outBufferLen, type, domain, outLineCount);
+}
+
+void Dvar_PrintDomain(dvarType_t type, DvarLimits domain)
+{
+	char* domainString; // eax
+	char domainBuffer[1024]; // [esp+0h] [ebp-404h]
+
+	domainString = Dvar_DomainToString_Internal(domainBuffer, 1024, type, domain, 0);
+	Com_Printf(10, "  %s\n", domainString);
+}
+
+bool Dvar_ValuesEqual(DvarValue val0, DvarValue val1)
+{
+	dvarType_t type; // ecx
+	int result; // eax
+	const char* v4; // eax
+	DvarValue b; // [esp+0h] [ebp-24h]
+	DvarValue a; // [esp+10h] [ebp-14h]
+
+	a = val0;
+	b = val1;
+	switch (type)
+	{
+	case 1:
+		result = a.enabled == b.enabled;
+		break;
+	case 2:
+		if (a.value != b.value)
+			goto LABEL_26;
+		result = 1;
+		break;
+	case 3:
+		if (a.value != b.value || a.vector.v[1] != b.vector.v[1])
+			goto LABEL_26;
+		result = 1;
+		break;
+	case 4:
+	case 11:
+	case 12:
+		if (a.value != b.value || a.vector.v[1] != b.vector.v[1] || a.vector.v[2] != b.vector.v[2])
+			goto LABEL_26;
+		result = 1;
+		break;
+	case 5:
+		result = Vec4Compare((const vec4_t*)&a, (const vec4_t*)&b);
+		break;
+	case 6:
+	case 7:
+		result = a.integer == b.integer;
+		break;
+	case 8:
+		if (!a.integer
+			&& !Assert_MyHandler(
+				__FILE__,
+				__LINE__,
+				0,
+				"(val0.string)",
+				nullptr))
+		{
+			__debugbreak();
+		}
+		if (!b.integer
+			&& !Assert_MyHandler(
+				__FILE__,
+				__LINE__,
+				0,
+				"(val1.string)",
+				nullptr))
+		{
+			__debugbreak();
+		}
+		result = strcmp(a.string, b.string) == 0;
+		break;
+	case 9:
+		result = a.integer == b.integer;
+		break;
+	case 10:
+		if (a.integer64 != b.integer64)
+			goto LABEL_26;
+		result = 1;
+		break;
+	default:
+		v4 = va("unhandled dvar type '%i'", type);
+		if (!Assert_MyHandler(__FILE__, __LINE__, 1, nullptr, v4))
+			__debugbreak();
+	LABEL_26:
+		result = 0;
+		break;
+	}
+	return result;
+}
+
+void Dvar_SetLatchedValue(dvar_t*, DvarValue)
+{
+}
+
+bool Dvar_HasLatchedValue(const dvar_t* dvar)
+{
+	return Dvar_ValuesEqual(dvar->current, dvar->latched) == 0;
+}
+
+dvarCallBack_t* findCallBackForDvar(const dvar_t* dvar)
+{
+	int v1; // ecx
+	int v2; // esi
+	dvarCallBack_t* result; // eax
+
+	v1 = 0;
+	if (s_nextFreeCallback <= 0)
+		return 0;
+	v2 = dvar->hash;
+	for (result = s_dvarCallbackPool; result->dvar->hash != v2; ++result)
+	{
+		if (++v1 >= s_nextFreeCallback)
+			return 0;
+	}
+	return result;
+}
+
+dvar_t* Dvar_FindMalleableVar(int dvarHash)
+{
+	dvar_t* v1; // esi
+	dvar_t* result; // eax
+
+	_InterlockedExchangeAdd(&g_dvarCritSect.readCount, 1u);
+	while (g_dvarCritSect.writeCount)
+		NET_Sleep(0);
+	v1 = s_dvarHashTable[dvarHash & 0x437];
+	if (v1)
+	{
+		while (v1->hash != dvarHash)
+		{
+			v1 = v1->hashNext;
+			if (!v1)
+				goto LABEL_6;
+		}
+		if (g_dvarCritSect.readCount <= 0
+			&& !Assert_MyHandler(
+				__FILE__,
+				__LINE__,
+				0,
+				"(critSect->readCount > 0)",
+				nullptr))
+		{
+			__debugbreak();
+		}
+		_InterlockedExchangeAdd(&g_dvarCritSect.readCount, 0xFFFFFFFF);
+		result = v1;
+	}
+	else
+	{
+	LABEL_6:
+		if (g_dvarCritSect.readCount <= 0
+			&& !Assert_MyHandler(
+				__FILE__,
+				__LINE__,
+				0,
+				"(critSect->readCount > 0)",
+				nullptr))
+		{
+			__debugbreak();
+		}
+		_InterlockedExchangeAdd(&g_dvarCritSect.readCount, 0xFFFFFFFF);
+		result = 0;
+	}
+	return result;
+}
+
+dvar_t* Dvar_FindMalleableVar(const char* dvarName)
+{
+	const char* v1; // edi
+	char v3; // al
+	int i; // esi
+
+	v1 = dvarName;
+	if (!dvarName)
+		return Dvar_FindMalleableVar(0);
+	v3 = *dvarName;
+	for (i = 5381; *v1; v3 = *v1)
+	{
+		++v1;
+		i = 33 * i + tolower(v3);
+	}
+	return Dvar_FindMalleableVar(i);
+}
+
+dvar_t* Dvar_FindVar(const char* dvarName)
+{
+	if (!dvarName)
+	{
+		if (!Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"(dvarName)",
+			nullptr))
+			__debugbreak();
+		return 0;
+	}
+	if (!*dvarName)
+		return 0;
+	return Dvar_FindMalleableVar(dvarName);
+}
+
+dvar_t* Dvar_FindVar(int dvarHash)
+{
+	return Dvar_FindMalleableVar(dvarHash);
+}
+
+void Dvar_ClearModified(dvar_t* dvar)
+{
+	if (!dvar
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", nullptr))
+	{
+		__debugbreak();
+	}
+	dvar->modified = 0;
+}
+
+void Dvar_SetModified(dvar_t* dvar)
+{
+	if (!dvar
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", nullptr))
+	{
+		__debugbreak();
+	}
+	dvar->modified = 1;
+}
+
+bool Dvar_GetModified(const dvar_t* dvar)
+{
+	if (dvar)
+		return dvar->modified;
+	else
+		return false;
+}
+
+int Dvar_GetInt(long)
+{
+	return 0;
+}
+
+unsigned int Dvar_GetUnsignedInt(const dvar_t* dvar)
+{
+	if (dvar)
+		return dvar->current.unsignedInt;
+	return 0;
+}
+
+float Dvar_GetFloat(long)
+{
+	return 0.0f;
+}
+
+void Dvar_GetVec2(const dvar_t* dvar, vec2_t* result)
+{
+	if (dvar)
+	{
+		if (dvar->type != 3
+			&& !Assert_MyHandler(
+				__FILE__,
+				__LINE__,
+				0,
+				"(dvar->type == DVAR_TYPE_FLOAT_2)",
+				nullptr))
+		{
+			__debugbreak();
+		}
+		*result = dvar->current.integer64;
+	}
+	else
+	{
+		*result = vec2_origin;
+	}
+}
+
+void Dvar_GetVec3(const dvar_t* dvar, vec3_t* result)
+{
+	dvarType_t type; // eax
+
+	if (dvar)
+	{
+		type = dvar->type;
+		if (type != 4
+			&& type != 11
+			&& !Assert_MyHandler(
+				__FILE__,
+				__LINE__,
+				0,
+				"(dvar->type == DVAR_TYPE_FLOAT_3 || dvar->type == DVAR_TYPE_LINEAR_COLOR_RGB)",
+				nullptr))
+		{
+			__debugbreak();
+		}
+		result->x = dvar->current.value;
+		result->y = dvar->current.vector.v[1];
+		result->z = dvar->current.vector.v[2];
+	}
+	else
+	{
+		*result = vec3_origin;
+	}
+}
+
+void Dvar_GetVec4(const dvar_t* dvar, vec4_t* result)
+{
+	if (dvar)
+	{
+		if (dvar->type != 5
+			&& !Assert_MyHandler(
+				__FILE__,
+				__LINE__,
+				0,
+				"(dvar->type == DVAR_TYPE_FLOAT_4)",
+				nullptr))
+		{
+			__debugbreak();
+		}
+		*(DvarValue*)result = dvar->current;
+	}
+	else
+	{
+		*result = vec4_origin;
+	}
+}
+
+char* Dvar_GetString(const dvar_t* dvar)
+{
+	char* result; // eax
+	dvarType_t v2; // eax
+
+	if (!dvar)
+		return nullptr;
+	v2 = dvar->type;
+	if (v2 != 8
+		&& v2 != 7
+		&& !Assert_MyHandler(
+			__FILE__,
+			__LINE__,
+			0,
+			"((dvar->type == DVAR_TYPE_STRING || dvar->type == DVAR_TYPE_ENUM))",
+			"(dvar->type) = %i",
+			dvar->type))
+	{
+		__debugbreak();
+	}
+	if (dvar->type == 7)
+		result = Dvar_EnumToString(dvar);
+	else
+		result = (char*)dvar->current.integer;
+	return result;
+}
+
+char* Dvar_GetVariantString(int dvarHash)
+{
+	dvar_t* v1; // eax
+	char* result; // eax
+
+	v1 = Dvar_FindMalleableVar(dvarHash);
+	if (v1)
+		result = Dvar_ValueToString(v1, v1->current);
+	else
+		result = nullptr;
+	return result;
+}
+
+char* Dvar_GetVariantString(const dvar_t* dvar)
+{
+	char* result; // eax
+
+	if (dvar)
+		result = Dvar_ValueToString(dvar, dvar->current);
+	else
+		result = nullptr;
+	return result;
+}
+
+void Dvar_GetUnpackedColor(const dvar_t* dvar, vec4_t* expandedColor)
+{
+	bool v2; // zf
+	const char* v3; // eax
+	int v4; // ecx
+	int v5; // edx
+	int v6; // eax
+	char color[4]; // [esp+8h] [ebp-4h]
+
+	v2 = dvar->type == 9;
+	v3 = dvar->current.string;
+	if (v2)
+	{
+		*color = (char)v3;
+	}
+	else
+	{
+		Dvar_StringToColor(color, v3);
+		v3 = (const char*)color;
+	}
+	v4 = (unsigned __int8)color[3];
+	expandedColor->v[0] = (float)(unsigned __int8)v3 * 0.0039215689;
+	v5 = BYTE1(v3);
+	v6 = (unsigned __int8)color[2];
+	expandedColor->v[1] = (float)v5 * 0.0039215689;
+	expandedColor->v[2] = (float)v6 * 0.0039215689;
+	expandedColor->v[3] = (float)v4 * 0.0039215689;
+}
+
+void Dvar_GetColor(const dvar_t* dvar, char* color)
+{
+	if (!dvar
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", nullptr))
+	{
+		__debugbreak();
+	}
+	if (dvar->type == 9)
+	{
+		*color = dvar->current.integer;
+	}
+	else
+	{
+		if (!Assert_MyHandler(
+			__FILE__,
+			1903,
+			0,
+			"((dvar->type == DVAR_TYPE_COLOR))",
+			"(dvar->type) = %i",
+			dvar->type))
+			__debugbreak();
+		*color = dvar->current.integer;
+	}
+}
+
+float Dvar_GetColorRed(const dvar_t* dvar)
+{
+	vec4_t expandedColor;
+
+	Dvar_GetUnpackedColor(dvar, &expandedColor);
+	return expandedColor.v[0];
+}
+
+float Dvar_GetColorRed(int dvarHash)
+{
+	const dvar_t* v1; // eax
+	vec4_t expandedColor; // [esp+4h] [ebp-14h]
+
+	v1 = Dvar_FindMalleableVar(dvarHash);
+	if (!v1)
+		return 1.0;
+	Dvar_GetUnpackedColor(v1, &expandedColor);
+	return expandedColor.v[0];
+}
+
+float Dvar_GetColorGreen(const dvar_t* dvar)
+{
+	vec4_t expandedColor; // [esp+0h] [ebp-14h]
+
+	Dvar_GetUnpackedColor(dvar, &expandedColor);
+	return expandedColor.v[1];
+}
+
+float Dvar_GetColorGreen(int dvarHash)
+{
+	const dvar_t* v1; // eax
+	vec4_t expandedColor; // [esp+4h] [ebp-14h]
+
+	v1 = Dvar_FindMalleableVar(dvarHash);
+	if (!v1)
+		return 1.0;
+	Dvar_GetUnpackedColor(v1, &expandedColor);
+	return expandedColor.v[1];
+}
+
+float Dvar_GetColorBlue(const dvar_t* dvar)
+{
+	vec4_t expandedColor; // [esp+0h] [ebp-14h]
+
+	Dvar_GetUnpackedColor(dvar, &expandedColor);
+	return expandedColor.v[2];
+}
+
+float Dvar_GetColorBlue(int dvarHash)
+{
+	const dvar_t* v1; // eax
+	vec4_t expandedColor; // [esp+4h] [ebp-14h]
+
+	v1 = Dvar_FindMalleableVar(dvarHash);
+	if (!v1)
+		return 1.0;
+	Dvar_GetUnpackedColor(v1, &expandedColor);
+	return expandedColor.v[2];
+}
+
+float Dvar_GetColorAlpha(const dvar_t* dvar)
+{
+	vec4_t expandedColor; // [esp+0h] [ebp-14h]
+
+	Dvar_GetUnpackedColor(dvar, &expandedColor);
+	return expandedColor.v[3];
+}
+
+float Dvar_GetColorAlpha(int dvarHash)
+{
+	const dvar_t* v1; // eax
+	vec4_t expandedColor; // [esp+4h] [ebp-14h]
+
+	v1 = Dvar_FindMalleableVar(dvarHash);
+	if (!v1)
+		return 1.0;
+	Dvar_GetUnpackedColor(v1, &expandedColor);
+	return expandedColor.v[3];
+}
+
+bool Dvar_GetLatchedBool(const dvar_t* dvar)
+{
+	if (!dvar)
+		return 0;
+	if (dvar->type != 1
+		&& !Assert_MyHandler(
+			__FILE__,
+			1974,
+			0,
+			"((dvar->type == DVAR_TYPE_BOOL))",
+			"(dvar->type) = %i",
+			dvar->type))
+	{
+		__debugbreak();
+	}
+	return dvar->latched.enabled;
+}
+
+int Dvar_GetLatchedInt(const dvar_t* dvar)
+{
+	dvarType_t v2; // eax
+
+	if (!dvar)
+		return 0;
+	v2 = dvar->type;
+	if (v2 != 6
+		&& v2 != 7
+		&& !Assert_MyHandler(
+			__FILE__,
+			1987,
+			0,
+			"((dvar->type == DVAR_TYPE_INT || dvar->type == DVAR_TYPE_ENUM))",
+			"(dvar->type) = %i",
+			dvar->type))
+	{
+		__debugbreak();
+	}
+	return dvar->latched.integer;
+}
+
+float Dvar_GetLatchedFloat(const dvar_t* dvar)
+{
+	if (!dvar)
+		return 0.0;
+	if (dvar->type != 2
+		&& !Assert_MyHandler(
+			__FILE__,
+			2013,
+			0,
+			"((dvar->type == DVAR_TYPE_FLOAT))",
+			"(dvar->type) = %i",
+			dvar->type))
+	{
+		__debugbreak();
+	}
+	return dvar->latched.value;
+}
+
+void Dvar_GetLatchedVec2(const dvar_t* dvar, vec2_t* result)
+{
+	if (dvar)
+	{
+		if (dvar->type != 3
+			&& !Assert_MyHandler(
+				__FILE__,
+				2029,
+				0,
+				"(dvar->type == DVAR_TYPE_FLOAT_2)",
+				nullptr))
+		{
+			__debugbreak();
+		}
+		*result = dvar->latched.integer64;
+	}
+	else
+	{
+		*result = vec2_origin;
+	}
+}
+
+void Dvar_GetLatchedVec3(const dvar_t* dvar, vec3_t* result)
+{
+	dvarType_t v2; // eax
+
+	if (dvar)
+	{
+		v2 = dvar->type;
+		if (v2 != 4
+			&& v2 != 11
+			&& v2 != 12
+			&& !Assert_MyHandler(
+				__FILE__,
+				2044,
+				0,
+				"(dvar->type == DVAR_TYPE_FLOAT_3 || dvar->type == DVAR_TYPE_LINEAR_COLOR_RGB || dvar->type == DVAR_TYPE_COLOR_XYZ)",
+				nullptr))
+		{
+			__debugbreak();
+		}
+		result->x = dvar->latched.value;
+		result->y = dvar->latched.vector.v[1];
+		result->z = dvar->latched.vector.v[2];
+	}
+	else
+	{
+		*result = vec3_origin;
+	}
+}
+
+void Dvar_GetLatchedVec4(const dvar_t* dvar, vec4_t* result)
+{
+	if (dvar)
+	{
+		if (dvar->type != 5
+			&& !Assert_MyHandler(
+				__FILE__,
+				2059,
+				0,
+				"(dvar->type == DVAR_TYPE_FLOAT_4)",
+				nullptr))
+		{
+			__debugbreak();
+		}
+		*(DvarValue*)result = dvar->latched;
+	}
+	else
+	{
+		*result = vec4_origin;
+	}
+}
+
+void Dvar_GetLatchedColor(const dvar_t* dvar, char* color)
+{
+	if (!dvar
+		&& !Assert_MyHandler(__FILE__, __LINE__, 0, "(dvar)", nullptr))
+	{
+		__debugbreak();
+	}
+	if (dvar->type == 9)
+	{
+		*color = dvar->latched.integer;
+	}
+	else
+	{
+		if (!Assert_MyHandler(
+			__FILE__,
+			2067,
+			0,
+			"((dvar->type == DVAR_TYPE_COLOR))",
+			"(dvar->type) = %i",
+			dvar->type))
+			__debugbreak();
+		*color = dvar->latched.integer;
+	}
+}
+
+int Dvar_GetResetInt(const dvar_t* dvar)
+{
+	dvarType_t v2; // eax
+
+	if (!dvar)
+		return 0;
+	v2 = dvar->type;
+	if (v2 != 6
+		&& v2 != 7
+		&& !Assert_MyHandler(
+			__FILE__,
+			2080,
+			0,
+			"((dvar->type == DVAR_TYPE_INT || dvar->type == DVAR_TYPE_ENUM))",
+			"(dvar->type) = %i",
+			dvar->type))
+	{
+		__debugbreak();
+	}
+	return dvar->reset.integer;
+}
+
+const char* Dvar_GetResetString(const dvar_t* dvar)
+{
+	if (!dvar)
+		return nullptr;
+	if (dvar->type != 8
+		&& !Assert_MyHandler(
+			__FILE__,
+			2106,
+			0,
+			"((dvar->type == DVAR_TYPE_STRING))",
+			"(dvar->type) = %i",
+			dvar->type))
+	{
+		__debugbreak();
+	}
+	return dvar->reset.string;
 }

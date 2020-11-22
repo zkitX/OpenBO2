@@ -22,6 +22,13 @@ union vec2_t
 		float x;
 		float y;
 	};
+
+	vec2_t operator=(const long long in) {
+		vec2_t out;
+
+		out.x = ((in & 0xFFFFFFFF00000000LL) >> 32);
+		out.y = ((in & 0xFFFFFFFFLL));
+	}
 };
 
 union vec3_t
@@ -81,6 +88,10 @@ inline vec4_t operator *(const vec4_t vec1, const vec4_t vec2) {
 
 	return out;
 }
+
+vec2_t vec2_origin = { 0,0 };
+vec3_t vec3_origin = { 0,0,0 };
+vec4_t vec4_origin = { 0,0,0,0 };
 
 bool bops_initialized;
 

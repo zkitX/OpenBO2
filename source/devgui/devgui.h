@@ -1,6 +1,7 @@
 #pragma once
 
-#include "../universal/dvar.h"
+#include <universal/com_math.h>
+#include <universal/dvar.h>
 
 enum DevEventType
 {
@@ -49,3 +50,4 @@ unsigned __int16 handle;
 
 bool DevGui_IsActive();
 void DevGui_Toggle();
+bool Vec4Compare(const vec4_t*, const vec4_t*);

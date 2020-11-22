@@ -1,5 +1,7 @@
 #include "devgui.h"
 
+#include <universal/assertive.h>
+
 bool DevGui_IsActive()
 {
     return DevGuiActive;
@@ -18,7 +20,7 @@ void DevGui_Toggle()
                 __LINE__,
                 0,
                 "(!devguiGlob.isActive)",
-                (const char*)&scratch))
+                nullptr))
         {
             __debugbreak();
         }
@@ -43,9 +45,14 @@ void DevGui_Toggle()
             __LINE__,
             0,
             "(!devguiGlob.isActive)",
-            (const char*)&scratch))
+            nullptr))
     {
         __debugbreak();
     }
 #endif
+}
+
+bool Vec4Compare(const vec4_t* a, const vec4_t* b)
+{
+    return a->v[0] == b->v[0] && a->v[1] == b->v[1] && a->v[2] == b->v[2] && a->v[3] == b->v[3];
 }

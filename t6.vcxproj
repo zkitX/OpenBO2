@@ -199,6 +199,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\universal\memfile.h" />
     <ClInclude Include="source\gfx_d3d\r_font.h" />
     <ClInclude Include="source\universal\com_vector.h" />
     <ClInclude Include="source\universal\com_math_anglevectors.h" />
@@ -371,6 +372,7 @@
     <ClInclude Include="source\xanim\xanim.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\universal\memfile.cpp" />
     <ClCompile Include="source\gfx_d3d\r_font.cpp" />
     <ClCompile Include="source\universal\com_math_anglevectors.cpp" />
     <ClCompile Include="source\universal\com_math.cpp" />

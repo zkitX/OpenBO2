@@ -3996,7 +3996,7 @@ void Dvar_Init(void)
         "Whether to show numeric ping value");
     v812.integer = 0;
     v1 = v812;
-    v814 = LODWORD(FLOAT_5_0);
+    v814 = LODWORD(5.0);
     v812.integer = 0;
     v812.vector.v[1] = 100;
     con_restricted = Dvar_RegisterVariant(
@@ -4007,8 +4007,8 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Restrict console access");
     g = (DvarLimits)v812;
-    v2.integer64 = LODWORD(FLOAT_5_0);
-    *((_QWORD*)&v2.string + 1) = 0i64;
+    v2.integer64 = LODWORD(5.0);
+    *((__int64*)&v2.string + 1) = 0i64;
     *(float*)&v814 = 0.75;
     v812.integer = 0;
     cg_connectionIconSize = Dvar_RegisterVariant(
@@ -4018,13 +4018,13 @@ void Dvar_Init(void)
         v2,
         g,
         "Size of the connection icon");
-    LODWORD(v812.vector.v[1]) = FLOAT_1_0;
+    LODWORD(v812.vector.v[1]) = 1.0;
     ga = (DvarLimits)v812;
     v3.integer64 = v814;
-    *((_QWORD*)&v3.string + 1) = 0i64;
+    *((__int64*)&v3.string + 1) = 0i64;
     *(float*)&v814 = FLOAT_435_0;
     v812.integer = 0;
-    v812.vector.v[1] = FLOAT_3_4028235e38;
+    v812.vector.v[1] = 3.4028235e38;
     cg_infraredHighlightOffset = Dvar_RegisterVariant(
         "cg_infraredHighlightOffset",
         DVAR_TYPE_FLOAT,
@@ -4034,10 +4034,10 @@ void Dvar_Init(void)
         "Offset to the player highlight when using infrared scope");
     gb = (DvarLimits)v812;
     v4.integer64 = v814;
-    *((_QWORD*)&v4.string + 1) = 0i64;
-    *(float*)&v814 = FLOAT_0_25999999;
+    *((__int64*)&v4.string + 1) = 0i64;
+    *(float*)&v814 = 0.25999999;
     v812.integer = 0;
-    v812.vector.v[1] = FLOAT_3_4028235e38;
+    v812.vector.v[1] = 3.4028235e38;
     cg_scoreboardHeight = Dvar_RegisterVariant(
         "cg_scoreboardHeight",
         DVAR_TYPE_FLOAT,
@@ -4047,10 +4047,10 @@ void Dvar_Init(void)
         "Height of the scoreboard");
     gc = (DvarLimits)v812;
     v5.integer64 = v814;
-    *((_QWORD*)&v5.string + 1) = 0i64;
-    *(float*)&v814 = FLOAT_0_60000002;
+    *((__int64*)&v5.string + 1) = 0i64;
+    *(float*)&v814 = 0.60000002;
     v812.integer = 0;
-    v812.vector.v[1] = FLOAT_3_4028235e38;
+    v812.vector.v[1] = 3.4028235e38;
     cg_scoreboardRankFontScale = Dvar_RegisterVariant(
         "cg_scoreboardRankFontScale",
         DVAR_TYPE_FLOAT,
@@ -4060,10 +4060,10 @@ void Dvar_Init(void)
         "Scale of rank font");
     gd = (DvarLimits)v812;
     v6.integer64 = v814;
-    *((_QWORD*)&v6.string + 1) = 0i64;
+    *((__int64*)&v6.string + 1) = 0i64;
     *(float*)&v814 = FLOAT_11_0;
     v812.integer = 0;
-    v812.vector.v[1] = FLOAT_100_0;
+    v812.vector.v[1] = 100.0;
     cg_scoreboardTextOffset = Dvar_RegisterVariant(
         "cg_scoreboardTextOffset",
         DVAR_TYPE_FLOAT,
@@ -4073,10 +4073,10 @@ void Dvar_Init(void)
         "Scoreboard text offset");
     ge = (DvarLimits)v812;
     v7.integer64 = v814;
-    *((_QWORD*)&v7.string + 1) = 0i64;
+    *((__int64*)&v7.string + 1) = 0i64;
     *(float*)&v814 = FLOAT_18_0;
     v812.integer = 0;
-    v812.vector.v[1] = FLOAT_3_4028235e38;
+    v812.vector.v[1] = 3.4028235e38;
     cg_youInKillCamSize = Dvar_RegisterVariant(
         "cg_youInKillCamSize",
         DVAR_TYPE_FLOAT,
@@ -4086,10 +4086,10 @@ void Dvar_Init(void)
         "Size of the 'you' Icon in the kill cam");
     gf = (DvarLimits)v812;
     v8.integer64 = v814;
-    *((_QWORD*)&v8.string + 1) = 0i64;
+    *((__int64*)&v8.string + 1) = 0i64;
     *(float*)&v814 = FLOAT_18_0;
     v812.integer = 0;
-    v812.vector.v[1] = FLOAT_3_4028235e38;
+    v812.vector.v[1] = 3.4028235e38;
     compassObjectiveIconHeight = Dvar_RegisterVariant(
         "compassObjectiveIconHeight",
         DVAR_TYPE_FLOAT,
@@ -4098,7 +4098,7 @@ void Dvar_Init(void)
         gf,
         "The size of the objective on the full map");
     v9.integer64 = v814;
-    *((_QWORD*)&v9.string + 1) = 0i64;
+    *((__int64*)&v9.string + 1) = 0i64;
     compassObjectiveIconWidth = Dvar_RegisterVariant(
         "compassObjectiveIconWidth",
         DVAR_TYPE_FLOAT,
@@ -4108,13 +4108,13 @@ void Dvar_Init(void)
         "The size of the objective on the full map");
     *(float*)&v814 = MYDEF_MAPPLAYERHEIGHT;
     v812.integer = 0;
-    v812.vector.v[1] = FLOAT_3_4028235e38;
+    v812.vector.v[1] = 3.4028235e38;
     gg = (DvarLimits)v812;
     v10.integer64 = v814;
-    *((_QWORD*)&v10.string + 1) = 0i64;
+    *((__int64*)&v10.string + 1) = 0i64;
     *(float*)&v814 = MYDEF_MAPPLAYERHEIGHT;
     v812.integer = 0;
-    v812.vector.v[1] = FLOAT_3_4028235e38;
+    v812.vector.v[1] = 3.4028235e38;
     compassPlayerHeight = Dvar_RegisterVariant(
         "compassPlayerHeight",
         DVAR_TYPE_FLOAT,
@@ -4124,7 +4124,7 @@ void Dvar_Init(void)
         "The size of the player's icon on the compass");
     gh = (DvarLimits)v812;
     v11.integer64 = v814;
-    *((_QWORD*)&v11.string + 1) = 0i64;
+    *((__int64*)&v11.string + 1) = 0i64;
     LODWORD(v814) = 0;
     v812.integer = 0;
     v812.vector.v[1] = FLOAT_30_0;
@@ -4137,7 +4137,7 @@ void Dvar_Init(void)
         "The size of the player's icon on the compass");
     gi = (DvarLimits)v812;
     v12.integer64 = v814;
-    *((_QWORD*)&v12.string + 1) = 0i64;
+    *((__int64*)&v12.string + 1) = 0i64;
     LODWORD(v814) = 0;
     v812.integer = 0;
     hud_fade_ammodisplay = Dvar_RegisterVariant(
@@ -4149,7 +4149,7 @@ void Dvar_Init(void)
         "The time for the ammo display to fade in seconds");
     v812.vector.v[1] = FLOAT_30_0;
     v13.integer64 = v814;
-    *((_QWORD*)&v13.string + 1) = 0i64;
+    *((__int64*)&v13.string + 1) = 0i64;
     hud_fade_offhand = Dvar_RegisterVariant(
         "hud_fade_offhand",
         DVAR_TYPE_FLOAT,
@@ -4158,10 +4158,10 @@ void Dvar_Init(void)
         (DvarLimits)v812,
         "The time for the offhand weapons to fade in seconds");
     gj.integer64.min = 0x28000000064i64;
-    gj.integer64.max = *((_QWORD*)&v812.string + 1);
+    gj.integer64.max = *((__int64*)&v812.string + 1);
     LODWORD(v814) = 600;
     v14.integer64 = v814;
-    *((_QWORD*)&v14.string + 1) = 0i64;
+    *((__int64*)&v14.string + 1) = 0i64;
     cg_objectiveListWrapCountStandard = Dvar_RegisterVariant(
         "cg_objectiveListWrapCountStandard",
         DVAR_TYPE_INT,
@@ -4170,10 +4170,10 @@ void Dvar_Init(void)
         gj,
         "The amount of on-screen length to wrap an objective in non wide-screen mode");
     gk.integer64.min = 0x7FFFFFFF00000000i64;
-    gk.integer64.max = *((_QWORD*)&v812.string + 1);
+    gk.integer64.max = *((__int64*)&v812.string + 1);
     LODWORD(v814) = 41;
     v15.integer64 = v814;
-    *((_QWORD*)&v15.string + 1) = 0i64;
+    *((__int64*)&v15.string + 1) = 0i64;
     cg_rangeFinderActiveReticleIndex = Dvar_RegisterVariant(
         "cg_rangeFinderActiveReticleIndex",
         DVAR_TYPE_INT,
@@ -4182,10 +4182,10 @@ void Dvar_Init(void)
         gk,
         "Reticle index for the range finder when an enemy is spotted.");
     gl.integer64.min = 0x7FFFFFFF00000000i64;
-    gl.integer64.max = *((_QWORD*)&v812.string + 1);
+    gl.integer64.max = *((__int64*)&v812.string + 1);
     LODWORD(v814) = 40;
     v16.integer64 = v814;
-    *((_QWORD*)&v16.string + 1) = 0i64;
+    *((__int64*)&v16.string + 1) = 0i64;
     cg_rangeFinderDefaultReticleIndex = Dvar_RegisterVariant(
         "cg_rangeFinderDefaultReticleIndex",
         DVAR_TYPE_INT,
@@ -4194,10 +4194,10 @@ void Dvar_Init(void)
         gl,
         "Default reticle index for the range finder attachment.");
     gm.integer64.min = 0x6400000000i64;
-    gm.integer64.max = *((_QWORD*)&v812.string + 1);
+    gm.integer64.max = *((__int64*)&v812.string + 1);
     LODWORD(v814) = 5;
     v17.integer64 = v814;
-    *((_QWORD*)&v17.string + 1) = 0i64;
+    *((__int64*)&v17.string + 1) = 0i64;
     cg_scriptIconSize = Dvar_RegisterVariant(
         "cg_scriptIconSize",
         DVAR_TYPE_INT,
@@ -4206,10 +4206,10 @@ void Dvar_Init(void)
         gm,
         "Size of Icons defined by script");
     gn.integer64.min = 0x7FFFFFFF00000000i64;
-    gn.integer64.max = *((_QWORD*)&v812.string + 1);
+    gn.integer64.max = *((__int64*)&v812.string + 1);
     LODWORD(v814) = 400;
     v18.integer64 = v814;
-    *((_QWORD*)&v18.string + 1) = 0i64;
+    *((__int64*)&v18.string + 1) = 0i64;
     cg_waterTrailRippleFrequency = Dvar_RegisterVariant(
         "cg_waterTrailRippleFrequency",
         DVAR_TYPE_INT,
@@ -4218,10 +4218,10 @@ void Dvar_Init(void)
         gn,
         "How often (in ms) will play the waist ripple fx for actors in water");
     go.integer64.min = 0x7FFFFFFF00000000i64;
-    go.integer64.max = *((_QWORD*)&v812.string + 1);
+    go.integer64.max = *((__int64*)&v812.string + 1);
     LODWORD(v814) = 200;
     v19.integer64 = v814;
-    *((_QWORD*)&v19.string + 1) = 0i64;
+    *((__int64*)&v19.string + 1) = 0i64;
     cg_waterTrailRippleVariance = Dvar_RegisterVariant(
         "cg_waterTrailRippleVariance",
         DVAR_TYPE_INT,
@@ -4230,15 +4230,15 @@ void Dvar_Init(void)
         go,
         "How late (in ms) the waist ripple fx can be played");
     gp.integer64.min = 0x61A8000003E8i64;
-    gp.integer64.max = *((_QWORD*)&v812.string + 1);
+    gp.integer64.max = *((__int64*)&v812.string + 1);
     LODWORD(v814) = 5000;
     v20.integer64 = v814;
-    *((_QWORD*)&v20.string + 1) = 0i64;
+    *((__int64*)&v20.string + 1) = 0i64;
     sv_maxRate = Dvar_RegisterVariant("sv_maxRate", DVAR_TYPE_INT, 0x84000u, v20, gp, "Maximum byte rate (per second)");
     gq.integer64.min = __PAIR64__(LODWORD(FLOAT_640_0), LODWORD(FLOAT_N200_0));
-    gq.integer64.max = *((_QWORD*)&v812.string + 1);
+    gq.integer64.max = *((__int64*)&v812.string + 1);
     v21.integer64 = 0i64;
-    *((_QWORD*)&v21.string + 1) = 0i64;
+    *((__int64*)&v21.string + 1) = 0i64;
     v812.vector.v[1] = FLOAT_20_0;
     cg_debugInfoCornerOffset = Dvar_RegisterVariant(
         "cg_debugInfoCornerOffset",
@@ -4250,7 +4250,7 @@ void Dvar_Init(void)
     gr.integer64.min = LODWORD(FLOAT_N10000_0) | 0x461C400000000000i64;
     gr.integer64.max = 0i64;
     v22.integer64 = __PAIR64__(LODWORD(FLOAT_20_0), LODWORD(FLOAT_N40_0));
-    *((_QWORD*)&v22.string + 1) = *((_QWORD*)&v812.string + 1);
+    *((__int64*)&v22.string + 1) = *((__int64*)&v812.string + 1);
     ui_buildLocation = Dvar_RegisterVariant(
         "ui_buildLocation",
         DVAR_TYPE_FLOAT_2,
@@ -4269,7 +4269,7 @@ void Dvar_Init(void)
         gs,
         "timeout(in seconds) between checks for server clients if they are steam authorized");
     v23.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v23.string + 1) = 0i64;
+    *((__int64*)&v23.string + 1) = 0i64;
     ai_ShowCanSeeChecks = Dvar_RegisterVariant(
         "ai_ShowCanSeeChecks",
         DVAR_TYPE_BOOL,
@@ -4278,7 +4278,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Display debugging information for 'cansee' checks");
     v24.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v24.string + 1) = 0i64;
+    *((__int64*)&v24.string + 1) = 0i64;
     ai_badPathSpam = Dvar_RegisterVariant(
         "ai_badPathSpam",
         DVAR_TYPE_BOOL,
@@ -4287,7 +4287,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Write debugging information for a bad AI paths");
     v25.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v25.string + 1) = 0i64;
+    *((__int64*)&v25.string + 1) = 0i64;
     ai_debugEntLock = Dvar_RegisterVariant(
         "ai_debugEntLock",
         DVAR_TYPE_BOOL,
@@ -4296,7 +4296,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Lock the currently selected debug entity");
     v26.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v26.string + 1) = 0i64;
+    *((__int64*)&v26.string + 1) = 0i64;
     ai_debug_dynamic_nodes = Dvar_RegisterVariant(
         "ai_debug_dynamic_nodes",
         DVAR_TYPE_BOOL,
@@ -4305,7 +4305,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "enable dynamic nodes debug prints");
     v27.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v27.string + 1) = 0i64;
+    *((__int64*)&v27.string + 1) = 0i64;
     ai_enableBadPlaces = Dvar_RegisterVariant(
         "ai_enableBadPlaces",
         DVAR_TYPE_BOOL,
@@ -4314,7 +4314,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "toggle badplaces system on/off");
     v28.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v28.string + 1) = 0i64;
+    *((__int64*)&v28.string + 1) = 0i64;
     ai_secondaryThreats = Dvar_RegisterVariant(
         "ai_secondaryThreats",
         DVAR_TYPE_BOOL,
@@ -4323,7 +4323,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Allow secondary targets");
     v29.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v29.string + 1) = 0i64;
+    *((__int64*)&v29.string + 1) = 0i64;
     bg_drawGrenadeInHand = Dvar_RegisterVariant(
         "bg_drawGrenadeInHand",
         DVAR_TYPE_BOOL,
@@ -4332,7 +4332,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Whether or not to draw grenade in hand for grenade animations");
     v30.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v30.string + 1) = 0i64;
+    *((__int64*)&v30.string + 1) = 0i64;
     bg_drawProximity = Dvar_RegisterVariant(
         "bg_drawProximity",
         DVAR_TYPE_BOOL,
@@ -4341,7 +4341,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Draw the collision surfaces in the proximity of the player");
     v31.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v31.string + 1) = 0i64;
+    *((__int64*)&v31.string + 1) = 0i64;
     bg_enableIKActiveFix = Dvar_RegisterVariant(
         "bg_enableIKActiveFix",
         DVAR_TYPE_BOOL,
@@ -4350,7 +4350,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable fix for the IK active flag being lost whenever a player dobj is rebuilt");
     v32.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v32.string + 1) = 0i64;
+    *((__int64*)&v32.string + 1) = 0i64;
     bg_freeCamClipToHeliPatch = Dvar_RegisterVariant(
         "bg_freeCamClipToHeliPatch",
         DVAR_TYPE_BOOL,
@@ -4359,7 +4359,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Toggles clipping to the heli patch rectangle.");
     v33.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v33.string + 1) = 0i64;
+    *((__int64*)&v33.string + 1) = 0i64;
     bg_playStandToCrouchAnims = Dvar_RegisterVariant(
         "bg_playStandToCrouchAnims",
         DVAR_TYPE_BOOL,
@@ -4368,7 +4368,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Whether or not to use animations to transition between stand and crouch, if not it just blends");
     v34.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v34.string + 1) = 0i64;
+    *((__int64*)&v34.string + 1) = 0i64;
     cg_ai_useServerAnims = Dvar_RegisterVariant(
         "cg_ai_useServerAnims",
         DVAR_TYPE_BOOL,
@@ -4377,7 +4377,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Copy the AI animations from the server instead of using networked animations.");
     v35.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v35.string + 1) = 0i64;
+    *((__int64*)&v35.string + 1) = 0i64;
     cg_bloodLimit = Dvar_RegisterVariant(
         "cg_bloodLimit",
         DVAR_TYPE_BOOL,
@@ -4386,10 +4386,10 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Limit blood effects (to 'prevent excess blood stacking')");
     v36.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v36.string + 1) = 0i64;
+    *((__int64*)&v36.string + 1) = 0i64;
     cg_brass = Dvar_RegisterVariant("cg_brass", DVAR_TYPE_BOOL, 0x84000u, v36, (DvarLimits)0, "Weapons eject brass");
     v37.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v37.string + 1) = 0i64;
+    *((__int64*)&v37.string + 1) = 0i64;
     cg_debugDrawSafeAreas = Dvar_RegisterVariant(
         "cg_debugDrawSafeAreas",
         DVAR_TYPE_BOOL,
@@ -4398,7 +4398,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "This determines whether to display the safe areas for all active viewports");
     v38.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v38.string + 1) = 0i64;
+    *((__int64*)&v38.string + 1) = 0i64;
     cg_debug_triggers = Dvar_RegisterVariant(
         "cg_debug_triggers",
         DVAR_TYPE_BOOL,
@@ -4407,7 +4407,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Debug client side Triggers, prints out all the client triggers the first time they are hit.");
     v39.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v39.string + 1) = 0i64;
+    *((__int64*)&v39.string + 1) = 0i64;
     cg_defensive_anim_delay = Dvar_RegisterVariant(
         "cg_defensive_anim_delay",
         DVAR_TYPE_BOOL,
@@ -4416,7 +4416,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Delay the anim commands to the server time");
     v40.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v40.string + 1) = 0i64;
+    *((__int64*)&v40.string + 1) = 0i64;
     cg_descriptiveText = Dvar_RegisterVariant(
         "cg_descriptiveText",
         DVAR_TYPE_BOOL,
@@ -4425,7 +4425,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Draw descriptive spectator messages");
     v41.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v41.string + 1) = 0i64;
+    *((__int64*)&v41.string + 1) = 0i64;
     cg_drawFPSLabels = Dvar_RegisterVariant(
         "cg_drawFPSLabels",
         DVAR_TYPE_BOOL,
@@ -4434,7 +4434,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Draw FPS Info Labels");
     v42.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v42.string + 1) = 0i64;
+    *((__int64*)&v42.string + 1) = 0i64;
     cg_drawMantleHint = Dvar_RegisterVariant(
         "cg_drawMantleHint",
         DVAR_TYPE_BOOL,
@@ -4443,7 +4443,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Draw a 'press key to mantle' hint");
     v43.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v43.string + 1) = 0i64;
+    *((__int64*)&v43.string + 1) = 0i64;
     cg_drawScriptUsage = Dvar_RegisterVariant(
         "cg_drawScriptUsage",
         DVAR_TYPE_BOOL,
@@ -4452,7 +4452,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Draw debugging information for scripts");
     v44.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v44.string + 1) = 0i64;
+    *((__int64*)&v44.string + 1) = 0i64;
     cg_drawSnapshot = Dvar_RegisterVariant(
         "cg_drawSnapshot",
         DVAR_TYPE_BOOL,
@@ -4461,7 +4461,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Draw debugging information for snapshots");
     v45.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v45.string + 1) = 0i64;
+    *((__int64*)&v45.string + 1) = 0i64;
     cg_drawSpectatorMessages = Dvar_RegisterVariant(
         "cg_drawSpectatorMessages",
         DVAR_TYPE_BOOL,
@@ -4470,7 +4470,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enables drawing of spectator HUD messages.");
     v46.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v46.string + 1) = 0i64;
+    *((__int64*)&v46.string + 1) = 0i64;
     cg_drawTurretCrosshair = Dvar_RegisterVariant(
         "cg_drawTurretCrosshair",
         DVAR_TYPE_BOOL,
@@ -4479,7 +4479,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Draw a cross hair when using a turret");
     v47.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v47.string + 1) = 0i64;
+    *((__int64*)&v47.string + 1) = 0i64;
     cg_drawVersion = Dvar_RegisterVariant(
         "cg_drawVersion",
         DVAR_TYPE_BOOL,
@@ -4488,7 +4488,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Draw the game version");
     v48.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v48.string + 1) = 0i64;
+    *((__int64*)&v48.string + 1) = 0i64;
     cg_drawWaypointsPostBloom = Dvar_RegisterVariant(
         "cg_drawWaypointsPostBloom",
         DVAR_TYPE_BOOL,
@@ -4497,7 +4497,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Draw the game waypoints after the bloom");
     v49.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v49.string + 1) = 0i64;
+    *((__int64*)&v49.string + 1) = 0i64;
     cg_drawYouInKillCamAsWaypoint = Dvar_RegisterVariant(
         "cg_drawYouInKillCamAsWaypoint",
         DVAR_TYPE_BOOL,
@@ -4506,7 +4506,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Draw the 'you' icon as a way point - false will draw as a billboard game waypoints after the bloom");
     v50.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v50.string + 1) = 0i64;
+    *((__int64*)&v50.string + 1) = 0i64;
     cg_fullscreenFinalKillcam = Dvar_RegisterVariant(
         "cg_fullscreenFinalKillcam",
         DVAR_TYPE_BOOL,
@@ -4515,7 +4515,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Fullscreen final killcam");
     v51.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v51.string + 1) = 0i64;
+    *((__int64*)&v51.string + 1) = 0i64;
     cg_forceEmp = Dvar_RegisterVariant(
         "cg_forceEmp",
         DVAR_TYPE_BOOL,
@@ -4524,7 +4524,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Force local player to be EMP jammed");
     v52.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v52.string + 1) = 0i64;
+    *((__int64*)&v52.string + 1) = 0i64;
     cg_hudDamageIconInScope = Dvar_RegisterVariant(
         "cg_hudDamageIconInScope",
         DVAR_TYPE_BOOL,
@@ -4533,7 +4533,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Draw damage icons when aiming down the sight of a scoped weapon");
     v53.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v53.string + 1) = 0i64;
+    *((__int64*)&v53.string + 1) = 0i64;
     cg_hudGrenadeIconEnabledFlash = Dvar_RegisterVariant(
         "cg_hudGrenadeIconEnabledFlash",
         DVAR_TYPE_BOOL,
@@ -4542,7 +4542,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Show the grenade indicator for flash grenades");
     v54.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v54.string + 1) = 0i64;
+    *((__int64*)&v54.string + 1) = 0i64;
     cg_hudSplitscreenOffsetsUseScale = Dvar_RegisterVariant(
         "cg_hudSplitscreenOffsetsUseScale",
         DVAR_TYPE_BOOL,
@@ -4551,7 +4551,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Use splitscreen scaling for element offsets");
     v55.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v55.string + 1) = 0i64;
+    *((__int64*)&v55.string + 1) = 0i64;
     cg_hudStanceHintPrints = Dvar_RegisterVariant(
         "cg_hudStanceHintPrints",
         DVAR_TYPE_BOOL,
@@ -4560,7 +4560,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Draw helpful text to say how to change stances");
     v56.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v56.string + 1) = 0i64;
+    *((__int64*)&v56.string + 1) = 0i64;
     cg_laserLight = Dvar_RegisterVariant(
         "cg_laserLight",
         DVAR_TYPE_BOOL,
@@ -4569,7 +4569,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Whether to draw the light emitted from a laser (not the laser itself)");
     v57.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v57.string + 1) = 0i64;
+    *((__int64*)&v57.string + 1) = 0i64;
     cg_marks_ents_player_only = Dvar_RegisterVariant(
         "cg_marks_ents_player_only",
         DVAR_TYPE_BOOL,
@@ -4578,7 +4578,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Marks on entities from player's bullets only.");
     v58.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v58.string + 1) = 0i64;
+    *((__int64*)&v58.string + 1) = 0i64;
     cg_minicon = Dvar_RegisterVariant(
         "cg_minicon",
         DVAR_TYPE_BOOL,
@@ -4587,7 +4587,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Display the mini console on screen");
     v59.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v59.string + 1) = 0i64;
+    *((__int64*)&v59.string + 1) = 0i64;
     cg_nopredict = Dvar_RegisterVariant(
         "cg_nopredict",
         DVAR_TYPE_BOOL,
@@ -4596,7 +4596,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Don't do client side prediction");
     v60.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v60.string + 1) = 0i64;
+    *((__int64*)&v60.string + 1) = 0i64;
     cg_oneFriendlyHeadTracePerFrame = Dvar_RegisterVariant(
         "cg_oneFriendlyHeadTracePerFrame",
         DVAR_TYPE_BOOL,
@@ -4605,7 +4605,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "head trace check");
     v61.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v61.string + 1) = 0i64;
+    *((__int64*)&v61.string + 1) = 0i64;
     cg_predictItems = Dvar_RegisterVariant(
         "cg_predictItems",
         DVAR_TYPE_BOOL,
@@ -4614,7 +4614,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Turn on client side prediction for item pickup");
     v62.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v62.string + 1) = 0i64;
+    *((__int64*)&v62.string + 1) = 0i64;
     cg_profile_physics = Dvar_RegisterVariant(
         "cg_profile_physics",
         DVAR_TYPE_BOOL,
@@ -4623,7 +4623,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Draw physics & collision profiltimers");
     v63.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v63.string + 1) = 0i64;
+    *((__int64*)&v63.string + 1) = 0i64;
     cg_scriptmover_useServerAnims = Dvar_RegisterVariant(
         "cg_scriptmover_useServerAnims",
         DVAR_TYPE_BOOL,
@@ -4632,7 +4632,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Copy the script_mover animations from the server instead of using networked animations.");
     v64.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v64.string + 1) = 0i64;
+    *((__int64*)&v64.string + 1) = 0i64;
     cg_showZombieMap = Dvar_RegisterVariant(
         "cg_showZombieMap",
         DVAR_TYPE_BOOL,
@@ -4641,7 +4641,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Show the zombie map up");
     v65.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v65.string + 1) = 0i64;
+    *((__int64*)&v65.string + 1) = 0i64;
     cg_teamChatsOnly = Dvar_RegisterVariant(
         "cg_teamChatsOnly",
         DVAR_TYPE_BOOL,
@@ -4650,7 +4650,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Allow chatting only on the same team");
     v66.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v66.string + 1) = 0i64;
+    *((__int64*)&v66.string + 1) = 0i64;
     cg_thirdPersonFootstepsFromNotetracks = Dvar_RegisterVariant(
         "cg_thirdPersonFootstepsFromNotetracks",
         DVAR_TYPE_BOOL,
@@ -4659,10 +4659,10 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Notetracks for third person are driven from notetracks instead of server events");
     v67.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v67.string + 1) = 0i64;
+    *((__int64*)&v67.string + 1) = 0i64;
     cheapSpawns = Dvar_RegisterVariant("cheapSpawns", DVAR_TYPE_BOOL, 0x84000u, v67, (DvarLimits)0, (const char*)&pBlock);
     v68.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v68.string + 1) = 0i64;
+    *((__int64*)&v68.string + 1) = 0i64;
     cl_forceavidemo = Dvar_RegisterVariant(
         "cl_forceavidemo",
         DVAR_TYPE_BOOL,
@@ -4671,7 +4671,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Record AVI demo even if client is not active");
     v69.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v69.string + 1) = 0i64;
+    *((__int64*)&v69.string + 1) = 0i64;
     cl_hudDrawsBehindUI = Dvar_RegisterVariant(
         "cl_hudDrawsBehindUI",
         DVAR_TYPE_BOOL,
@@ -4680,7 +4680,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Should the HUD draw when the UI is up?");
     v70.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v70.string + 1) = 0i64;
+    *((__int64*)&v70.string + 1) = 0i64;
     cl_noprint = Dvar_RegisterVariant(
         "cl_noprint",
         DVAR_TYPE_BOOL,
@@ -4689,7 +4689,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Print nothing to the console");
     v71.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v71.string + 1) = 0i64;
+    *((__int64*)&v71.string + 1) = 0i64;
     cl_showMouseRate = Dvar_RegisterVariant(
         "cl_showMouseRate",
         DVAR_TYPE_BOOL,
@@ -4698,7 +4698,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Print mouse rate debugging information to the console");
     v72.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v72.string + 1) = 0i64;
+    *((__int64*)&v72.string + 1) = 0i64;
     cl_showSend = Dvar_RegisterVariant(
         "cl_showSend",
         DVAR_TYPE_BOOL,
@@ -4707,7 +4707,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable debugging information for sent commands");
     v73.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v73.string + 1) = 0i64;
+    *((__int64*)&v73.string + 1) = 0i64;
     cl_showServerCommands = Dvar_RegisterVariant(
         "cl_showServerCommands",
         DVAR_TYPE_BOOL,
@@ -4716,7 +4716,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable debugging information for server commands");
     v74.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v74.string + 1) = 0i64;
+    *((__int64*)&v74.string + 1) = 0i64;
     cl_showTimeDelta = Dvar_RegisterVariant(
         "cl_showTimeDelta",
         DVAR_TYPE_BOOL,
@@ -4725,7 +4725,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable debugging information for time delta");
     v75.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v75.string + 1) = 0i64;
+    *((__int64*)&v75.string + 1) = 0i64;
     cl_shownuments = Dvar_RegisterVariant(
         "cl_shownuments",
         DVAR_TYPE_BOOL,
@@ -4734,7 +4734,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Show the number of entities");
     v76.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v76.string + 1) = 0i64;
+    *((__int64*)&v76.string + 1) = 0i64;
     cl_socketpool_enabled = Dvar_RegisterVariant(
         "cl_socketpool_enabled",
         DVAR_TYPE_BOOL,
@@ -4743,10 +4743,10 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "True is socketpool technology is enabled");
     v77.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v77.string + 1) = 0i64;
+    *((__int64*)&v77.string + 1) = 0i64;
     com_animCheck = Dvar_RegisterVariant("com_animCheck", DVAR_TYPE_BOOL, 0x84000u, v77, (DvarLimits)0, "Check anim tree");
     v78.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v78.string + 1) = 0i64;
+    *((__int64*)&v78.string + 1) = 0i64;
     com_attractmode = Dvar_RegisterVariant(
         "com_attractmode",
         DVAR_TYPE_BOOL,
@@ -4755,7 +4755,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Run attract mode");
     v79.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v79.string + 1) = 0i64;
+    *((__int64*)&v79.string + 1) = 0i64;
     com_filter_output = Dvar_RegisterVariant(
         "com_filter_output",
         DVAR_TYPE_BOOL,
@@ -4764,7 +4764,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Use console filters for filtering output.");
     v80.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v80.string + 1) = 0i64;
+    *((__int64*)&v80.string + 1) = 0i64;
     com_script_debugger_smoke_test = Dvar_RegisterVariant(
         "com_script_debugger_smoke_test",
         DVAR_TYPE_BOOL,
@@ -4773,7 +4773,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "perform script debugger smoke test and exit");
     v81.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v81.string + 1) = 0i64;
+    *((__int64*)&v81.string + 1) = 0i64;
     com_voip_bandwidth_restricted = Dvar_RegisterVariant(
         "com_voip_bandwidth_restricted",
         DVAR_TYPE_BOOL,
@@ -4782,7 +4782,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Use VOIP inhibitor during high bandwidth usage");
     v82.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v82.string + 1) = 0i64;
+    *((__int64*)&v82.string + 1) = 0i64;
     useWalkPathnodesMode = Dvar_RegisterVariant(
         "useWalkPathnodesMode",
         DVAR_TYPE_BOOL,
@@ -4791,7 +4791,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Walk path nodes and log static (map) texture streaming memory usage");
     v83.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v83.string + 1) = 0i64;
+    *((__int64*)&v83.string + 1) = 0i64;
     compassRotation = Dvar_RegisterVariant(
         "compassRotation",
         DVAR_TYPE_BOOL,
@@ -4800,7 +4800,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Style of compass");
     v84.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v84.string + 1) = 0i64;
+    *((__int64*)&v84.string + 1) = 0i64;
     compassSpectatorsSeeEnemies = Dvar_RegisterVariant(
         "compassSpectatorsSeeEnemies",
         DVAR_TYPE_BOOL,
@@ -4809,7 +4809,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Spectators always see enemies on the map.");
     v85.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v85.string + 1) = 0i64;
+    *((__int64*)&v85.string + 1) = 0i64;
     con_matchPrefixOnly = Dvar_RegisterVariant(
         "con_matchPrefixOnly",
         DVAR_TYPE_BOOL,
@@ -4818,7 +4818,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Only match the prefix when listing matching Dvars");
     v86.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v86.string + 1) = 0i64;
+    *((__int64*)&v86.string + 1) = 0i64;
     con_typewriterEnabledSounds = Dvar_RegisterVariant(
         "con_typewriterEnabledSounds",
         DVAR_TYPE_BOOL,
@@ -4827,7 +4827,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable the typewriter sounds and text effects.  Disabled still uses the typewrite glow settings.");
     v87.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v87.string + 1) = 0i64;
+    *((__int64*)&v87.string + 1) = 0i64;
     dcacheSimulateNoHDD = Dvar_RegisterVariant(
         "dcacheSimulateNoHDD",
         DVAR_TYPE_BOOL,
@@ -4836,10 +4836,10 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "When turned on, simulated no HDD for caching.");
     v88.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v88.string + 1) = 0i64;
+    *((__int64*)&v88.string + 1) = 0i64;
     debugCurves = Dvar_RegisterVariant("debugCurves", DVAR_TYPE_BOOL, 0x84000u, v88, (DvarLimits)0, "Draw active curves.");
     v89.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v89.string + 1) = 0i64;
+    *((__int64*)&v89.string + 1) = 0i64;
     debug_triggers = Dvar_RegisterVariant(
         "debug_triggers",
         DVAR_TYPE_BOOL,
@@ -4848,7 +4848,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Debug Triggers, prints out all the triggers the first time they are hit.");
     v90.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v90.string + 1) = 0i64;
+    *((__int64*)&v90.string + 1) = 0i64;
     demo_profiling = Dvar_RegisterVariant(
         "demo_profiling",
         DVAR_TYPE_BOOL,
@@ -4857,7 +4857,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Used to turn the system on/off.");
     v91.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v91.string + 1) = 0i64;
+    *((__int64*)&v91.string + 1) = 0i64;
     demo_usefilesystem = Dvar_RegisterVariant(
         "demo_usefilesystem",
         DVAR_TYPE_BOOL,
@@ -4866,7 +4866,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Used to turn HDD write ON or OFF.");
     v92.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v92.string + 1) = 0i64;
+    *((__int64*)&v92.string + 1) = 0i64;
     drawEntityCount = Dvar_RegisterVariant(
         "drawEntityCount",
         DVAR_TYPE_BOOL,
@@ -4875,7 +4875,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable entity count drawing");
     v93.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v93.string + 1) = 0i64;
+    *((__int64*)&v93.string + 1) = 0i64;
     drawKillcamData = Dvar_RegisterVariant(
         "drawKillcamData",
         DVAR_TYPE_BOOL,
@@ -4884,7 +4884,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable drawing server killcam data");
     v94.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v94.string + 1) = 0i64;
+    *((__int64*)&v94.string + 1) = 0i64;
     drawServerBandwidth = Dvar_RegisterVariant(
         "drawServerBandwidth",
         DVAR_TYPE_BOOL,
@@ -4893,7 +4893,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable drawing server bandwidth");
     v95.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v95.string + 1) = 0i64;
+    *((__int64*)&v95.string + 1) = 0i64;
     dynEnt_sentientAutoActivate = Dvar_RegisterVariant(
         "dynEnt_sentientAutoActivate",
         DVAR_TYPE_BOOL,
@@ -4902,7 +4902,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "This allows the player and AI to push around dyn ents");
     v96.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v96.string + 1) = 0i64;
+    *((__int64*)&v96.string + 1) = 0i64;
     enable_cheap_ents = Dvar_RegisterVariant(
         "enable_cheap_ents",
         DVAR_TYPE_BOOL,
@@ -4911,7 +4911,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Toggles cheap entity support");
     v97.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v97.string + 1) = 0i64;
+    *((__int64*)&v97.string + 1) = 0i64;
     friendlyNameFontObjective = Dvar_RegisterVariant(
         "friendlyNameFontObjective",
         DVAR_TYPE_BOOL,
@@ -4920,7 +4920,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Use the objective font for friendly prints.");
     v98.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v98.string + 1) = 0i64;
+    *((__int64*)&v98.string + 1) = 0i64;
     fsShowStreamingGraph = Dvar_RegisterVariant(
         "fsShowStreamingGraph",
         DVAR_TYPE_BOOL,
@@ -4929,7 +4929,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Shows a graph in-game with streaming history information.");
     v99.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v99.string + 1) = 0i64;
+    *((__int64*)&v99.string + 1) = 0i64;
     fx_cull_effect_spawn = Dvar_RegisterVariant(
         "fx_cull_effect_spawn",
         DVAR_TYPE_BOOL,
@@ -4938,7 +4938,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Culls entire effects for spawning");
     v100.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v100.string + 1) = 0i64;
+    *((__int64*)&v100.string + 1) = 0i64;
     fx_cull_elem_draw = Dvar_RegisterVariant(
         "fx_cull_elem_draw",
         DVAR_TYPE_BOOL,
@@ -4947,7 +4947,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Culls effect elems for drawing");
     v101.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v101.string + 1) = 0i64;
+    *((__int64*)&v101.string + 1) = 0i64;
     fx_cull_elem_spawn = Dvar_RegisterVariant(
         "fx_cull_elem_spawn",
         DVAR_TYPE_BOOL,
@@ -4956,7 +4956,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Culls effect elems for spawning");
     v102.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v102.string + 1) = 0i64;
+    *((__int64*)&v102.string + 1) = 0i64;
     fx_marks = Dvar_RegisterVariant(
         "fx_marks",
         DVAR_TYPE_BOOL,
@@ -4965,7 +4965,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Toggles whether bullet hits leave marks");
     v103.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v103.string + 1) = 0i64;
+    *((__int64*)&v103.string + 1) = 0i64;
     fx_marks_ents = Dvar_RegisterVariant(
         "fx_marks_ents",
         DVAR_TYPE_BOOL,
@@ -4974,7 +4974,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Toggles whether bullet hits leave marks on entities");
     v104.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v104.string + 1) = 0i64;
+    *((__int64*)&v104.string + 1) = 0i64;
     fx_marks_smodels = Dvar_RegisterVariant(
         "fx_marks_smodels",
         DVAR_TYPE_BOOL,
@@ -4983,7 +4983,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Toggles whether bullet hits leave marks on static models");
     v105.integer64 = 0x12C00000001i64;
-    *((_QWORD*)&v105.string + 1) = 0i64;
+    *((__int64*)&v105.string + 1) = 0i64;
     g_antilag = Dvar_RegisterVariant(
         "g_antilag",
         DVAR_TYPE_BOOL,
@@ -4992,7 +4992,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Turn on antilag checks for weapon hits");
     v106.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v106.string + 1) = 0i64;
+    *((__int64*)&v106.string + 1) = 0i64;
     g_bDebugRenderBrushes = Dvar_RegisterVariant(
         "g_bDebugRenderBrushes",
         DVAR_TYPE_BOOL,
@@ -5001,7 +5001,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Render brushes");
     v107.integer64 = 0x12C00000000i64;
-    *((_QWORD*)&v107.string + 1) = 0i64;
+    *((__int64*)&v107.string + 1) = 0i64;
     g_bDebugRenderBulletMeshes = Dvar_RegisterVariant(
         "g_bDebugRenderBulletMeshes",
         DVAR_TYPE_BOOL,
@@ -5012,7 +5012,7 @@ void Dvar_Init(void)
     gt.integer64.min = 0x200000000i64;
     gt.integer64.max = 0i64;
     v108.integer64 = 0i64;
-    *((_QWORD*)&v108.string + 1) = 0i64;
+    *((__int64*)&v108.string + 1) = 0i64;
     g_bDebugRenderMeshType = Dvar_RegisterVariant(
         "g_bDebugRenderMeshType",
         DVAR_TYPE_INT,
@@ -5021,7 +5021,7 @@ void Dvar_Init(void)
         gt,
         "Render bullet collision type");
     v109.integer64 = 0x200000000i64;
-    *((_QWORD*)&v109.string + 1) = 0i64;
+    *((__int64*)&v109.string + 1) = 0i64;
     g_bDebugRenderColoredPatches = Dvar_RegisterVariant(
         "g_bDebugRenderColoredPatches",
         DVAR_TYPE_BOOL,
@@ -5030,7 +5030,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Render each patch with a different color (Render Patches must be on )");
     v110.integer64 = 0x200000000i64;
-    *((_QWORD*)&v110.string + 1) = 0i64;
+    *((__int64*)&v110.string + 1) = 0i64;
     g_bDebugRenderEntityBrushes = Dvar_RegisterVariant(
         "g_bDebugRenderEntityBrushes",
         DVAR_TYPE_BOOL,
@@ -5039,7 +5039,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Render the brushes associated with the entity you are looking at");
     v111.integer64 = 0x200000000i64;
-    *((_QWORD*)&v111.string + 1) = 0i64;
+    *((__int64*)&v111.string + 1) = 0i64;
     g_bDebugRenderPatches = Dvar_RegisterVariant(
         "g_bDebugRenderPatches",
         DVAR_TYPE_BOOL,
@@ -5048,7 +5048,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Render patches");
     v112.integer64 = 0x200000000i64;
-    *((_QWORD*)&v112.string + 1) = 0i64;
+    *((__int64*)&v112.string + 1) = 0i64;
     g_bDebugRenderStaticModelsBounds = Dvar_RegisterVariant(
         "g_bDebugRenderStaticModelsBounds",
         DVAR_TYPE_BOOL,
@@ -5057,7 +5057,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Render the bounds of the nearby static models");
     v113.integer64 = 0x200000000i64;
-    *((_QWORD*)&v113.string + 1) = 0i64;
+    *((__int64*)&v113.string + 1) = 0i64;
     g_debugRankXP = Dvar_RegisterVariant(
         "g_debugRankXP",
         DVAR_TYPE_BOOL,
@@ -5066,7 +5066,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Print to the console debug output for rank XP");
     v114.integer64 = 0x200000000i64;
-    *((_QWORD*)&v114.string + 1) = 0i64;
+    *((__int64*)&v114.string + 1) = 0i64;
     g_debugWeaponXP = Dvar_RegisterVariant(
         "g_debugWeaponXP",
         DVAR_TYPE_BOOL,
@@ -5075,7 +5075,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Print to the console debug output for weapon XP");
     v115.integer64 = 0x200000000i64;
-    *((_QWORD*)&v115.string + 1) = 0i64;
+    *((__int64*)&v115.string + 1) = 0i64;
     g_deadChat = Dvar_RegisterVariant(
         "g_deadChat",
         DVAR_TYPE_BOOL,
@@ -5084,7 +5084,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Allow dead players to chat with living players");
     v116.integer64 = 0x200000000i64;
-    *((_QWORD*)&v116.string + 1) = 0i64;
+    *((__int64*)&v116.string + 1) = 0i64;
     g_debugRenderGjkTraceGeom = Dvar_RegisterVariant(
         "g_debugRenderGjkTraceGeom",
         DVAR_TYPE_BOOL,
@@ -5093,7 +5093,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Render gjk trace meshes");
     v117.integer64 = 0x200000000i64;
-    *((_QWORD*)&v117.string + 1) = 0i64;
+    *((__int64*)&v117.string + 1) = 0i64;
     g_droppedWeaponPhysics = Dvar_RegisterVariant(
         "g_droppedWeaponPhysics",
         DVAR_TYPE_BOOL,
@@ -5102,7 +5102,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Dropped weapons will go into rigid body physics if set");
     v118.integer64 = 0x200000000i64;
-    *((_QWORD*)&v118.string + 1) = 0i64;
+    *((__int64*)&v118.string + 1) = 0i64;
     g_dumpStaticModels = Dvar_RegisterVariant(
         "g_dumpStaticModels",
         DVAR_TYPE_BOOL,
@@ -5111,7 +5111,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Prints info about the static models");
     v119.integer64 = 0x200000000i64;
-    *((_QWORD*)&v119.string + 1) = 0i64;
+    *((__int64*)&v119.string + 1) = 0i64;
     g_oldAnimCmdNetwork = Dvar_RegisterVariant(
         "g_oldAnimCmdNetwork",
         DVAR_TYPE_BOOL,
@@ -5120,7 +5120,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Whether to use the old method of culling animCmds in the network layer");
     v120.integer64 = 0x200000001i64;
-    *((_QWORD*)&v120.string + 1) = 0i64;
+    *((__int64*)&v120.string + 1) = 0i64;
     g_smoothClients = Dvar_RegisterVariant(
         "g_smoothClients",
         DVAR_TYPE_BOOL,
@@ -5129,7 +5129,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable extrapolation between client states");
     v121.integer64 = 0x200000001i64;
-    *((_QWORD*)&v121.string + 1) = 0i64;
+    *((__int64*)&v121.string + 1) = 0i64;
     gump_verbose = Dvar_RegisterVariant(
         "gump_verbose",
         DVAR_TYPE_BOOL,
@@ -5138,7 +5138,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Turns on verbose mode for the gump functionality");
     v122.integer64 = 0x200000001i64;
-    *((_QWORD*)&v122.string + 1) = 0i64;
+    *((__int64*)&v122.string + 1) = 0i64;
     loc_translate = Dvar_RegisterVariant(
         "loc_translate",
         DVAR_TYPE_BOOL,
@@ -5147,10 +5147,10 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable translations");
     v123.integer64 = 0x200000001i64;
-    *((_QWORD*)&v123.string + 1) = 0i64;
+    *((__int64*)&v123.string + 1) = 0i64;
     lui_enabled = Dvar_RegisterVariant("lui_enabled", DVAR_TYPE_BOOL, 0x84000u, v123, (DvarLimits)0, "Enables LUI");
     v124.integer64 = 0x200000000i64;
-    *((_QWORD*)&v124.string + 1) = 0i64;
+    *((__int64*)&v124.string + 1) = 0i64;
     lui_highlightScaledText = Dvar_RegisterVariant(
         "lui_highlightScaledText",
         DVAR_TYPE_BOOL,
@@ -5159,7 +5159,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Highlights scaled text");
     v125.integer64 = 0x200000000i64;
-    *((_QWORD*)&v125.string + 1) = 0i64;
+    *((__int64*)&v125.string + 1) = 0i64;
     missileDebugAttractors = Dvar_RegisterVariant(
         "missileDebugAttractors",
         DVAR_TYPE_BOOL,
@@ -5168,7 +5168,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Draw the attractors and repulsors.  Attractors are green, and repulsors are yellow.");
     v126.integer64 = 0x200000000i64;
-    *((_QWORD*)&v126.string + 1) = 0i64;
+    *((__int64*)&v126.string + 1) = 0i64;
     missileDebugDraw = Dvar_RegisterVariant(
         "missileDebugDraw",
         DVAR_TYPE_BOOL,
@@ -5177,7 +5177,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Draw guided missile trajectories.");
     v127.integer64 = 0x200000000i64;
-    *((_QWORD*)&v127.string + 1) = 0i64;
+    *((__int64*)&v127.string + 1) = 0i64;
     missileDebugText = Dvar_RegisterVariant(
         "missileDebugText",
         DVAR_TYPE_BOOL,
@@ -5186,7 +5186,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Print debug missile info to console.");
     v128.integer64 = 0x200000000i64;
-    *((_QWORD*)&v128.string + 1) = 0i64;
+    *((__int64*)&v128.string + 1) = 0i64;
     modPrvUseAnimDump = Dvar_RegisterVariant(
         "modPrvUseAnimDump",
         DVAR_TYPE_BOOL,
@@ -5195,7 +5195,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         (const char*)&pBlock);
     v129.integer64 = 0x200000000i64;
-    *((_QWORD*)&v129.string + 1) = 0i64;
+    *((__int64*)&v129.string + 1) = 0i64;
     msg_dumpEnts = Dvar_RegisterVariant(
         "msg_dumpEnts",
         DVAR_TYPE_BOOL,
@@ -5204,7 +5204,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Print snapshot entity info");
     v130.integer64 = 0x200000000i64;
-    *((_QWORD*)&v130.string + 1) = 0i64;
+    *((__int64*)&v130.string + 1) = 0i64;
     msg_hudelemspew = Dvar_RegisterVariant(
         "msg_hudelemspew",
         DVAR_TYPE_BOOL,
@@ -5213,7 +5213,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Debug hudelem fields changing");
     v131.integer64 = 0x200000000i64;
-    *((_QWORD*)&v131.string + 1) = 0i64;
+    *((__int64*)&v131.string + 1) = 0i64;
     msg_printEntityNums = Dvar_RegisterVariant(
         "msg_printEntityNums",
         DVAR_TYPE_BOOL,
@@ -5222,7 +5222,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Print entity numbers");
     v132.integer64 = 0x200000000i64;
-    *((_QWORD*)&v132.string + 1) = 0i64;
+    *((__int64*)&v132.string + 1) = 0i64;
     msg_zlibCompress = Dvar_RegisterVariant(
         "msg_zlibCompress",
         DVAR_TYPE_BOOL,
@@ -5231,7 +5231,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable zlib compression");
     v133.integer64 = 0x200000000i64;
-    *((_QWORD*)&v133.string + 1) = 0i64;
+    *((__int64*)&v133.string + 1) = 0i64;
     msg_zlibCompressOutput = Dvar_RegisterVariant(
         "msg_zlibCompressOutput",
         DVAR_TYPE_BOOL,
@@ -5240,7 +5240,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable zlib compression console output");
     v134.integer64 = 0x200000000i64;
-    *((_QWORD*)&v134.string + 1) = 0i64;
+    *((__int64*)&v134.string + 1) = 0i64;
     net_broadcast = Dvar_RegisterVariant(
         "net_broadcast",
         DVAR_TYPE_BOOL,
@@ -5249,7 +5249,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         (const char*)&pBlock);
     v135.integer64 = 0x200000000i64;
-    *((_QWORD*)&v135.string + 1) = 0i64;
+    *((__int64*)&v135.string + 1) = 0i64;
     net_debug_server_time_error = Dvar_RegisterVariant(
         "net_debug_server_time_error",
         DVAR_TYPE_BOOL,
@@ -5258,7 +5258,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Debug server time error");
     v136.integer64 = 0x200000000i64;
-    *((_QWORD*)&v136.string + 1) = 0i64;
+    *((__int64*)&v136.string + 1) = 0i64;
     net_minigraph = Dvar_RegisterVariant(
         "net_minigraph",
         DVAR_TYPE_BOOL,
@@ -5267,7 +5267,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Show the small network profile display");
     v137.integer64 = 0x200000000i64;
-    *((_QWORD*)&v137.string + 1) = 0i64;
+    *((__int64*)&v137.string + 1) = 0i64;
     noCheapSpawns = Dvar_RegisterVariant(
         "noCheapSpawns",
         DVAR_TYPE_BOOL,
@@ -5276,7 +5276,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         (const char*)&pBlock);
     v138.integer64 = 0x200000000i64;
-    *((_QWORD*)&v138.string + 1) = 0i64;
+    *((__int64*)&v138.string + 1) = 0i64;
     packetDebug = Dvar_RegisterVariant(
         "packetDebug",
         DVAR_TYPE_BOOL,
@@ -5285,7 +5285,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable packet debugging information");
     v139.integer64 = 0x200000001i64;
-    *((_QWORD*)&v139.string + 1) = 0i64;
+    *((__int64*)&v139.string + 1) = 0i64;
     party_reliableMigrate = Dvar_RegisterVariant(
         "party_reliableMigrate",
         DVAR_TYPE_BOOL,
@@ -5294,7 +5294,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Use reliable lobby migration");
     v140.integer64 = 0x200000000i64;
-    *((_QWORD*)&v140.string + 1) = 0i64;
+    *((__int64*)&v140.string + 1) = 0i64;
     phys_buoyancyFastComputation = Dvar_RegisterVariant(
         "phys_buoyancyFastComputation",
         DVAR_TYPE_BOOL,
@@ -5303,7 +5303,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Simplify the buoyancy calculations");
     v141.integer64 = 0x200000000i64;
-    *((_QWORD*)&v141.string + 1) = 0i64;
+    *((__int64*)&v141.string + 1) = 0i64;
     phys_debugBigQueries = Dvar_RegisterVariant(
         "phys_debugBigQueries",
         DVAR_TYPE_BOOL,
@@ -5312,7 +5312,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Draw debug info when phys object moves very fast therefore generating huge query boxes");
     v142.integer64 = 0x200000000i64;
-    *((_QWORD*)&v142.string + 1) = 0i64;
+    *((__int64*)&v142.string + 1) = 0i64;
     phys_debugCallback = Dvar_RegisterVariant(
         "phys_debugCallback",
         DVAR_TYPE_BOOL,
@@ -5321,7 +5321,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enbles the physics debug callback");
     v143.integer64 = 0x200000000i64;
-    *((_QWORD*)&v143.string + 1) = 0i64;
+    *((__int64*)&v143.string + 1) = 0i64;
     phys_debugDangerousRigidBodies = Dvar_RegisterVariant(
         "phys_debugDangerousRigidBodies",
         DVAR_TYPE_BOOL,
@@ -5330,7 +5330,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Draws debug line off the origins of dangerous rigid bodies");
     v144.integer64 = 0x200000001i64;
-    *((_QWORD*)&v144.string + 1) = 0i64;
+    *((__int64*)&v144.string + 1) = 0i64;
     phys_debugExpensivePushout = Dvar_RegisterVariant(
         "phys_debugExpensivePushout",
         DVAR_TYPE_BOOL,
@@ -5339,7 +5339,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Draw debug info when the engine resort to exensive Player/AI pushouts");
     v145.integer64 = 0x200000000i64;
-    *((_QWORD*)&v145.string + 1) = 0i64;
+    *((__int64*)&v145.string + 1) = 0i64;
     phys_drawCollisionObj = Dvar_RegisterVariant(
         "phys_drawCollisionObj",
         DVAR_TYPE_BOOL,
@@ -5348,7 +5348,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Debug draw collision geometry for each physics object");
     v146.integer64 = 0x200000000i64;
-    *((_QWORD*)&v146.string + 1) = 0i64;
+    *((__int64*)&v146.string + 1) = 0i64;
     phys_drawNitrousVehicle = Dvar_RegisterVariant(
         "phys_drawNitrousVehicle",
         DVAR_TYPE_BOOL,
@@ -5357,7 +5357,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Print info about the nitrous vehicles");
     v147.integer64 = 0x200000000i64;
-    *((_QWORD*)&v147.string + 1) = 0i64;
+    *((__int64*)&v147.string + 1) = 0i64;
     phys_drawNitrousVehicleEffects = Dvar_RegisterVariant(
         "phys_drawNitrousVehicleEffects",
         DVAR_TYPE_BOOL,
@@ -5366,7 +5366,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Print info about the nitrous vehicle wheel effects");
     v148.integer64 = 0x200000000i64;
-    *((_QWORD*)&v148.string + 1) = 0i64;
+    *((__int64*)&v148.string + 1) = 0i64;
     phys_drawcontacts = Dvar_RegisterVariant(
         "phys_drawcontacts",
         DVAR_TYPE_BOOL,
@@ -5375,7 +5375,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Debug draw contact points");
     v149.integer64 = 0x200000001i64;
-    *((_QWORD*)&v149.string + 1) = 0i64;
+    *((__int64*)&v149.string + 1) = 0i64;
     phys_entityCollision = Dvar_RegisterVariant(
         "phys_entityCollision",
         DVAR_TYPE_BOOL,
@@ -5384,7 +5384,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable to turn on entity collision.");
     v150.integer64 = 0x200000000i64;
-    *((_QWORD*)&v150.string + 1) = 0i64;
+    *((__int64*)&v150.string + 1) = 0i64;
     phys_fluid = Dvar_RegisterVariant(
         "phys_fluid",
         DVAR_TYPE_BOOL,
@@ -5393,7 +5393,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Turn on and off the fluid simulation code");
     v151.integer64 = 0x200000000i64;
-    *((_QWORD*)&v151.string + 1) = 0i64;
+    *((__int64*)&v151.string + 1) = 0i64;
     phys_impact_render = Dvar_RegisterVariant(
         "phys_impact_render",
         DVAR_TYPE_BOOL,
@@ -5402,7 +5402,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Render a star at the impact origin.");
     v152.integer64 = 0x200000001i64;
-    *((_QWORD*)&v152.string + 1) = 0i64;
+    *((__int64*)&v152.string + 1) = 0i64;
     phys_player_step_on_actors = Dvar_RegisterVariant(
         "phys_player_step_on_actors",
         DVAR_TYPE_BOOL,
@@ -5411,7 +5411,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "phys_player_step_on_actors");
     v153.integer64 = 0x200000001i64;
-    *((_QWORD*)&v153.string + 1) = 0i64;
+    *((__int64*)&v153.string + 1) = 0i64;
     phys_userRigidBodies = Dvar_RegisterVariant(
         "phys_userRigidBodies",
         DVAR_TYPE_BOOL,
@@ -5420,7 +5420,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enables user rigid bodies.");
     v154.integer64 = 0x200000000i64;
-    *((_QWORD*)&v154.string + 1) = 0i64;
+    *((__int64*)&v154.string + 1) = 0i64;
     phys_verbose = Dvar_RegisterVariant(
         "phys_verbose",
         DVAR_TYPE_BOOL,
@@ -5429,7 +5429,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Turns on verbose mode");
     v155.integer64 = 0x200000001i64;
-    *((_QWORD*)&v155.string + 1) = 0i64;
+    *((__int64*)&v155.string + 1) = 0i64;
     player_disableWeaponsInWater = Dvar_RegisterVariant(
         "player_disableWeaponsInWater",
         DVAR_TYPE_BOOL,
@@ -5438,7 +5438,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Disable weapons while in deep water");
     v156.integer64 = 0x200000001i64;
-    *((_QWORD*)&v156.string + 1) = 0i64;
+    *((__int64*)&v156.string + 1) = 0i64;
     player_meleeCOD4ChargeMovement = Dvar_RegisterVariant(
         "player_meleeCOD4ChargeMovement",
         DVAR_TYPE_BOOL,
@@ -5447,7 +5447,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Use melee charge movement and friction done in COD4");
     v157.integer64 = 0x200000001i64;
-    *((_QWORD*)&v157.string + 1) = 0i64;
+    *((__int64*)&v157.string + 1) = 0i64;
     player_useSlopeAnims = Dvar_RegisterVariant(
         "player_useSlopeAnims",
         DVAR_TYPE_BOOL,
@@ -5456,7 +5456,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "whether to use slope run animations for the player");
     v158.integer64 = 0x200000000i64;
-    *((_QWORD*)&v158.string + 1) = 0i64;
+    *((__int64*)&v158.string + 1) = 0i64;
     profile_reset = Dvar_RegisterVariant(
         "profile_reset",
         DVAR_TYPE_BOOL,
@@ -5465,7 +5465,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         (const char*)&pBlock);
     v159.integer64 = 0x200000001i64;
-    *((_QWORD*)&v159.string + 1) = 0i64;
+    *((__int64*)&v159.string + 1) = 0i64;
     ps3_syscacheEnabled = Dvar_RegisterVariant(
         "ps3_syscacheEnabled",
         DVAR_TYPE_BOOL,
@@ -5474,7 +5474,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         (const char*)&pBlock);
     v160.integer64 = 0x200000001i64;
-    *((_QWORD*)&v160.string + 1) = 0i64;
+    *((__int64*)&v160.string + 1) = 0i64;
     r_cacheModelLighting = Dvar_RegisterVariant(
         "r_cacheModelLighting",
         DVAR_TYPE_BOOL,
@@ -5483,7 +5483,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Speed up model lighting by caching previous results");
     v161.integer64 = 0x200000000i64;
-    *((_QWORD*)&v161.string + 1) = 0i64;
+    *((__int64*)&v161.string + 1) = 0i64;
     r_cache_shadowable_lights = Dvar_RegisterVariant(
         "r_cache_shadowable_lights",
         DVAR_TYPE_BOOL,
@@ -5492,7 +5492,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Cache shadowable lights optimization");
     v162.integer64 = 0x200000000i64;
-    *((_QWORD*)&v162.string + 1) = 0i64;
+    *((__int64*)&v162.string + 1) = 0i64;
     r_cmdbuf_worker = Dvar_RegisterVariant(
         "r_cmdbuf_worker",
         DVAR_TYPE_BOOL,
@@ -5501,7 +5501,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Process command buffer in a separate thread");
     v163.integer64 = 0x200000001i64;
-    *((_QWORD*)&v163.string + 1) = 0i64;
+    *((__int64*)&v163.string + 1) = 0i64;
     r_disableLightGridSuppresion = Dvar_RegisterVariant(
         "r_disableLightGridSuppresion",
         DVAR_TYPE_BOOL,
@@ -5510,7 +5510,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Disable run-time collision trace from suppressing light grid entries");
     v164.integer64 = 0x200000000i64;
-    *((_QWORD*)&v164.string + 1) = 0i64;
+    *((__int64*)&v164.string + 1) = 0i64;
     r_flameFX_enable = Dvar_RegisterVariant(
         "r_flameFX_enable",
         DVAR_TYPE_BOOL,
@@ -5519,10 +5519,10 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable the flamethrower effect");
     v165.integer64 = 0x200000001i64;
-    *((_QWORD*)&v165.string + 1) = 0i64;
+    *((__int64*)&v165.string + 1) = 0i64;
     r_fxaa = Dvar_RegisterVariant("r_fxaa", DVAR_TYPE_BOOL, 0x84000u, v165, (DvarLimits)0, "fxaa");
     v166.integer64 = 0x200000000i64;
-    *((_QWORD*)&v166.string + 1) = 0i64;
+    *((__int64*)&v166.string + 1) = 0i64;
     r_genericFilter_enable = Dvar_RegisterVariant(
         "r_genericFilter_enable",
         DVAR_TYPE_BOOL,
@@ -5531,7 +5531,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable the genericFilter material");
     v167.integer64 = 0x200000000i64;
-    *((_QWORD*)&v167.string + 1) = 0i64;
+    *((__int64*)&v167.string + 1) = 0i64;
     r_portalBevelsOnly = Dvar_RegisterVariant(
         "r_portalBevelsOnly",
         DVAR_TYPE_BOOL,
@@ -5540,7 +5540,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Use screen-space bounding box of portals rather than the actual shape of the portal projected onto the screen");
     v168.integer64 = 0x200000000i64;
-    *((_QWORD*)&v168.string + 1) = 0i64;
+    *((__int64*)&v168.string + 1) = 0i64;
     r_setFrameBufferAlpha = Dvar_RegisterVariant(
         "r_setFrameBufferAlpha",
         DVAR_TYPE_BOOL,
@@ -5549,7 +5549,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Sets the rendered pixels' alpha to 255 and the background to 0");
     v169.integer64 = 0x200000001i64;
-    *((_QWORD*)&v169.string + 1) = 0i64;
+    *((__int64*)&v169.string + 1) = 0i64;
     r_skinCache = Dvar_RegisterVariant(
         "r_skinCache",
         DVAR_TYPE_BOOL,
@@ -5558,7 +5558,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable cache for vertices of animated models");
     v170.integer64 = 0x200000001i64;
-    *((_QWORD*)&v170.string + 1) = 0i64;
+    *((__int64*)&v170.string + 1) = 0i64;
     r_smp_backend = Dvar_RegisterVariant(
         "r_smp_backend",
         DVAR_TYPE_BOOL,
@@ -5567,7 +5567,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Process renderer back end in a separate thread");
     v171.integer64 = 0x200000000i64;
-    *((_QWORD*)&v171.string + 1) = 0i64;
+    *((__int64*)&v171.string + 1) = 0i64;
     r_stereo3DShadowOpt = Dvar_RegisterVariant(
         "r_stereo3DShadowOpt",
         DVAR_TYPE_BOOL,
@@ -5576,7 +5576,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Shadow opt toggle");
     v172.integer64 = 0x200000000i64;
-    *((_QWORD*)&v172.string + 1) = 0i64;
+    *((__int64*)&v172.string + 1) = 0i64;
     r_streamAssertHashes = Dvar_RegisterVariant(
         "r_streamAssertHashes",
         DVAR_TYPE_BOOL,
@@ -5585,7 +5585,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         (const char*)&pBlock);
     v173.integer64 = 0x200000000i64;
-    *((_QWORD*)&v173.string + 1) = 0i64;
+    *((__int64*)&v173.string + 1) = 0i64;
     r_streamAllowLargeImages = Dvar_RegisterVariant(
         "r_streamAllowLargeImages",
         DVAR_TYPE_BOOL,
@@ -5594,7 +5594,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Allow images larger than 8mb to be streamed (used by LMG)");
     v174.integer64 = 0x200000001i64;
-    *((_QWORD*)&v174.string + 1) = 0i64;
+    *((__int64*)&v174.string + 1) = 0i64;
     r_streamReflectionProbes = Dvar_RegisterVariant(
         "r_streamReflectionProbes",
         DVAR_TYPE_BOOL,
@@ -5603,7 +5603,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Set true dynamically stream reflection probes");
     v175.integer64 = 0x200000000i64;
-    *((_QWORD*)&v175.string + 1) = 0i64;
+    *((__int64*)&v175.string + 1) = 0i64;
     r_superFlare_debug = Dvar_RegisterVariant(
         "r_superFlare_debug",
         DVAR_TYPE_BOOL,
@@ -5612,7 +5612,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable the superFlare debug occlusion circles");
     v176.integer64 = 0x200000001i64;
-    *((_QWORD*)&v176.string + 1) = 0i64;
+    *((__int64*)&v176.string + 1) = 0i64;
     r_superFlare_enable = Dvar_RegisterVariant(
         "r_superFlare_enable",
         DVAR_TYPE_BOOL,
@@ -5621,7 +5621,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable the superFlare effect");
     v177.integer64 = 0x200000000i64;
-    *((_QWORD*)&v177.string + 1) = 0i64;
+    *((__int64*)&v177.string + 1) = 0i64;
     r_swrk_override_enable = Dvar_RegisterVariant(
         "r_swrk_override_enable",
         DVAR_TYPE_BOOL,
@@ -5630,7 +5630,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable shaderworks overrides");
     v178.integer64 = 0x200000000i64;
-    *((_QWORD*)&v178.string + 1) = 0i64;
+    *((__int64*)&v178.string + 1) = 0i64;
     ragdoll_dump_anims = Dvar_RegisterVariant(
         "ragdoll_dump_anims",
         DVAR_TYPE_BOOL,
@@ -5639,7 +5639,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Dump animation data when ragdoll fails");
     v179.integer64 = 0x200000001i64;
-    *((_QWORD*)&v179.string + 1) = 0i64;
+    *((__int64*)&v179.string + 1) = 0i64;
     ragdoll_enable = Dvar_RegisterVariant(
         "ragdoll_enable",
         DVAR_TYPE_BOOL,
@@ -5648,7 +5648,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Turn on ragdoll death animations");
     v180.integer64 = 0x200000000i64;
-    *((_QWORD*)&v180.string + 1) = 0i64;
+    *((__int64*)&v180.string + 1) = 0i64;
     rb_drawCullWorkerDebugText = Dvar_RegisterVariant(
         "rb_drawCullWorkerDebugText",
         DVAR_TYPE_BOOL,
@@ -5657,7 +5657,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Draw debug text with culling statistics");
     v181.integer64 = 0x200000001i64;
-    *((_QWORD*)&v181.string + 1) = 0i64;
+    *((__int64*)&v181.string + 1) = 0i64;
     rb_drawSonarDebugText = Dvar_RegisterVariant(
         "rb_drawSonarDebugText",
         DVAR_TYPE_BOOL,
@@ -5666,7 +5666,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Draw the word 'SONAR' on the screen when sonar is used.");
     v182.integer64 = 0x200000000i64;
-    *((_QWORD*)&v182.string + 1) = 0i64;
+    *((__int64*)&v182.string + 1) = 0i64;
     render_actor_collision = Dvar_RegisterVariant(
         "render_actor_collision",
         DVAR_TYPE_BOOL,
@@ -5675,7 +5675,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "render actor collision");
     v183.integer64 = 0x200000000i64;
-    *((_QWORD*)&v183.string + 1) = 0i64;
+    *((__int64*)&v183.string + 1) = 0i64;
     render_player_collision = Dvar_RegisterVariant(
         "render_player_collision",
         DVAR_TYPE_BOOL,
@@ -5684,7 +5684,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "render player collision");
     v184.integer64 = 0x200000000i64;
-    *((_QWORD*)&v184.string + 1) = 0i64;
+    *((__int64*)&v184.string + 1) = 0i64;
     render_script_movers = Dvar_RegisterVariant(
         "render_script_movers",
         DVAR_TYPE_BOOL,
@@ -5693,7 +5693,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Render script movers.");
     v185.integer64 = 0x200000000i64;
-    *((_QWORD*)&v185.string + 1) = 0i64;
+    *((__int64*)&v185.string + 1) = 0i64;
     render_fake_ents = Dvar_RegisterVariant(
         "render_fake_ents",
         DVAR_TYPE_BOOL,
@@ -5702,7 +5702,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Render fake ents.");
     v186.integer64 = 0x200000000i64;
-    *((_QWORD*)&v186.string + 1) = 0i64;
+    *((__int64*)&v186.string + 1) = 0i64;
     riotshield_debug = Dvar_RegisterVariant(
         "riotshield_debug",
         DVAR_TYPE_BOOL,
@@ -5711,7 +5711,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enables riotshield debug info");
     v187.integer64 = 0x200000000i64;
-    *((_QWORD*)&v187.string + 1) = 0i64;
+    *((__int64*)&v187.string + 1) = 0i64;
     scr_skip_devblock = Dvar_RegisterVariant(
         "scr_skip_devblock",
         DVAR_TYPE_BOOL,
@@ -5720,7 +5720,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "turn devblock skipping on/off");
     v188.integer64 = 0x200000000i64;
-    *((_QWORD*)&v188.string + 1) = 0i64;
+    *((__int64*)&v188.string + 1) = 0i64;
     show_reticle_during_swimming = Dvar_RegisterVariant(
         "show_reticle_during_swimming",
         DVAR_TYPE_BOOL,
@@ -5729,13 +5729,13 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Controls if the reticle is visible during swimming.");
     v189.integer64 = 0x200000000i64;
-    *((_QWORD*)&v189.string + 1) = 0i64;
+    *((__int64*)&v189.string + 1) = 0i64;
     showdrop = Dvar_RegisterVariant("showdrop", DVAR_TYPE_BOOL, 0x84000u, v189, (DvarLimits)0, "Show dropped packets");
     v190.integer64 = 0x200000000i64;
-    *((_QWORD*)&v190.string + 1) = 0i64;
+    *((__int64*)&v190.string + 1) = 0i64;
     showevents = Dvar_RegisterVariant("showevents", DVAR_TYPE_BOOL, 0x84000u, v190, (DvarLimits)0, (const char*)&pBlock);
     v191.integer64 = 0x200000000i64;
-    *((_QWORD*)&v191.string + 1) = 0i64;
+    *((__int64*)&v191.string + 1) = 0i64;
     snd_disable_ducks = Dvar_RegisterVariant(
         "snd_disable_ducks",
         DVAR_TYPE_BOOL,
@@ -5744,10 +5744,10 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "disable all currently applied ducks");
     v192.integer64 = 0x200000001i64;
-    *((_QWORD*)&v192.string + 1) = 0i64;
+    *((__int64*)&v192.string + 1) = 0i64;
     snd_dsp_futz = Dvar_RegisterVariant("snd_dsp_futz", DVAR_TYPE_BOOL, 0x84000u, v192, (DvarLimits)0, "enable dsp futz");
     v193.integer64 = 0x200000001i64;
-    *((_QWORD*)&v193.string + 1) = 0i64;
+    *((__int64*)&v193.string + 1) = 0i64;
     snd_enable_pitch = Dvar_RegisterVariant(
         "snd_enable_pitch",
         DVAR_TYPE_BOOL,
@@ -5756,7 +5756,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "use pitch variation");
     v194.integer64 = 0x200000000i64;
-    *((_QWORD*)&v194.string + 1) = 0i64;
+    *((__int64*)&v194.string + 1) = 0i64;
     snd_force_pfutz = Dvar_RegisterVariant(
         "snd_force_pfutz",
         DVAR_TYPE_BOOL,
@@ -5765,7 +5765,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "force alias with pfutz to use futz effect at any distance");
     v195.integer64 = 0x200000001i64;
-    *((_QWORD*)&v195.string + 1) = 0i64;
+    *((__int64*)&v195.string + 1) = 0i64;
     snd_losOcclusion = Dvar_RegisterVariant(
         "snd_losOcclusion",
         DVAR_TYPE_BOOL,
@@ -5774,7 +5774,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "occlusion based off of LOS");
     v196.integer64 = 0x200000001i64;
-    *((_QWORD*)&v196.string + 1) = 0i64;
+    *((__int64*)&v196.string + 1) = 0i64;
     snd_solo_streams = Dvar_RegisterVariant(
         "snd_solo_streams",
         DVAR_TYPE_BOOL,
@@ -5783,7 +5783,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "play all streams at regular volume");
     v197.integer64 = 0x200000001i64;
-    *((_QWORD*)&v197.string + 1) = 0i64;
+    *((__int64*)&v197.string + 1) = 0i64;
     snd_solo_loaded = Dvar_RegisterVariant(
         "snd_solo_loaded",
         DVAR_TYPE_BOOL,
@@ -5792,7 +5792,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "play all RAM sounds at regular volume");
     v198.integer64 = 0x200000000i64;
-    *((_QWORD*)&v198.string + 1) = 0i64;
+    *((__int64*)&v198.string + 1) = 0i64;
     snd_skip_muted_sounds = Dvar_RegisterVariant(
         "snd_skip_muted_sounds",
         DVAR_TYPE_BOOL,
@@ -5801,10 +5801,10 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "skip muted sounds");
     v199.integer64 = 0x200000000i64;
-    *((_QWORD*)&v199.string + 1) = 0i64;
+    *((__int64*)&v199.string + 1) = 0i64;
     snd_stress = Dvar_RegisterVariant("snd_stress", DVAR_TYPE_BOOL, 0x84000u, v199, (DvarLimits)0, "stress");
     v200.integer64 = 0x200000001i64;
-    *((_QWORD*)&v200.string + 1) = 0i64;
+    *((__int64*)&v200.string + 1) = 0i64;
     sv_SnapshotPeek = Dvar_RegisterVariant(
         "sv_SnapshotPeek",
         DVAR_TYPE_BOOL,
@@ -5813,7 +5813,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "If true, server can peek over the wall in sp.");
     v201.integer64 = 0x200000001i64;
-    *((_QWORD*)&v201.string + 1) = 0i64;
+    *((__int64*)&v201.string + 1) = 0i64;
     sv_archiveClientsPositions = Dvar_RegisterVariant(
         "sv_archiveClientsPositions",
         DVAR_TYPE_BOOL,
@@ -5822,7 +5822,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Archive the client positions to speed up SV_GetClientPositionsAtTime");
     v202.integer64 = 0x200000001i64;
-    *((_QWORD*)&v202.string + 1) = 0i64;
+    *((__int64*)&v202.string + 1) = 0i64;
     sv_botsPressAttackBtn = Dvar_RegisterVariant(
         "sv_botsPressAttackBtn",
         DVAR_TYPE_BOOL,
@@ -5831,7 +5831,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Allow testclients to press attack button");
     v203.integer64 = 0x200000001i64;
-    *((_QWORD*)&v203.string + 1) = 0i64;
+    *((__int64*)&v203.string + 1) = 0i64;
     sv_clientArchive = Dvar_RegisterVariant(
         "sv_clientArchive",
         DVAR_TYPE_BOOL,
@@ -5840,7 +5840,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Have the clients archive data to save bandwidth on the server");
     v204.integer64 = 0x200000000i64;
-    *((_QWORD*)&v204.string + 1) = 0i64;
+    *((__int64*)&v204.string + 1) = 0i64;
     sv_clientFrameRateFix = Dvar_RegisterVariant(
         "sv_clientFrameRateFix",
         DVAR_TYPE_BOOL,
@@ -5849,7 +5849,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Smooth the client frame rate when server becomes overloaded");
     v205.integer64 = 0x200000000i64;
-    *((_QWORD*)&v205.string + 1) = 0i64;
+    *((__int64*)&v205.string + 1) = 0i64;
     sv_debugRate = Dvar_RegisterVariant(
         "sv_debugRate",
         DVAR_TYPE_BOOL,
@@ -5858,7 +5858,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable snapshot rate debugging info");
     v206.integer64 = 0x200000000i64;
-    *((_QWORD*)&v206.string + 1) = 0i64;
+    *((__int64*)&v206.string + 1) = 0i64;
     sv_debugReliableCmds = Dvar_RegisterVariant(
         "sv_debugReliableCmds",
         DVAR_TYPE_BOOL,
@@ -5867,7 +5867,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable debugging information for 'reliable' commands");
     v207.integer64 = 0x200000000i64;
-    *((_QWORD*)&v207.string + 1) = 0i64;
+    *((__int64*)&v207.string + 1) = 0i64;
     sv_packet_info = Dvar_RegisterVariant(
         "sv_packet_info",
         DVAR_TYPE_BOOL,
@@ -5876,7 +5876,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Enable packet info debugging information");
     v208.integer64 = 0x200000000i64;
-    *((_QWORD*)&v208.string + 1) = 0i64;
+    *((__int64*)&v208.string + 1) = 0i64;
     sv_printMessageSize = Dvar_RegisterVariant(
         "sv_printMessageSize",
         DVAR_TYPE_BOOL,
@@ -5885,7 +5885,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "print out size of client messages");
     v209.integer64 = 0x200000000i64;
-    *((_QWORD*)&v209.string + 1) = 0i64;
+    *((__int64*)&v209.string + 1) = 0i64;
     sv_showAverageBPS = Dvar_RegisterVariant(
         "sv_showAverageBPS",
         DVAR_TYPE_BOOL,
@@ -5894,7 +5894,7 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Show average bytes per second for net debugging");
     v210.integer64 = 0x200000000i64;
-    *((_QWORD*)&v210.string + 1) = 0i64;
+    *((__int64*)&v210.string + 1) = 0i64;
     sv_showPingSpam = Dvar_RegisterVariant(
         "sv_showPingSpam",
         DVAR_TYPE_BOOL,
@@ -5903,9 +5903,9 @@ void Dvar_Init(void)
         (DvarLimits)0,
         "Turns on ping info spam.");
     v211.integer64 = 0x200000000i64;
-    *((_QWORD*)&v211.string + 1) = 0i64;
+    *((__int64*)&v211.string + 1) = 0i64;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_1000_0;
+    *((float*)&v814 + 1) = 1000.0;
     sv_useAnimCulling = Dvar_RegisterVariant(
         "sv_useAnimCulling",
         DVAR_TYPE_BOOL,
@@ -5916,7 +5916,7 @@ void Dvar_Init(void)
     gu.integer64.min = v814;
     gu.integer64.max = 0i64;
     v212.integer64 = LODWORD(FLOAT_80_0);
-    *((_QWORD*)&v212.string + 1) = 0i64;
+    *((__int64*)&v212.string + 1) = 0i64;
     sv_fx_blockMinDist = Dvar_RegisterVariant(
         "sv_fx_blockMinDist",
         DVAR_TYPE_FLOAT,
@@ -5926,7 +5926,7 @@ void Dvar_Init(void)
         "FX greater than this distance will block sight traces");
     LODWORD(v814) = 0;
     v213.integer64 = v814;
-    *((_QWORD*)&v213.string + 1) = 0i64;
+    *((__int64*)&v213.string + 1) = 0i64;
     tracer_explosiveOverride = Dvar_RegisterVariant(
         "tracer_explosiveOverride",
         DVAR_TYPE_BOOL,
@@ -5936,7 +5936,7 @@ void Dvar_Init(void)
         "When turned on, will apply an override to the tracer settings when shooting explosive bullets.");
     LODWORD(v814) = 0;
     v214.integer64 = v814;
-    *((_QWORD*)&v214.string + 1) = 0i64;
+    *((__int64*)&v214.string + 1) = 0i64;
     tracer_stoppingPowerOverride = Dvar_RegisterVariant(
         "tracer_stoppingPowerOverride",
         DVAR_TYPE_BOOL,
@@ -5947,7 +5947,7 @@ void Dvar_Init(void)
         " perk is active.");
     LODWORD(v814) = 0;
     v215.integer64 = v814;
-    *((_QWORD*)&v215.string + 1) = 0i64;
+    *((__int64*)&v215.string + 1) = 0i64;
     turret_placement_debug = Dvar_RegisterVariant(
         "turret_placement_debug",
         DVAR_TYPE_BOOL,
@@ -5957,7 +5957,7 @@ void Dvar_Init(void)
         "Enables turret placement debug lines");
     LODWORD(v814) = 0;
     v216.integer64 = v814;
-    *((_QWORD*)&v216.string + 1) = 0i64;
+    *((__int64*)&v216.string + 1) = 0i64;
     ui_cinematicsTimestamp = Dvar_RegisterVariant(
         "ui_cinematicsTimestamp",
         DVAR_TYPE_BOOL,
@@ -5967,7 +5967,7 @@ void Dvar_Init(void)
         "Shows cinematics timestamp on subtitle UI elements.");
     LODWORD(v814) = 1;
     v217.integer64 = v814;
-    *((_QWORD*)&v217.string + 1) = 0i64;
+    *((__int64*)&v217.string + 1) = 0i64;
     ui_drawCrosshair = Dvar_RegisterVariant(
         "ui_drawCrosshair",
         DVAR_TYPE_BOOL,
@@ -5977,7 +5977,7 @@ void Dvar_Init(void)
         "Whether to draw crosshairs.");
     LODWORD(v814) = 0;
     v218.integer64 = v814;
-    *((_QWORD*)&v218.string + 1) = 0i64;
+    *((__int64*)&v218.string + 1) = 0i64;
     ui_fxFontTweaks = Dvar_RegisterVariant(
         "ui_fxFontTweaks",
         DVAR_TYPE_BOOL,
@@ -5987,7 +5987,7 @@ void Dvar_Init(void)
         "Enable tweaks of the font params");
     LODWORD(v814) = 0;
     v219.integer64 = v814;
-    *((_QWORD*)&v219.string + 1) = 0i64;
+    *((__int64*)&v219.string + 1) = 0i64;
     ui_showList = Dvar_RegisterVariant(
         "ui_showList",
         DVAR_TYPE_BOOL,
@@ -5997,7 +5997,7 @@ void Dvar_Init(void)
         "Show onscreen list of currently visible menus");
     LODWORD(v814) = 1;
     v220.integer64 = v814;
-    *((_QWORD*)&v220.string + 1) = 0i64;
+    *((__int64*)&v220.string + 1) = 0i64;
     useFastFile = Dvar_RegisterVariant(
         "useFastFile",
         DVAR_TYPE_BOOL,
@@ -6007,7 +6007,7 @@ void Dvar_Init(void)
         "Enables loading data from fast files.");
     LODWORD(v814) = 0;
     v221.integer64 = v814;
-    *((_QWORD*)&v221.string + 1) = 0i64;
+    *((__int64*)&v221.string + 1) = 0i64;
     vehControlMode = Dvar_RegisterVariant(
         "vehControlMode",
         DVAR_TYPE_BOOL,
@@ -6017,7 +6017,7 @@ void Dvar_Init(void)
         "Changes the vehicle controls and camera mode");
     LODWORD(v814) = 1;
     v222.integer64 = v814;
-    *((_QWORD*)&v222.string + 1) = 0i64;
+    *((__int64*)&v222.string + 1) = 0i64;
     vehHelicopterAlwaysFaceCamera = Dvar_RegisterVariant(
         "vehHelicopterAlwaysFaceCamera",
         DVAR_TYPE_BOOL,
@@ -6027,7 +6027,7 @@ void Dvar_Init(void)
         "Setting this will have the helicopter always face the same direction as the camera.");
     LODWORD(v814) = 0;
     v223.integer64 = v814;
-    *((_QWORD*)&v223.string + 1) = 0i64;
+    *((__int64*)&v223.string + 1) = 0i64;
     vehHelicopterHeadSwayDontSwayTheTurret = Dvar_RegisterVariant(
         "vehHelicopterHeadSwayDontSwayTheTurret",
         DVAR_TYPE_BOOL,
@@ -6038,7 +6038,7 @@ void Dvar_Init(void)
         " of the vehicle, when the player is not freelooking.");
     LODWORD(v814) = 1;
     v224.integer64 = v814;
-    *((_QWORD*)&v224.string + 1) = 0i64;
+    *((__int64*)&v224.string + 1) = 0i64;
     vehHudDrawPipOnStickWhenFreelooking = Dvar_RegisterVariant(
         "vehHudDrawPipOnStickWhenFreelooking",
         DVAR_TYPE_BOOL,
@@ -6048,7 +6048,7 @@ void Dvar_Init(void)
         "Set to 0 to not draw the pip-on-a-stick reticle when the player is freelooking");
     LODWORD(v814) = 0;
     v225.integer64 = v814;
-    *((_QWORD*)&v225.string + 1) = 0i64;
+    *((__int64*)&v225.string + 1) = 0i64;
     vehPlaneInvertPitch = Dvar_RegisterVariant(
         "vehPlaneInvertPitch",
         DVAR_TYPE_BOOL,
@@ -6058,7 +6058,7 @@ void Dvar_Init(void)
         "Setting this will invert pitch control.");
     LODWORD(v814) = 0;
     v226.integer64 = v814;
-    *((_QWORD*)&v226.string + 1) = 0i64;
+    *((__int64*)&v226.string + 1) = 0i64;
     vehPlaneJetControls = Dvar_RegisterVariant(
         "vehPlaneJetControls",
         DVAR_TYPE_BOOL,
@@ -6068,7 +6068,7 @@ void Dvar_Init(void)
         "Setting this will have the plane use jet controls.");
     LODWORD(v814) = 0;
     v227.integer64 = v814;
-    *((_QWORD*)&v227.string + 1) = 0i64;
+    *((__int64*)&v227.string + 1) = 0i64;
     voiceDegrade = Dvar_RegisterVariant(
         "voiceDegrade",
         DVAR_TYPE_BOOL,
@@ -6078,7 +6078,7 @@ void Dvar_Init(void)
         "Degrade voice quality");
     LODWORD(v814) = 0;
     v228.integer64 = v814;
-    *((_QWORD*)&v228.string + 1) = 0i64;
+    *((__int64*)&v228.string + 1) = 0i64;
     waypointDebugDraw = Dvar_RegisterVariant(
         "waypointDebugDraw",
         DVAR_TYPE_BOOL,
@@ -6088,7 +6088,7 @@ void Dvar_Init(void)
         (const char*)&pBlock);
     LODWORD(v814) = 1;
     v229.integer64 = v814;
-    *((_QWORD*)&v229.string + 1) = 0i64;
+    *((__int64*)&v229.string + 1) = 0i64;
     xbox_dwMatchmaking = Dvar_RegisterVariant(
         "xbox_dwMatchmaking",
         DVAR_TYPE_BOOL,
@@ -6098,7 +6098,7 @@ void Dvar_Init(void)
         "ON/OFF switch for DW matchmaking service on the Xbox");
     LODWORD(v814) = 0;
     v230.integer64 = v814;
-    *((_QWORD*)&v230.string + 1) = 0i64;
+    *((__int64*)&v230.string + 1) = 0i64;
     xenon_voiceDebug = Dvar_RegisterVariant(
         "xenon_voiceDebug",
         DVAR_TYPE_BOOL,
@@ -6108,7 +6108,7 @@ void Dvar_Init(void)
         "Debug voice communication");
     LODWORD(v814) = 0;
     v231.integer64 = v814;
-    *((_QWORD*)&v231.string + 1) = 0i64;
+    *((__int64*)&v231.string + 1) = 0i64;
     useForceEliteCmds = Dvar_RegisterVariant(
         "useForceEliteCmds",
         DVAR_TYPE_BOOL,
@@ -6118,7 +6118,7 @@ void Dvar_Init(void)
         "allow forceElite* commands below to dictate subscription status.");
     LODWORD(v814) = 0;
     v232.integer64 = v814;
-    *((_QWORD*)&v232.string + 1) = 0i64;
+    *((__int64*)&v232.string + 1) = 0i64;
     forceElitePopups = Dvar_RegisterVariant(
         "forceElitePopups",
         DVAR_TYPE_BOOL,
@@ -6128,7 +6128,7 @@ void Dvar_Init(void)
         "all Elite related popups will show regardless of state.");
     LODWORD(v814) = 0;
     v233.integer64 = v814;
-    *((_QWORD*)&v233.string + 1) = 0i64;
+    *((__int64*)&v233.string + 1) = 0i64;
     forceEliteSubscription = Dvar_RegisterVariant(
         "forceEliteSubscription",
         DVAR_TYPE_BOOL,
@@ -6138,7 +6138,7 @@ void Dvar_Init(void)
         "gives valid Elite subscription, enabling CAC import checking and other features.");
     LODWORD(v814) = 0;
     v234.integer64 = v814;
-    *((_QWORD*)&v234.string + 1) = 0i64;
+    *((__int64*)&v234.string + 1) = 0i64;
     forceEliteFounder = Dvar_RegisterVariant(
         "forceEliteFounder",
         DVAR_TYPE_BOOL,
@@ -6148,7 +6148,7 @@ void Dvar_Init(void)
         "gives founder status");
     LODWORD(v814) = 0;
     v235.integer64 = v814;
-    *((_QWORD*)&v235.string + 1) = 0i64;
+    *((__int64*)&v235.string + 1) = 0i64;
     grenadeUseRigidBodyPhysics = Dvar_RegisterVariant(
         "grenadeUseRigidBodyPhysics",
         DVAR_TYPE_BOOL,
@@ -6158,7 +6158,7 @@ void Dvar_Init(void)
         "Grenades will use rigid body physics if this is turned on.  Used on moving platforms.");
     LODWORD(v814) = 0;
     v236.integer64 = v814;
-    *((_QWORD*)&v236.string + 1) = 0i64;
+    *((__int64*)&v236.string + 1) = 0i64;
     net_logSnapshotTiming = Dvar_RegisterVariant(
         "net_logSnapshotTiming",
         DVAR_TYPE_BOOL,
@@ -6185,13 +6185,13 @@ void Dvar_Init(void)
         "Squad Member background colour in lobbies");
     v813 = 0i64;
     v237.integer64 = v814;
-    *((_QWORD*)&v237.string + 1) = 0i64;
+    *((__int64*)&v237.string + 1) = 0i64;
     v813.value = FLOAT_250_0;
     sm_enable = Dvar_RegisterVariant("sm_enable", DVAR_TYPE_BOOL, 0x84000u, v237, (DvarLimits)0, "Enable shadow mapping");
     gv.integer64.min = (unsigned int)FLOAT_10_0 | 0x461C400000000000i64;
     gv.integer64.max = 0i64;
     v238.integer64 = v813.integer64;
-    *((_QWORD*)&v238.string + 1) = 0i64;
+    *((__int64*)&v238.string + 1) = 0i64;
     v813.value = FLOAT_0_30000001;
     LODWORD(v814) = 0;
     HIDWORD(v814) = FLOAT_10_0;
@@ -6205,7 +6205,7 @@ void Dvar_Init(void)
     gw.integer64.min = v814;
     gw.integer64.max = 0i64;
     v239.integer64 = v813.integer64;
-    *((_QWORD*)&v239.string + 1) = 0i64;
+    *((__int64*)&v239.string + 1) = 0i64;
     v813.value = FLOAT_0_66000003;
     LODWORD(v814) = 0;
     bg_afterLifeGravityScale = Dvar_RegisterVariant(
@@ -6215,14 +6215,14 @@ void Dvar_Init(void)
         v239,
         gw,
         "Zombies DLC2 afterlife gravity scale");
-    *((float*)&v814 + 1) = FLOAT_3_0;
+    *((float*)&v814 + 1) = 3.0;
     gx.integer64.min = v814;
     gx.integer64.max = 0i64;
     v240.integer64 = v813.integer64;
-    *((_QWORD*)&v240.string + 1) = 0i64;
+    *((__int64*)&v240.string + 1) = 0i64;
     v813.value = FLOAT_0_16;
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     bg_maxWeaponAnimScale = Dvar_RegisterVariant(
         "bg_maxWeaponAnimScale",
         DVAR_TYPE_FLOAT,
@@ -6233,10 +6233,10 @@ void Dvar_Init(void)
     gy.integer64.min = v814;
     gy.integer64.max = 0i64;
     v241.integer64 = v813.integer64;
-    *((_QWORD*)&v241.string + 1) = 0i64;
-    v813.value = FLOAT_0_125;
+    *((__int64*)&v241.string + 1) = 0i64;
+    v813.value = 0.125;
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     bg_weaponBobAmplitudeBase = Dvar_RegisterVariant(
         "bg_weaponBobAmplitudeBase",
         DVAR_TYPE_FLOAT,
@@ -6247,8 +6247,8 @@ void Dvar_Init(void)
     gz.integer64.min = v814;
     gz.integer64.max = 0i64;
     v242.integer64 = v813.integer64;
-    *((_QWORD*)&v242.string + 1) = 0i64;
-    v813.value = FLOAT_2_0;
+    *((__int64*)&v242.string + 1) = 0i64;
+    v813.value = 2.0;
     LODWORD(v814) = 0;
     cg_cameraVzoomToggleTime = Dvar_RegisterVariant(
         "cg_cameraVzoomToggleTime",
@@ -6261,8 +6261,8 @@ void Dvar_Init(void)
     gba.integer64.min = v814;
     gba.integer64.max = 0i64;
     v243.integer64 = v813.integer64;
-    *((_QWORD*)&v243.string + 1) = 0i64;
-    v813.value = FLOAT_0_5;
+    *((__int64*)&v243.string + 1) = 0i64;
+    v813.value = 0.5;
     LODWORD(v814) = 0;
     HIDWORD(v814) = FLOAT_10_0;
     cg_deathScreenFadeInTime = Dvar_RegisterVariant(
@@ -6275,7 +6275,7 @@ void Dvar_Init(void)
     gbb.integer64.min = v814;
     gbb.integer64.max = 0i64;
     v244.integer64 = v813.integer64;
-    *((_QWORD*)&v244.string + 1) = 0i64;
+    *((__int64*)&v244.string + 1) = 0i64;
     v813.value = FLOAT_90_0;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_180_0;
@@ -6289,10 +6289,10 @@ void Dvar_Init(void)
     gbc.integer64.min = v814;
     gbc.integer64.max = 0i64;
     v245.integer64 = v813.integer64;
-    *((_QWORD*)&v245.string + 1) = 0i64;
+    *((__int64*)&v245.string + 1) = 0i64;
     v813.integer = 0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_100_0;
+    *((float*)&v814 + 1) = 100.0;
     cg_debugEllipsesOffset = Dvar_RegisterVariant(
         "cg_debugEllipsesOffset",
         DVAR_TYPE_FLOAT,
@@ -6303,7 +6303,7 @@ void Dvar_Init(void)
     gbd.integer64.min = v814;
     gbd.integer64.max = 0i64;
     v246.integer64 = v813.integer64;
-    *((_QWORD*)&v246.string + 1) = 0i64;
+    *((__int64*)&v246.string + 1) = 0i64;
     v813.value = FLOAT_50_0;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_512_0;
@@ -6311,8 +6311,8 @@ void Dvar_Init(void)
     gbe.integer64.min = v814;
     gbe.integer64.max = 0i64;
     v247.integer64 = v813.integer64;
-    *((_QWORD*)&v247.string + 1) = 0i64;
-    v813.value = FLOAT_5_0;
+    *((__int64*)&v247.string + 1) = 0i64;
+    v813.value = 5.0;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_512_0;
     cg_drawVersionX = Dvar_RegisterVariant(
@@ -6325,10 +6325,10 @@ void Dvar_Init(void)
     gbf.integer64.min = v814;
     gbf.integer64.max = 0i64;
     v248.integer64 = v813.integer64;
-    *((_QWORD*)&v248.string + 1) = 0i64;
-    v813.value = FLOAT_100_0;
+    *((__int64*)&v248.string + 1) = 0i64;
+    v813.value = 100.0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     cg_drawVersionY = Dvar_RegisterVariant(
         "cg_drawVersionY",
         DVAR_TYPE_FLOAT,
@@ -6339,7 +6339,7 @@ void Dvar_Init(void)
     gbg.integer64.min = v814;
     gbg.integer64.max = 0i64;
     v249.integer64 = v813.integer64;
-    *((_QWORD*)&v249.string + 1) = 0i64;
+    *((__int64*)&v249.string + 1) = 0i64;
     v813.value = FLOAT_85_0;
     cg_errorDecay = Dvar_RegisterVariant(
         "cg_errorDecay",
@@ -6348,10 +6348,10 @@ void Dvar_Init(void)
         v249,
         gbg,
         "Decay for predicted error");
-    gbh.integer64.min = __PAIR64__(LODWORD(FLOAT_160_0), FLOAT_1_0);
+    gbh.integer64.min = __PAIR64__(LODWORD(FLOAT_160_0), 1.0);
     gbh.integer64.max = 0i64;
     v250.integer64 = v813.integer64;
-    *((_QWORD*)&v250.string + 1) = 0i64;
+    *((__int64*)&v250.string + 1) = 0i64;
     v813.value = FLOAT_65_0;
     cg_fov_comp_max = Dvar_RegisterVariant(
         "cg_fov_comp_max",
@@ -6363,7 +6363,7 @@ void Dvar_Init(void)
     gbi.integer64.min = __PAIR64__(LODWORD(FLOAT_90_0), LODWORD(FLOAT_65_0));
     gbi.integer64.max = 0i64;
     v251.integer64 = v813.integer64;
-    *((_QWORD*)&v251.string + 1) = 0i64;
+    *((__int64*)&v251.string + 1) = 0i64;
     v813.value = FLOAT_40_0;
     cg_fov_default = Dvar_RegisterVariant(
         "cg_fov_default",
@@ -6372,10 +6372,10 @@ void Dvar_Init(void)
         v251,
         gbi,
         "User default field of view angle in degrees");
-    gbj.integer64.min = __PAIR64__(LODWORD(FLOAT_160_0), FLOAT_1_0);
+    gbj.integer64.min = __PAIR64__(LODWORD(FLOAT_160_0), 1.0);
     gbj.integer64.max = 0i64;
     v252.integer64 = v813.integer64;
-    *((_QWORD*)&v252.string + 1) = 0i64;
+    *((__int64*)&v252.string + 1) = 0i64;
     v813.value = FLOAT_65_0;
     cg_fov_default_thirdperson = Dvar_RegisterVariant(
         "cg_fov_default_thirdperson",
@@ -6387,7 +6387,7 @@ void Dvar_Init(void)
     gbk.integer64.min = __PAIR64__(LODWORD(FLOAT_80_0), LODWORD(FLOAT_65_0));
     gbk.integer64.max = 0i64;
     v253.integer64 = v813.integer64;
-    *((_QWORD*)&v253.string + 1) = 0i64;
+    *((__int64*)&v253.string + 1) = 0i64;
     v813.value = FLOAT_N2_0;
     cg_fov_default_nocomp = Dvar_RegisterVariant(
         "cg_fov_default_nocomp",
@@ -6396,10 +6396,10 @@ void Dvar_Init(void)
         v253,
         gbk,
         "The default field of view angle(in degrees) for which there is no need to compensate for gun placement");
-    gbl.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), LODWORD(FLOAT_N3_4028235e38));
+    gbl.integer64.min = __PAIR64__(LODWORD(3.4028235e38), LODWORD(-3.4028235e38));
     gbl.integer64.max = 0i64;
     v254.integer64 = v813.integer64;
-    *((_QWORD*)&v254.string + 1) = 0i64;
+    *((__int64*)&v254.string + 1) = 0i64;
     v813.integer = 0;
     cg_gun_fovcomp_x = Dvar_RegisterVariant(
         "cg_gun_fovcomp_x",
@@ -6408,10 +6408,10 @@ void Dvar_Init(void)
         v254,
         gbl,
         "x position FOV offset compensation of the viewmodel");
-    gbm.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), LODWORD(FLOAT_N3_4028235e38));
+    gbm.integer64.min = __PAIR64__(LODWORD(3.4028235e38), LODWORD(-3.4028235e38));
     gbm.integer64.max = 0i64;
     v255.integer64 = v813.integer64;
-    *((_QWORD*)&v255.string + 1) = 0i64;
+    *((__int64*)&v255.string + 1) = 0i64;
     v813.integer = 0;
     cg_gun_fovcomp_y = Dvar_RegisterVariant(
         "cg_gun_fovcomp_y",
@@ -6420,10 +6420,10 @@ void Dvar_Init(void)
         v255,
         gbm,
         "y position FOV offset compensation of the viewmodel");
-    gbn.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), LODWORD(FLOAT_N3_4028235e38));
+    gbn.integer64.min = __PAIR64__(LODWORD(3.4028235e38), LODWORD(-3.4028235e38));
     gbn.integer64.max = 0i64;
     v256.integer64 = v813.integer64;
-    *((_QWORD*)&v256.string + 1) = 0i64;
+    *((__int64*)&v256.string + 1) = 0i64;
     v813.value = FLOAT_1_3;
     cg_gun_fovcomp_z = Dvar_RegisterVariant(
         "cg_gun_fovcomp_z",
@@ -6432,10 +6432,10 @@ void Dvar_Init(void)
         v256,
         gbn,
         "z position FOV offset compensation of the viewmodel");
-    gbo.integer64.min = __PAIR64__(LODWORD(FLOAT_3_0), LODWORD(FLOAT_0_5));
+    gbo.integer64.min = __PAIR64__(LODWORD(3.0), LODWORD(0.5));
     gbo.integer64.max = 0i64;
     v257.integer64 = v813.integer64;
-    *((_QWORD*)&v257.string + 1) = 0i64;
+    *((__int64*)&v257.string + 1) = 0i64;
     v813.value = FLOAT_64_0;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_512_0;
@@ -6450,7 +6450,7 @@ void Dvar_Init(void)
     gbp.integer64.min = v814;
     gbp.integer64.max = 0i64;
     v258.integer64 = v813.integer64;
-    *((_QWORD*)&v258.string + 1) = 0i64;
+    *((__int64*)&v258.string + 1) = 0i64;
     v813.value = FLOAT_128_0;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_512_0;
@@ -6464,7 +6464,7 @@ void Dvar_Init(void)
     gbq.integer64.min = v814;
     gbq.integer64.max = 0i64;
     v259.integer64 = v813.integer64;
-    *((_QWORD*)&v259.string + 1) = 0i64;
+    *((__int64*)&v259.string + 1) = 0i64;
     cg_hudDamageIconOffset = Dvar_RegisterVariant(
         "cg_hudDamageIconOffset",
         DVAR_TYPE_FLOAT,
@@ -6478,7 +6478,7 @@ void Dvar_Init(void)
     gbr.integer64.min = v814;
     gbr.integer64.max = 0i64;
     v260.integer64 = v813.integer64;
-    *((_QWORD*)&v260.string + 1) = 0i64;
+    *((__int64*)&v260.string + 1) = 0i64;
     v813.value = FLOAT_24_0;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_640_0;
@@ -6492,7 +6492,7 @@ void Dvar_Init(void)
     gbs.integer64.min = v814;
     gbs.integer64.max = 0i64;
     v261.integer64 = v813.integer64;
-    *((_QWORD*)&v261.string + 1) = 0i64;
+    *((__int64*)&v261.string + 1) = 0i64;
     v813.value = FLOAT_24_0;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_640_0;
@@ -6506,7 +6506,7 @@ void Dvar_Init(void)
     gbt.integer64.min = v814;
     gbt.integer64.max = 0i64;
     v262.integer64 = v813.integer64;
-    *((_QWORD*)&v262.string + 1) = 0i64;
+    *((__int64*)&v262.string + 1) = 0i64;
     v813.value = FLOAT_104_0;
     LODWORD(v814) = 0;
     cg_hudFriendlyIndicatorWidth = Dvar_RegisterVariant(
@@ -6516,11 +6516,11 @@ void Dvar_Init(void)
         v262,
         gbt,
         "The width of offscreen friendly icons");
-    *((float*)&v814 + 1) = FLOAT_1000_0;
+    *((float*)&v814 + 1) = 1000.0;
     gbu.integer64.min = v814;
     gbu.integer64.max = 0i64;
     v263.integer64 = v813.integer64;
-    *((_QWORD*)&v263.string + 1) = 0i64;
+    *((__int64*)&v263.string + 1) = 0i64;
     v813.value = FLOAT_1_7;
     cg_hudGrenadeIconMaxHeight = Dvar_RegisterVariant(
         "cg_hudGrenadeIconMaxHeight",
@@ -6530,13 +6530,13 @@ void Dvar_Init(void)
         gbu,
         "The minimum height difference between a player and a grenade for the grenade to be show"
         "n on the grenade indicator");
-    gbv.integer64.min = __PAIR64__(LODWORD(FLOAT_50_0), LODWORD(FLOAT_0_1));
+    gbv.integer64.min = __PAIR64__(LODWORD(FLOAT_50_0), LODWORD(0.1));
     gbv.integer64.max = 0i64;
     v264.integer64 = v813.integer64;
-    *((_QWORD*)&v264.string + 1) = 0i64;
+    *((__int64*)&v264.string + 1) = 0i64;
     v813.value = FLOAT_1_85;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_0;
+    *((float*)&v814 + 1) = 3.0;
     cg_hudGrenadePointerPulseFreq = Dvar_RegisterVariant(
         "cg_hudGrenadePointerPulseFreq",
         DVAR_TYPE_FLOAT,
@@ -6547,7 +6547,7 @@ void Dvar_Init(void)
     gbw.integer64.min = v814;
     gbw.integer64.max = 0i64;
     v265.integer64 = v813.integer64;
-    *((_QWORD*)&v265.string + 1) = 0i64;
+    *((__int64*)&v265.string + 1) = 0i64;
     v813.value = FLOAT_0_30000001;
     cg_hudGrenadePointerPulseMax = Dvar_RegisterVariant(
         "cg_hudGrenadePointerPulseMax",
@@ -6557,11 +6557,11 @@ void Dvar_Init(void)
         gbw,
         "The maximum alpha of the grenade indicator pulse. Values higher than 1 will cause the"
         " indicator to remain at full brightness for longer");
-    gbx.integer64.min = __PAIR64__(FLOAT_1_0, LODWORD(FLOAT_N3_0));
+    gbx.integer64.min = __PAIR64__(1.0, LODWORD(-3.0));
     gbx.integer64.max = 0i64;
     v266.integer64 = v813.integer64;
-    *((_QWORD*)&v266.string + 1) = 0i64;
-    v813.value = FLOAT_2_0;
+    *((__int64*)&v266.string + 1) = 0i64;
+    v813.value = 2.0;
     cg_hudGrenadePointerPulseMin = Dvar_RegisterVariant(
         "cg_hudGrenadePointerPulseMin",
         DVAR_TYPE_FLOAT,
@@ -6570,10 +6570,10 @@ void Dvar_Init(void)
         gbx,
         "The minimum alpha of the grenade indicator pulse. Values lower than 0 will cause the "
         "indicator to remain at full transparency for longer");
-    gby.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), FLOAT_1_0);
+    gby.integer64.min = __PAIR64__(LODWORD(3.4028235e38), 1.0);
     gby.integer64.max = 0i64;
     v267.integer64 = v813.integer64;
-    *((_QWORD*)&v267.string + 1) = 0i64;
+    *((__int64*)&v267.string + 1) = 0i64;
     v813.value = FLOAT_N160_0;
     cg_hudLegacySplitscreenScale = Dvar_RegisterVariant(
         "cg_hudLegacySplitscreenScale",
@@ -6585,8 +6585,8 @@ void Dvar_Init(void)
     gbz.integer64.min = LODWORD(FLOAT_N10000_0) | 0x461C400000000000i64;
     gbz.integer64.max = 0i64;
     v268.integer64 = v813.integer64;
-    *((_QWORD*)&v268.string + 1) = 0i64;
-    v813.value = FLOAT_1_4;
+    *((__int64*)&v268.string + 1) = 0i64;
+    v813.value = 1.4;
     cg_hudProneY = Dvar_RegisterVariant(
         "cg_hudProneY",
         DVAR_TYPE_FLOAT,
@@ -6594,10 +6594,10 @@ void Dvar_Init(void)
         v268,
         gbz,
         "Virtual screen y coordinate of the prone blocked message");
-    gca.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), LODWORD(FLOAT_0_0000099999997));
+    gca.integer64.min = __PAIR64__(LODWORD(3.4028235e38), LODWORD(FLOAT_0_0000099999997));
     gca.integer64.max = 0i64;
     v269.integer64 = v813.integer64;
-    *((_QWORD*)&v269.string + 1) = 0i64;
+    *((__int64*)&v269.string + 1) = 0i64;
     v813.value = FLOAT_1_5;
     cg_hudSplitscreenBannerScoreboardScale = Dvar_RegisterVariant(
         "cg_hudSplitscreenBannerScoreboardScale",
@@ -6606,11 +6606,11 @@ void Dvar_Init(void)
         v269,
         gca,
         "Scale value to apply to the splitscreen banner scoreboard");
-    gcb.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), LODWORD(FLOAT_0_000099999997));
+    gcb.integer64.min = __PAIR64__(LODWORD(3.4028235e38), LODWORD(0.000099999997));
     gcb.integer64.max = 0i64;
     v270.integer64 = v813.integer64;
-    *((_QWORD*)&v270.string + 1) = 0i64;
-    v813.integer = FLOAT_1_0;
+    *((__int64*)&v270.string + 1) = 0i64;
+    v813.integer = 1.0;
     cg_hudSplitscreenCompassElementScale = Dvar_RegisterVariant(
         "cg_hudSplitscreenCompassElementScale",
         DVAR_TYPE_FLOAT,
@@ -6618,11 +6618,11 @@ void Dvar_Init(void)
         v270,
         gcb,
         "Scale value to apply to compass elements in splitscreen");
-    gcc.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), LODWORD(FLOAT_0_000099999997));
+    gcc.integer64.min = __PAIR64__(LODWORD(3.4028235e38), LODWORD(0.000099999997));
     gcc.integer64.max = 0i64;
     v271.integer64 = v813.integer64;
-    *((_QWORD*)&v271.string + 1) = 0i64;
-    v813.value = FLOAT_2_0;
+    *((__int64*)&v271.string + 1) = 0i64;
+    v813.value = 2.0;
     cg_hudSplitscreenCompassScale = Dvar_RegisterVariant(
         "cg_hudSplitscreenCompassScale",
         DVAR_TYPE_FLOAT,
@@ -6630,11 +6630,11 @@ void Dvar_Init(void)
         v271,
         gcc,
         "Scale value to apply to the compass in splitscreen");
-    gcd.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), LODWORD(FLOAT_0_0000099999997));
+    gcd.integer64.min = __PAIR64__(LODWORD(3.4028235e38), LODWORD(FLOAT_0_0000099999997));
     gcd.integer64.max = 0i64;
     v272.integer64 = v813.integer64;
-    *((_QWORD*)&v272.string + 1) = 0i64;
-    v813.integer = FLOAT_1_0;
+    *((__int64*)&v272.string + 1) = 0i64;
+    v813.integer = 1.0;
     cg_hudSplitscreenScoreboardScale = Dvar_RegisterVariant(
         "cg_hudSplitscreenScoreboardScale",
         DVAR_TYPE_FLOAT,
@@ -6642,10 +6642,10 @@ void Dvar_Init(void)
         v272,
         gcd,
         "Scale value to apply to the scoreboard in splitscreen");
-    gce.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), LODWORD(FLOAT_0_000099999997));
+    gce.integer64.min = __PAIR64__(LODWORD(3.4028235e38), LODWORD(0.000099999997));
     gce.integer64.max = 0i64;
     v273.integer64 = v813.integer64;
-    *((_QWORD*)&v273.string + 1) = 0i64;
+    *((__int64*)&v273.string + 1) = 0i64;
     v813.value = FLOAT_200_0;
     cg_hudSplitscreenStanceScale = Dvar_RegisterVariant(
         "cg_hudSplitscreenStanceScale",
@@ -6654,11 +6654,11 @@ void Dvar_Init(void)
         v273,
         gce,
         "Scale value to apply to the stance HUD element in splitscreen");
-    gcf.integer64.min = __PAIR64__(LODWORD(FLOAT_1000_0), FLOAT_1_0);
+    gcf.integer64.min = __PAIR64__(LODWORD(1000.0), 1.0);
     gcf.integer64.max = 0i64;
     v274.integer64 = v813.integer64;
-    *((_QWORD*)&v274.string + 1) = 0i64;
-    v813.value = FLOAT_0_60000002;
+    *((__int64*)&v274.string + 1) = 0i64;
+    v813.value = 0.60000002;
     cg_infraredHighlightScale = Dvar_RegisterVariant(
         "cg_infraredHighlightScale",
         DVAR_TYPE_FLOAT,
@@ -6666,10 +6666,10 @@ void Dvar_Init(void)
         v274,
         gcf,
         "Scale of the player highlight when using infrared scope");
-    gcg.integer64.min = __PAIR64__(FLOAT_1_0, LODWORD(FLOAT_0_001));
+    gcg.integer64.min = __PAIR64__(1.0, LODWORD(0.001));
     gcg.integer64.max = 0i64;
     v275.integer64 = v813.integer64;
-    *((_QWORD*)&v275.string + 1) = 0i64;
+    *((__int64*)&v275.string + 1) = 0i64;
     v813.value = FLOAT_128_0;
     LODWORD(v814) = 0;
     cg_mapLocationSelectionCursorSpeed = Dvar_RegisterVariant(
@@ -6679,14 +6679,14 @@ void Dvar_Init(void)
         v275,
         gcg,
         "Speed of the cursor when selecting a location on the map");
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     gch.integer64.min = v814;
     gch.integer64.max = 0i64;
     v276.integer64 = v813.integer64;
-    *((_QWORD*)&v276.string + 1) = 0i64;
+    *((__int64*)&v276.string + 1) = 0i64;
     v813.value = FLOAT_0_98000002;
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     cg_maxExplosionRadius = Dvar_RegisterVariant(
         "cg_maxExplosionRadius",
         DVAR_TYPE_FLOAT,
@@ -6697,10 +6697,10 @@ void Dvar_Init(void)
     gci.integer64.min = v814;
     gci.integer64.max = 0i64;
     v277.integer64 = v813.integer64;
-    *((_QWORD*)&v277.string + 1) = 0i64;
+    *((__int64*)&v277.string + 1) = 0i64;
     v813.value = FLOAT_24_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_100_0;
+    *((float*)&v814 + 1) = 100.0;
     cg_playersInViewMinDot = Dvar_RegisterVariant(
         "cg_playersInViewMinDot",
         DVAR_TYPE_FLOAT,
@@ -6711,7 +6711,7 @@ void Dvar_Init(void)
     gcj.integer64.min = v814;
     gcj.integer64.max = 0i64;
     v278.integer64 = v813.integer64;
-    *((_QWORD*)&v278.string + 1) = 0i64;
+    *((__int64*)&v278.string + 1) = 0i64;
     v813.value = FLOAT_8_0;
     cg_rangefinderIndicatorSize = Dvar_RegisterVariant(
         "cg_rangefinderIndicatorSize",
@@ -6720,13 +6720,13 @@ void Dvar_Init(void)
         v278,
         gcj,
         "Size of each of the corners of the player indicator");
-    gck.integer64.min = __PAIR64__(LODWORD(FLOAT_100_0), LODWORD(FLOAT_N100_0));
+    gck.integer64.min = __PAIR64__(LODWORD(100.0), LODWORD(-100.0));
     gck.integer64.max = 0i64;
     v279.integer64 = v813.integer64;
-    *((_QWORD*)&v279.string + 1) = 0i64;
+    *((__int64*)&v279.string + 1) = 0i64;
     v813.value = FLOAT_0_69999999;
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     cg_rangefinderIndicatorGap = Dvar_RegisterVariant(
         "cg_rangefinderIndicatorGap",
         DVAR_TYPE_FLOAT,
@@ -6737,10 +6737,10 @@ void Dvar_Init(void)
     gcl.integer64.min = v814;
     gcl.integer64.max = 0i64;
     v280.integer64 = v813.integer64;
-    *((_QWORD*)&v280.string + 1) = 0i64;
+    *((__int64*)&v280.string + 1) = 0i64;
     v813.value = FLOAT_0_035999998;
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     cg_scoreboardPingHeight = Dvar_RegisterVariant(
         "cg_scoreboardPingHeight",
         DVAR_TYPE_FLOAT,
@@ -6751,7 +6751,7 @@ void Dvar_Init(void)
     gcm.integer64.min = v814;
     gcm.integer64.max = 0i64;
     v281.integer64 = v813.integer64;
-    *((_QWORD*)&v281.string + 1) = 0i64;
+    *((__int64*)&v281.string + 1) = 0i64;
     v813.value = FLOAT_395_0;
     LODWORD(v814) = 0;
     cg_scoreboardPingWidth = Dvar_RegisterVariant(
@@ -6761,14 +6761,14 @@ void Dvar_Init(void)
         v281,
         gcm,
         "Width of the ping graph as a % of the scoreboard");
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     gcn.integer64.min = v814;
     gcn.integer64.max = 0i64;
     v282.integer64 = v813.integer64;
-    *((_QWORD*)&v282.string + 1) = 0i64;
+    *((__int64*)&v282.string + 1) = 0i64;
     v813.value = FLOAT_700_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     cg_scoreboardQuarterscreenWidth = Dvar_RegisterVariant(
         "cg_scoreboardQuarterscreenWidth",
         DVAR_TYPE_FLOAT,
@@ -6779,10 +6779,10 @@ void Dvar_Init(void)
     gco.integer64.min = v814;
     gco.integer64.max = 0i64;
     v283.integer64 = v813.integer64;
-    *((_QWORD*)&v283.string + 1) = 0i64;
+    *((__int64*)&v283.string + 1) = 0i64;
     v813.value = FLOAT_500_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     cg_scoreboardSplitscreenWidth = Dvar_RegisterVariant(
         "cg_scoreboardSplitscreenWidth",
         DVAR_TYPE_FLOAT,
@@ -6793,10 +6793,10 @@ void Dvar_Init(void)
     gcp.integer64.min = v814;
     gcp.integer64.max = 0i64;
     v284.integer64 = v813.integer64;
-    *((_QWORD*)&v284.string + 1) = 0i64;
-    v813.value = FLOAT_0_1;
+    *((__int64*)&v284.string + 1) = 0i64;
+    v813.value = 0.1;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_0_5;
+    *((float*)&v814 + 1) = 0.5;
     cg_scoreboardWidth = Dvar_RegisterVariant(
         "cg_scoreboardWidth",
         DVAR_TYPE_FLOAT,
@@ -6807,7 +6807,7 @@ void Dvar_Init(void)
     gcq.integer64.min = v814;
     gcq.integer64.max = 0i64;
     v285.integer64 = v813.integer64;
-    *((_QWORD*)&v285.string + 1) = 0i64;
+    *((__int64*)&v285.string + 1) = 0i64;
     v813.value = FLOAT_0_30000001;
     cg_splitscreenLetterboxSize = Dvar_RegisterVariant(
         "cg_splitscreenLetterboxSize",
@@ -6816,13 +6816,13 @@ void Dvar_Init(void)
         v285,
         gcq,
         "Amount of border to leave at the side edges of the screen in 2 & 3 was split screen.");
-    gcr.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), LODWORD(FLOAT_0_000099999997));
+    gcr.integer64.min = __PAIR64__(LODWORD(3.4028235e38), LODWORD(0.000099999997));
     gcr.integer64.max = 0i64;
     v286.integer64 = v813.integer64;
-    *((_QWORD*)&v286.string + 1) = 0i64;
-    v813.value = FLOAT_3_0;
+    *((__int64*)&v286.string + 1) = 0i64;
+    v813.value = 3.0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     cg_splitscreenSpectatorScaleIncrease = Dvar_RegisterVariant(
         "cg_splitscreenSpectatorScaleIncrease",
         DVAR_TYPE_FLOAT,
@@ -6833,10 +6833,10 @@ void Dvar_Init(void)
     gcs.integer64.min = v814;
     gcs.integer64.max = 0i64;
     v287.integer64 = v813.integer64;
-    *((_QWORD*)&v287.string + 1) = 0i64;
+    *((__int64*)&v287.string + 1) = 0i64;
     v813.integer = 0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_100_0;
+    *((float*)&v814 + 1) = 100.0;
     cg_subtitleMinTime = Dvar_RegisterVariant(
         "cg_subtitleMinTime",
         DVAR_TYPE_FLOAT,
@@ -6847,7 +6847,7 @@ void Dvar_Init(void)
     gct.integer64.min = v814;
     gct.integer64.max = 0i64;
     v288.integer64 = v813.integer64;
-    *((_QWORD*)&v288.string + 1) = 0i64;
+    *((__int64*)&v288.string + 1) = 0i64;
     cg_voiceIconSize = Dvar_RegisterVariant(
         "cg_voiceIconSize",
         DVAR_TYPE_FLOAT,
@@ -6862,9 +6862,9 @@ void Dvar_Init(void)
         0x7FFFFFFF,
         0x84000u,
         "How often (ms) sensor grenade pulses to trigger its targeting lasers (LASERS!)");
-    v813.value = FLOAT_1000_0;
+    v813.value = 1000.0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     cg_sensorGrenadeLaserActiveTimeMs = _Dvar_RegisterInt(
         "cg_sensorGrenadeLaserActiveTimeMs",
         400,
@@ -6875,10 +6875,10 @@ void Dvar_Init(void)
     gcu.integer64.min = v814;
     gcu.integer64.max = 0i64;
     v289.integer64 = v813.integer64;
-    *((_QWORD*)&v289.string + 1) = 0i64;
+    *((__int64*)&v289.string + 1) = 0i64;
     v813.value = FLOAT_35_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     cg_sensorGrenadeRange = Dvar_RegisterVariant(
         "cg_sensorGrenadeRange",
         DVAR_TYPE_FLOAT,
@@ -6889,10 +6889,10 @@ void Dvar_Init(void)
     gcv.integer64.min = v814;
     gcv.integer64.max = 0i64;
     v290.integer64 = v813.integer64;
-    *((_QWORD*)&v290.string + 1) = 0i64;
+    *((__int64*)&v290.string + 1) = 0i64;
     v813.value = FLOAT_25_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     cg_sensorGrenadeZOffset = Dvar_RegisterVariant(
         "cg_sensorGrenadeZOffset",
         DVAR_TYPE_FLOAT,
@@ -6903,10 +6903,10 @@ void Dvar_Init(void)
     gcw.integer64.min = v814;
     gcw.integer64.max = 0i64;
     v291.integer64 = v813.integer64;
-    *((_QWORD*)&v291.string + 1) = 0i64;
-    v813.value = FLOAT_5_0;
+    *((__int64*)&v291.string + 1) = 0i64;
+    v813.value = 5.0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     cg_sensorGrenadeCrouchZOffset = Dvar_RegisterVariant(
         "cg_sensorGrenadeCrouchZOffset",
         DVAR_TYPE_FLOAT,
@@ -6917,8 +6917,8 @@ void Dvar_Init(void)
     gcx.integer64.min = v814;
     gcx.integer64.max = 0i64;
     v292.integer64 = v813.integer64;
-    *((_QWORD*)&v292.string + 1) = 0i64;
-    v813.value = FLOAT_1_4;
+    *((__int64*)&v292.string + 1) = 0i64;
+    v813.value = 1.4;
     cg_sensorGrenadeProneZOffset = Dvar_RegisterVariant(
         "cg_sensorGrenadeProneZOffset",
         DVAR_TYPE_FLOAT,
@@ -6926,10 +6926,10 @@ void Dvar_Init(void)
         v292,
         gcx,
         "Z offset for sensor grenade trace to use when the target is prone");
-    gcy.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), LODWORD(FLOAT_0_001));
+    gcy.integer64.min = __PAIR64__(LODWORD(3.4028235e38), LODWORD(0.001));
     gcy.integer64.max = 0i64;
     v293.integer64 = v813.integer64;
-    *((_QWORD*)&v293.string + 1) = 0i64;
+    *((__int64*)&v293.string + 1) = 0i64;
     cg_sensorGrenadeLaserRadius = Dvar_RegisterVariant(
         "cg_sensorGrenadeLaserRadius",
         DVAR_TYPE_FLOAT,
@@ -6942,7 +6942,7 @@ void Dvar_Init(void)
         0,
         0x84000u,
         "Sensor grenade laser alpha fades over time.");
-    v813.value = FLOAT_0_80000001;
+    v813.value = 0.80000001;
     cg_sensorGrenadeExplosionTrackTimeMs = _Dvar_RegisterInt(
         "cg_sensorGrenadeExplosionTrackTimeMs",
         6000,
@@ -6950,13 +6950,13 @@ void Dvar_Init(void)
         0x7FFFFFFF,
         0x84000u,
         "Time to satellite track the players tagged by a sensor grenade explosion.");
-    gcz.integer64.min = __PAIR64__(FLOAT_1_0, LODWORD(FLOAT_0_000099999997));
+    gcz.integer64.min = __PAIR64__(1.0, LODWORD(0.000099999997));
     gcz.integer64.max = 0i64;
     v294.integer64 = v813.integer64;
-    *((_QWORD*)&v294.string + 1) = 0i64;
+    *((__int64*)&v294.string + 1) = 0i64;
     v813.value = FLOAT_1_5;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     cl_analog_attack_threshold = Dvar_RegisterVariant(
         "cl_analog_attack_threshold",
         DVAR_TYPE_FLOAT,
@@ -6967,8 +6967,8 @@ void Dvar_Init(void)
     gda.integer64.min = v814;
     gda.integer64.max = 0i64;
     v295.integer64 = v813.integer64;
-    *((_QWORD*)&v295.string + 1) = 0i64;
-    v813.value = FLOAT_140_0;
+    *((__int64*)&v295.string + 1) = 0i64;
+    v813.value = 140.0;
     cl_anglespeedkey = Dvar_RegisterVariant(
         "cl_anglespeedkey",
         DVAR_TYPE_FLOAT,
@@ -6976,10 +6976,10 @@ void Dvar_Init(void)
         v295,
         gda,
         "Multiplier for max angle speed for game pad and keyboard");
-    gdb.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), LODWORD(FLOAT_N3_4028235e38));
+    gdb.integer64.min = __PAIR64__(LODWORD(3.4028235e38), LODWORD(-3.4028235e38));
     gdb.integer64.max = 0i64;
     v296.integer64 = v813.integer64;
-    *((_QWORD*)&v296.string + 1) = 0i64;
+    *((__int64*)&v296.string + 1) = 0i64;
     v813.value = FLOAT_0_15000001;
     LODWORD(v814) = 0;
     cl_pitchspeed = Dvar_RegisterVariant(
@@ -6989,12 +6989,12 @@ void Dvar_Init(void)
         v296,
         gdb,
         "Max pitch speed in degrees for game pad");
-    *((float*)&v814 + 1) = FLOAT_100_0;
+    *((float*)&v814 + 1) = 100.0;
     gdc.integer64.min = v814;
     gdc.integer64.max = 0i64;
     v297.integer64 = v813.integer64;
-    *((_QWORD*)&v297.string + 1) = 0i64;
-    v813.value = FLOAT_140_0;
+    *((__int64*)&v297.string + 1) = 0i64;
+    v813.value = 140.0;
     cl_viewport_lerptime = Dvar_RegisterVariant(
         "cl_viewport_lerptime",
         DVAR_TYPE_FLOAT,
@@ -7002,13 +7002,13 @@ void Dvar_Init(void)
         v297,
         gdc,
         "viewport expansion/contract lerp time");
-    gdd.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), LODWORD(FLOAT_N3_4028235e38));
+    gdd.integer64.min = __PAIR64__(LODWORD(3.4028235e38), LODWORD(-3.4028235e38));
     gdd.integer64.max = 0i64;
     v298.integer64 = v813.integer64;
-    *((_QWORD*)&v298.string + 1) = 0i64;
-    v813.value = FLOAT_37_0;
+    *((__int64*)&v298.string + 1) = 0i64;
+    v813.value = 37.0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     cl_yawspeed = Dvar_RegisterVariant(
         "cl_yawspeed",
         DVAR_TYPE_FLOAT,
@@ -7019,10 +7019,10 @@ void Dvar_Init(void)
     gde.integer64.min = v814;
     gde.integer64.max = 0i64;
     v299.integer64 = v813.integer64;
-    *((_QWORD*)&v299.string + 1) = 0i64;
+    *((__int64*)&v299.string + 1) = 0i64;
     v813.value = MYDEF_MAPPLAYERHEIGHT;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     compassECoordCutoff = Dvar_RegisterVariant(
         "compassECoordCutoff",
         DVAR_TYPE_FLOAT,
@@ -7033,10 +7033,10 @@ void Dvar_Init(void)
     gdf.integer64.min = v814;
     gdf.integer64.max = 0i64;
     v300.integer64 = v813.integer64;
-    *((_QWORD*)&v300.string + 1) = 0i64;
+    *((__int64*)&v300.string + 1) = 0i64;
     v813.value = MYDEF_MAPPLAYERHEIGHT;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     compassFriendlyHeight = Dvar_RegisterVariant(
         "compassFriendlyHeight",
         DVAR_TYPE_FLOAT,
@@ -7047,10 +7047,10 @@ void Dvar_Init(void)
     gdg.integer64.min = v814;
     gdg.integer64.max = 0i64;
     v301.integer64 = v813.integer64;
-    *((_QWORD*)&v301.string + 1) = 0i64;
+    *((__int64*)&v301.string + 1) = 0i64;
     v813.value = FLOAT_20_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     compassFriendlyWidth = Dvar_RegisterVariant(
         "compassFriendlyWidth",
         DVAR_TYPE_FLOAT,
@@ -7061,10 +7061,10 @@ void Dvar_Init(void)
     gdh.integer64.min = v814;
     gdh.integer64.max = 0i64;
     v302.integer64 = v813.integer64;
-    *((_QWORD*)&v302.string + 1) = 0i64;
+    *((__int64*)&v302.string + 1) = 0i64;
     v813.value = FLOAT_20_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     compassObituaryHeight = Dvar_RegisterVariant(
         "compassObituaryHeight",
         DVAR_TYPE_FLOAT,
@@ -7075,7 +7075,7 @@ void Dvar_Init(void)
     gdi.integer64.min = v814;
     gdi.integer64.max = 0i64;
     v303.integer64 = v813.integer64;
-    *((_QWORD*)&v303.string + 1) = 0i64;
+    *((__int64*)&v303.string + 1) = 0i64;
     v813.value = FLOAT_40_0;
     compassObituaryWidth = Dvar_RegisterVariant(
         "compassObituaryWidth",
@@ -7085,14 +7085,14 @@ void Dvar_Init(void)
         gdi,
         "The size of the obituary icon on the compass");
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     gdj.integer64.min = v814;
     gdj.integer64.max = 0i64;
     v304.integer64 = v813.integer64;
-    *((_QWORD*)&v304.string + 1) = 0i64;
+    *((__int64*)&v304.string + 1) = 0i64;
     v813.value = FLOAT_40_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     compassIconOtherVehHeight = Dvar_RegisterVariant(
         "compassIconOtherVehHeight",
         DVAR_TYPE_FLOAT,
@@ -7103,10 +7103,10 @@ void Dvar_Init(void)
     gdk.integer64.min = v814;
     gdk.integer64.max = 0i64;
     v305.integer64 = v813.integer64;
-    *((_QWORD*)&v305.string + 1) = 0i64;
+    *((__int64*)&v305.string + 1) = 0i64;
     v813.value = FLOAT_25_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     compassIconOtherVehWidth = Dvar_RegisterVariant(
         "compassIconOtherVehWidth",
         DVAR_TYPE_FLOAT,
@@ -7117,7 +7117,7 @@ void Dvar_Init(void)
     gdl.integer64.min = v814;
     gdl.integer64.max = 0i64;
     v306.integer64 = v813.integer64;
-    *((_QWORD*)&v306.string + 1) = 0i64;
+    *((__int64*)&v306.string + 1) = 0i64;
     v813.value = FLOAT_25_0;
     LODWORD(v814) = 0;
     compassIconTankHeight = Dvar_RegisterVariant(
@@ -7127,11 +7127,11 @@ void Dvar_Init(void)
         v306,
         gdl,
         (const char*)&pBlock);
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     gdm.integer64.min = v814;
     gdm.integer64.max = 0i64;
     v307.integer64 = v813.integer64;
-    *((_QWORD*)&v307.string + 1) = 0i64;
+    *((__int64*)&v307.string + 1) = 0i64;
     v813.value = FLOAT_0_89999998;
     compassIconTankWidth = Dvar_RegisterVariant(
         "compassIconTankWidth",
@@ -7140,13 +7140,13 @@ void Dvar_Init(void)
         v307,
         gdm,
         (const char*)&pBlock);
-    gdn.integer64.min = __PAIR64__(LODWORD(FLOAT_2_0), LODWORD(FLOAT_0_0099999998));
+    gdn.integer64.min = __PAIR64__(LODWORD(2.0), LODWORD(0.0099999998));
     gdn.integer64.max = 0i64;
     v308.integer64 = v813.integer64;
-    *((_QWORD*)&v308.string + 1) = 0i64;
+    *((__int64*)&v308.string + 1) = 0i64;
     v813.value = FLOAT_16_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     compassIconTankScale = Dvar_RegisterVariant(
         "compassIconTankScale",
         DVAR_TYPE_FLOAT,
@@ -7157,7 +7157,7 @@ void Dvar_Init(void)
     gdo.integer64.min = v814;
     gdo.integer64.max = 0i64;
     v309.integer64 = v813.integer64;
-    *((_QWORD*)&v309.string + 1) = 0i64;
+    *((__int64*)&v309.string + 1) = 0i64;
     v813.value = FLOAT_16_0;
     LODWORD(v814) = 0;
     compassObjectiveIconHeightZombie = Dvar_RegisterVariant(
@@ -7167,14 +7167,14 @@ void Dvar_Init(void)
         v309,
         gdo,
         "The size of the objective on the full map");
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     gdp.integer64.min = v814;
     gdp.integer64.max = 0i64;
     v310.integer64 = v813.integer64;
-    *((_QWORD*)&v310.string + 1) = 0i64;
+    *((__int64*)&v310.string + 1) = 0i64;
     v813.value = FLOAT_2048_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     compassObjectiveIconWidthZombie = Dvar_RegisterVariant(
         "compassObjectiveIconWidthZombie",
         DVAR_TYPE_FLOAT,
@@ -7185,9 +7185,9 @@ void Dvar_Init(void)
     gdq.integer64.min = v814;
     gdq.integer64.max = 0i64;
     v311.integer64 = v813.integer64;
-    *((_QWORD*)&v311.string + 1) = 0i64;
-    v813.integer = FLOAT_1_0;
-    HIDWORD(v814) = FLOAT_1_0;
+    *((__int64*)&v311.string + 1) = 0i64;
+    v813.integer = 1.0;
+    HIDWORD(v814) = 1.0;
     compassObjectiveMaxRange = Dvar_RegisterVariant(
         "compassObjectiveMaxRange",
         DVAR_TYPE_FLOAT,
@@ -7199,10 +7199,10 @@ void Dvar_Init(void)
     gdr.integer64.min = v814;
     gdr.integer64.max = 0i64;
     v312.integer64 = v813.integer64;
-    *((_QWORD*)&v312.string + 1) = 0i64;
+    *((__int64*)&v312.string + 1) = 0i64;
     v813.value = FLOAT_80_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     compassObjectiveMinAlpha = Dvar_RegisterVariant(
         "compassObjectiveMinAlpha",
         DVAR_TYPE_FLOAT,
@@ -7213,10 +7213,10 @@ void Dvar_Init(void)
     gds.integer64.min = v814;
     gds.integer64.max = 0i64;
     v313.integer64 = v813.integer64;
-    *((_QWORD*)&v313.string + 1) = 0i64;
-    v813.integer = FLOAT_1_0;
+    *((__int64*)&v313.string + 1) = 0i64;
+    v813.integer = 1.0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     compassObjectiveRingSize = Dvar_RegisterVariant(
         "compassObjectiveRingSize",
         DVAR_TYPE_FLOAT,
@@ -7227,16 +7227,16 @@ void Dvar_Init(void)
     gdt.integer64.min = v814;
     gdt.integer64.max = 0i64;
     v314.integer64 = v813.integer64;
-    *((_QWORD*)&v314.string + 1) = 0i64;
-    v813.value = FLOAT_0_5;
+    *((__int64*)&v314.string + 1) = 0i64;
+    v813.value = 0.5;
     compassSize = Dvar_RegisterVariant("compassSize", DVAR_TYPE_FLOAT, 0x84000u, v314, gdt, "Scale the compass");
-    gdu.integer64.min = __PAIR64__(FLOAT_1_0, LODWORD(FLOAT_0_0099999998));
+    gdu.integer64.min = __PAIR64__(1.0, LODWORD(0.0099999998));
     gdu.integer64.max = 0i64;
     v315.integer64 = v813.integer64;
-    *((_QWORD*)&v315.string + 1) = 0i64;
-    v813.value = FLOAT_1_4;
+    *((__int64*)&v315.string + 1) = 0i64;
+    v813.value = 1.4;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     compassTickertapeStretch = Dvar_RegisterVariant(
         "compassTickertapeStretch",
         DVAR_TYPE_FLOAT,
@@ -7247,7 +7247,7 @@ void Dvar_Init(void)
     gdv.integer64.min = v814;
     gdv.integer64.max = 0i64;
     v316.integer64 = v813.integer64;
-    *((_QWORD*)&v316.string + 1) = 0i64;
+    *((__int64*)&v316.string + 1) = 0i64;
     v813.value = FLOAT_8_0;
     con_MiniConSplitscreenScale = Dvar_RegisterVariant(
         "con_MiniConSplitscreenScale",
@@ -7257,14 +7257,14 @@ void Dvar_Init(void)
         gdv,
         "Splitscreen scale value for the mini console");
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     gdw.integer64.min = v814;
     gdw.integer64.max = 0i64;
     v317.integer64 = v813.integer64;
-    *((_QWORD*)&v317.string + 1) = 0i64;
+    *((__int64*)&v317.string + 1) = 0i64;
     v813.value = FLOAT_4_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     con_errormessagetime = Dvar_RegisterVariant(
         "con_errormessagetime",
         DVAR_TYPE_FLOAT,
@@ -7275,10 +7275,10 @@ void Dvar_Init(void)
     gdx.integer64.min = v814;
     gdx.integer64.max = 0i64;
     v318.integer64 = v813.integer64;
-    *((_QWORD*)&v318.string + 1) = 0i64;
+    *((__int64*)&v318.string + 1) = 0i64;
     v813.value = FLOAT_32_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     con_minicontime = Dvar_RegisterVariant(
         "con_minicontime",
         DVAR_TYPE_FLOAT,
@@ -7289,7 +7289,7 @@ void Dvar_Init(void)
     gdy.integer64.min = v814;
     gdy.integer64.max = 0i64;
     v319.integer64 = v813.integer64;
-    *((_QWORD*)&v319.string + 1) = 0i64;
+    *((__int64*)&v319.string + 1) = 0i64;
     v813.value = FLOAT_32_0;
     LODWORD(v814) = 0;
     drawKillcamDataSize = Dvar_RegisterVariant(
@@ -7299,11 +7299,11 @@ void Dvar_Init(void)
         v319,
         gdy,
         "How big to draw the killcam data graph");
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     gdz.integer64.min = v814;
     gdz.integer64.max = 0i64;
     v320.integer64 = v813.integer64;
-    *((_QWORD*)&v320.string + 1) = 0i64;
+    *((__int64*)&v320.string + 1) = 0i64;
     v813.value = FLOAT_1250_0;
     drawServerBandwidthSize = Dvar_RegisterVariant(
         "drawServerBandwidthSize",
@@ -7315,7 +7315,7 @@ void Dvar_Init(void)
     gea.integer64.min = (unsigned int)FLOAT_10_0 | 0x47C3500000000000i64;
     gea.integer64.max = 0i64;
     v321.integer64 = v813.integer64;
-    *((_QWORD*)&v321.string + 1) = 0i64;
+    *((__int64*)&v321.string + 1) = 0i64;
     v813.value = FLOAT_0_40000001;
     facepaintLodDist = Dvar_RegisterVariant(
         "facepaintLodDist",
@@ -7324,10 +7324,10 @@ void Dvar_Init(void)
         v321,
         gea,
         "Distance to stop drawing the player facepaint.");
-    geb.integer64.min = __PAIR64__(LODWORD(FLOAT_100_0), LODWORD(FLOAT_0_0099999998));
+    geb.integer64.min = __PAIR64__(LODWORD(100.0), LODWORD(0.0099999998));
     geb.integer64.max = 0i64;
     v322.integer64 = v813.integer64;
-    *((_QWORD*)&v322.string + 1) = 0i64;
+    *((__int64*)&v322.string + 1) = 0i64;
     v813.integer = 0;
     LODWORD(v814) = 0;
     friendlyNameSplitScreenFontSize = Dvar_RegisterVariant(
@@ -7337,22 +7337,22 @@ void Dvar_Init(void)
         v322,
         geb,
         "Fontsize of the popup friendly names in splitscreen.");
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     gec.integer64.min = v814;
     gec.integer64.max = 0i64;
     v323.integer64 = v813.integer64;
-    *((_QWORD*)&v323.string + 1) = 0i64;
+    *((__int64*)&v323.string + 1) = 0i64;
     v813.integer = 0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     fudgefactor = Dvar_RegisterVariant("fudgefactor", DVAR_TYPE_FLOAT, 0x84000u, v323, gec, (const char*)&pBlock);
     ged.integer64.min = v814;
     ged.integer64.max = 0i64;
     v324.integer64 = v813.integer64;
-    *((_QWORD*)&v324.string + 1) = 0i64;
+    *((__int64*)&v324.string + 1) = 0i64;
     v813.value = FLOAT_80_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     g_changelevel_time = Dvar_RegisterVariant(
         "g_changelevel_time",
         DVAR_TYPE_FLOAT,
@@ -7363,10 +7363,10 @@ void Dvar_Init(void)
     gee.integer64.min = v814;
     gee.integer64.max = 0i64;
     v325.integer64 = v813.integer64;
-    *((_QWORD*)&v325.string + 1) = 0i64;
+    *((__int64*)&v325.string + 1) = 0i64;
     v813.integer = (int)FLOAT_10_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_1000_0;
+    *((float*)&v814 + 1) = 1000.0;
     g_clonePlayerMaxVelocity = Dvar_RegisterVariant(
         "g_clonePlayerMaxVelocity",
         DVAR_TYPE_FLOAT,
@@ -7377,10 +7377,10 @@ void Dvar_Init(void)
     gef.integer64.min = v814;
     gef.integer64.max = 0i64;
     v326.integer64 = v813.integer64;
-    *((_QWORD*)&v326.string + 1) = 0i64;
-    v813.value = FLOAT_100_0;
+    *((__int64*)&v326.string + 1) = 0i64;
+    v813.value = 100.0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_1000_0;
+    *((float*)&v814 + 1) = 1000.0;
     g_dropForwardSpeed = Dvar_RegisterVariant(
         "g_dropForwardSpeed",
         DVAR_TYPE_FLOAT,
@@ -7391,10 +7391,10 @@ void Dvar_Init(void)
     geg.integer64.min = v814;
     geg.integer64.max = 0i64;
     v327.integer64 = v813.integer64;
-    *((_QWORD*)&v327.string + 1) = 0i64;
+    *((__int64*)&v327.string + 1) = 0i64;
     v813.integer = (int)FLOAT_10_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_1000_0;
+    *((float*)&v814 + 1) = 1000.0;
     g_dropHorzSpeedRand = Dvar_RegisterVariant(
         "g_dropHorzSpeedRand",
         DVAR_TYPE_FLOAT,
@@ -7405,10 +7405,10 @@ void Dvar_Init(void)
     geh.integer64.min = v814;
     geh.integer64.max = 0i64;
     v328.integer64 = v813.integer64;
-    *((_QWORD*)&v328.string + 1) = 0i64;
-    v813.value = FLOAT_5_0;
+    *((__int64*)&v328.string + 1) = 0i64;
+    v813.value = 5.0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_1000_0;
+    *((float*)&v814 + 1) = 1000.0;
     g_dropUpSpeedBase = Dvar_RegisterVariant(
         "g_dropUpSpeedBase",
         DVAR_TYPE_FLOAT,
@@ -7419,7 +7419,7 @@ void Dvar_Init(void)
     gei.integer64.min = v814;
     gei.integer64.max = 0i64;
     v329.integer64 = v813.integer64;
-    *((_QWORD*)&v329.string + 1) = 0i64;
+    *((__int64*)&v329.string + 1) = 0i64;
     v813.value = FLOAT_25_0;
     LODWORD(v814) = 0;
     g_dropUpSpeedRand = Dvar_RegisterVariant(
@@ -7433,10 +7433,10 @@ void Dvar_Init(void)
     gej.integer64.min = v814;
     gej.integer64.max = 0i64;
     v330.integer64 = v813.integer64;
-    *((_QWORD*)&v330.string + 1) = 0i64;
-    v813.value = FLOAT_0_5;
+    *((__int64*)&v330.string + 1) = 0i64;
+    v813.value = 0.5;
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     g_playerCollisionEjectSpeed = Dvar_RegisterVariant(
         "g_playerCollisionEjectSpeed",
         DVAR_TYPE_FLOAT,
@@ -7447,10 +7447,10 @@ void Dvar_Init(void)
     gek.integer64.min = v814;
     gek.integer64.max = 0i64;
     v331.integer64 = v813.integer64;
-    *((_QWORD*)&v331.string + 1) = 0i64;
+    *((__int64*)&v331.string + 1) = 0i64;
     v813.value = FLOAT_4_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_100_0;
+    *((float*)&v814 + 1) = 100.0;
     g_voteAbstainWeight = Dvar_RegisterVariant(
         "g_voteAbstainWeight",
         DVAR_TYPE_FLOAT,
@@ -7461,7 +7461,7 @@ void Dvar_Init(void)
     gel.integer64.min = v814;
     gel.integer64.max = 0i64;
     v332.integer64 = v813.integer64;
-    *((_QWORD*)&v332.string + 1) = 0i64;
+    *((__int64*)&v332.string + 1) = 0i64;
     v813.value = FLOAT_4_0;
     LODWORD(v814) = 0;
     glassExtraAngVelocity = Dvar_RegisterVariant(
@@ -7471,12 +7471,12 @@ void Dvar_Init(void)
         v332,
         gel,
         "Additional random extra angular velocity to the shards when shattering.");
-    *((float*)&v814 + 1) = FLOAT_100_0;
+    *((float*)&v814 + 1) = 100.0;
     gem.integer64.min = v814;
     gem.integer64.max = 0i64;
     v333.integer64 = v813.integer64;
-    *((_QWORD*)&v333.string + 1) = 0i64;
-    v813.integer = FLOAT_1_0;
+    *((__int64*)&v333.string + 1) = 0i64;
+    v813.integer = 1.0;
     LODWORD(v814) = 0;
     HIDWORD(v814) = FLOAT_10_0;
     glassExtraLinVelocity = Dvar_RegisterVariant(
@@ -7489,8 +7489,8 @@ void Dvar_Init(void)
     gen.integer64.min = v814;
     gen.integer64.max = 0i64;
     v334.integer64 = v813.integer64;
-    *((_QWORD*)&v334.string + 1) = 0i64;
-    v813.value = FLOAT_0_5;
+    *((__int64*)&v334.string + 1) = 0i64;
+    v813.value = 0.5;
     glassForceAttenuation = Dvar_RegisterVariant(
         "glassForceAttenuation",
         DVAR_TYPE_FLOAT,
@@ -7498,11 +7498,11 @@ void Dvar_Init(void)
         v334,
         gen,
         "Attenuation of the force as the shard is farther from the hit position.");
-    geo.integer64.min = __PAIR64__(LODWORD(FLOAT_100_0), LODWORD(FLOAT_0_1));
+    geo.integer64.min = __PAIR64__(LODWORD(100.0), LODWORD(0.1));
     geo.integer64.max = 0i64;
     v335.integer64 = v813.integer64;
-    *((_QWORD*)&v335.string + 1) = 0i64;
-    v813.value = FLOAT_0_5;
+    *((__int64*)&v335.string + 1) = 0i64;
+    v813.value = 0.5;
     LODWORD(v814) = 0;
     glassForceMultiplier = Dvar_RegisterVariant(
         "glassForceMultiplier",
@@ -7515,7 +7515,7 @@ void Dvar_Init(void)
     gep.integer64.min = v814;
     gep.integer64.max = 0i64;
     v336.integer64 = v813.integer64;
-    *((_QWORD*)&v336.string + 1) = 0i64;
+    *((__int64*)&v336.string + 1) = 0i64;
     v813.value = FLOAT_250_0;
     glassForceOriginMult = Dvar_RegisterVariant(
         "glassForceOriginMult",
@@ -7529,7 +7529,7 @@ void Dvar_Init(void)
     geq.integer64.min = 0x461C400000000000i64;
     geq.integer64.max = 0i64;
     v337.integer64 = v813.integer64;
-    *((_QWORD*)&v337.string + 1) = 0i64;
+    *((__int64*)&v337.string + 1) = 0i64;
     v813.value = FLOAT_450_0;
     glassLinVelMultiplier = Dvar_RegisterVariant(
         "glassLinVelMultiplier",
@@ -7541,10 +7541,10 @@ void Dvar_Init(void)
     ger.integer64.min = (unsigned int)FLOAT_10_0 | 0x47C3500000000000i64;
     ger.integer64.max = 0i64;
     v338.integer64 = v813.integer64;
-    *((_QWORD*)&v338.string + 1) = 0i64;
-    v813.value = FLOAT_3_0;
+    *((__int64*)&v338.string + 1) = 0i64;
+    v813.value = 3.0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_1000_0;
+    *((float*)&v814 + 1) = 1000.0;
     glassLowLodDist = Dvar_RegisterVariant(
         "glassLowLodDist",
         DVAR_TYPE_FLOAT,
@@ -7555,7 +7555,7 @@ void Dvar_Init(void)
     ges.integer64.min = v814;
     ges.integer64.max = 0i64;
     v339.integer64 = v813.integer64;
-    *((_QWORD*)&v339.string + 1) = 0i64;
+    *((__int64*)&v339.string + 1) = 0i64;
     v813.integer = 0;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_30_0;
@@ -7569,8 +7569,8 @@ void Dvar_Init(void)
     get.integer64.min = v814;
     get.integer64.max = 0i64;
     v340.integer64 = v813.integer64;
-    *((_QWORD*)&v340.string + 1) = 0i64;
-    v813.value = FLOAT_2_0;
+    *((__int64*)&v340.string + 1) = 0i64;
+    v813.value = 2.0;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_30_0;
     hud_fade_compass = Dvar_RegisterVariant(
@@ -7583,7 +7583,7 @@ void Dvar_Init(void)
     geu.integer64.min = v814;
     geu.integer64.max = 0i64;
     v341.integer64 = v813.integer64;
-    *((_QWORD*)&v341.string + 1) = 0i64;
+    *((__int64*)&v341.string + 1) = 0i64;
     v813.value = FLOAT_1_7;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_30_0;
@@ -7597,7 +7597,7 @@ void Dvar_Init(void)
     gev.integer64.min = v814;
     gev.integer64.max = 0i64;
     v342.integer64 = v813.integer64;
-    *((_QWORD*)&v342.string + 1) = 0i64;
+    *((__int64*)&v342.string + 1) = 0i64;
     v813.integer = 0;
     LODWORD(v814) = 0;
     hud_fade_sprint = Dvar_RegisterVariant(
@@ -7611,8 +7611,8 @@ void Dvar_Init(void)
     gew.integer64.min = v814;
     gew.integer64.max = 0i64;
     v343.integer64 = v813.integer64;
-    *((_QWORD*)&v343.string + 1) = 0i64;
-    v813.value = FLOAT_0_5;
+    *((__int64*)&v343.string + 1) = 0i64;
+    v813.value = 0.5;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_30_0;
     hud_fade_vehiclecontrols = Dvar_RegisterVariant(
@@ -7625,8 +7625,8 @@ void Dvar_Init(void)
     gex.integer64.min = v814;
     gex.integer64.max = 0i64;
     v344.integer64 = v813.integer64;
-    *((_QWORD*)&v344.string + 1) = 0i64;
-    v813.value = FLOAT_2_0;
+    *((__int64*)&v344.string + 1) = 0i64;
+    v813.value = 2.0;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_30_0;
     hud_flash_period_offhand = Dvar_RegisterVariant(
@@ -7639,7 +7639,7 @@ void Dvar_Init(void)
     gey.integer64.min = v814;
     gey.integer64.max = 0i64;
     v345.integer64 = v813.integer64;
-    *((_QWORD*)&v345.string + 1) = 0i64;
+    *((__int64*)&v345.string + 1) = 0i64;
     v813.value = FLOAT_0_050000001;
     LODWORD(v814) = 0;
     hud_flash_time_offhand = Dvar_RegisterVariant(
@@ -7649,12 +7649,12 @@ void Dvar_Init(void)
         v345,
         gey,
         "Offhand weapons flash duration on changing weapon");
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     gez.integer64.min = v814;
     gez.integer64.max = 0i64;
     v346.integer64 = v813.integer64;
-    *((_QWORD*)&v346.string + 1) = 0i64;
-    v813.integer = FLOAT_1_0;
+    *((__int64*)&v346.string + 1) = 0i64;
+    v813.integer = 1.0;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_180_0;
     lastStandSwayAccel = Dvar_RegisterVariant(
@@ -7667,10 +7667,10 @@ void Dvar_Init(void)
     gfa.integer64.min = v814;
     gfa.integer64.max = 0i64;
     v347.integer64 = v813.integer64;
-    *((_QWORD*)&v347.string + 1) = 0i64;
+    *((__int64*)&v347.string + 1) = 0i64;
     v813.value = FLOAT_1_7;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     lastStandSwayMaxDrift = Dvar_RegisterVariant(
         "lastStandSwayMaxDrift",
         DVAR_TYPE_FLOAT,
@@ -7681,10 +7681,10 @@ void Dvar_Init(void)
     gfb.integer64.min = v814;
     gfb.integer64.max = 0i64;
     v348.integer64 = v813.integer64;
-    *((_QWORD*)&v348.string + 1) = 0i64;
+    *((__int64*)&v348.string + 1) = 0i64;
     v813.value = FLOAT_1_5;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     lowAmmoWarningPulseFreq = Dvar_RegisterVariant(
         "lowAmmoWarningPulseFreq",
         DVAR_TYPE_FLOAT,
@@ -7695,7 +7695,7 @@ void Dvar_Init(void)
     gfc.integer64.min = v814;
     gfc.integer64.max = 0i64;
     v349.integer64 = v813.integer64;
-    *((_QWORD*)&v349.string + 1) = 0i64;
+    *((__int64*)&v349.string + 1) = 0i64;
     v813.integer = 0;
     lowAmmoWarningPulseMax = Dvar_RegisterVariant(
         "lowAmmoWarningPulseMax",
@@ -7704,11 +7704,11 @@ void Dvar_Init(void)
         v349,
         gfc,
         "Min of oscilation range: 0 is color1 and 1.0 is color2.  Can be < 0, and the wave will clip at 0.");
-    gfd.integer64.min = __PAIR64__(FLOAT_1_0, LODWORD(FLOAT_N3_4028235e38));
+    gfd.integer64.min = __PAIR64__(1.0, LODWORD(-3.4028235e38));
     gfd.integer64.max = 0i64;
     v350.integer64 = v813.integer64;
-    *((_QWORD*)&v350.string + 1) = 0i64;
-    v813.value = FLOAT_3_0;
+    *((__int64*)&v350.string + 1) = 0i64;
+    v813.value = 3.0;
     lowAmmoWarningPulseMin = Dvar_RegisterVariant(
         "lowAmmoWarningPulseMin",
         DVAR_TYPE_FLOAT,
@@ -7716,11 +7716,11 @@ void Dvar_Init(void)
         v350,
         gfd,
         "Max of oscilation range: 0 is color1 and 1.0 is color2.  Can be > 1.0, and the wave will clip at 1.0.");
-    gfe.integer64.min = __PAIR64__(LODWORD(FLOAT_1000_0), FLOAT_1_0);
+    gfe.integer64.min = __PAIR64__(LODWORD(1000.0), 1.0);
     gfe.integer64.max = 0i64;
     v351.integer64 = v813.integer64;
-    *((_QWORD*)&v351.string + 1) = 0i64;
-    v813.value = FLOAT_3_0;
+    *((__int64*)&v351.string + 1) = 0i64;
+    v813.value = 3.0;
     narrowShardRatio = Dvar_RegisterVariant(
         "narrowShardRatio",
         DVAR_TYPE_FLOAT,
@@ -7729,13 +7729,13 @@ void Dvar_Init(void)
         gfe,
         "minimum ratio between a shard's local bbox edges or between the shard's bbox area vs the shard's "
         "area to cause the shard to be rejected");
-    gff.integer64.min = __PAIR64__(LODWORD(FLOAT_100_0), LODWORD(FLOAT_0_0099999998));
+    gff.integer64.min = __PAIR64__(LODWORD(100.0), LODWORD(0.0099999998));
     gff.integer64.max = 0i64;
     v352.integer64 = v813.integer64;
-    *((_QWORD*)&v352.string + 1) = 0i64;
-    v813.value = FLOAT_0_5;
+    *((__int64*)&v352.string + 1) = 0i64;
+    v813.value = 0.5;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_2_0;
+    *((float*)&v814 + 1) = 2.0;
     phys_bulletSpinScale = Dvar_RegisterVariant(
         "phys_bulletSpinScale",
         DVAR_TYPE_FLOAT,
@@ -7746,10 +7746,10 @@ void Dvar_Init(void)
     gfg.integer64.min = v814;
     gfg.integer64.max = 0i64;
     v353.integer64 = v813.integer64;
-    *((_QWORD*)&v353.string + 1) = 0i64;
-    v813.value = FLOAT_0_5;
+    *((__int64*)&v353.string + 1) = 0i64;
+    v813.value = 0.5;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     phys_bulletUpBias = Dvar_RegisterVariant(
         "phys_bulletUpBias",
         DVAR_TYPE_FLOAT,
@@ -7760,10 +7760,10 @@ void Dvar_Init(void)
     gfh.integer64.min = v814;
     gfh.integer64.max = 0i64;
     v354.integer64 = v813.integer64;
-    *((_QWORD*)&v354.string + 1) = 0i64;
+    *((__int64*)&v354.string + 1) = 0i64;
     v813.value = FLOAT_0_029999999;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     phys_dragAngular = Dvar_RegisterVariant(
         "phys_dragAngular",
         DVAR_TYPE_FLOAT,
@@ -7774,7 +7774,7 @@ void Dvar_Init(void)
     gfi.integer64.min = v814;
     gfi.integer64.max = 0i64;
     v355.integer64 = v813.integer64;
-    *((_QWORD*)&v355.string + 1) = 0i64;
+    *((__int64*)&v355.string + 1) = 0i64;
     v813.integer = (int)FLOAT_10_0;
     LODWORD(v814) = 0;
     phys_dragLinear = Dvar_RegisterVariant(
@@ -7788,7 +7788,7 @@ void Dvar_Init(void)
     gfj.integer64.min = v814;
     gfj.integer64.max = 0i64;
     v356.integer64 = v813.integer64;
-    *((_QWORD*)&v356.string + 1) = 0i64;
+    *((__int64*)&v356.string + 1) = 0i64;
     v813.integer = (int)FLOAT_10_0;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_50_0;
@@ -7802,7 +7802,7 @@ void Dvar_Init(void)
     gfk.integer64.min = v814;
     gfk.integer64.max = 0i64;
     v357.integer64 = v813.integer64;
-    *((_QWORD*)&v357.string + 1) = 0i64;
+    *((__int64*)&v357.string + 1) = 0i64;
     v813.value = FLOAT_0_30000001;
     LODWORD(v814) = 0;
     HIDWORD(v814) = FLOAT_10_0;
@@ -7816,7 +7816,7 @@ void Dvar_Init(void)
     gfl.integer64.min = v814;
     gfl.integer64.max = 0i64;
     v358.integer64 = v813.integer64;
-    *((_QWORD*)&v358.string + 1) = 0i64;
+    *((__int64*)&v358.string + 1) = 0i64;
     v813.integer = 0;
     LODWORD(v814) = 0;
     phys_impact_silence_window = Dvar_RegisterVariant(
@@ -7827,14 +7827,14 @@ void Dvar_Init(void)
         gfl,
         "The length of the silence window. When a body triggers an impact sound it will not trig"
         "ger new sounds for the duration of this silence window.");
-    *((float*)&v814 + 1) = FLOAT_5_0;
+    *((float*)&v814 + 1) = 5.0;
     gfm.integer64.min = v814;
     gfm.integer64.max = 0i64;
     v359.integer64 = v813.integer64;
-    *((_QWORD*)&v359.string + 1) = 0i64;
+    *((__int64*)&v359.string + 1) = 0i64;
     v813.value = FLOAT_0_039999999;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     phys_player_collision_adjust_height = Dvar_RegisterVariant(
         "phys_player_collision_adjust_height",
         DVAR_TYPE_FLOAT,
@@ -7845,10 +7845,10 @@ void Dvar_Init(void)
     gfn.integer64.min = v814;
     gfn.integer64.max = 0i64;
     v360.integer64 = v813.integer64;
-    *((_QWORD*)&v360.string + 1) = 0i64;
-    v813.value = FLOAT_2_0;
+    *((__int64*)&v360.string + 1) = 0i64;
+    v813.value = 2.0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     phys_ragdoll_joint_damp_scale = Dvar_RegisterVariant(
         "phys_ragdoll_joint_damp_scale",
         DVAR_TYPE_FLOAT,
@@ -7859,10 +7859,10 @@ void Dvar_Init(void)
     gfo.integer64.min = v814;
     gfo.integer64.max = 0i64;
     v361.integer64 = v813.integer64;
-    *((_QWORD*)&v361.string + 1) = 0i64;
-    v813.value = FLOAT_0_1;
+    *((__int64*)&v361.string + 1) = 0i64;
+    v813.value = 0.1;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_2_0;
+    *((float*)&v814 + 1) = 2.0;
     phys_reeval_frequency = Dvar_RegisterVariant(
         "phys_reeval_frequency",
         DVAR_TYPE_FLOAT,
@@ -7874,7 +7874,7 @@ void Dvar_Init(void)
     gfp.integer64.min = v814;
     gfp.integer64.max = 0i64;
     v362.integer64 = v813.integer64;
-    *((_QWORD*)&v362.string + 1) = 0i64;
+    *((__int64*)&v362.string + 1) = 0i64;
     v813.value = FLOAT_N2_0;
     phys_vehicleFriction = Dvar_RegisterVariant(
         "phys_vehicleFriction",
@@ -7883,10 +7883,10 @@ void Dvar_Init(void)
         v362,
         gfp,
         "Default vehicle friction with the world and other ents.");
-    gfq.integer64.min = LODWORD(FLOAT_N3_4028235e38);
+    gfq.integer64.min = LODWORD(-3.4028235e38);
     gfq.integer64.max = 0i64;
     v363.integer64 = v813.integer64;
-    *((_QWORD*)&v363.string + 1) = 0i64;
+    *((__int64*)&v363.string + 1) = 0i64;
     v813.value = FLOAT_N1_0;
     phys_waterDragAngular = Dvar_RegisterVariant(
         "phys_waterDragAngular",
@@ -7895,10 +7895,10 @@ void Dvar_Init(void)
         v363,
         gfq,
         "The amount of angular drag for buoyant objects");
-    gfr.integer64.min = LODWORD(FLOAT_N3_4028235e38);
+    gfr.integer64.min = LODWORD(-3.4028235e38);
     gfr.integer64.max = 0i64;
     v364.integer64 = v813.integer64;
-    *((_QWORD*)&v364.string + 1) = 0i64;
+    *((__int64*)&v364.string + 1) = 0i64;
     v813.value = FLOAT_20_0;
     phys_waterDragLinear = Dvar_RegisterVariant(
         "phys_waterDragLinear",
@@ -7910,10 +7910,10 @@ void Dvar_Init(void)
     gfs.integer64.min = LODWORD(FLOAT_N10000_0) | 0x461C400000000000i64;
     gfs.integer64.max = 0i64;
     v365.integer64 = v813.integer64;
-    *((_QWORD*)&v365.string + 1) = 0i64;
-    v813.integer = FLOAT_1_0;
+    *((__int64*)&v365.string + 1) = 0i64;
+    v813.integer = 1.0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_100_0;
+    *((float*)&v814 + 1) = 100.0;
     player_floatSpeed = Dvar_RegisterVariant(
         "player_floatSpeed",
         DVAR_TYPE_FLOAT,
@@ -7924,10 +7924,10 @@ void Dvar_Init(void)
     gft.integer64.min = v814;
     gft.integer64.max = 0i64;
     v366.integer64 = v813.integer64;
-    *((_QWORD*)&v366.string + 1) = 0i64;
+    *((__int64*)&v366.string + 1) = 0i64;
     v813.value = FLOAT_1_7;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_5_0;
+    *((float*)&v814 + 1) = 5.0;
     player_turnRateScale = Dvar_RegisterVariant(
         "player_turnRateScale",
         DVAR_TYPE_FLOAT,
@@ -7938,7 +7938,7 @@ void Dvar_Init(void)
     gfu.integer64.min = v814;
     gfu.integer64.max = 0i64;
     v367.integer64 = v813.integer64;
-    *((_QWORD*)&v367.string + 1) = 0i64;
+    *((__int64*)&v367.string + 1) = 0i64;
     v813.integer = 1176256512;
     player_waistWaterFrictionScale = Dvar_RegisterVariant(
         "player_waistWaterFrictionScale",
@@ -7947,10 +7947,10 @@ void Dvar_Init(void)
         v367,
         gfu,
         "Scales the player's friction in waist deep water.");
-    gfv.integer64.min = (unsigned int)FLOAT_1_0 | 0x461C400000000000i64;
+    gfv.integer64.min = (unsigned int)1.0 | 0x461C400000000000i64;
     gfv.integer64.max = 0i64;
     v368.integer64 = v813.integer64;
-    *((_QWORD*)&v368.string + 1) = 0i64;
+    *((__int64*)&v368.string + 1) = 0i64;
     r_dlightMaxFullScreenRadius = Dvar_RegisterVariant(
         "r_dlightMaxFullScreenRadius",
         DVAR_TYPE_FLOAT,
@@ -7959,13 +7959,13 @@ void Dvar_Init(void)
         gfv,
         "Maximum radius to limit dlights to in fullscreen.");
     v813.integer = 1176256512;
-    gfw.integer64.min = (unsigned int)FLOAT_1_0 | 0x461C400000000000i64;
+    gfw.integer64.min = (unsigned int)1.0 | 0x461C400000000000i64;
     gfw.integer64.max = 0i64;
     v369.integer64 = v813.integer64;
-    *((_QWORD*)&v369.string + 1) = 0i64;
+    *((__int64*)&v369.string + 1) = 0i64;
     v813.value = FLOAT_1_25;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     r_dlightMaxNonFullScreenRadius = Dvar_RegisterVariant(
         "r_dlightMaxNonFullScreenRadius",
         DVAR_TYPE_FLOAT,
@@ -7976,10 +7976,10 @@ void Dvar_Init(void)
     gfx.integer64.min = v814;
     gfx.integer64.max = 0i64;
     v370.integer64 = v813.integer64;
-    *((_QWORD*)&v370.string + 1) = 0i64;
+    *((__int64*)&v370.string + 1) = 0i64;
     v813.value = FLOAT_0_40000001;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     r_fovScaleThresholdRigid = Dvar_RegisterVariant(
         "r_fovScaleThresholdRigid",
         DVAR_TYPE_FLOAT,
@@ -7990,7 +7990,7 @@ void Dvar_Init(void)
     gfy.integer64.min = v814;
     gfy.integer64.max = 0i64;
     v371.integer64 = v813.integer64;
-    *((_QWORD*)&v371.string + 1) = 0i64;
+    *((__int64*)&v371.string + 1) = 0i64;
     v813.value = FLOAT_6500_0;
     r_fovScaleThresholdSkinned = Dvar_RegisterVariant(
         "r_fovScaleThresholdSkinned",
@@ -8002,9 +8002,9 @@ void Dvar_Init(void)
     gfz.integer64.min = __PAIR64__(LODWORD(FLOAT_25000_0), LODWORD(FLOAT_1650_0));
     gfz.integer64.max = 0i64;
     v372.integer64 = v813.integer64;
-    *((_QWORD*)&v372.string + 1) = 0i64;
-    v813.integer = FLOAT_1_0;
-    HIDWORD(v814) = FLOAT_1_0;
+    *((__int64*)&v372.string + 1) = 0i64;
+    v813.integer = 1.0;
+    HIDWORD(v814) = 1.0;
     r_heroLightColorTemp = Dvar_RegisterVariant(
         "r_heroLightColorTemp",
         DVAR_TYPE_FLOAT,
@@ -8016,9 +8016,9 @@ void Dvar_Init(void)
     gga.integer64.min = v814;
     gga.integer64.max = 0i64;
     v373.integer64 = v813.integer64;
-    *((_QWORD*)&v373.string + 1) = 0i64;
-    v813.integer = FLOAT_1_0;
-    HIDWORD(v814) = FLOAT_1_0;
+    *((__int64*)&v373.string + 1) = 0i64;
+    v813.integer = 1.0;
+    HIDWORD(v814) = 1.0;
     r_heroLightSaturation = Dvar_RegisterVariant(
         "r_heroLightSaturation",
         DVAR_TYPE_FLOAT,
@@ -8030,7 +8030,7 @@ void Dvar_Init(void)
     ggb.integer64.min = v814;
     ggb.integer64.max = 0i64;
     v374.integer64 = v813.integer64;
-    *((_QWORD*)&v374.string + 1) = 0i64;
+    *((__int64*)&v374.string + 1) = 0i64;
     v813.integer = 0;
     r_poisonFX_debug_amount = Dvar_RegisterVariant(
         "r_poisonFX_debug_amount",
@@ -8042,7 +8042,7 @@ void Dvar_Init(void)
     ggc.integer64.min = __PAIR64__(LODWORD(FLOAT_360_0), LODWORD(FLOAT_N360_0));
     ggc.integer64.max = 0i64;
     v375.integer64 = v813.integer64;
-    *((_QWORD*)&v375.string + 1) = 0i64;
+    *((__int64*)&v375.string + 1) = 0i64;
     v813.integer = 0;
     r_poisonFX_dvisionA = Dvar_RegisterVariant(
         "r_poisonFX_dvisionA",
@@ -8054,7 +8054,7 @@ void Dvar_Init(void)
     ggd.integer64.min = __PAIR64__(LODWORD(FLOAT_20_0), LODWORD(FLOAT_N20_0));
     ggd.integer64.max = 0i64;
     v376.integer64 = v813.integer64;
-    *((_QWORD*)&v376.string + 1) = 0i64;
+    *((__int64*)&v376.string + 1) = 0i64;
     v813.value = FLOAT_0_2;
     r_poisonFX_dvisionY = Dvar_RegisterVariant(
         "r_poisonFX_dvisionY",
@@ -8066,7 +8066,7 @@ void Dvar_Init(void)
     gge.integer64.min = __PAIR64__(LODWORD(FLOAT_0_30000001), LODWORD(FLOAT_N0_30000001));
     gge.integer64.max = 0i64;
     v377.integer64 = v813.integer64;
-    *((_QWORD*)&v377.string + 1) = 0i64;
+    *((__int64*)&v377.string + 1) = 0i64;
     v813.value = FLOAT_N0_15000001;
     r_poisonFX_warpX = Dvar_RegisterVariant(
         "r_poisonFX_warpX",
@@ -8078,7 +8078,7 @@ void Dvar_Init(void)
     ggf.integer64.min = __PAIR64__(LODWORD(FLOAT_0_30000001), LODWORD(FLOAT_N0_30000001));
     ggf.integer64.max = 0i64;
     v378.integer64 = v813.integer64;
-    *((_QWORD*)&v378.string + 1) = 0i64;
+    *((__int64*)&v378.string + 1) = 0i64;
     r_poisonFX_warpY = Dvar_RegisterVariant(
         "r_poisonFX_warpY",
         DVAR_TYPE_FLOAT,
@@ -8090,7 +8090,7 @@ void Dvar_Init(void)
     ggg.integer64.min = LODWORD(FLOAT_N16_0);
     ggg.integer64.max = 0i64;
     v379.integer64 = v813.integer64;
-    *((_QWORD*)&v379.string + 1) = 0i64;
+    *((__int64*)&v379.string + 1) = 0i64;
     v813.value = FLOAT_N1_0;
     r_polygonOffsetBiasFloat = Dvar_RegisterVariant(
         "r_polygonOffsetBiasFloat",
@@ -8102,10 +8102,10 @@ void Dvar_Init(void)
     ggh.integer64.min = LODWORD(FLOAT_N4_0);
     ggh.integer64.max = 0i64;
     v380.integer64 = v813.integer64;
-    *((_QWORD*)&v380.string + 1) = 0i64;
+    *((__int64*)&v380.string + 1) = 0i64;
     v813.value = FLOAT_0_69999999;
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     r_polygonOffsetScale = Dvar_RegisterVariant(
         "r_polygonOffsetScale",
         DVAR_TYPE_FLOAT,
@@ -8116,7 +8116,7 @@ void Dvar_Init(void)
     ggi.integer64.min = v814;
     ggi.integer64.max = 0i64;
     v381.integer64 = v813.integer64;
-    *((_QWORD*)&v381.string + 1) = 0i64;
+    *((__int64*)&v381.string + 1) = 0i64;
     v813.value = FLOAT_0_02;
     LODWORD(v814) = 0;
     r_portalBevels = Dvar_RegisterVariant(
@@ -8127,12 +8127,12 @@ void Dvar_Init(void)
         ggi,
         "Helps cull geometry by angles of portals that are acute when projected onto the screen, value is th"
         "e cosine of the angle");
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     ggj.integer64.min = v814;
     ggj.integer64.max = 0i64;
     v382.integer64 = v813.integer64;
-    *((_QWORD*)&v382.string + 1) = 0i64;
-    v813.value = FLOAT_2_0;
+    *((__int64*)&v382.string + 1) = 0i64;
+    v813.value = 2.0;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_15_0;
     r_portalMinClipArea = Dvar_RegisterVariant(
@@ -8145,10 +8145,10 @@ void Dvar_Init(void)
     ggk.integer64.min = v814;
     ggk.integer64.max = 0i64;
     v383.integer64 = v813.integer64;
-    *((_QWORD*)&v383.string + 1) = 0i64;
+    *((__int64*)&v383.string + 1) = 0i64;
     v813.value = FLOAT_20_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     r_waterSheetingFX_fadeDuration = Dvar_RegisterVariant(
         "r_waterSheetingFX_fadeDuration",
         DVAR_TYPE_FLOAT,
@@ -8159,7 +8159,7 @@ void Dvar_Init(void)
     ggl.integer64.min = v814;
     ggl.integer64.max = 0i64;
     v384.integer64 = v813.integer64;
-    *((_QWORD*)&v384.string + 1) = 0i64;
+    *((__int64*)&v384.string + 1) = 0i64;
     v813.value = FLOAT_50_0;
     LODWORD(v814) = 0;
     riotshield_placement_foffset = Dvar_RegisterVariant(
@@ -8169,11 +8169,11 @@ void Dvar_Init(void)
         v384,
         ggl,
         "Forward offset of riotshield placeament.  Scales how far infront of player origin to trace and place");
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     ggm.integer64.min = v814;
     ggm.integer64.max = 0i64;
     v385.integer64 = v813.integer64;
-    *((_QWORD*)&v385.string + 1) = 0i64;
+    *((__int64*)&v385.string + 1) = 0i64;
     riotshield_placement_maxs = Dvar_RegisterVariant(
         "riotshield_placement_maxs",
         DVAR_TYPE_FLOAT,
@@ -8192,10 +8192,10 @@ void Dvar_Init(void)
         "t6_wpn_shield_stow_world",
         0x84000u,
         "Riotshield stowed model name");
-    ggn.integer64.min = __PAIR64__(FLOAT_1_0, LODWORD(FLOAT_0_0099999998));
+    ggn.integer64.min = __PAIR64__(1.0, LODWORD(0.0099999998));
     ggn.integer64.max = 0i64;
     v386.integer64 = v813.integer64;
-    *((_QWORD*)&v386.string + 1) = 0i64;
+    *((__int64*)&v386.string + 1) = 0i64;
     v813.value = FLOAT_55_0;
     shardShatterSizeLimitScale = Dvar_RegisterVariant(
         "shardShatterSizeLimitScale",
@@ -8204,10 +8204,10 @@ void Dvar_Init(void)
         v386,
         ggn,
         "Scale of maxShardSize & minShardSize when shattering a shard.");
-    ggo.integer64.min = __PAIR64__(LODWORD(FLOAT_1000_0), FLOAT_1_0);
+    ggo.integer64.min = __PAIR64__(LODWORD(1000.0), 1.0);
     ggo.integer64.max = 0i64;
     v387.integer64 = v813.integer64;
-    *((_QWORD*)&v387.string + 1) = 0i64;
+    *((__int64*)&v387.string + 1) = 0i64;
     v813.value = FLOAT_20_0;
     shatterFxMaxDist = Dvar_RegisterVariant(
         "shatterFxMaxDist",
@@ -8216,10 +8216,10 @@ void Dvar_Init(void)
         v387,
         ggo,
         "Distance between FX spawning points along the window edges");
-    ggp.integer64.min = __PAIR64__(LODWORD(FLOAT_1000_0), FLOAT_1_0);
+    ggp.integer64.min = __PAIR64__(LODWORD(1000.0), 1.0);
     ggp.integer64.max = 0i64;
     v388.integer64 = v813.integer64;
-    *((_QWORD*)&v388.string + 1) = 0i64;
+    *((__int64*)&v388.string + 1) = 0i64;
     v813.integer = (int)FLOAT_10_0;
     shatterFxMinEdgeLength = Dvar_RegisterVariant(
         "shatterFxMinEdgeLength",
@@ -8228,10 +8228,10 @@ void Dvar_Init(void)
         v388,
         ggp,
         "Minimum length that the window edge has to be to have a shatter fx spawned on it.");
-    ggq.integer64.min = __PAIR64__(LODWORD(FLOAT_1000_0), FLOAT_1_0);
+    ggq.integer64.min = __PAIR64__(LODWORD(1000.0), 1.0);
     ggq.integer64.max = 0i64;
     v389.integer64 = v813.integer64;
-    *((_QWORD*)&v389.string + 1) = 0i64;
+    *((__int64*)&v389.string + 1) = 0i64;
     v813.value = FLOAT_64_0;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_1024_0;
@@ -8245,8 +8245,8 @@ void Dvar_Init(void)
     ggr.integer64.min = v814;
     ggr.integer64.max = 0i64;
     v390.integer64 = v813.integer64;
-    *((_QWORD*)&v390.string + 1) = 0i64;
-    v813.value = FLOAT_0_125;
+    *((__int64*)&v390.string + 1) = 0i64;
+    v813.value = 0.125;
     LODWORD(v814) = 0;
     sm_lightScore_eyeProjectDist = Dvar_RegisterVariant(
         "sm_lightScore_eyeProjectDist",
@@ -8256,12 +8256,12 @@ void Dvar_Init(void)
         ggr,
         "When picking shadows for primary lights, measure distance from a point this far in fr"
         "ont of the camera.");
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     ggs.integer64.min = v814;
     ggs.integer64.max = 0i64;
     v391.integer64 = v813.integer64;
-    *((_QWORD*)&v391.string + 1) = 0i64;
-    v813.value = FLOAT_2_0;
+    *((__int64*)&v391.string + 1) = 0i64;
+    v813.value = 2.0;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_8_0;
     sm_lightScore_spotProjectFrac = Dvar_RegisterVariant(
@@ -8275,7 +8275,7 @@ void Dvar_Init(void)
     ggt.integer64.min = v814;
     ggt.integer64.max = 0i64;
     v392.integer64 = v813.integer64;
-    *((_QWORD*)&v392.string + 1) = 0i64;
+    *((__int64*)&v392.string + 1) = 0i64;
     v813.value = FLOAT_25_0;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_4000_0;
@@ -8289,8 +8289,8 @@ void Dvar_Init(void)
     ggu.integer64.min = v814;
     ggu.integer64.max = 0i64;
     v393.integer64 = v813.integer64;
-    *((_QWORD*)&v393.string + 1) = 0i64;
-    v813.value = FLOAT_2_0;
+    *((__int64*)&v393.string + 1) = 0i64;
+    v813.value = 2.0;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_16_0;
     sm_sunPolygonOffsetBias = Dvar_RegisterVariant(
@@ -8303,7 +8303,7 @@ void Dvar_Init(void)
     ggv.integer64.min = v814;
     ggv.integer64.max = 0i64;
     v394.integer64 = v813.integer64;
-    *((_QWORD*)&v394.string + 1) = 0i64;
+    *((__int64*)&v394.string + 1) = 0i64;
     v813.value = FLOAT_500_0;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_4000_0;
@@ -8317,8 +8317,8 @@ void Dvar_Init(void)
     ggw.integer64.min = v814;
     ggw.integer64.max = 0i64;
     v395.integer64 = v813.integer64;
-    *((_QWORD*)&v395.string + 1) = 0i64;
-    v813.integer = FLOAT_1_0;
+    *((__int64*)&v395.string + 1) = 0i64;
+    v813.integer = 1.0;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_16_0;
     sm_spotPolygonOffsetBias = Dvar_RegisterVariant(
@@ -8331,7 +8331,7 @@ void Dvar_Init(void)
     ggx.integer64.min = v814;
     ggx.integer64.max = 0i64;
     v396.integer64 = v813.integer64;
-    *((_QWORD*)&v396.string + 1) = 0i64;
+    *((__int64*)&v396.string + 1) = 0i64;
     v813.value = FLOAT_3000_0;
     sm_spotPolygonOffsetScale = Dvar_RegisterVariant(
         "sm_spotPolygonOffsetScale",
@@ -8340,10 +8340,10 @@ void Dvar_Init(void)
         v396,
         ggx,
         "Spot shadow map offset scale");
-    ggy.integer64.min = LODWORD(FLOAT_100_0) | 0x461C400000000000i64;
+    ggy.integer64.min = LODWORD(100.0) | 0x461C400000000000i64;
     ggy.integer64.max = 0i64;
     v397.integer64 = v813.integer64;
-    *((_QWORD*)&v397.string + 1) = 0i64;
+    *((__int64*)&v397.string + 1) = 0i64;
     snd_dlpf_max_distance = Dvar_RegisterVariant(
         "snd_dlpf_max_distance",
         DVAR_TYPE_FLOAT,
@@ -8352,10 +8352,10 @@ void Dvar_Init(void)
         ggy,
         "max distance for distance lpf");
     v813.value = FLOAT_800_0;
-    ggz.integer64.min = LODWORD(FLOAT_100_0) | 0x461C400000000000i64;
+    ggz.integer64.min = LODWORD(100.0) | 0x461C400000000000i64;
     ggz.integer64.max = 0i64;
     v398.integer64 = v813.integer64;
-    *((_QWORD*)&v398.string + 1) = 0i64;
+    *((__int64*)&v398.string + 1) = 0i64;
     v813.value = FLOAT_N30_0;
     snd_dlpf_min_distance = Dvar_RegisterVariant(
         "snd_dlpf_min_distance",
@@ -8367,7 +8367,7 @@ void Dvar_Init(void)
     gha.integer64.min = LODWORD(FLOAT_N60_0);
     gha.integer64.max = 0i64;
     v399.integer64 = v813.integer64;
-    *((_QWORD*)&v399.string + 1) = 0i64;
+    *((__int64*)&v399.string + 1) = 0i64;
     v813.value = FLOAT_2_75;
     snd_dlpf_attenuation = Dvar_RegisterVariant(
         "snd_dlpf_attenuation",
@@ -8376,10 +8376,10 @@ void Dvar_Init(void)
         v399,
         gha,
         "attenuation for distance lpf");
-    ghb.integer64.min = __PAIR64__(LODWORD(FLOAT_20_0), LODWORD(FLOAT_0_0099999998));
+    ghb.integer64.min = __PAIR64__(LODWORD(FLOAT_20_0), LODWORD(0.0099999998));
     ghb.integer64.max = 0i64;
     v400.integer64 = v813.integer64;
-    *((_QWORD*)&v400.string + 1) = 0i64;
+    *((__int64*)&v400.string + 1) = 0i64;
     v813.integer = (int)FLOAT_10_0;
     snd_dopplerRate = Dvar_RegisterVariant(
         "snd_dopplerRate",
@@ -8388,12 +8388,12 @@ void Dvar_Init(void)
         v400,
         ghb,
         "global doppler lerp rate");
-    ghc.integer64.min = __PAIR64__(LODWORD(FLOAT_100_0), LODWORD(FLOAT_N200_0));
+    ghc.integer64.min = __PAIR64__(LODWORD(100.0), LODWORD(FLOAT_N200_0));
     ghc.integer64.max = 0i64;
     v401.integer64 = v813.integer64;
-    *((_QWORD*)&v401.string + 1) = 0i64;
-    v813.integer = FLOAT_1_0;
-    HIDWORD(v814) = FLOAT_1_0;
+    *((__int64*)&v401.string + 1) = 0i64;
+    v813.integer = 1.0;
+    HIDWORD(v814) = 1.0;
     snd_dopplerScale = Dvar_RegisterVariant(
         "snd_dopplerScale",
         DVAR_TYPE_FLOAT,
@@ -8405,10 +8405,10 @@ void Dvar_Init(void)
     ghd.integer64.min = v814;
     ghd.integer64.max = 0i64;
     v402.integer64 = v813.integer64;
-    *((_QWORD*)&v402.string + 1) = 0i64;
+    *((__int64*)&v402.string + 1) = 0i64;
     v813.value = FLOAT_0_30000001;
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     snd_dry_scale = Dvar_RegisterVariant(
         "snd_dry_scale",
         DVAR_TYPE_FLOAT,
@@ -8419,7 +8419,7 @@ void Dvar_Init(void)
     ghe.integer64.min = v814;
     ghe.integer64.max = 0i64;
     v403.integer64 = v813.integer64;
-    *((_QWORD*)&v403.string + 1) = 0i64;
+    *((__int64*)&v403.string + 1) = 0i64;
     v813.integer = 0;
     LODWORD(v814) = 0;
     snd_flux_separation = Dvar_RegisterVariant(
@@ -8429,33 +8429,33 @@ void Dvar_Init(void)
         v403,
         ghe,
         "separation of L/R flux elements, 0 none, 1 180 deg, not linear in angle");
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     ghf.integer64.min = v814;
     ghf.integer64.max = 0i64;
     v404.integer64 = v813.integer64;
-    *((_QWORD*)&v404.string + 1) = 0i64;
+    *((__int64*)&v404.string + 1) = 0i64;
     v813.value = FLOAT_1400_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_1000_0;
+    *((float*)&v814 + 1) = 1000.0;
     snd_futz_force = Dvar_RegisterVariant("snd_futz_force", DVAR_TYPE_FLOAT, 0x84000u, v404, ghf, (const char*)&pBlock);
     ghg.integer64.min = v814;
     ghg.integer64.max = 0i64;
     v405.integer64 = v813.integer64;
-    *((_QWORD*)&v405.string + 1) = 0i64;
-    v813.integer = FLOAT_1_0;
+    *((__int64*)&v405.string + 1) = 0i64;
+    v813.integer = 1.0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_2_0;
+    *((float*)&v814 + 1) = 2.0;
     snd_futz_min = Dvar_RegisterVariant("snd_futz_min", DVAR_TYPE_FLOAT, 0x84000u, v405, ghg, "futz min");
     ghh.integer64.min = v814;
     ghh.integer64.max = 0i64;
     v406.integer64 = v813.integer64;
-    *((_QWORD*)&v406.string + 1) = 0i64;
-    v813.value = FLOAT_1000_0;
+    *((__int64*)&v406.string + 1) = 0i64;
+    v813.value = 1000.0;
     snd_global_pitch = Dvar_RegisterVariant("snd_global_pitch", DVAR_TYPE_FLOAT, 0x84000u, v406, ghh, "global pitch");
     ghi.integer64.min = 0x461C400000000000i64;
     ghi.integer64.max = 0i64;
     v407.integer64 = v813.integer64;
-    *((_QWORD*)&v407.string + 1) = 0i64;
+    *((__int64*)&v407.string + 1) = 0i64;
     v813.value = FLOAT_N35_0;
     snd_isbig_distance = Dvar_RegisterVariant(
         "snd_isbig_distance",
@@ -8467,7 +8467,7 @@ void Dvar_Init(void)
     ghj.integer64.min = LODWORD(FLOAT_N80_0);
     ghj.integer64.max = 0i64;
     v408.integer64 = v813.integer64;
-    *((_QWORD*)&v408.string + 1) = 0i64;
+    *((__int64*)&v408.string + 1) = 0i64;
     v813.value = FLOAT_2000_0;
     snd_occlusion_attenuation = Dvar_RegisterVariant(
         "snd_occlusion_attenuation",
@@ -8479,7 +8479,7 @@ void Dvar_Init(void)
     ghk.integer64.min = 0x461C400000000000i64;
     ghk.integer64.max = 0i64;
     v409.integer64 = v813.integer64;
-    *((_QWORD*)&v409.string + 1) = 0i64;
+    *((__int64*)&v409.string + 1) = 0i64;
     v813.value = FLOAT_6_0;
     snd_occlusion_cull_distance = Dvar_RegisterVariant(
         "snd_occlusion_cull_distance",
@@ -8488,10 +8488,10 @@ void Dvar_Init(void)
         v409,
         ghk,
         "distance at which we don't do occlusion at start");
-    ghl.integer64.min = __PAIR64__(LODWORD(FLOAT_100_0), LODWORD(FLOAT_0_0099999998));
+    ghl.integer64.min = __PAIR64__(LODWORD(100.0), LODWORD(0.0099999998));
     ghl.integer64.max = 0i64;
     v410.integer64 = v813.integer64;
-    *((_QWORD*)&v410.string + 1) = 0i64;
+    *((__int64*)&v410.string + 1) = 0i64;
     snd_occlusion_rate = Dvar_RegisterVariant(
         "snd_occlusion_rate",
         DVAR_TYPE_FLOAT,
@@ -8499,16 +8499,16 @@ void Dvar_Init(void)
         v410,
         ghl,
         "snd occlusion rate");
-    v813.value = FLOAT_0_25;
+    v813.value = 0.25;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_2_0;
+    *((float*)&v814 + 1) = 2.0;
     ghm.integer64.min = v814;
     ghm.integer64.max = 0i64;
     v411.integer64 = v813.integer64;
-    *((_QWORD*)&v411.string + 1) = 0i64;
-    v813.value = FLOAT_3_0;
+    *((__int64*)&v411.string + 1) = 0i64;
+    v813.value = 3.0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_100_0;
+    *((float*)&v814 + 1) = 100.0;
     snd_pitch_timescale = Dvar_RegisterVariant(
         "snd_pitch_timescale",
         DVAR_TYPE_FLOAT,
@@ -8519,7 +8519,7 @@ void Dvar_Init(void)
     ghn.integer64.min = v814;
     ghn.integer64.max = 0i64;
     v412.integer64 = v813.integer64;
-    *((_QWORD*)&v412.string + 1) = 0i64;
+    *((__int64*)&v412.string + 1) = 0i64;
     v813.value = FLOAT_20_0;
     snd_playing_priority_boost = Dvar_RegisterVariant(
         "snd_playing_priority_boost",
@@ -8531,7 +8531,7 @@ void Dvar_Init(void)
     gho.integer64.min = 0x461C400000000000i64;
     gho.integer64.max = 0i64;
     v413.integer64 = v813.integer64;
-    *((_QWORD*)&v413.string + 1) = 0i64;
+    *((__int64*)&v413.string + 1) = 0i64;
     v813.value = FLOAT_0_07;
     LODWORD(v814) = 0;
     snd_start_alias_distance = Dvar_RegisterVariant(
@@ -8541,13 +8541,13 @@ void Dvar_Init(void)
         v413,
         gho,
         (const char*)&pBlock);
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     ghp.integer64.min = v814;
     ghp.integer64.max = 0i64;
     v414.integer64 = v813.integer64;
-    *((_QWORD*)&v414.string + 1) = 0i64;
-    v813.integer = FLOAT_1_0;
-    HIDWORD(v814) = FLOAT_1_0;
+    *((__int64*)&v414.string + 1) = 0i64;
+    v813.integer = 1.0;
+    HIDWORD(v814) = 1.0;
     snd_timescale_filter = Dvar_RegisterVariant(
         "snd_timescale_filter",
         DVAR_TYPE_FLOAT,
@@ -8559,7 +8559,7 @@ void Dvar_Init(void)
     ghq.integer64.min = v814;
     ghq.integer64.max = 0i64;
     v415.integer64 = v813.integer64;
-    *((_QWORD*)&v415.string + 1) = 0i64;
+    *((__int64*)&v415.string + 1) = 0i64;
     v813.value = FLOAT_300_0;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_3600_0;
@@ -8573,7 +8573,7 @@ void Dvar_Init(void)
     ghr.integer64.min = v814;
     ghr.integer64.max = 0i64;
     v416.integer64 = v813.integer64;
-    *((_QWORD*)&v416.string + 1) = 0i64;
+    *((__int64*)&v416.string + 1) = 0i64;
     v813.value = FLOAT_6_0;
     sv_kickBanTime = Dvar_RegisterVariant(
         "sv_kickBanTime",
@@ -8582,10 +8582,10 @@ void Dvar_Init(void)
         v416,
         ghr,
         "Time in seconds for a player to be banned from the server after being kicked");
-    ghs.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), FLOAT_1_0);
+    ghs.integer64.min = __PAIR64__(LODWORD(3.4028235e38), 1.0);
     ghs.integer64.max = 0i64;
     v417.integer64 = v813.integer64;
-    *((_QWORD*)&v417.string + 1) = 0i64;
+    *((__int64*)&v417.string + 1) = 0i64;
     v813.value = FLOAT_4_0;
     tracer_explosiveWidth = Dvar_RegisterVariant(
         "tracer_explosiveWidth",
@@ -8594,10 +8594,10 @@ void Dvar_Init(void)
         v417,
         ghs,
         "The width of a bullet tracer when using explosive bullets");
-    ght.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), LODWORD(FLOAT_0_1));
+    ght.integer64.min = __PAIR64__(LODWORD(3.4028235e38), LODWORD(0.1));
     ght.integer64.max = 0i64;
     v418.integer64 = v813.integer64;
-    *((_QWORD*)&v418.string + 1) = 0i64;
+    *((__int64*)&v418.string + 1) = 0i64;
     v813.value = FLOAT_6_0;
     tracer_firstPersonMaxWidth = Dvar_RegisterVariant(
         "tracer_firstPersonMaxWidth",
@@ -8606,11 +8606,11 @@ void Dvar_Init(void)
         v418,
         ght,
         "The maximum width our OWN tracers can be when looking through our ADS");
-    ghu.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), FLOAT_1_0);
+    ghu.integer64.min = __PAIR64__(LODWORD(3.4028235e38), 1.0);
     ghu.integer64.max = 0i64;
     v419.integer64 = v813.integer64;
-    *((_QWORD*)&v419.string + 1) = 0i64;
-    v813.value = FLOAT_2_0;
+    *((__int64*)&v419.string + 1) = 0i64;
+    v813.value = 2.0;
     tracer_stoppingPowerWidth = Dvar_RegisterVariant(
         "tracer_stoppingPowerWidth",
         DVAR_TYPE_FLOAT,
@@ -8618,13 +8618,13 @@ void Dvar_Init(void)
         v419,
         ghu,
         "The width of a bullet tracer when using StoppingPower bullets");
-    ghv.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), LODWORD(FLOAT_0_1));
+    ghv.integer64.min = __PAIR64__(LODWORD(3.4028235e38), LODWORD(0.1));
     ghv.integer64.max = 0i64;
     v420.integer64 = v813.integer64;
-    *((_QWORD*)&v420.string + 1) = 0i64;
+    *((__int64*)&v420.string + 1) = 0i64;
     v813.value = FLOAT_20_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     tracer_thermalWidthMult = Dvar_RegisterVariant(
         "tracer_thermalWidthMult",
         DVAR_TYPE_FLOAT,
@@ -8635,10 +8635,10 @@ void Dvar_Init(void)
     ghw.integer64.min = v814;
     ghw.integer64.max = 0i64;
     v421.integer64 = v813.integer64;
-    *((_QWORD*)&v421.string + 1) = 0i64;
+    *((__int64*)&v421.string + 1) = 0i64;
     v813.value = FLOAT_42_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     turret_placement_feet_trace_dist_z = Dvar_RegisterVariant(
         "turret_placement_feet_trace_dist_z",
         DVAR_TYPE_FLOAT,
@@ -8649,10 +8649,10 @@ void Dvar_Init(void)
     ghx.integer64.min = v814;
     ghx.integer64.max = 0i64;
     v422.integer64 = v813.integer64;
-    *((_QWORD*)&v422.string + 1) = 0i64;
+    *((__int64*)&v422.string + 1) = 0i64;
     v813.value = FLOAT_42_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     turret_placement_trace_dist = Dvar_RegisterVariant(
         "turret_placement_trace_dist",
         DVAR_TYPE_FLOAT,
@@ -8663,7 +8663,7 @@ void Dvar_Init(void)
     ghy.integer64.min = v814;
     ghy.integer64.max = 0i64;
     v423.integer64 = v813.integer64;
-    *((_QWORD*)&v423.string + 1) = 0i64;
+    *((__int64*)&v423.string + 1) = 0i64;
     turret_placement_trace_dist_zm = Dvar_RegisterVariant(
         "turret_placement_trace_dist_zm",
         DVAR_TYPE_FLOAT,
@@ -8671,16 +8671,16 @@ void Dvar_Init(void)
         v423,
         ghy,
         "Distance along the trace axis where the turret will attempt to position itself (zombies)");
-    v813.value = FLOAT_100_0;
+    v813.value = 100.0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     ghz.integer64.min = v814;
     ghz.integer64.max = 0i64;
     v424.integer64 = v813.integer64;
-    *((_QWORD*)&v424.string + 1) = 0i64;
+    *((__int64*)&v424.string + 1) = 0i64;
     v813.value = FLOAT_0_69999999;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     turret_placement_trace_dist_wallmount = Dvar_RegisterVariant(
         "turret_placement_trace_dist_wallmount",
         DVAR_TYPE_FLOAT,
@@ -8692,10 +8692,10 @@ void Dvar_Init(void)
     gia.integer64.min = v814;
     gia.integer64.max = 0i64;
     v425.integer64 = v813.integer64;
-    *((_QWORD*)&v425.string + 1) = 0i64;
+    *((__int64*)&v425.string + 1) = 0i64;
     v813.value = FLOAT_20_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     turret_placement_trace_min_normal = Dvar_RegisterVariant(
         "turret_placement_trace_min_normal",
         DVAR_TYPE_FLOAT,
@@ -8706,8 +8706,8 @@ void Dvar_Init(void)
     gib.integer64.min = v814;
     gib.integer64.max = 0i64;
     v426.integer64 = v813.integer64;
-    *((_QWORD*)&v426.string + 1) = 0i64;
-    v813.value = FLOAT_5_0;
+    *((__int64*)&v426.string + 1) = 0i64;
+    v813.value = 5.0;
     LODWORD(v814) = 0;
     turret_placement_trace_pitch = Dvar_RegisterVariant(
         "turret_placement_trace_pitch",
@@ -8716,14 +8716,14 @@ void Dvar_Init(void)
         v426,
         gib,
         "Pitch used for the trace axis");
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     gic.integer64.min = v814;
     gic.integer64.max = 0i64;
     v427.integer64 = v813.integer64;
-    *((_QWORD*)&v427.string + 1) = 0i64;
+    *((__int64*)&v427.string + 1) = 0i64;
     v813.value = FLOAT_2_99;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     turret_placement_trace_radius_canon_safety = Dvar_RegisterVariant(
         "turret_placement_trace_radius_canon_safety",
         DVAR_TYPE_FLOAT,
@@ -8734,10 +8734,10 @@ void Dvar_Init(void)
     gid.integer64.min = v814;
     gid.integer64.max = 0i64;
     v428.integer64 = v813.integer64;
-    *((_QWORD*)&v428.string + 1) = 0i64;
-    v813.value = FLOAT_0_5;
+    *((__int64*)&v428.string + 1) = 0i64;
+    v813.value = 0.5;
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     ui_blurAmount = Dvar_RegisterVariant(
         "ui_blurAmount",
         DVAR_TYPE_FLOAT,
@@ -8748,7 +8748,7 @@ void Dvar_Init(void)
     gie.integer64.min = v814;
     gie.integer64.max = 0i64;
     v429.integer64 = v813.integer64;
-    *((_QWORD*)&v429.string + 1) = 0i64;
+    *((__int64*)&v429.string + 1) = 0i64;
     v813.value = FLOAT_250_0;
     LODWORD(v814) = 0;
     ui_blurDarkenAmount = Dvar_RegisterVariant(
@@ -8758,14 +8758,14 @@ void Dvar_Init(void)
         v429,
         gie,
         "Max amount to darken the background menu items.");
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     gif.integer64.min = v814;
     gif.integer64.max = 0i64;
     v430.integer64 = v813.integer64;
-    *((_QWORD*)&v430.string + 1) = 0i64;
+    *((__int64*)&v430.string + 1) = 0i64;
     v813.value = FLOAT_0_2;
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     ui_blurTime = Dvar_RegisterVariant(
         "ui_blurTime",
         DVAR_TYPE_FLOAT,
@@ -8776,10 +8776,10 @@ void Dvar_Init(void)
     gig.integer64.min = v814;
     gig.integer64.max = 0i64;
     v431.integer64 = v813.integer64;
-    *((_QWORD*)&v431.string + 1) = 0i64;
+    *((__int64*)&v431.string + 1) = 0i64;
     v813.value = FLOAT_0_22;
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     ui_buildSize = Dvar_RegisterVariant(
         "ui_buildSize",
         DVAR_TYPE_FLOAT,
@@ -8790,10 +8790,10 @@ void Dvar_Init(void)
     gih.integer64.min = v814;
     gih.integer64.max = 0i64;
     v432.integer64 = v813.integer64;
-    *((_QWORD*)&v432.string + 1) = 0i64;
+    *((__int64*)&v432.string + 1) = 0i64;
     v813.value = FLOAT_0_49000001;
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     ui_fxFontFalloff = Dvar_RegisterVariant(
         "ui_fxFontFalloff",
         DVAR_TYPE_FLOAT,
@@ -8804,10 +8804,10 @@ void Dvar_Init(void)
     gii.integer64.min = v814;
     gii.integer64.max = 0i64;
     v433.integer64 = v813.integer64;
-    *((_QWORD*)&v433.string + 1) = 0i64;
+    *((__int64*)&v433.string + 1) = 0i64;
     v813.value = FLOAT_0_38;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_0_5;
+    *((float*)&v814 + 1) = 0.5;
     ui_fxFontGlowSize = Dvar_RegisterVariant(
         "ui_fxFontGlowSize",
         DVAR_TYPE_FLOAT,
@@ -8818,7 +8818,7 @@ void Dvar_Init(void)
     gij.integer64.min = v814;
     gij.integer64.max = 0i64;
     v434.integer64 = v813.integer64;
-    *((_QWORD*)&v434.string + 1) = 0i64;
+    *((__int64*)&v434.string + 1) = 0i64;
     v813.value = FLOAT_N1_0;
     ui_fxFontOutlineSize = Dvar_RegisterVariant(
         "ui_fxFontOutlineSize",
@@ -8827,13 +8827,13 @@ void Dvar_Init(void)
         v434,
         gij,
         "Size of the outline");
-    gik.integer64.min = __PAIR64__(FLOAT_1_0, LODWORD(FLOAT_N1_0));
+    gik.integer64.min = __PAIR64__(1.0, LODWORD(FLOAT_N1_0));
     gik.integer64.max = 0i64;
     v435.integer64 = v813.integer64;
-    *((_QWORD*)&v435.string + 1) = 0i64;
-    v813.integer = FLOAT_1_0;
+    *((__int64*)&v435.string + 1) = 0i64;
+    v813.integer = 1.0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_0;
+    *((float*)&v814 + 1) = 3.0;
     ui_fxFontShadowSize = Dvar_RegisterVariant(
         "ui_fxFontShadowSize",
         DVAR_TYPE_FLOAT,
@@ -8844,7 +8844,7 @@ void Dvar_Init(void)
     gil.integer64.min = v814;
     gil.integer64.max = 0i64;
     v436.integer64 = v813.integer64;
-    *((_QWORD*)&v436.string + 1) = 0i64;
+    *((__int64*)&v436.string + 1) = 0i64;
     ui_saveMessageMinTime = Dvar_RegisterVariant(
         "ui_saveMessageMinTime",
         DVAR_TYPE_FLOAT,
@@ -8852,14 +8852,14 @@ void Dvar_Init(void)
         v436,
         gil,
         "Minumum time for the save message to be on screen in seconds");
-    v813.value = FLOAT_3_0;
+    v813.value = 3.0;
     LODWORD(v814) = 0;
     HIDWORD(v814) = FLOAT_10_0;
     gim.integer64.min = v814;
     gim.integer64.max = 0i64;
     v437.integer64 = v813.integer64;
-    *((_QWORD*)&v437.string + 1) = 0i64;
-    v813.value = FLOAT_2_0;
+    *((__int64*)&v437.string + 1) = 0i64;
+    v813.value = 2.0;
     ui_textPaddingOverride = Dvar_RegisterVariant(
         "ui_textPaddingOverride",
         DVAR_TYPE_FLOAT,
@@ -8867,10 +8867,10 @@ void Dvar_Init(void)
         v437,
         gim,
         "Text padding");
-    gin.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), LODWORD(FLOAT_0_1));
+    gin.integer64.min = __PAIR64__(LODWORD(3.4028235e38), LODWORD(0.1));
     gin.integer64.max = 0i64;
     v438.integer64 = v813.integer64;
-    *((_QWORD*)&v438.string + 1) = 0i64;
+    *((__int64*)&v438.string + 1) = 0i64;
     v813.value = FLOAT_0_30000001;
     vehHelicopterAlwaysFaceCameraRate = Dvar_RegisterVariant(
         "vehHelicopterAlwaysFaceCameraRate",
@@ -8879,10 +8879,10 @@ void Dvar_Init(void)
         v438,
         gin,
         "How quickly the helicopter catches up to the camera.");
-    gio.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), LODWORD(FLOAT_0_000099999997));
+    gio.integer64.min = __PAIR64__(LODWORD(3.4028235e38), LODWORD(0.000099999997));
     gio.integer64.max = 0i64;
     v439.integer64 = v813.integer64;
-    *((_QWORD*)&v439.string + 1) = 0i64;
+    *((__int64*)&v439.string + 1) = 0i64;
     v813.value = FLOAT_8_0;
     vehHelicopterJitterJerkyness = Dvar_RegisterVariant(
         "vehHelicopterJitterJerkyness",
@@ -8891,13 +8891,13 @@ void Dvar_Init(void)
         v439,
         gio,
         "Specifies how jerky the tilt jitter should be");
-    gip.integer64.min = LODWORD(FLOAT_0_0099999998) | 0x461C400000000000i64;
+    gip.integer64.min = LODWORD(0.0099999998) | 0x461C400000000000i64;
     gip.integer64.max = 0i64;
     v440.integer64 = v813.integer64;
-    *((_QWORD*)&v440.string + 1) = 0i64;
+    *((__int64*)&v440.string + 1) = 0i64;
     v813.value = FLOAT_40_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_1000000_0;
+    *((float*)&v814 + 1) = 1000000.0;
     vehHudLineWidth = Dvar_RegisterVariant(
         "vehHudLineWidth",
         DVAR_TYPE_FLOAT,
@@ -8908,10 +8908,10 @@ void Dvar_Init(void)
     giq.integer64.min = v814;
     giq.integer64.max = 0i64;
     v441.integer64 = v813.integer64;
-    *((_QWORD*)&v441.string + 1) = 0i64;
+    *((__int64*)&v441.string + 1) = 0i64;
     v813.value = FLOAT_80_0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_1000000_0;
+    *((float*)&v814 + 1) = 1000000.0;
     vehHudReticleBouncingDiamondSize = Dvar_RegisterVariant(
         "vehHudReticleBouncingDiamondSize",
         DVAR_TYPE_FLOAT,
@@ -8922,8 +8922,8 @@ void Dvar_Init(void)
     gir.integer64.min = v814;
     gir.integer64.max = 0i64;
     v442.integer64 = v813.integer64;
-    *((_QWORD*)&v442.string + 1) = 0i64;
-    v813.value = FLOAT_400_0;
+    *((__int64*)&v442.string + 1) = 0i64;
+    v813.value = 400.0;
     LODWORD(v814) = 0;
     vehHudReticleBouncingRadius = Dvar_RegisterVariant(
         "vehHudReticleBouncingRadius",
@@ -8932,11 +8932,11 @@ void Dvar_Init(void)
         v442,
         gir,
         "The radius of the circle in which the diamond bounces.");
-    *((float*)&v814 + 1) = FLOAT_1000000_0;
+    *((float*)&v814 + 1) = 1000000.0;
     gis.integer64.min = v814;
     gis.integer64.max = 0i64;
     v443.integer64 = v813.integer64;
-    *((_QWORD*)&v443.string + 1) = 0i64;
+    *((__int64*)&v443.string + 1) = 0i64;
     v813.value = FLOAT_8_0;
     vehHudReticleBouncingSpeed = Dvar_RegisterVariant(
         "vehHudReticleBouncingSpeed",
@@ -8945,11 +8945,11 @@ void Dvar_Init(void)
         v443,
         gis,
         "The rate at which the bouncing diamond moves");
-    git.integer64.min = LODWORD(FLOAT_0_0099999998) | 0x461C400000000000i64;
+    git.integer64.min = LODWORD(0.0099999998) | 0x461C400000000000i64;
     git.integer64.max = 0i64;
     v444.integer64 = v813.integer64;
-    *((_QWORD*)&v444.string + 1) = 0i64;
-    v813.value = FLOAT_0_25;
+    *((__int64*)&v444.string + 1) = 0i64;
+    v813.value = 0.25;
     vehHudReticlePipOnAStickCenterCircle = Dvar_RegisterVariant(
         "vehHudReticlePipOnAStickCenterCircle",
         DVAR_TYPE_FLOAT,
@@ -8960,7 +8960,7 @@ void Dvar_Init(void)
     giu.integer64.min = LODWORD(FLOAT_N10000_0) | 0x461C400000000000i64;
     giu.integer64.max = 0i64;
     v445.integer64 = v813.integer64;
-    *((_QWORD*)&v445.string + 1) = 0i64;
+    *((__int64*)&v445.string + 1) = 0i64;
     v813.value = FLOAT_32_0;
     vehHudReticlePipOnAStickCenterCircleBuffer = Dvar_RegisterVariant(
         "vehHudReticlePipOnAStickCenterCircleBuffer",
@@ -8970,11 +8970,11 @@ void Dvar_Init(void)
         giu,
         "Tweaks how close the stick is drawn to the center circle.  Positive num"
         "bers makes the line longer.");
-    giv.integer64.min = LODWORD(FLOAT_0_0099999998) | 0x461C400000000000i64;
+    giv.integer64.min = LODWORD(0.0099999998) | 0x461C400000000000i64;
     giv.integer64.max = 0i64;
     v446.integer64 = v813.integer64;
-    *((_QWORD*)&v446.string + 1) = 0i64;
-    v813.integer = FLOAT_1_0;
+    *((__int64*)&v446.string + 1) = 0i64;
+    v813.integer = 1.0;
     vehHudReticlePipOnAStickMovingCircle = Dvar_RegisterVariant(
         "vehHudReticlePipOnAStickMovingCircle",
         DVAR_TYPE_FLOAT,
@@ -8985,10 +8985,10 @@ void Dvar_Init(void)
     giw.integer64.min = LODWORD(FLOAT_N10000_0) | 0x461C400000000000i64;
     giw.integer64.max = 0i64;
     v447.integer64 = v813.integer64;
-    *((_QWORD*)&v447.string + 1) = 0i64;
+    *((__int64*)&v447.string + 1) = 0i64;
     v813.value = FLOAT_0_74000001;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     vehHudReticlePipOnAStickMovingCircleBuffer = Dvar_RegisterVariant(
         "vehHudReticlePipOnAStickMovingCircleBuffer",
         DVAR_TYPE_FLOAT,
@@ -9000,7 +9000,7 @@ void Dvar_Init(void)
     gix.integer64.min = v814;
     gix.integer64.max = 0i64;
     v448.integer64 = v813.integer64;
-    *((_QWORD*)&v448.string + 1) = 0i64;
+    *((__int64*)&v448.string + 1) = 0i64;
     v813.value = FLOAT_1250_0;
     vehicle_perk_boost_duration_seconds = Dvar_RegisterVariant(
         "vehicle_perk_boost_duration_seconds",
@@ -9012,7 +9012,7 @@ void Dvar_Init(void)
     giy.integer64.min = (unsigned int)FLOAT_10_0 | 0x47C3500000000000i64;
     giy.integer64.max = 0i64;
     v449.integer64 = v813.integer64;
-    *((_QWORD*)&v449.string + 1) = 0i64;
+    *((__int64*)&v449.string + 1) = 0i64;
     weaponCamoLodDist = Dvar_RegisterVariant(
         "weaponCamoLodDist",
         DVAR_TYPE_FLOAT,
@@ -9024,8 +9024,8 @@ void Dvar_Init(void)
     giz.integer64.min = (unsigned int)FLOAT_10_0 | 0x47C3500000000000i64;
     giz.integer64.max = 0i64;
     v450.integer64 = v813.integer64;
-    *((_QWORD*)&v450.string + 1) = 0i64;
-    v813.value = FLOAT_1000_0;
+    *((__int64*)&v450.string + 1) = 0i64;
+    v813.value = 1000.0;
     weaponClanTagLodDist = Dvar_RegisterVariant(
         "weaponClanTagLodDist",
         DVAR_TYPE_FLOAT,
@@ -9036,7 +9036,7 @@ void Dvar_Init(void)
     gja.integer64.min = (unsigned int)FLOAT_10_0 | 0x47C3500000000000i64;
     gja.integer64.max = 0i64;
     v451.integer64 = v813.integer64;
-    *((_QWORD*)&v451.string + 1) = 0i64;
+    *((__int64*)&v451.string + 1) = 0i64;
     v813.value = FLOAT_300_0;
     weaponClanTagShieldLodDist = Dvar_RegisterVariant(
         "weaponClanTagShieldLodDist",
@@ -9048,8 +9048,8 @@ void Dvar_Init(void)
     gjb.integer64.min = (unsigned int)FLOAT_10_0 | 0x47C3500000000000i64;
     gjb.integer64.max = 0i64;
     v452.integer64 = v813.integer64;
-    *((_QWORD*)&v452.string + 1) = 0i64;
-    v813.value = FLOAT_1000_0;
+    *((__int64*)&v452.string + 1) = 0i64;
+    v813.value = 1000.0;
     weaponEmblemLodDist = Dvar_RegisterVariant(
         "weaponEmblemLodDist",
         DVAR_TYPE_FLOAT,
@@ -9060,7 +9060,7 @@ void Dvar_Init(void)
     gjc.integer64.min = (unsigned int)FLOAT_10_0 | 0x47C3500000000000i64;
     gjc.integer64.max = 0i64;
     v453.integer64 = v813.integer64;
-    *((_QWORD*)&v453.string + 1) = 0i64;
+    *((__int64*)&v453.string + 1) = 0i64;
     weaponEmblemShieldLodDist = Dvar_RegisterVariant(
         "weaponEmblemShieldLodDist",
         DVAR_TYPE_FLOAT,
@@ -9753,7 +9753,7 @@ void Dvar_Init(void)
     gjd.integer64.min = __PAIR64__((unsigned int)FLOAT_10_0, LODWORD(FLOAT_N10_0));
     gjd.integer64.max = 0i64;
     v454.integer64 = __PAIR64__(LODWORD(FLOAT_1_72), LODWORD(FLOAT_3_5));
-    *((_QWORD*)&v454.string + 1) = 0i64;
+    *((__int64*)&v454.string + 1) = 0i64;
     ui_fxFontShadowOffset = Dvar_RegisterVariant(
         "ui_fxFontShadowOffset",
         DVAR_TYPE_FLOAT_2,
@@ -9764,7 +9764,7 @@ void Dvar_Init(void)
     gje.integer64.min = __PAIR64__(LODWORD(FLOAT_640_0), LODWORD(FLOAT_N200_0));
     gje.integer64.max = 0i64;
     v455.integer64 = 0i64;
-    *((_QWORD*)&v455.string + 1) = 0i64;
+    *((__int64*)&v455.string + 1) = 0i64;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_640_0;
     cg_animInfoCornerOffset = Dvar_RegisterVariant(
@@ -9776,8 +9776,8 @@ void Dvar_Init(void)
         "Offset from bottom left corner, for drawing anim info, etc");
     gjf.integer64.min = v814;
     gjf.integer64.max = 0i64;
-    v456.integer64 = __PAIR64__(LODWORD(FLOAT_470_0), LODWORD(FLOAT_5_0));
-    *((_QWORD*)&v456.string + 1) = 0i64;
+    v456.integer64 = __PAIR64__(LODWORD(FLOAT_470_0), LODWORD(5.0));
+    *((__int64*)&v456.string + 1) = 0i64;
     LODWORD(v814) = 0;
     cg_hudChatIntermissionPosition = Dvar_RegisterVariant(
         "cg_hudChatIntermissionPosition",
@@ -9789,8 +9789,8 @@ void Dvar_Init(void)
     *((float*)&v814 + 1) = FLOAT_640_0;
     gjg.integer64.min = v814;
     gjg.integer64.max = 0i64;
-    v457.integer64 = __PAIR64__(LODWORD(FLOAT_250_0), LODWORD(FLOAT_5_0));
-    *((_QWORD*)&v457.string + 1) = 0i64;
+    v457.integer64 = __PAIR64__(LODWORD(FLOAT_250_0), LODWORD(5.0));
+    *((__int64*)&v457.string + 1) = 0i64;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_640_0;
     cg_hudChatPosition = Dvar_RegisterVariant(
@@ -9802,8 +9802,8 @@ void Dvar_Init(void)
         "Position of the HUD chat box");
     gjh.integer64.min = v814;
     gjh.integer64.max = 0i64;
-    v458.integer64 = __PAIR64__(LODWORD(FLOAT_230_0), LODWORD(FLOAT_5_0));
-    *((_QWORD*)&v458.string + 1) = 0i64;
+    v458.integer64 = __PAIR64__(LODWORD(FLOAT_230_0), LODWORD(5.0));
+    *((__int64*)&v458.string + 1) = 0i64;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_640_0;
     cg_hudSayPosition = Dvar_RegisterVariant(
@@ -9815,8 +9815,8 @@ void Dvar_Init(void)
         "Position of the HUD say box");
     gji.integer64.min = v814;
     gji.integer64.max = 0i64;
-    v459.integer64 = __PAIR64__(LODWORD(FLOAT_220_0), LODWORD(FLOAT_5_0));
-    *((_QWORD*)&v459.string + 1) = 0i64;
+    v459.integer64 = __PAIR64__(LODWORD(FLOAT_220_0), LODWORD(5.0));
+    *((__int64*)&v459.string + 1) = 0i64;
     cg_hudVotePosition = Dvar_RegisterVariant(
         "cg_hudVotePosition",
         DVAR_TYPE_FLOAT_2,
@@ -9824,10 +9824,10 @@ void Dvar_Init(void)
         v459,
         gji,
         "Position of the HUD vote box");
-    gjj.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), LODWORD(FLOAT_N3_4028235e38));
+    gjj.integer64.min = __PAIR64__(LODWORD(3.4028235e38), LODWORD(-3.4028235e38));
     gjj.integer64.max = 0i64;
     v460.integer64 = __PAIR64__(LODWORD(FLOAT_N180_0), LODWORD(FLOAT_N55_0));
-    *((_QWORD*)&v460.string + 1) = 0i64;
+    *((__int64*)&v460.string + 1) = 0i64;
     drawEntityCountPos = Dvar_RegisterVariant(
         "drawEntityCountPos",
         DVAR_TYPE_FLOAT_2,
@@ -9835,10 +9835,10 @@ void Dvar_Init(void)
         v460,
         gjj,
         "Where to draw the entity count graph");
-    gjk.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), LODWORD(FLOAT_N3_4028235e38));
+    gjk.integer64.min = __PAIR64__(LODWORD(3.4028235e38), LODWORD(-3.4028235e38));
     gjk.integer64.max = 0i64;
     v461.integer64 = __PAIR64__(LODWORD(FLOAT_N230_0), LODWORD(FLOAT_N55_0));
-    *((_QWORD*)&v461.string + 1) = 0i64;
+    *((__int64*)&v461.string + 1) = 0i64;
     drawKillcamDataPos = Dvar_RegisterVariant(
         "drawKillcamDataPos",
         DVAR_TYPE_FLOAT_2,
@@ -9846,10 +9846,10 @@ void Dvar_Init(void)
         v461,
         gjk,
         "Where to draw the server killcam graph");
-    gjl.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), LODWORD(FLOAT_N3_4028235e38));
+    gjl.integer64.min = __PAIR64__(LODWORD(3.4028235e38), LODWORD(-3.4028235e38));
     gjl.integer64.max = 0i64;
     v462.integer64 = __PAIR64__(LODWORD(FLOAT_N280_0), LODWORD(FLOAT_N55_0));
-    *((_QWORD*)&v462.string + 1) = 0i64;
+    *((__int64*)&v462.string + 1) = 0i64;
     drawServerBandwidthPos = Dvar_RegisterVariant(
         "drawServerBandwidthPos",
         DVAR_TYPE_FLOAT_2,
@@ -9859,8 +9859,8 @@ void Dvar_Init(void)
         "Where to draw the server bandwidth graph");
     gjm.integer64.min = 0x461C400000000000i64;
     gjm.integer64.max = 0i64;
-    v463.integer64 = __PAIR64__((unsigned int)FLOAT_10_0, FLOAT_1_0);
-    *((_QWORD*)&v463.string + 1) = 0i64;
+    v463.integer64 = __PAIR64__((unsigned int)FLOAT_10_0, 1.0);
+    *((__int64*)&v463.string + 1) = 0i64;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_0_30000001;
     glassCrackedDamageRateRange = Dvar_RegisterVariant(
@@ -9873,7 +9873,7 @@ void Dvar_Init(void)
     gjn.integer64.min = v814;
     gjn.integer64.max = 0i64;
     v464.integer64 = __PAIR64__(LODWORD(FLOAT_0_15000001), LODWORD(FLOAT_0_02));
-    *((_QWORD*)&v464.string + 1) = 0i64;
+    *((__int64*)&v464.string + 1) = 0i64;
     LODWORD(v814) = 0;
     *((float*)&v814 + 1) = FLOAT_180_0;
     shardEdgeSize = Dvar_RegisterVariant(
@@ -9886,7 +9886,7 @@ void Dvar_Init(void)
     gjo.integer64.min = v814;
     gjo.integer64.max = 0i64;
     v465.integer64 = __PAIR64__(LODWORD(FLOAT_60_0), LODWORD(FLOAT_30_0));
-    *((_QWORD*)&v465.string + 1) = 0i64;
+    *((__int64*)&v465.string + 1) = 0i64;
     LODWORD(v814) = 0;
     shardSplitDir = Dvar_RegisterVariant(
         "shardSplitDir",
@@ -9899,7 +9899,7 @@ void Dvar_Init(void)
     gjp.integer64.min = v814;
     gjp.integer64.max = 0i64;
     v466.integer64 = __PAIR64__(LODWORD(FLOAT_30_0), (unsigned int)FLOAT_10_0);
-    *((_QWORD*)&v466.string + 1) = 0i64;
+    *((__int64*)&v466.string + 1) = 0i64;
     LODWORD(v814) = 0;
     HIDWORD(v814) = FLOAT_10_0;
     shardSplitDir2 = Dvar_RegisterVariant(
@@ -9911,11 +9911,11 @@ void Dvar_Init(void)
         "Angle range of the next edges of the shard");
     gjq.integer64.min = v814;
     gjq.integer64.max = 0i64;
-    v467.integer64 = __PAIR64__(FLOAT_1_0, LODWORD(FLOAT_0_25));
-    *((_QWORD*)&v467.string + 1) = 0i64;
-    v813.vector.v[2] = FLOAT_400_0;
+    v467.integer64 = __PAIR64__(1.0, LODWORD(0.25));
+    *((__int64*)&v467.string + 1) = 0i64;
+    v813.vector.v[2] = 400.0;
     LODWORD(v814) = 0;
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     timeUntilDropRange = Dvar_RegisterVariant(
         "timeUntilDropRange",
         DVAR_TYPE_FLOAT_2,
@@ -9925,10 +9925,10 @@ void Dvar_Init(void)
         "Range of how much time a glass shard will stay on the frame before falling");
     gjr.integer64.min = v814;
     gjr.integer64.max = 0i64;
-    v468.integer64 = __PAIR64__(LODWORD(FLOAT_3590_0), LODWORD(FLOAT_740_0));
-    *((_QWORD*)&v468.string + 1) = *((_QWORD*)&v813.string + 1);
+    v468.integer64 = __PAIR64__(LODWORD(3590.0), LODWORD(740.0));
+    *((__int64*)&v468.string + 1) = *((__int64*)&v813.string + 1);
     v813.integer = 0;
-    *(__int64*)((char*)&v813.integer64 + 4) = __PAIR64__(LODWORD(FLOAT_0_5), LODWORD(FLOAT_0_30000001));
+    *(__int64*)((char*)&v813.integer64 + 4) = __PAIR64__(LODWORD(0.5), LODWORD(FLOAT_0_30000001));
     compassCoords = Dvar_RegisterVariant(
         "compassCoords",
         DVAR_TYPE_FLOAT_3,
@@ -9938,10 +9938,10 @@ void Dvar_Init(void)
         "x = North-South coord base value, \n"
         "y = East-West coord base value, \n"
         "z = scale (game units per coord unit)");
-    gjs.integer64.min = __PAIR64__(FLOAT_1_0, LODWORD(FLOAT_N1_0));
+    gjs.integer64.min = __PAIR64__(1.0, LODWORD(FLOAT_N1_0));
     gjs.integer64.max = 0i64;
     v469 = v813;
-    v813.vector.v[2] = FLOAT_0_5;
+    v813.vector.v[2] = 0.5;
     player_AimBlend_Back_Low = Dvar_RegisterVariant(
         "player_AimBlend_Back_Low",
         DVAR_TYPE_FLOAT_3,
@@ -9949,10 +9949,10 @@ void Dvar_Init(void)
         v469,
         gjs,
         "3rd person player view aim blend - lower back");
-    gjt.integer64.min = __PAIR64__(FLOAT_1_0, LODWORD(FLOAT_N1_0));
+    gjt.integer64.min = __PAIR64__(1.0, LODWORD(FLOAT_N1_0));
     gjt.integer64.max = 0i64;
-    v470.integer64 = __PAIR64__(LODWORD(FLOAT_0_2), LODWORD(FLOAT_0_1));
-    *((_QWORD*)&v470.string + 1) = *((_QWORD*)&v813.string + 1);
+    v470.integer64 = __PAIR64__(LODWORD(FLOAT_0_2), LODWORD(0.1));
+    *((__int64*)&v470.string + 1) = *((__int64*)&v813.string + 1);
     v813.vector.v[2] = FLOAT_N0_60000002;
     player_AimBlend_Back_Mid = Dvar_RegisterVariant(
         "player_AimBlend_Back_Mid",
@@ -9961,10 +9961,10 @@ void Dvar_Init(void)
         v470,
         gjt,
         "3rd person player view aim blend - mid back");
-    gju.integer64.min = __PAIR64__(FLOAT_1_0, LODWORD(FLOAT_N1_0));
+    gju.integer64.min = __PAIR64__(1.0, LODWORD(FLOAT_N1_0));
     gju.integer64.max = 0i64;
-    v471.integer64 = __PAIR64__(LODWORD(FLOAT_0_1), LODWORD(FLOAT_0_5));
-    *((_QWORD*)&v471.string + 1) = *((_QWORD*)&v813.string + 1);
+    v471.integer64 = __PAIR64__(LODWORD(0.1), LODWORD(0.5));
+    *((__int64*)&v471.string + 1) = *((__int64*)&v813.string + 1);
     v813.vector.v[2] = 0.0;
     player_AimBlend_Back_Up = Dvar_RegisterVariant(
         "player_AimBlend_Back_Up",
@@ -9973,10 +9973,10 @@ void Dvar_Init(void)
         v471,
         gju,
         "3rd person player view aim blend - upper back");
-    gjv.integer64.min = __PAIR64__(FLOAT_1_0, LODWORD(FLOAT_N1_0));
+    gjv.integer64.min = __PAIR64__(1.0, LODWORD(FLOAT_N1_0));
     gjv.integer64.max = 0i64;
     v472.integer64 = 0i64;
-    *((_QWORD*)&v472.string + 1) = *((_QWORD*)&v813.string + 1);
+    *((__int64*)&v472.string + 1) = *((__int64*)&v813.string + 1);
     v813.value = FLOAT_0_30000001;
     *(__int64*)((char*)&v813.integer64 + 4) = LODWORD(FLOAT_0_30000001);
     player_AimBlend_Head = Dvar_RegisterVariant(
@@ -9986,7 +9986,7 @@ void Dvar_Init(void)
         v472,
         gjv,
         "3rd person player view aim blend - head");
-    gjw.integer64.min = __PAIR64__(FLOAT_1_0, LODWORD(FLOAT_N1_0));
+    gjw.integer64.min = __PAIR64__(1.0, LODWORD(FLOAT_N1_0));
     gjw.integer64.max = 0i64;
     v473 = v813;
     v813.value = FLOAT_0_40000001;
@@ -9998,7 +9998,7 @@ void Dvar_Init(void)
         v473,
         gjw,
         "3rd person player view aim blend - neck");
-    gjx.integer64.min = __PAIR64__(FLOAT_1_0, LODWORD(FLOAT_N1_0));
+    gjx.integer64.min = __PAIR64__(1.0, LODWORD(FLOAT_N1_0));
     gjx.integer64.max = 0i64;
     v474 = v813;
     LODWORD(v813.vector.v[2]) = FLOAT_10_0;
@@ -10010,11 +10010,11 @@ void Dvar_Init(void)
         v474,
         gjx,
         "3rd person player view aim blend - pelvis");
-    *((float*)&v814 + 1) = FLOAT_3_4028235e38;
+    *((float*)&v814 + 1) = 3.4028235e38;
     gjy.integer64.min = v814;
     gjy.integer64.max = 0i64;
     v475.integer64 = __PAIR64__(LODWORD(FLOAT_20_0), LODWORD(FLOAT_17_0));
-    *((_QWORD*)&v475.string + 1) = *((_QWORD*)&v813.string + 1);
+    *((__int64*)&v475.string + 1) = *((__int64*)&v813.string + 1);
     turret_placement_feet_offset = Dvar_RegisterVariant(
         "turret_placement_feet_offset",
         DVAR_TYPE_FLOAT_3,
@@ -10022,15 +10022,15 @@ void Dvar_Init(void)
         v475,
         gjy,
         "Position of the feet from the center axis.");
-    gjz.integer64.min = __PAIR64__(LODWORD(FLOAT_3_4028235e38), LODWORD(FLOAT_1_1754944eN38));
+    gjz.integer64.min = __PAIR64__(LODWORD(3.4028235e38), LODWORD(FLOAT_1_1754944eN38));
     gjz.integer64.max = 0i64;
     v476.integer64 = __PAIR64__(LODWORD(FLOAT_24_0), LODWORD(FLOAT_408_0));
-    *((_QWORD*)&v476.string + 1) = __PAIR64__(LODWORD(FLOAT_456_0), LODWORD(FLOAT_608_0));
-    v813.integer = FLOAT_1_0;
-    LODWORD(v813.vector.v[1]) = FLOAT_1_0;
-    LODWORD(v813.vector.v[2]) = FLOAT_1_0;
-    LODWORD(v813.vector.v[3]) = FLOAT_1_0;
-    HIDWORD(v814) = FLOAT_1_0;
+    *((__int64*)&v476.string + 1) = __PAIR64__(LODWORD(FLOAT_456_0), LODWORD(FLOAT_608_0));
+    v813.integer = 1.0;
+    LODWORD(v813.vector.v[1]) = 1.0;
+    LODWORD(v813.vector.v[2]) = 1.0;
+    LODWORD(v813.vector.v[3]) = 1.0;
+    HIDWORD(v814) = 1.0;
     cg_argus_datastack = Dvar_RegisterVariant(
         "cg_argus_datastack",
         DVAR_TYPE_FLOAT_4,
@@ -10048,16 +10048,16 @@ void Dvar_Init(void)
         v813,
         gka,
         (const char*)&pBlock);
-    v813.integer = FLOAT_1_0;
-    LODWORD(v813.vector.v[1]) = FLOAT_1_0;
-    LODWORD(v813.vector.v[2]) = FLOAT_1_0;
-    LODWORD(v813.vector.v[3]) = FLOAT_1_0;
-    HIDWORD(v814) = FLOAT_1_0;
+    v813.integer = 1.0;
+    LODWORD(v813.vector.v[1]) = 1.0;
+    LODWORD(v813.vector.v[2]) = 1.0;
+    LODWORD(v813.vector.v[3]) = 1.0;
+    HIDWORD(v814) = 1.0;
     LODWORD(v814) = 0;
     gkb.integer64.min = v814;
     gkb.integer64.max = 0i64;
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     cg_hudGrenadeIndicatorTargetColor = Dvar_RegisterVariant(
         "cg_hudGrenadeIndicatorTargetColor",
         DVAR_TYPE_FLOAT_4,
@@ -10067,10 +10067,10 @@ void Dvar_Init(void)
         (const char*)&pBlock);
     gkc.integer64.min = v814;
     gkc.integer64.max = 0i64;
-    v477.integer64 = __PAIR64__(LODWORD(FLOAT_0_1), LODWORD(FLOAT_0_80000001));
-    *((_QWORD*)&v477.string + 1) = __PAIR64__(LODWORD(FLOAT_0_2), LODWORD(FLOAT_0_1));
+    v477.integer64 = __PAIR64__(LODWORD(0.1), LODWORD(0.80000001));
+    *((__int64*)&v477.string + 1) = __PAIR64__(LODWORD(FLOAT_0_2), LODWORD(0.1));
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     cg_sprintMeterDisabledColor = Dvar_RegisterVariant(
         "cg_sprintMeterDisabledColor",
         DVAR_TYPE_FLOAT_4,
@@ -10080,14 +10080,14 @@ void Dvar_Init(void)
         "The color of the sprint meter when the sprint meter is disabled");
     gkd.integer64.min = v814;
     gkd.integer64.max = 0i64;
-    v478.integer64 = __PAIR64__(LODWORD(FLOAT_0_5), LODWORD(FLOAT_0_69999999));
-    *((_QWORD*)&v478.string + 1) = __PAIR64__(LODWORD(FLOAT_0_80000001), LODWORD(FLOAT_0_2));
-    v813.value = FLOAT_0_80000001;
-    v813.vector.v[1] = FLOAT_0_80000001;
-    v813.vector.v[2] = FLOAT_0_80000001;
-    v813.vector.v[3] = FLOAT_0_80000001;
+    v478.integer64 = __PAIR64__(LODWORD(0.5), LODWORD(FLOAT_0_69999999));
+    *((__int64*)&v478.string + 1) = __PAIR64__(LODWORD(0.80000001), LODWORD(FLOAT_0_2));
+    v813.value = 0.80000001;
+    v813.vector.v[1] = 0.80000001;
+    v813.vector.v[2] = 0.80000001;
+    v813.vector.v[3] = 0.80000001;
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     cg_sprintMeterEmptyColor = Dvar_RegisterVariant(
         "cg_sprintMeterEmptyColor",
         DVAR_TYPE_FLOAT_4,
@@ -10098,9 +10098,9 @@ void Dvar_Init(void)
     gke.integer64.min = v814;
     gke.integer64.max = 0i64;
     v479 = v813;
-    v813.value = FLOAT_0_25;
-    v813.vector.v[1] = FLOAT_0_25;
-    HIDWORD(v814) = FLOAT_1_0;
+    v813.value = 0.25;
+    v813.vector.v[1] = 0.25;
+    HIDWORD(v814) = 1.0;
     cg_sprintMeterFullColor = Dvar_RegisterVariant(
         "cg_sprintMeterFullColor",
         DVAR_TYPE_FLOAT_4,
@@ -10112,7 +10112,7 @@ void Dvar_Init(void)
     gkf.integer64.min = v814;
     gkf.integer64.max = 0i64;
     v480.integer64 = v813.integer64;
-    *((_QWORD*)&v480.string + 1) = __PAIR64__(FLOAT_1_0, LODWORD(FLOAT_0_2));
+    *((__int64*)&v480.string + 1) = __PAIR64__(1.0, LODWORD(FLOAT_0_2));
     v813.value = FLOAT_0_40000001;
     v813.vector.v[1] = FLOAT_0_40000001;
     con_inputBoxColor = Dvar_RegisterVariant(
@@ -10122,15 +10122,15 @@ void Dvar_Init(void)
         v480,
         gkf,
         "Color of the console input box");
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     LODWORD(v814) = 0;
     gkg.integer64.min = v814;
     gkg.integer64.max = 0i64;
     v481.integer64 = v813.integer64;
-    *((_QWORD*)&v481.string + 1) = __PAIR64__(FLOAT_1_0, FLOAT_0_34999999.enumeration.stringCount);
-    v813.integer = FLOAT_1_0;
-    LODWORD(v813.vector.v[1]) = FLOAT_1_0;
-    HIDWORD(v814) = FLOAT_1_0;
+    *((__int64*)&v481.string + 1) = __PAIR64__(1.0, FLOAT_0_34999999.enumeration.stringCount);
+    v813.integer = 1.0;
+    LODWORD(v813.vector.v[1]) = 1.0;
+    HIDWORD(v814) = 1.0;
     con_inputHintBoxColor = Dvar_RegisterVariant(
         "con_inputHintBoxColor",
         DVAR_TYPE_FLOAT_4,
@@ -10142,11 +10142,11 @@ void Dvar_Init(void)
     gkh.integer64.min = v814;
     gkh.integer64.max = 0i64;
     v482.integer64 = v813.integer64;
-    *((_QWORD*)&v482.string + 1) = __PAIR64__(LODWORD(FLOAT_0_60000002), LODWORD(FLOAT_0_94999999));
+    *((__int64*)&v482.string + 1) = __PAIR64__(LODWORD(0.60000002), LODWORD(FLOAT_0_94999999));
     v813.value = FLOAT_0_15000001;
     v813.vector.v[1] = FLOAT_0_15000001;
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     con_outputBarColor = Dvar_RegisterVariant(
         "con_outputBarColor",
         DVAR_TYPE_FLOAT_4,
@@ -10157,7 +10157,7 @@ void Dvar_Init(void)
     gki.integer64.min = v814;
     gki.integer64.max = 0i64;
     v483.integer64 = v813.integer64;
-    *((_QWORD*)&v483.string + 1) = __PAIR64__(LODWORD(FLOAT_0_60000002), LODWORD(FLOAT_0_1));
+    *((__int64*)&v483.string + 1) = __PAIR64__(LODWORD(0.60000002), LODWORD(0.1));
     v813.integer = FLOAT_0_34999999.enumeration.stringCount;
     LODWORD(v813.vector.v[1]) = FLOAT_0_34999999.enumeration.stringCount;
     LODWORD(v814) = 0;
@@ -10168,12 +10168,12 @@ void Dvar_Init(void)
         v483,
         gki,
         "Color of the console slider");
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     gkj.integer64.min = v814;
     gkj.integer64.max = 0i64;
     v484.integer64 = v813.integer64;
-    *((_QWORD*)&v484.string + 1) = __PAIR64__(LODWORD(FLOAT_0_75), LODWORD(FLOAT_0_30000001));
-    HIDWORD(v814) = FLOAT_1_0;
+    *((__int64*)&v484.string + 1) = __PAIR64__(LODWORD(FLOAT_0_75), LODWORD(FLOAT_0_30000001));
+    HIDWORD(v814) = 1.0;
     con_outputWindowColor = Dvar_RegisterVariant(
         "con_outputWindowColor",
         DVAR_TYPE_FLOAT_4,
@@ -10184,8 +10184,8 @@ void Dvar_Init(void)
     LODWORD(v814) = 0;
     gkk.integer64.min = v814;
     gkk.integer64.max = 0i64;
-    v485.integer64 = __PAIR64__(LODWORD(FLOAT_0_5), LODWORD(FLOAT_0_60000002));
-    *((_QWORD*)&v485.string + 1) = __PAIR64__(FLOAT_1_0, LODWORD(FLOAT_0_60000002));
+    v485.integer64 = __PAIR64__(LODWORD(0.5), LODWORD(0.60000002));
+    *((__int64*)&v485.string + 1) = __PAIR64__(1.0, LODWORD(0.60000002));
     *(__int64*)((char*)&v813.integer64 + 4) = LODWORD(FLOAT_0_30000001);
     v813.integer = 0;
     LODWORD(v814) = 0;
@@ -10196,11 +10196,11 @@ void Dvar_Init(void)
         v485,
         gkk,
         "Color of typewritten objective text.");
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     gkl.integer64.min = v814;
     gkl.integer64.max = 0i64;
     v486.integer64 = v813.integer64;
-    *((_QWORD*)&v486.string + 1) = __PAIR64__(FLOAT_1_0, LODWORD(FLOAT_0_80000001));
+    *((__int64*)&v486.string + 1) = __PAIR64__(1.0, LODWORD(0.80000001));
     con_typewriterColorGlowCompleted = Dvar_RegisterVariant(
         "con_typewriterColorGlowCompleted",
         DVAR_TYPE_FLOAT_4,
@@ -10209,13 +10209,13 @@ void Dvar_Init(void)
         gkl,
         "Color of typewritten objective text.");
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     gkm.integer64.min = v814;
     gkm.integer64.max = 0i64;
-    v487.integer64 = LODWORD(FLOAT_0_80000001);
-    LODWORD(v813.vector.v[3]) = FLOAT_1_0;
-    *((_QWORD*)&v487.string + 1) = *((_QWORD*)&v813.string + 1);
-    v813.vector.v[1] = FLOAT_0_60000002;
+    v487.integer64 = LODWORD(0.80000001);
+    LODWORD(v813.vector.v[3]) = 1.0;
+    *((__int64*)&v487.string + 1) = *((__int64*)&v813.string + 1);
+    v813.vector.v[1] = 0.60000002;
     v813.integer = 0;
     LODWORD(v814) = 0;
     con_typewriterColorGlowFailed = Dvar_RegisterVariant(
@@ -10225,11 +10225,11 @@ void Dvar_Init(void)
         v487,
         gkm,
         "Color of typewritten objective text.");
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     gkn.integer64.min = v814;
     gkn.integer64.max = 0i64;
     v488.integer64 = v813.integer64;
-    *((_QWORD*)&v488.string + 1) = __PAIR64__(FLOAT_1_0, LODWORD(FLOAT_0_18000001));
+    *((__int64*)&v488.string + 1) = __PAIR64__(1.0, LODWORD(FLOAT_0_18000001));
     LODWORD(v814) = 0;
     con_typewriterColorGlowUpdated = Dvar_RegisterVariant(
         "con_typewriterColorGlowUpdated",
@@ -10238,11 +10238,11 @@ void Dvar_Init(void)
         v488,
         gkn,
         "Color of typewritten objective text.");
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     gko.integer64.min = v814;
     gko.integer64.max = 0i64;
-    v489.integer64 = __PAIR64__(FLOAT_1_0, LODWORD(FLOAT_0_89999998));
-    *((_QWORD*)&v489.string + 1) = __PAIR64__(LODWORD(FLOAT_0_69999999), LODWORD(FLOAT_0_89999998));
+    v489.integer64 = __PAIR64__(1.0, LODWORD(FLOAT_0_89999998));
+    *((__int64*)&v489.string + 1) = __PAIR64__(LODWORD(FLOAT_0_69999999), LODWORD(FLOAT_0_89999998));
     friendlyNameFontColor = Dvar_RegisterVariant(
         "friendlyNameFontColor",
         DVAR_TYPE_FLOAT_4,
@@ -10253,12 +10253,12 @@ void Dvar_Init(void)
     v813.integer = 0;
     *(__int64*)((char*)&v813.integer64 + 4) = LODWORD(FLOAT_0_30000001);
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     gkp.integer64.min = v814;
     gkp.integer64.max = 0i64;
-    LODWORD(v813.vector.v[3]) = FLOAT_1_0;
+    LODWORD(v813.vector.v[3]) = 1.0;
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     friendlyNameFontGlowColor = Dvar_RegisterVariant(
         "friendlyNameFontGlowColor",
         DVAR_TYPE_FLOAT_4,
@@ -10268,10 +10268,10 @@ void Dvar_Init(void)
         (const char*)&pBlock);
     gkq.integer64.min = v814;
     gkq.integer64.max = 0i64;
-    v813.value = FLOAT_0_25;
-    v813.vector.v[1] = FLOAT_0_25;
+    v813.value = 0.25;
+    v813.vector.v[1] = 0.25;
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     fsSlotEmptyHiddenColor = Dvar_RegisterVariant(
         "fsSlotEmptyHiddenColor",
         DVAR_TYPE_FLOAT_4,
@@ -10282,11 +10282,11 @@ void Dvar_Init(void)
     gkr.integer64.min = v814;
     gkr.integer64.max = 0i64;
     v490.integer64 = v813.integer64;
-    *((_QWORD*)&v490.string + 1) = __PAIR64__(LODWORD(FLOAT_0_94999999), LODWORD(FLOAT_0_25));
+    *((__int64*)&v490.string + 1) = __PAIR64__(LODWORD(FLOAT_0_94999999), LODWORD(0.25));
     v813.value = FLOAT_0_36000001;
     *(__int64*)((char*)&v813.integer64 + 4) = LODWORD(FLOAT_0_36000001);
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     fsSlotEmptyMainColor = Dvar_RegisterVariant(
         "fsSlotEmptyMainColor",
         DVAR_TYPE_FLOAT_4,
@@ -10297,9 +10297,9 @@ void Dvar_Init(void)
     gks.integer64.min = v814;
     gks.integer64.max = 0i64;
     v491.integer64 = v813.integer64;
-    *((_QWORD*)&v491.string + 1) = __PAIR64__(LODWORD(FLOAT_0_94999999), LODWORD(FLOAT_0_36000001));
+    *((__int64*)&v491.string + 1) = __PAIR64__(LODWORD(FLOAT_0_94999999), LODWORD(FLOAT_0_36000001));
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     fsSlotEmptyNotSubscribedColor = Dvar_RegisterVariant(
         "fsSlotEmptyNotSubscribedColor",
         DVAR_TYPE_FLOAT_4,
@@ -10310,11 +10310,11 @@ void Dvar_Init(void)
     gkt.integer64.min = v814;
     gkt.integer64.max = 0i64;
     v492.integer64 = 0i64;
-    v813.vector.v[3] = FLOAT_0_80000001;
-    *((_QWORD*)&v492.string + 1) = *((_QWORD*)&v813.string + 1);
+    v813.vector.v[3] = 0.80000001;
+    *((__int64*)&v492.string + 1) = *((__int64*)&v813.string + 1);
     v813.vector.v[2] = 0.0;
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     fsSlotEmptyShowColor = Dvar_RegisterVariant(
         "fsSlotEmptyShowColor",
         DVAR_TYPE_FLOAT_4,
@@ -10326,7 +10326,7 @@ void Dvar_Init(void)
     gku.integer64.max = 0i64;
     v493.integer64 = 0i64;
     v813.vector.v[3] = FLOAT_0_30000001;
-    *((_QWORD*)&v493.string + 1) = *((_QWORD*)&v813.string + 1);
+    *((__int64*)&v493.string + 1) = *((__int64*)&v813.string + 1);
     LODWORD(v814) = 0;
     fsSlotEmptyShowColorBg = Dvar_RegisterVariant(
         "fsSlotEmptyShowColorBg",
@@ -10335,14 +10335,14 @@ void Dvar_Init(void)
         v493,
         gku,
         "Color of the material depicting a private empty slot background when not selected.");
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     gkv.integer64.min = v814;
     gkv.integer64.max = 0i64;
-    v494.integer64 = __PAIR64__(FLOAT_1_0, LODWORD(FLOAT_0_5));
-    *((_QWORD*)&v494.string + 1) = __PAIR64__(LODWORD(FLOAT_0_80000001), LODWORD(FLOAT_0_5));
-    v813.integer = FLOAT_1_0;
-    LODWORD(v813.vector.v[1]) = FLOAT_1_0;
-    HIDWORD(v814) = FLOAT_1_0;
+    v494.integer64 = __PAIR64__(1.0, LODWORD(0.5));
+    *((__int64*)&v494.string + 1) = __PAIR64__(LODWORD(0.80000001), LODWORD(0.5));
+    v813.integer = 1.0;
+    LODWORD(v813.vector.v[1]) = 1.0;
+    HIDWORD(v814) = 1.0;
     fsSlotHighlightedColor = Dvar_RegisterVariant(
         "fsSlotHighlightedColor",
         DVAR_TYPE_FLOAT_4,
@@ -10354,7 +10354,7 @@ void Dvar_Init(void)
     gkw.integer64.min = v814;
     gkw.integer64.max = 0i64;
     v495.integer64 = v813.integer64;
-    *((_QWORD*)&v495.string + 1) = __PAIR64__(LODWORD(FLOAT_0_89999998), FLOAT_1_0);
+    *((__int64*)&v495.string + 1) = __PAIR64__(LODWORD(FLOAT_0_89999998), 1.0);
     fsSlotHighlightedColorNoSel = Dvar_RegisterVariant(
         "fsSlotHighlightedColorNoSel",
         DVAR_TYPE_FLOAT_4,
@@ -10362,19 +10362,19 @@ void Dvar_Init(void)
         v495,
         gkw,
         "Color of the material depicting a private slot when selected but cannot be chosen.");
-    v813.integer = FLOAT_1_0;
-    LODWORD(v813.vector.v[1]) = FLOAT_1_0;
-    LODWORD(v813.vector.v[2]) = FLOAT_1_0;
-    LODWORD(v813.vector.v[3]) = FLOAT_1_0;
-    HIDWORD(v814) = FLOAT_1_0;
+    v813.integer = 1.0;
+    LODWORD(v813.vector.v[1]) = 1.0;
+    LODWORD(v813.vector.v[2]) = 1.0;
+    LODWORD(v813.vector.v[3]) = 1.0;
+    HIDWORD(v814) = 1.0;
     LODWORD(v814) = 0;
     gkx.integer64.min = v814;
     gkx.integer64.max = 0i64;
     v496 = v813;
-    v813.value = FLOAT_0_80000001;
-    *(__int64*)((char*)&v813.integer64 + 4) = LODWORD(FLOAT_0_80000001);
+    v813.value = 0.80000001;
+    *(__int64*)((char*)&v813.integer64 + 4) = LODWORD(0.80000001);
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     fsSlotMainColor = Dvar_RegisterVariant(
         "fsSlotMainColor",
         DVAR_TYPE_FLOAT_4,
@@ -10385,9 +10385,9 @@ void Dvar_Init(void)
     gky.integer64.min = v814;
     gky.integer64.max = 0i64;
     v497.integer64 = v813.integer64;
-    *((_QWORD*)&v497.string + 1) = __PAIR64__(LODWORD(FLOAT_0_30000001), LODWORD(FLOAT_0_80000001));
+    *((__int64*)&v497.string + 1) = __PAIR64__(LODWORD(FLOAT_0_30000001), LODWORD(0.80000001));
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     fsSlotNumMainColor = Dvar_RegisterVariant(
         "fsSlotNumMainColor",
         DVAR_TYPE_FLOAT_4,
@@ -10399,7 +10399,7 @@ void Dvar_Init(void)
     gkz.integer64.max = 0i64;
     v498.integer64 = 0i64;
     v813.vector.v[3] = FLOAT_0_30000001;
-    *((_QWORD*)&v498.string + 1) = *((_QWORD*)&v813.string + 1);
+    *((__int64*)&v498.string + 1) = *((__int64*)&v813.string + 1);
     LODWORD(v814) = 0;
     fsSlotNumNoSubsribeColor = Dvar_RegisterVariant(
         "fsSlotNumNoSubsribeColor",
@@ -10408,15 +10408,15 @@ void Dvar_Init(void)
         v498,
         gkz,
         "Color of the empty slot when not a subscriber");
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     gla.integer64.min = v814;
     gla.integer64.max = 0i64;
     v499.integer64 = __PAIR64__(LODWORD(FLOAT_0_2), LODWORD(FLOAT_0_69999999));
-    *((_QWORD*)&v499.string + 1) = __PAIR64__(LODWORD(FLOAT_0_80000001), LODWORD(FLOAT_0_2));
+    *((__int64*)&v499.string + 1) = __PAIR64__(LODWORD(0.80000001), LODWORD(FLOAT_0_2));
     v813.value = FLOAT_0_69999999;
     v813.vector.v[1] = FLOAT_0_69999999;
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     fsStarAvgColor = Dvar_RegisterVariant(
         "fsStarAvgColor",
         DVAR_TYPE_FLOAT_4,
@@ -10427,10 +10427,10 @@ void Dvar_Init(void)
     glb.integer64.min = v814;
     glb.integer64.max = 0i64;
     v500.integer64 = v813.integer64;
-    *((_QWORD*)&v500.string + 1) = __PAIR64__(LODWORD(FLOAT_0_80000001), LODWORD(FLOAT_0_1));
-    v813.integer = FLOAT_1_0;
-    *(__int64*)((char*)&v813.integer64 + 4) = (unsigned int)FLOAT_1_0;
-    HIDWORD(v814) = FLOAT_1_0;
+    *((__int64*)&v500.string + 1) = __PAIR64__(LODWORD(0.80000001), LODWORD(0.1));
+    v813.integer = 1.0;
+    *(__int64*)((char*)&v813.integer64 + 4) = (unsigned int)1.0;
+    HIDWORD(v814) = 1.0;
     fsStarHighlightColor = Dvar_RegisterVariant(
         "fsStarHighlightColor",
         DVAR_TYPE_FLOAT_4,
@@ -10442,7 +10442,7 @@ void Dvar_Init(void)
     glc.integer64.min = v814;
     glc.integer64.max = 0i64;
     v501.integer64 = v813.integer64;
-    *((_QWORD*)&v501.string + 1) = __PAIR64__(LODWORD(FLOAT_0_2), FLOAT_1_0);
+    *((__int64*)&v501.string + 1) = __PAIR64__(LODWORD(FLOAT_0_2), 1.0);
     fshOldItemColor = Dvar_RegisterVariant(
         "fshOldItemColor",
         DVAR_TYPE_FLOAT_4,
@@ -10451,11 +10451,11 @@ void Dvar_Init(void)
         glc,
         "Color of old items in search results that can't be selected.");
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     gld.integer64.min = v814;
     gld.integer64.max = 0i64;
-    v502.integer64 = __PAIR64__(LODWORD(FLOAT_0_89999998), FLOAT_1_0);
-    *((_QWORD*)&v502.string + 1) = __PAIR64__(LODWORD(FLOAT_0_69999999), LODWORD(FLOAT_0_89999998));
+    v502.integer64 = __PAIR64__(LODWORD(FLOAT_0_89999998), 1.0);
+    *((__int64*)&v502.string + 1) = __PAIR64__(LODWORD(FLOAT_0_69999999), LODWORD(FLOAT_0_89999998));
     LODWORD(v814) = 0;
     hostileNameFontColor = Dvar_RegisterVariant(
         "hostileNameFontColor",
@@ -10464,14 +10464,14 @@ void Dvar_Init(void)
         v502,
         gld,
         (const char*)&pBlock);
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     gle.integer64.min = v814;
     gle.integer64.max = 0i64;
-    v503.integer64 = LODWORD(FLOAT_0_60000002);
-    LODWORD(v813.vector.v[3]) = FLOAT_1_0;
-    *((_QWORD*)&v503.string + 1) = *((_QWORD*)&v813.string + 1);
+    v503.integer64 = LODWORD(0.60000002);
+    LODWORD(v813.vector.v[3]) = 1.0;
+    *((__int64*)&v503.string + 1) = *((__int64*)&v813.string + 1);
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     hostileNameFontGlowColor = Dvar_RegisterVariant(
         "hostileNameFontGlowColor",
         DVAR_TYPE_FLOAT_4,
@@ -10488,10 +10488,10 @@ void Dvar_Init(void)
         (DvarValue)0,
         glf,
         "The 1st color of a bullet tracer when using explosive bullets");
-    v813.integer = FLOAT_1_0;
-    LODWORD(v813.vector.v[2]) = FLOAT_1_0;
-    LODWORD(v813.vector.v[3]) = FLOAT_1_0;
-    HIDWORD(v814) = FLOAT_1_0;
+    v813.integer = 1.0;
+    LODWORD(v813.vector.v[2]) = 1.0;
+    LODWORD(v813.vector.v[3]) = 1.0;
+    HIDWORD(v814) = 1.0;
     LODWORD(v814) = 0;
     glg.integer64.min = v814;
     glg.integer64.max = 0i64;
@@ -10505,12 +10505,12 @@ void Dvar_Init(void)
         v504,
         glg,
         "The 2nd color of a bullet tracer when using explosive bullets");
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     glh.integer64.min = v814;
     glh.integer64.max = 0i64;
-    v505.integer64 = (unsigned int)FLOAT_1_0;
-    LODWORD(v813.vector.v[3]) = FLOAT_1_0;
-    *((_QWORD*)&v505.string + 1) = *((_QWORD*)&v813.string + 1);
+    v505.integer64 = (unsigned int)1.0;
+    LODWORD(v813.vector.v[3]) = 1.0;
+    *((__int64*)&v505.string + 1) = *((__int64*)&v813.string + 1);
     v813.vector.v[2] = 0.0;
     LODWORD(v814) = 0;
     tracer_explosiveColor3 = Dvar_RegisterVariant(
@@ -10520,12 +10520,12 @@ void Dvar_Init(void)
         v505,
         glh,
         "The 3rd color of a bullet tracer when using explosive bullets");
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     gli.integer64.min = v814;
     gli.integer64.max = 0i64;
-    v506.integer64 = (unsigned int)FLOAT_1_0;
-    LODWORD(v813.vector.v[3]) = FLOAT_1_0;
-    *((_QWORD*)&v506.string + 1) = *((_QWORD*)&v813.string + 1);
+    v506.integer64 = (unsigned int)1.0;
+    LODWORD(v813.vector.v[3]) = 1.0;
+    *((__int64*)&v506.string + 1) = *((__int64*)&v813.string + 1);
     tracer_explosiveColor4 = Dvar_RegisterVariant(
         "tracer_explosiveColor4",
         DVAR_TYPE_FLOAT_4,
@@ -10533,15 +10533,15 @@ void Dvar_Init(void)
         v506,
         gli,
         "The 4th color of a bullet tracer when using explosive bullets");
-    v813.integer = FLOAT_1_0;
-    *(__int64*)((char*)&v813.integer64 + 4) = (unsigned int)FLOAT_1_0;
-    LODWORD(v813.vector.v[3]) = FLOAT_1_0;
-    HIDWORD(v814) = FLOAT_1_0;
+    v813.integer = 1.0;
+    *(__int64*)((char*)&v813.integer64 + 4) = (unsigned int)1.0;
+    LODWORD(v813.vector.v[3]) = 1.0;
+    HIDWORD(v814) = 1.0;
     LODWORD(v814) = 0;
     glj.integer64.min = v814;
     glj.integer64.max = 0i64;
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     tracer_explosiveColor5 = Dvar_RegisterVariant(
         "tracer_explosiveColor5",
         DVAR_TYPE_FLOAT_4,
@@ -10551,10 +10551,10 @@ void Dvar_Init(void)
         "The 5th color of a bullet tracer when using explosive bullets");
     glk.integer64.min = v814;
     glk.integer64.max = 0i64;
-    v813.integer = FLOAT_1_0;
-    LODWORD(v813.vector.v[2]) = FLOAT_1_0;
-    LODWORD(v813.vector.v[3]) = FLOAT_1_0;
-    HIDWORD(v814) = FLOAT_1_0;
+    v813.integer = 1.0;
+    LODWORD(v813.vector.v[2]) = 1.0;
+    LODWORD(v813.vector.v[3]) = 1.0;
+    HIDWORD(v814) = 1.0;
     tracer_stoppingPowerColor1 = Dvar_RegisterVariant(
         "tracer_stoppingPowerColor1",
         DVAR_TYPE_FLOAT_4,
@@ -10574,12 +10574,12 @@ void Dvar_Init(void)
         "The 2nd color of a bullet tracer when using StoppingPower bullets");
     v813.vector.v[2] = 0.0;
     LODWORD(v814) = 0;
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     glm.integer64.min = v814;
     glm.integer64.max = 0i64;
-    v507.integer64 = (unsigned int)FLOAT_1_0;
-    LODWORD(v813.vector.v[3]) = FLOAT_1_0;
-    *((_QWORD*)&v507.string + 1) = *((_QWORD*)&v813.string + 1);
+    v507.integer64 = (unsigned int)1.0;
+    LODWORD(v813.vector.v[3]) = 1.0;
+    *((__int64*)&v507.string + 1) = *((__int64*)&v813.string + 1);
     v813.vector.v[2] = 0.0;
     LODWORD(v814) = 0;
     tracer_stoppingPowerColor3 = Dvar_RegisterVariant(
@@ -10589,16 +10589,16 @@ void Dvar_Init(void)
         v507,
         glm,
         "The 3rd color of a bullet tracer when using StoppingPower bullets");
-    HIDWORD(v814) = FLOAT_1_0;
+    HIDWORD(v814) = 1.0;
     gln.integer64.min = v814;
     gln.integer64.max = 0i64;
-    v508.integer64 = (unsigned int)FLOAT_1_0;
-    LODWORD(v813.vector.v[3]) = FLOAT_1_0;
-    *((_QWORD*)&v508.string + 1) = *((_QWORD*)&v813.string + 1);
-    v813.integer = FLOAT_1_0;
-    *(__int64*)((char*)&v813.integer64 + 4) = (unsigned int)FLOAT_1_0;
-    LODWORD(v813.vector.v[3]) = FLOAT_1_0;
-    HIDWORD(v814) = FLOAT_1_0;
+    v508.integer64 = (unsigned int)1.0;
+    LODWORD(v813.vector.v[3]) = 1.0;
+    *((__int64*)&v508.string + 1) = *((__int64*)&v813.string + 1);
+    v813.integer = 1.0;
+    *(__int64*)((char*)&v813.integer64 + 4) = (unsigned int)1.0;
+    LODWORD(v813.vector.v[3]) = 1.0;
+    HIDWORD(v814) = 1.0;
     tracer_stoppingPowerColor4 = Dvar_RegisterVariant(
         "tracer_stoppingPowerColor4",
         DVAR_TYPE_FLOAT_4,
@@ -10616,10 +10616,10 @@ void Dvar_Init(void)
         v813,
         glo,
         "The 5th color of a bullet tracer when using StoppingPower bullets");
-    v813.integer = FLOAT_1_0;
-    LODWORD(v813.vector.v[2]) = FLOAT_1_0;
-    LODWORD(v813.vector.v[3]) = FLOAT_1_0;
-    HIDWORD(v814) = FLOAT_1_0;
+    v813.integer = 1.0;
+    LODWORD(v813.vector.v[2]) = 1.0;
+    LODWORD(v813.vector.v[3]) = 1.0;
+    HIDWORD(v814) = 1.0;
     LODWORD(v814) = 0;
     glp.integer64.min = v814;
     glp.integer64.max = 0i64;

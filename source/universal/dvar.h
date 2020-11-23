@@ -72,6 +72,10 @@ union DvarLimits
 		float min;
 		float max;
 	} vector;
+
+	DvarLimits(int in) {
+
+	}
 };
 
 struct dvar_t
@@ -116,9 +120,14 @@ int g_dvar_modifiedFlags;
 
 dvar_t* s_dvarHashTable[1080];
 
-const dvar_t* ClickToContinue;
+const dvar_t* ClickToContinue, cg_hudGrenadeIndicatorFadeUp;
+const dvar_t* cg_hudGrenadeIndicatorFadeUp;
+const dvar_t* cg_hudGrenadeIconInScope;
+const dvar_t* cg_scoreboardPingGraph;
+const dvar_t* cg_scoreboardPingText;
 const dvar_t* cl_socketpool_enabled;
 const dvar_t* cl_socketpool_size;
+const dvar_t* con_restricted;
 const dvar_t* dvar_cheats;
 const dvar_t* dvar_maxCallbackTimeMS;
 const dvar_t* loc_language;

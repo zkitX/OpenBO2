@@ -10,6 +10,12 @@ __declspec(thread) unsigned int g_currentThreadId;
 #pragma data_seg(".CRT$XLB")
 #pragma data_seg()
 
+enum BackendEventType {
+	BACKEND_EVENT_WORKER_CMD = 0x0,
+	BACKEND_EVENT_GENERIC = 0x1,
+	BACKEND_EVENT_COUNT = 0x2,
+};
+
 typedef struct _SCOPETABLE_ENTRY* PSCOPETABLE_ENTRY;
 
 struct _EH3_EXCEPTION_REGISTRATION
@@ -56,6 +62,8 @@ CmdArgs g_cmd_args[2];
 int g_com_error[16][16];
 TraceThreadInfo g_traceThreadInfo[16];
 
+void* webmStreamingReady;
+void* backendEvent[2];
 void* g_threadValues[17][5];
 void* threadHandle[17];
 unsigned int threadId[17];
@@ -65,10 +73,25 @@ const char* s_threadNames[17] = { "Main", "Backend", "Worker0", "Worker1", "Work
 
 int g_databaseStopServer;
 
+#pragma region Handles
+HANDLE allowServerNetworkEvent;
 HANDLE databaseCompletedEvent;
+HANDLE databaseCompletedEvent2;
 HANDLE demoStreamingReady;
+HANDLE gumpFlushedEvent;
+HANDLE gumpLoadedEvent;
+HANDLE resumedDatabaseEvent;
 HANDLE serverCompletedEvent;
+HANDLE serverNetworkCompletedEvent;
+HANDLE sndInitializedEvent;
+HANDLE streamCompletedEvent;
+HANDLE streamDatabasePausedReading;
+HANDLE streamEvent;
+HANDLE wakeDatabaseEvent;
+HANDLE wakeServerEvent;
+#pragma endregion
 
+unsigned int g_networkOverrideThread;
 unsigned int s_affinityMaskForCpu[8];
 unsigned int s_affinityMaskForProcess;
 unsigned int s_cpuCount;

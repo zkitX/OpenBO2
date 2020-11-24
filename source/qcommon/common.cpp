@@ -92,7 +92,7 @@ void Com_Error(errorParm_t code, const char* fmt, ...)
             v7 = "err_drop";
             if (v2 != 1)
                 v7 = "err_fatal";
-            BB_Alert("c:\\t6\\code\\src_noserver\\qcommon\\common.cpp", 2436, v7, (const char*)&com_errorMessage);
+            BB_Alert(__FILE__, __LINE__, v7, (const char*)&com_errorMessage);
         LABEL_40:
             errorcode = v2;
             Sys_LeaveCriticalSection(CRITSECT_COM_ERROR);

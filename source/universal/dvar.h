@@ -129,6 +129,7 @@ int g_dvar_modifiedFlags;
 
 dvar_t* s_dvarHashTable[1080];
 const dvar_t* allClientDvarsEnabled;
+const dvar_t* loc_language;;
 
 #pragma region DVARS
 const dvar_t* ai_ShowCanSeeChecks;

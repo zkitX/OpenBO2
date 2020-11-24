@@ -11,141 +11,58 @@ void Com_InitThreadData(int threadContext)
     Sys_SetValue(4, g_cmd_args);
 }
 
-char const* Info_ValueForKey(char const*, char const*)
-{
-    return nullptr;
-}
-
-void Info_NextPair(char const**, char*, char*)
-{
-}
-
-void Info_RemoveKey(char*, char const*)
-{
-}
-
-void Info_RemoveKey_Big(char*, char const*)
-{
-}
-
-int Info_Validate(char const*)
-{
-    return 0;
-}
-
-void Info_SetValueForKey(char*, char const*, char const*)
-{
-}
-
-void Info_SetValueForKey_Big(char*, char const*, char const*)
-{
-}
-
-int KeyValueToField(unsigned char*, cspField_t const*, char const*, int, int(*)(unsigned char*, char const*, int, int), void(*)(unsigned char*, char const*))
-{
-    return 0;
-}
-
-int ParseConfigStringToStruct(unsigned char*, cspField_t const*, int, char const*, int, int(*)(unsigned char*, char const*, int, int), void(*)(unsigned char*, char const*))
-{
-    return 0;
-}
-
-int ParseConfigStringToStructMerged(unsigned char*, cspField_t const*, int, char const*, char const** const, char const** const, char*, int, int(*)(unsigned char*, char const*, int, int), void(*)(unsigned char*, char const*), int(*)(char const*, char** const, char*, int))
-{
-    return 0;
-}
-
-float GetLeanFraction(float)
-{
-    return 0.0f;
-}
-
-float UnGetLeanFraction(float)
-{
-    return 0.0f;
-}
-
-void AddLeanToPosition(vec3_t&, float, float, float, float)
-{
-}
-
-void OrientationConcatenate(orientation_t const*, orientation_t const*, orientation_t*)
-{
-}
-
-void OrientationInvert(orientation_t const*, orientation_t*)
-{
-}
-
-int Com_IsLegacyXModelName(char const*)
-{
-    return 0;
-}
-
-void Com_DefaultExtension(char*, int, char const*)
-{
-}
-
-float CMD_GetAnalogButtonValue(usercmd_s*, int)
-{
-    return 0.0f;
-}
-
 void SetThreadName(unsigned int dwThreadID, const char* szThreadName)
 {
-    tagTHREADNAME_INFO info; // [esp+10h] [ebp-28h]
-    CPPEH_RECORD ms_exc; // [esp+20h] [ebp-18h]
+    tagTHREADNAME_INFO info;
+    CPPEH_RECORD ms_exc;
 
     info.dwType = 4096;
     info.szName = szThreadName;
     info.dwThreadID = dwThreadID;
     info.dwFlags = 0;
     ms_exc.registration.TryLevel = 0;
-    RaiseException(0x406D1388u, 0, 4u, (const ULONG_PTR*)&info.dwType);
+    RaiseException(0x406D1388, 0, 4, (const ULONG_PTR*)&info.dwType);
 }
 
 void Sys_CreateEvent(int manualReset, int initialState, void** evt)
 {
-    HANDLE v3; // eax
-    void* v4; // esi
-    DWORD v5; // eax
+    HANDLE eventResponse; // eax
+    void* eventPointer; // esi
+    DWORD lastError; // eax
 
-    v3 = CreateEventA(0, manualReset, initialState, 0);
-    v4 = v3;
-    if (v3)
-    {
-        *evt = v3;
-    }
+    eventResponse = CreateEventA(0, manualReset, initialState, 0);
+    eventPointer = eventResponse;
+    if (eventResponse)
+        *evt = eventResponse;
     else
     {
-        v5 = GetLastError();
-        Com_Printf(1, "error %d while creating event\n", v5);
+        lastError = GetLastError();
+        Com_Printf(1, "error %d while creating event\n", lastError);
 #ifdef _DEBUG
-        if (!(unsigned char)Assert_MyHandler(
+        if (!Assert_MyHandler(
             __FILE__,
             __LINE__,
-            (int)v4,
+            (int)eventPointer,
             "(e != 0)",
-            (const char*)&scratch))
+            nullptr))
             __debugbreak();
 #endif // _DEBUG
-        *evt = v4;
+        *evt = eventPointer;
     }
 }
 
 void Sys_CreateThread(unsigned int threadContext, void(*function)(unsigned int))
 {
     HANDLE newThread; // eax
-    DWORD v3; // eax
+    DWORD lastError; // eax
 #ifdef _DEBUG
     if (threadFunc[threadContext]
-        && !(unsigned __int8)Assert_MyHandler(
+        && !Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
             "(threadFunc[threadContext] == 0)",
-            &scratch))
+            nullptr))
     {
         __debugbreak();
     }
@@ -155,7 +72,7 @@ void Sys_CreateThread(unsigned int threadContext, void(*function)(unsigned int))
             __LINE__,
             0,
             "(threadContext < THREAD_CONTEXT_COUNT)",
-            &scratch))
+            nullptr))
     {
         __debugbreak();
     }
@@ -165,41 +82,41 @@ void Sys_CreateThread(unsigned int threadContext, void(*function)(unsigned int))
     threadHandle[threadContext] = newThread;
 #ifdef _DEBUG
     if (!newThread
-        && !(unsigned __int8)Assert_MyHandler(
+        && !Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
             "(threadHandle[threadContext] != 0)",
-            &scratch))
+            nullptr))
     {
         __debugbreak();
     }
 #endif
     if (!threadHandle[threadContext])
     {
-        v3 = GetLastError();
-        Com_Printf(1, "error %d while creating thread %d\n", v3, threadContext);
+        lastError = GetLastError();
+        Com_Printf(1, "error %d while creating thread %d\n", lastError, threadContext);
     }
     SetThreadName(threadId[threadContext], s_threadNames[threadContext]);
 }
 
 void Sys_DatabaseCompleted()
 {
-    DWORD v0; // eax
+    DWORD eventComplete; // eax
 
     g_databaseStopServer = 1;
     if (serverCompletedEvent)
     {
-        v0 = WaitForSingleObject(serverCompletedEvent, 0xFFFFFFFF);
-        if (v0)
+        eventComplete = WaitForSingleObject(serverCompletedEvent, 0xFFFFFFFF);
+        if (eventComplete)
         {
-            if (!(unsigned __int8)Assert_MyHandler(
+            if (!Assert_MyHandler(
                 __FILE__,
                 __LINE__,
                 0,
                 "((result == ((((DWORD )0x00000000L) ) + 0 )))",
                 "(result) = %i",
-                v0))
+                eventComplete))
                 __debugbreak();
         }
     }
@@ -208,6 +125,7 @@ void Sys_DatabaseCompleted()
 
 void Sys_FrontEndSleep()
 {
+    // TODO
 }
 
 int Sys_GetThreadContext()
@@ -226,7 +144,7 @@ int Sys_GetThreadContext()
                 __LINE__,
                 0,
                 "(0)",
-                &scratch))
+                nullptr))
                 __debugbreak();
             return 17;
         }
@@ -249,12 +167,12 @@ void Sys_InitDemoStreamingEvent()
     {
         v1 = GetLastError();
         Com_Printf(1, "error %d while creating event\n", v1);
-        if (!(unsigned __int8)Assert_MyHandler(
+        if (!Assert_MyHandler(
             __FILE__,
             __LINE__,
             0,
             "(e != 0)",
-            &scratch))
+            nullptr))
             __debugbreak();
     }
     demoStreamingReady = demoStreamingEvent;
@@ -275,6 +193,23 @@ void Sys_InitMainThread()
 
 void Sys_InitWebMStreamingEvent()
 {
+    HANDLE webmEvent; // esi
+    DWORD lastError; // eax
+
+    webmEvent = CreateEventA(0, 0, 0, 0);
+    if (!webmEvent)
+    {
+        lastError = GetLastError();
+        Com_Printf(1, "error %d while creating event\n", lastError);
+        if (!Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(e != 0)",
+            nullptr))
+            __debugbreak();
+    }
+    webmStreamingReady = webmEvent;
 }
 
 bool Sys_IsMainThread()
@@ -307,14 +242,54 @@ bool Sys_IsDatabaseThread()
 
 void Sys_NotifyRenderer()
 {
+    if (!backendEvent[1]
+        && !Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(Sys_IsEventInitialized( backendEvent[BACKEND_EVENT_GENERIC] ))",
+            nullptr))
+    {
+        __debugbreak();
+    }
 }
 
 void Sys_ResetServerNetworkCompletedEvent()
 {
+    Sys_EnterCriticalSection(CRITSECT_NETTHREAD_OVERRIDE);
+    if (g_networkOverrideThread
+        && !Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(!g_networkOverrideThread)",
+            nullptr)) {
+        __debugbreak();
+    }
+    if (!g_currentThreadId) {
+        g_currentThreadId = GetCurrentThreadId();
+    }
+    g_networkOverrideThread = g_currentThreadId;
+    ResetEvent(serverNetworkCompletedEvent);
+    Sys_LeaveCriticalSection(CRITSECT_NETTHREAD_OVERRIDE);
 }
 
 void Sys_SetServerNetworkCompletedEvent()
 {
+    Sys_EnterCriticalSection(CRITSECT_NETTHREAD_OVERRIDE);
+    if (!g_currentThreadId)
+        g_currentThreadId = GetCurrentThreadId();
+    if (g_networkOverrideThread != g_currentThreadId
+        && g_networkOverrideThread
+        && !Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(g_networkOverrideThread == Sys_GetCurrentThreadId() || g_networkOverrideThread == 0)",
+            nullptr))
+    {
+        __debugbreak();
+    }
 }
 
 void Sys_SetValue(int valueIndex, void* data)
@@ -322,23 +297,189 @@ void Sys_SetValue(int valueIndex, void* data)
     g_dwTlsIndex[valueIndex] = data;
 }
 
-char Sys_SpawnDatabaseThread(void(*function)(unsigned int))
+char Sys_SpawnDatabaseThread(void(* function)(unsigned int))
 {
-    return 0;
+    HANDLE eventHandle;
+    DWORD lastError;
+
+    eventHandle = CreateEventA(0, 0, 0, 0);
+    if (!eventHandle)
+    {
+        lastError = GetLastError();
+        Com_Printf(1, "error %d while creating event\n", lastError);
+        if (!Assert_MyHandler(__FILE__, __LINE__, 0, "(e != 0)", nullptr))
+            __debugbreak();
+    }
+    wakeDatabaseEvent = eventHandle;
+    eventHandle = CreateEventA(0, 1, 1, 0);
+    if (!eventHandle)
+    {
+        lastError = GetLastError();
+        Com_Printf(1, "error %d while creating event\n", lastError);
+        if (!Assert_MyHandler(__FILE__, __LINE__, 0, "(e != 0)", nullptr))
+            __debugbreak();
+    }
+    databaseCompletedEvent = eventHandle;
+    eventHandle = CreateEventA(0, 1, 1, 0);
+    if (!eventHandle)
+    {
+        lastError = GetLastError();
+        Com_Printf(1, "error %d while creating event\n", lastError);
+        if (!Assert_MyHandler(__FILE__, __LINE__, 0, "(e != 0)", nullptr))
+            __debugbreak();
+    }
+    databaseCompletedEvent2 = eventHandle;
+    eventHandle = CreateEventA(0, 1, 1, 0);
+    if (!eventHandle)
+    {
+        lastError = GetLastError();
+        Com_Printf(1, "error %d while creating event\n", lastError);
+        if (!Assert_MyHandler(__FILE__, __LINE__, 0, "(e != 0)", nullptr))
+            __debugbreak();
+    }
+    resumedDatabaseEvent = eventHandle;
+    eventHandle = CreateEventA(0, 0, 0, 0);
+    if (!eventHandle)
+    {
+        lastError = GetLastError();
+        Com_Printf(1, "error %d while creating event\n", lastError);
+        if (!Assert_MyHandler(__FILE__, __LINE__, 0, "(e != 0)", nullptr))
+            __debugbreak();
+    }
+    gumpLoadedEvent = eventHandle;
+    eventHandle = CreateEventA(0, 0, 0, 0);
+    if (!eventHandle)
+    {
+        lastError = GetLastError();
+        Com_Printf(1, "error %d while creating event\n", lastError);
+        if (!Assert_MyHandler(__FILE__, __LINE__, 0, "(e != 0)", nullptr))
+            __debugbreak();
+    }
+    gumpFlushedEvent = eventHandle;
+    Sys_CreateThread(12, function);
+    if (!threadHandle[12])
+        return 0;
+    ResumeThread(threadHandle[12]);
+    return 1;
 }
 
 char Sys_SpawnServerThread(void(*function)(unsigned int))
 {
-    return 0;
+    HANDLE eventHandle;
+    DWORD lastError;
+
+    eventHandle = CreateEventA(0, 1, 0, 0);
+    if (!eventHandle)
+    {
+        lastError = GetLastError();
+        Com_Printf(1, "error %d while creating event\n", lastError);
+        if (!Assert_MyHandler("c:\\t6\\code\\src_noserver\\qcommon\\threads.cpp", 292, 0, "(e != 0)", nullptr))
+            __debugbreak();
+    }
+    wakeServerEvent = eventHandle;
+    eventHandle = CreateEventA(0, 1, 0, 0);
+    if (!eventHandle)
+    {
+        lastError = GetLastError();
+        Com_Printf(1, "error %d while creating event\n", lastError);
+        if (!Assert_MyHandler("c:\\t6\\code\\src_noserver\\qcommon\\threads.cpp", 292, 0, "(e != 0)", nullptr))
+            __debugbreak();
+    }
+    serverCompletedEvent = eventHandle;
+    eventHandle = CreateEventA(0, 1, 1, 0);
+    if (!eventHandle)
+    {
+        lastError = GetLastError();
+        Com_Printf(1, "error %d while creating event\n", lastError);
+        if (!Assert_MyHandler("c:\\t6\\code\\src_noserver\\qcommon\\threads.cpp", 292, 0, "(e != 0)", nullptr))
+            __debugbreak();
+    }
+    allowServerNetworkEvent = eventHandle;
+    eventHandle = CreateEventA(0, 1, 1, 0);
+    if (!eventHandle)
+    {
+        lastError = GetLastError();
+        Com_Printf(1, "error %d while creating event\n", lastError);
+        if (!Assert_MyHandler("c:\\t6\\code\\src_noserver\\qcommon\\threads.cpp", 292, 0, "(e != 0)", nullptr))
+            __debugbreak();
+    }
+    serverNetworkCompletedEvent = eventHandle;
+    Sys_CreateThread(10, function);
+    if (!threadHandle[10])
+        return 0;
+    ResumeThread(threadHandle[10]);
+    return 1;
 }
 
 char Sys_SpawnStreamThread(void(*function)(unsigned int))
 {
-    return 0;
+    HANDLE eventHandle;
+    DWORD lastError;
+
+    eventHandle = CreateEventA(0, 1, 0, 0);
+    if (!eventHandle)
+    {
+        lastError = GetLastError();
+        Com_Printf(1, "error %d while creating event\n", lastError);
+        if (!Assert_MyHandler(__FILE__, __LINE__, 0, "(e != 0)", nullptr))
+            __debugbreak();
+    }
+    sndInitializedEvent = eventHandle;
+    eventHandle = CreateEventA(0, 1, 0, 0);
+    if (!eventHandle)
+    {
+        lastError = GetLastError();
+        Com_Printf(1, "error %d while creating event\n", lastError);
+        if (!Assert_MyHandler(__FILE__, __LINE__, 0, "(e != 0)", nullptr))
+            __debugbreak();
+    }
+    streamCompletedEvent = eventHandle;
+    eventHandle = CreateEventA(0, 1, 0, 0);
+    if (!eventHandle)
+    {
+        lastError = GetLastError();
+        Com_Printf(1, "error %d while creating event\n", lastError);
+        if (!Assert_MyHandler(__FILE__, __LINE__, 0, "(e != 0)", nullptr))
+            __debugbreak();
+    }
+    streamDatabasePausedReading = eventHandle;
+    eventHandle = CreateEventA(0, 0, 0, 0);
+    if (!eventHandle)
+    {
+        lastError = GetLastError();
+        Com_Printf(1, "error %d while creating event\n", lastError);
+        if (!Assert_MyHandler(__FILE__, __LINE__, 0, "(e != 0)", nullptr))
+            __debugbreak();
+    }
+    streamEvent = eventHandle;
+    Sys_CreateThread(13u, function);
+    if (!threadHandle[13])
+        return 0;
+    ResumeThread(threadHandle[13]);
+    return 1;
+
 }
 
 void Sys_StreamSleep()
 {
+    DWORD returnedValue; // eax
+
+    SetEvent(streamCompletedEvent);
+    SetEvent(streamDatabasePausedReading);
+    returnedValue = WaitForSingleObject(streamEvent, 0xFFFFFFFF);
+    if (returnedValue
+        && !Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "((result == ((((DWORD )0x00000000L) ) + 0 )))",
+            "(result) = %i",
+            returnedValue))
+    {
+        __debugbreak();
+    }
+    ResetEvent(streamCompletedEvent);
+    ResetEvent(streamDatabasePausedReading);
 }
 
 unsigned int Sys_ThreadMain(void* parameter)
@@ -362,7 +503,7 @@ unsigned int Sys_ThreadMain(void* parameter)
             __LINE__,
             0,
             "(threadFunc[threadContext])",
-            &scratch))
+            nullptr))
     {
         __debugbreak();
     }
@@ -380,48 +521,182 @@ void Sys_WaitAllowServerNetworkLoop()
 
 void Sys_WaitForDemoStreamingEvent()
 {
+    DWORD response; // eax
+
+    response = WaitForSingleObject(demoStreamingReady, 0xFFFFFFFF);
+    if (response)
+    {
+        if (!Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "((result == ((((DWORD )0x00000000L) ) + 0 )))",
+            "(result) = %i",
+            response))
+            __debugbreak();
+    }
 }
 
 bool Sys_WaitForDemoStreamingEventTimeout(unsigned int msec)
 {
-    return false;
+    if (msec == -1
+        && !Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(msec != 0xFFFFFFFF)",
+            "%s",
+            "msec != INFINITE"))
+    {
+        __debugbreak();
+    }
+    return WaitForSingleObject(demoStreamingReady, msec) == 0;
 }
 
 bool Sys_WaitForGumpFlush(int timeout)
 {
-    return false;
+    if (timeout == -1
+        && !Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(msec != 0xFFFFFFFF)",
+            "%s",
+            "msec != INFINITE"))
+    {
+        __debugbreak();
+    }
+    return WaitForSingleObject(gumpFlushedEvent, timeout) == 0;
 }
 
 bool Sys_WaitForGumpLoad(int timeout)
 {
-    return false;
+    if (timeout == -1
+        && !Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(msec != 0xFFFFFFFF)",
+            "%s",
+            "msec != INFINITE"))
+    {
+        __debugbreak();
+    }
+    return WaitForSingleObject(gumpLoadedEvent, timeout) == 0;
 }
 
 void Sys_WaitForSingleObject(void** event)
 {
+    DWORD eventResponse;
+
+    eventResponse = WaitForSingleObject(*event, 0xFFFFFFFF);
+    if (eventResponse)
+    {
+        if (!Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "((result == ((((DWORD )0x00000000L) ) + 0 )))",
+            "(result) = %i",
+            eventResponse))
+            __debugbreak();
+    }
 }
 
 bool Sys_WaitForSingleObjectTimeout(void** event, unsigned int msec)
 {
-    return false;
+    if (msec == -1
+        && !Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(msec != 0xFFFFFFFF)",
+            "%s",
+            "msec != INFINITE"))
+    {
+        __debugbreak();
+    }
+    return WaitForSingleObject(*event, msec) == 0;
 }
 
 bool Sys_WaitServer(int timeout)
 {
-    return false;
+    if (timeout == -1
+        && !Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(msec != 0xFFFFFFFF)",
+            "%s",
+            "msec != INFINITE"))
+    {
+        __debugbreak();
+    }
+    return WaitForSingleObject(serverCompletedEvent, timeout) == 0;
 }
 
 void Sys_WaitServerNetworkCompleted()
 {
+    DWORD response;
+
+    if (!g_currentThreadId)
+        g_currentThreadId = GetCurrentThreadId();
+    response = WaitForSingleObject(serverNetworkCompletedEvent, 0xFFFFFFFF);
+    if (response)
+    {
+        if (!Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "((result == ((((DWORD )0x00000000L) ) + 0 )))",
+            "(result) = %i",
+            response))
+            __debugbreak();
+    }
 }
 
 void Sys_WaitStartDatabase()
 {
+    DWORD response; // eax
+
+    response = WaitForSingleObject(wakeDatabaseEvent, 0xFFFFFFFF);
+    if (response)
+    {
+        if (!Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "((result == ((((DWORD )0x00000000L) ) + 0 )))",
+            "(result) = %i",
+            response))
+            __debugbreak();
+    }
 }
 
 bool Sys_WaitStartServer(int timeout)
 {
-    return false;
+    DWORD response;
+    bool responseCheck;
+
+    if (timeout == -1
+        && !Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(msec != 0xFFFFFFFF)",
+            "%s",
+            "msec != INFINITE"))
+    {
+        __debugbreak();
+    }
+    response = WaitForSingleObject(wakeServerEvent, timeout);
+    responseCheck = response == 0;
+    if (!response)
+        ResetEvent(serverCompletedEvent);
+    if (g_databaseStopServer)
+        return false;
+    else
+        return responseCheck;
 }
 
 unsigned int Sys_GetCpuCount()

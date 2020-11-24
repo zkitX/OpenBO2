@@ -31,21 +31,20 @@ enum errorParm_t
 	ERR_LOCALIZATION = 0x7,
 };
 
+errorParm_t errorcode;
+
 static const dvar_t* quit_on_error;
 
-char scratch;
+char exePath[256];
+char unknownByte;
+
+unsigned int com_errorPrintsCount;
 
 int com_errorEntered;
 int com_fixedConsolePosition;
 
-errorParm_t errorcode;
-
 const char* com_errorMessage;
-unsigned int com_errorPrintsCount;
-char unknownByte;
-// _________________________________________________________________________________
-// Function declarations
-// _________________________________________________________________________________
+
 void Com_Error(errorParm_t code, const char* fmt, ...);
 void Com_ErrorCleanup();;
 void Com_Frame_Try_Block_Function();
@@ -57,11 +56,3 @@ void Com_PrintError(int channel, const char* fmt, ...);
 void Com_Printf(int channel, const char* fmt, ...);
 void Com_PrintMessage(int channel, const char* msg, int error);
 bool Com_SetPrivateClients();
-
-char exePath[256];
-
-
-class common
-{
-};
-

@@ -373,7 +373,7 @@ char Sys_SpawnServerThread(void(*function)(unsigned int))
     {
         lastError = GetLastError();
         Com_Printf(1, "error %d while creating event\n", lastError);
-        if (!Assert_MyHandler("c:\\t6\\code\\src_noserver\\qcommon\\threads.cpp", 292, 0, "(e != 0)", nullptr))
+        if (!Assert_MyHandler(__FILE__, __LINE__, 0, "(e != 0)", nullptr))
             __debugbreak();
     }
     wakeServerEvent = eventHandle;
@@ -382,7 +382,7 @@ char Sys_SpawnServerThread(void(*function)(unsigned int))
     {
         lastError = GetLastError();
         Com_Printf(1, "error %d while creating event\n", lastError);
-        if (!Assert_MyHandler("c:\\t6\\code\\src_noserver\\qcommon\\threads.cpp", 292, 0, "(e != 0)", nullptr))
+        if (!Assert_MyHandler(__FILE__, __LINE__, 0, "(e != 0)", nullptr))
             __debugbreak();
     }
     serverCompletedEvent = eventHandle;
@@ -391,7 +391,7 @@ char Sys_SpawnServerThread(void(*function)(unsigned int))
     {
         lastError = GetLastError();
         Com_Printf(1, "error %d while creating event\n", lastError);
-        if (!Assert_MyHandler("c:\\t6\\code\\src_noserver\\qcommon\\threads.cpp", 292, 0, "(e != 0)", nullptr))
+        if (!Assert_MyHandler(__FILE__, __LINE__, 0, "(e != 0)", nullptr))
             __debugbreak();
     }
     allowServerNetworkEvent = eventHandle;
@@ -400,7 +400,7 @@ char Sys_SpawnServerThread(void(*function)(unsigned int))
     {
         lastError = GetLastError();
         Com_Printf(1, "error %d while creating event\n", lastError);
-        if (!Assert_MyHandler("c:\\t6\\code\\src_noserver\\qcommon\\threads.cpp", 292, 0, "(e != 0)", nullptr))
+        if (!Assert_MyHandler(__FILE__, __LINE__, 0, "(e != 0)", nullptr))
             __debugbreak();
     }
     serverNetworkCompletedEvent = eventHandle;

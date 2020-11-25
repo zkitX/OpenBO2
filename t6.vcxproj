@@ -199,6 +199,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\gfx_d3d\r_warn.h" />
+    <ClInclude Include="source\gfx_d3d\r_marks.h" />
+    <ClInclude Include="source\gfx_d3d\r_staticmodel_load_obj.h" />
+    <ClInclude Include="source\gfx_d3d\r_dobj_skin.h" />
+    <ClInclude Include="source\gfx_d3d\r_reflection_probe.h" />
+    <ClInclude Include="source\gfx_d3d\rb_corona.h" />
+    <ClInclude Include="source\gfx_d3d\r_sky.h" />
+    <ClInclude Include="source\gfx_d3d\r_bsp.h" />
+    <ClInclude Include="source\gfx_d3d\r_debug.h" />
+    <ClInclude Include="source\gfx_d3d\r_shared.h" />
+    <ClInclude Include="source\universal\com_workercmds.h" />
+    <ClInclude Include="source\gfx_d3d\r_workercmds.h" />
+    <ClInclude Include="source\gfx_d3d\r_qrcode.h" />
+    <ClInclude Include="source\gfx_d3d\r_ui3d.h" />
+    <ClInclude Include="source\gfx_d3d\rb_backend.h" />
+    <ClInclude Include="source\gfx_d3d\rb_postfx.h" />
+    <ClInclude Include="source\gfx_d3d\r_light.h" />
+    <ClInclude Include="source\gfx_d3d\r_wind.h" />
+    <ClInclude Include="source\gfx_d3d\r_rendertarget.h" />
+    <ClInclude Include="source\gfx_d3d\r_state.h" />
+    <ClInclude Include="source\gfx_d3d\rb_sunshadow.h" />
     <ClInclude Include="source\gfx_d3d\rb_light.h" />
     <ClInclude Include="source\gfx_d3d\r_model.h" />
     <ClInclude Include="source\gfx_d3d\rb_tess.h" />
@@ -384,6 +405,26 @@
     <ClInclude Include="source\qcommon\threads_interlock.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\gfx_d3d\r_warn.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_marks.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_staticmodel_load_obj.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_dobj_skin.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_reflection_probe.cpp" />
+    <ClCompile Include="source\gfx_d3d\rb_corona.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_sky.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_bsp.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_debug.cpp" />
+    <ClCompile Include="source\universal\com_workercmds.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_workercmds.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_qrcode.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_ui3d.cpp" />
+    <ClCompile Include="source\gfx_d3d\rb_backend.cpp" />
+    <ClCompile Include="source\gfx_d3d\rb_postfx.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_light.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_wind.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_rendertarget.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_state.cpp" />
+    <ClCompile Include="source\gfx_d3d\rb_sunshadow.cpp" />
     <ClCompile Include="source\gfx_d3d\rb_light.cpp" />
     <ClCompile Include="source\gfx_d3d\r_model.cpp" />
     <ClCompile Include="source\gfx_d3d\rb_tess.cpp" />

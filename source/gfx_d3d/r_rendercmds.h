@@ -1,15 +1,78 @@
 #pragma once
 #include "r_buffers.h"
+#include "r_debug.h"
 #include "r_init.h"
 #include "r_meshdata.h"
+#include "r_rendertarget.h"
 #include "r_scene.h"
+#include "r_shade.h"
+#include "r_wind.h"
 #include "rb_light.h"
 #include "rb_state.h"
 #include "rb_stats.h"
+#include "rb_sunshadow.h"
 #include "rb_tess.h"
 
 #include <d3d11.h>
 #include <universal/com_math.h>
+#include <universal/com_vector.h>
+#include <universal/com_workercmds.h>
+
+struct GfxCmdHeader
+{
+	unsigned __int16 byteCount;
+	char id;
+	char ui3d;
+};
+
+struct GfxCmdBuf
+{
+	ID3D11DeviceContext* device;
+	ID3D11CommandList** commandList;
+	unsigned __int16 viewIndex;
+	unsigned __int16 deviceIndex;
+};
+
+struct GfxCmdArray
+{
+	char* cmds;
+	int usedTotal;
+	int usedCritical;
+	GfxCmdHeader* lastCmd;
+	int byteSize;
+	int warnSize;
+	int check;
+};
+
+struct GfxCmdBufInput
+{
+	vec4_t consts[211];
+	const GfxImage* codeImages[55];
+	char codeImageSamplerStates[55];
+	const GfxBackEndData* data;
+};
+
+struct GfxBackEndPrimitiveData
+{
+	int hasSunDirChanged;
+};
+
+struct GfxSpotShadow
+{
+	GfxViewParms shadowViewParms;
+	GfxMatrix lookupMatrix;
+	char shadowableLightIndex;
+	char flags;
+	char pad[2];
+	const GfxLight* light;
+	float fade;
+	GfxCodeImageRenderTarget spotShadowRenderTarget;
+	char renderTargetId;
+	GfxViewport viewport;
+	GfxImage* image;
+	vec4_t pixelAdjust;
+	int clearScreen;
+};
 
 class GfxBackEndData
 {

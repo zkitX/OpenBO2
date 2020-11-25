@@ -1,14 +1,18 @@
 #pragma once
-#include "r_material.h"
-#include "r_scene.h"
-#include "rb_stats.h"
-
-#include <d3d11.h>
-#include <universal/com_math.h>
+#include "r_shared.h"
 
 struct GfxGammaRamp
 {
 	unsigned __int16 entries[256];
+};
+
+struct SavedScreenParams
+{
+	float s0;
+	float t0;
+	float ds;
+	float dt;
+	int isSet;
 };
 
 struct GfxConfiguration
@@ -73,22 +77,6 @@ struct GfxGlobals
 	char remoteScreenLastSceneResolveTarget;
 	int backEndFrameCount;
 	char frameBuffer;
-};
-
-struct GfxFog
-{
-	int startTime;
-	int finishTime;
-	vec4_t color;
-	float fogStart;
-	float density;
-	float heightDensity;
-	float baseHeight;
-	vec4_t sunFogColor;
-	vec3_t sunFogDir;
-	float sunFogStartAng;
-	float sunFogEndAng;
-	float maxDensity;
 };
 
 struct GfxMatrix
@@ -258,13 +246,148 @@ struct r_globals_t
 	float skinnedVertexCacheUsed[4];
 };
 
+struct r_global_permap_assets_t
+{
+	Material* flameThrowerFXMaterial;
+	Material* electrifiedFXMaterial;
+	Material* transportedFXMaterial;
+	Material* waterSheetingFXMaterial;
+};
+
+struct r_global_permanent_t
+{
+	Material* sortedMaterials[4992];
+	bool needSortMaterials;
+	bool postMapFastfileLoadFinished;
+	int materialCount;
+	GfxImage* whiteImage;
+	GfxImage* blackImage;
+	GfxImage* blankImage;
+	GfxImage* grayImage;
+	GfxImage* linearGrayImage;
+	GfxImage* lightmapIntensityImages[31];
+	GfxImage* identityNormalMapImage;
+	GfxImage* whiteTransparentImage;
+	GfxImage* blackTransparentImage;
+	GfxImage* outdoorImage;
+	GfxImage* heatMapImage;
+	GfxImage* qrcodeImage[12];
+	GfxLightDef* dlightDef;
+	GfxLightDef* flashLightDef;
+	Material* defaultMaterial;
+	Material* whiteMaterial;
+	Material* additiveMaterial;
+	Material* additiveMaterialNoDepth;
+	Material* pointMaterial;
+	Material* lineMaterial;
+	Material* lineMaterialNoDepth;
+	Material* blendMaterial;
+	Material* blendMaterialNoDepth;
+	Material* whiteDebugExteriorMaterial;
+	Material* whiteDepthInteriorMaterial;
+	Material* clearAlphaMaterial;
+	Material* clearAlphaStencilMaterial;
+	Material* setAlphaMaterial;
+	Material* shadowClearMaterial;
+	Material* shadowCasterMaterial;
+	Material* shadowOverlayMaterial;
+	Material* depthPrepassMaterial;
+	Material* glareBlindMaterial;
+	Material* lightCoronaMaterial;
+	Material* stencilShadowMaterial;
+	Material* stencilDisplayMaterial;
+	Material* floatZDisplayMaterial;
+	Material* resolveFloatZ1;
+	Material* resolveFloatZ2;
+	Material* resolveFloatZ4;
+	Material* resolveFloatZ8;
+	Material* resolveFloatZ16;
+	Material* fxaaMaterial;
+	Material* ssaoMaterial;
+	Material* ssaoApplyMaterial;
+	Material* ssaoBlurMaterial;
+	Material* ssaoMinifyMaterial;
+	Material* ssaoReconstructMaterial;
+	Material* colorChannelMixerMaterial;
+	Material* frameColorDebugMaterial;
+	Material* frameAlphaDebugMaterial;
+	GfxImage* rawImage;
+	GfxWorld* world;
+	Material* feedbackReplaceMaterial;
+	Material* feedbackBlendMaterial;
+	Material* feedbackFilmBlendMaterial;
+	Material* dofDownsampleMaterial;
+	Material* dofNearCocMaterial;
+	Material* smallBlurMaterial;
+	Material* postFxDofMaterial;
+	Material* postFxDofMaterial2;
+	Material* postFxDofColorMaterial;
+	Material* dofHqDownsample;
+	Material* dofHqBlurMask;
+	Material* dofHqBlur;
+	Material* dofHqFinal;
+	Material* dofHqFinalExtra;
+	Material* zombieDarkness;
+	Material* redactMaterial1;
+	Material* redactMaterial2;
+	Material* redactMaterial3;
+	Material* waterDropletMaterial;
+	Material* reviveFXMaterial;
+	Material* postFxColorMaterial;
+	Material* postFxMaterial;
+	Material* poisonFXMaterial;
+	Material* anaglyphFXMaterial;
+	Material* symmetricFilterMaterial[8];
+	Material* shellShockBlurredMaterial;
+	Material* shellShockFlashedMaterial;
+	Material* ropeMaterial;
+	Material* logoMaterial;
+	int savedScreenTimes[4];
+	SavedScreenParams savedScreenParams[4];
+	Material* resampleFinal;
+	Material* resampleHDR;
+	Material* resampleCubicFinal;
+	Material* resampleCubicFinalLeft;
+	Material* resampleCubicFinalRight;
+	Material* resampleShift;
+	Material* resampleMatrix;
+	Material* bloomDownsample;
+	Material* bloomDownsampleHQ;
+	Material* bloomDownsampleConvolution;
+	Material* bloomDownsampleConvolutionHQ;
+	Material* bloomRemap;
+	Material* bloomBlurX;
+	Material* bloomBlurY;
+	Material* bloomCombineHiLo;
+	Material* bloomApply;
+	Material* bloomApplyHQ;
+	Material* bloomApplyNull;
+	Material* bloomApplyThermal;
+	Material* debugZbuffer;
+	Material* createLut2d;
+	Material* createLut2dv;
+	Material* applyLut3d;
+	Material* dummyMaterial;
+	Material* compositeResult;
+	Material* infraredWhite;
+	Material* sonarMaterial;
+	Material* sonarAttachmentMaterial;
+	Material* hudOutlineMaterial[3];
+	Material* predatorMaterial;
+	r_global_permap_assets_t permapAssets;
+	FontIcon* fontIconHandle[4];
+	int fontIconFilesCount;
+};
+
 DxGlobals dx;
 vidConfig_t vidConfig;
 GfxConfiguration gfxCfg;
 GfxGlobals r_glob;
 r_globals_t rg;
+r_global_permanent_t rgp;
 
 bool g_allocateMinimalResources;
+int g_destroy_window;
 int g_disableRendering;
 
 bool R_Is3DOn();

@@ -1,7 +1,8 @@
 #pragma once
-#include "../defs.h"
+#include "r_material.h"
 
 #include <d3d11.h>
+#include <universal/com_math.h>
 
 struct CardMemory
 {
@@ -69,7 +70,24 @@ struct GfxImage
 	unsigned int hash;
 };
 
-class r_image
+struct GfxTextureOverride
 {
+	__int16 prev;
+	char type;
+	unsigned int dobjModelMask;
+	const Material* mat;
+	union {
+		struct {
+			const GfxImage* img1;
+			const GfxImage* img2;
+		} image;
+		struct {
+			const Material* mat1;
+			const Material* mat2;
+		} material;
+		struct {
+			unsigned int constIdx;
+			vec4_t value;
+		} shaderConst;
+	};
 };
-

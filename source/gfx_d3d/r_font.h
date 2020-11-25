@@ -37,6 +37,36 @@ struct Font_s
 	KerningPairs* kerningPairs;
 };
 
+struct FontIconName
+{
+	const char* string;
+	int hash;
+};
+
+struct FontIconAlias
+{
+	int aliasHash;
+	int buttonHash;
+};
+
+struct FontIconEntry
+{
+	FontIconName fontIconName;
+	Material* fontIconMaterialHandle;
+	int fontIconSize;
+	float xScale;
+	float yScale;
+};
+
+struct FontIcon
+{
+	const char* name;
+	int numEntries;
+	int numAliasEntries;
+	FontIconEntry* fontIconEntry;
+	FontIconAlias* fontIconAlias;
+};
+
 const char MYRANDOMCHARS[63] = { "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890" };
 const char MYRANDOMNUMCHARS[10] = { "123456789" };
 

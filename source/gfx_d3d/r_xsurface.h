@@ -1,8 +1,18 @@
 #pragma once
+#include "r_shared.h"
 
-#include <d3d11.h>
-
-#include "r_utils.h"
+struct srfTriangles_t
+{
+	vec3_t mins;
+	int vertexDataOffset0;
+	vec3_t maxs;
+	int vertexDataOffset1;
+	int firstVertex;
+	float himipRadiusInvSq;
+	unsigned __int16 vertexCount;
+	unsigned __int16 triCount;
+	int baseIndex;
+};
 
 struct XSurfaceVertexInfo
 {
@@ -68,7 +78,13 @@ struct XSurface
 	int partBits[5];
 };
 
-class r_xsurface
+struct GfxSurface
 {
+	srfTriangles_t tris;
+	Material* material;
+	char lightmapIndex;
+	char reflectionProbeIndex;
+	char primaryLightIndex;
+	char flags;
+	vec3_t bounds[2];
 };
-

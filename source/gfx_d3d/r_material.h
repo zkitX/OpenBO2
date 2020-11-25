@@ -76,6 +76,12 @@ struct Material
 	Material* thermalMaterial;
 };
 
+struct MaterialMemory
+{
+	Material* material;
+	int memory;
+};
+
 struct MaterialArgumentCodeConst
 {
 	unsigned short index;

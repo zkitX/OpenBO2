@@ -363,6 +363,17 @@ char Sys_SpawnDatabaseThread(void(* function)(unsigned int))
     return 1;
 }
 
+unsigned int Sys_GetDefaultWorkerThreadsCount()
+{
+    if (s_cpuCount <= 2)
+        return 1;
+    if (s_cpuCount <= 4)
+        return 2;
+    if (s_cpuCount > 10)
+        return 8;
+    return s_cpuCount - 2;
+}
+
 char Sys_SpawnServerThread(void(*function)(unsigned int))
 {
     HANDLE eventHandle;
@@ -409,6 +420,16 @@ char Sys_SpawnServerThread(void(*function)(unsigned int))
         return 0;
     ResumeThread(threadHandle[10]);
     return 1;
+}
+
+void Sys_SetD3DShutdownEvent()
+{
+    SetEvent(d3dShutdownEvent);
+}
+
+bool Sys_QueryD3DShutdownEvent()
+{
+    return WaitForSingleObject(d3dShutdownEvent, 0) == 0;
 }
 
 char Sys_SpawnStreamThread(void(*function)(unsigned int))

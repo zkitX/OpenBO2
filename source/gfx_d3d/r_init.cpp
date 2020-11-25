@@ -2,8 +2,10 @@
 #include "r_legacy.h"
 #include "r_dvars.h"
 
+#include <qcommon/threads.h>
 #include <universal/assertive.h>
 #include <universal/dvar.h>
+#include <win32/win_main.h>
 
 bool R_Is3DOn()
 {
@@ -189,29 +191,102 @@ void R_ShutdownStreams()
 
 void R_Shutdown(int destroyWindow)
 {
+    if (Sys_QueryD3DShutdownEvent()
+        && !Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(Sys_QueryD3DShutdownEvent() == qfalse)",
+            nullptr))
+    {
+        __debugbreak();
+    }
+    g_destroy_window = destroyWindow;
+    Sys_SetD3DShutdownEvent();
+    while (Sys_QueryD3DShutdownEvent())
+        NET_Sleep(0);
 }
 
 void R_UnloadWorld()
 {
+    if (!Dvar_GetBool(useFastFile)
+        && !Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(IsFastFileLoad())",
+            nullptr))
+    {
+        __debugbreak();
+    }
+    if (rgp.world)
+        Sys_Error("Cannot unload bsp while it is in use");
+    rgp.postMapFastfileLoadFinished = 0;
 }
 
 void R_BeginRegistration(vidConfig_t* vidConfigOut, GfxViewParms* a2)
 {
+    Sys_SetRGRegisteredEvent();
+    while (Sys_QueryRGRegisteredEvent())
+    {
+        Sys_CheckQuitRequest();
+        NET_Sleep(0);
+    }
+    if (!vidConfigOut
+        && !Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(vidConfigOut)",
+            nullptr))
+    {
+        __debugbreak();
+    }
+    qmemcpy(vidConfigOut, &vidConfig, sizeof(vidConfig_t));
+    if (r_glob.startedRenderThread
+        && !Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(!r_glob.startedRenderThread)",
+            nullptr))
+    {
+        __debugbreak();
+    }
+    r_glob.startedRenderThread = 1;
 }
 
 void R_EndRegistration(void)
 {
+    if (!rg.registered
+        && !Assert_MyHandler(
+            __FILE__,
+            __LINE__,
+            0,
+            "(rg.registered)",
+            nullptr))
+    {
+        __debugbreak();
+    }
+    if (!Dvar_GetBool(useFastFile))
+    {
+        R_SyncRenderThread();
+        RB_TouchAllImages();
+    }
 }
 
 void R_TrackStatistics(trStatistics_t* stats)
 {
+    rg.globalstats = stats;
 }
 
 void R_ConfigureRenderer(const GfxConfiguration* config)
 {
+    SetGfxConfig(config);
+    R_InitRenderCommands();
 }
 
 bool R_StereoActivated()
 {
-    return false;
+    return dx.nvStereoActivated;
 }

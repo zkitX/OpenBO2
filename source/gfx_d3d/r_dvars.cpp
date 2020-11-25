@@ -282,7 +282,7 @@ void __cdecl R_RegisterDvars()
         1.0,
         0x240u,
         "Sun diffuse color");
-    r_lightTweakSunDirection.integer = (int)_Dvar_RegisterVec3(
+    r_lightTweakSunDirection = _Dvar_RegisterVec3(
         "r_lightTweakSunDirection",
         0.0,
         0.0,
@@ -1361,7 +1361,7 @@ void __cdecl R_RegisterDvars()
         3.4028235e38,
         0x1000u,
         "Outdoor z-feathering value");
-    Dvar_SetModified(r_outdoorFeather);
+    Dvar_SetModified((dvar_t*)r_outdoorFeather);
     r_sun_from_dvars = _Dvar_RegisterBool(
         "r_sun_from_dvars",
         0,
@@ -1632,4 +1632,110 @@ void __cdecl R_RegisterDvars()
         0,
         0x80u,
         "toggles debug print of vertex/pixelshader binding");
+}
+
+bool R_CheckDvarModified(const dvar_t* dvar)
+{
+    if (Dvar_GetModified(dvar))
+    {
+        Dvar_ClearModified((dvar_t*)dvar);
+        return 1;
+    }
+    return 0;
+}
+
+float R_GetDefaultNearClip()
+{
+    dvarType_t dvarType; // ecx
+    long double defaultNearClip; // st7
+
+    if (r_znear)
+    {
+        dvarType = r_znear->type;
+        if (dvarType != 2 && dvarType != 6)
+            defaultNearClip = atof(r_znear->current.string);
+    }
+    return defaultNearClip;
+}
+
+float R_GetDefaultNearClip_DepthHack()
+{
+    float value;
+    value = Dvar_GetFloat(r_znear_depthhack);
+    if (0.1 - value >= 0.0)
+        return 0.1;
+    return value;
+}
+
+void DvarBlock_SetFog()
+{
+    if (gDvarDataReady == DBLOCK_READY_FOG)
+    {
+        Dvar_SetFloat(r_fogBaseDist, dvar_buffer.v[0]);
+        Dvar_SetFloat(r_fogHalfDist, dvar_buffer.v[1]);
+        Dvar_SetFloat(r_fogBaseHeight, dvar_buffer.v[2]);
+        Dvar_SetFloat(r_fogHalfHeight, dvar_buffer.v[3]);
+        Dvar_SetVec3(r_fogColor, vecin.v[0], vecin.v[1], vecin.v[2]);
+        Dvar_SetFloat(r_fogOpacity, vecin.v[3]);
+        Dvar_SetVec3(r_fogSunColor, stru_83BAA78.v[0], stru_83BAA78.v[1], stru_83BAA78.v[2]);
+        Dvar_SetFloat(r_fogSunOpacity, stru_83BAA78.v[3]);
+        Dvar_SetFloat(r_fogSunPitch, stru_83BAA88.v[0]);
+        Dvar_SetFloat(r_fogSunYaw, stru_83BAA88.v[1]);
+        Dvar_SetFloat(r_fogSunInner, stru_83BAA88.v[2]);
+        Dvar_SetFloat(r_fogSunOuter, stru_83BAA88.v[3]);
+        gDvarDataReady = DBLOCK_EMPTY;
+    }
+}
+
+void DvarBlock_SetWSI()
+{
+    if (gDvarDataReady == DBLOCK_READY_WSI)
+    {
+        if (dvar_buffer.v[0] == 0.0)
+            Dvar_SetBool(r_exposureTweak, 0);
+        else
+            Dvar_SetBool(r_exposureTweak, 1);
+        Dvar_SetFloat(r_exposureValue, dvar_buffer.v[1]);
+        Dvar_SetVec3(r_lightTweakSunDirection, dvar_buffer.v[2], dvar_buffer.v[3], 0.0);
+        gDvarDataReady = DBLOCK_EMPTY;
+    }
+}
+
+void DvarBlock_SetVcBloom()
+{
+    if (gDvarDataReady == DBLOCK_READY_BLOOM)
+    {
+        Dvar_SetVec4FromVec4(vc_LIB, &dvar_buffer);
+        Dvar_SetVec4FromVec4(vc_LIG, &vecin);
+        Dvar_SetVec4FromVec4(vc_LIW, &stru_83BAA78);
+        Dvar_SetVec4FromVec4(vc_LOB, &stru_83BAA88);
+        Dvar_SetVec4FromVec4(vc_LOW, &stru_83BAA98);
+        Dvar_SetVec4FromVec4(vc_RGBH, &stru_83BAAA8);
+        Dvar_SetVec4FromVec4(vc_RGBL, &stru_83BAAB8);
+        Dvar_SetVec4FromVec4(vc_YH, &stru_83BAAC8);
+        Dvar_SetVec4FromVec4(vc_YL, &stru_83BAAD8);
+        gDvarDataReady = DBLOCK_EMPTY;
+    }
+}
+
+void DvarBlock_SetVcColor()
+{
+    if (gDvarDataReady == DBLOCK_READY_COLOR)
+    {
+        Dvar_SetVec4FromVec4(vc_RS, &dvar_buffer);
+        Dvar_SetVec4FromVec4(vc_RE, &vecin);
+        Dvar_SetVec4FromVec4(vc_SMR, &stru_83BAA78);
+        Dvar_SetVec4FromVec4(vc_SMG, &stru_83BAA88);
+        Dvar_SetVec4FromVec4(vc_SMB, &stru_83BAA98);
+        Dvar_SetVec4FromVec4(vc_MMR, &stru_83BAAA8);
+        Dvar_SetVec4FromVec4(vc_MMG, &stru_83BAAB8);
+        Dvar_SetVec4FromVec4(vc_MMB, &stru_83BAAC8);
+        Dvar_SetVec4FromVec4(vc_HMR, &stru_83BAAD8);
+        Dvar_SetVec4FromVec4(vc_HMG, &stru_83BAAE8);
+        Dvar_SetVec4FromVec4(vc_HMB, &stru_83BAAF8);
+        Dvar_SetVec4FromVec4(vc_FGM, &stru_83BAB08);
+        Dvar_SetVec4FromVec4(vc_FSM, &stru_83BAB18);
+        Dvar_SetVec4FromVec4(vc_FBM, &stru_83BAB28);
+        gDvarDataReady = DBLOCK_EMPTY;
+    }
 }

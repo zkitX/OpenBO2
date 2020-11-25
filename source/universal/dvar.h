@@ -929,7 +929,7 @@ void Dvar_SetFloat(dvar_t const*, float);
 void Dvar_SetVec2(dvar_t const*, float, float);
 void Dvar_SetVec3(dvar_t const*, float, float, float);
 void Dvar_SetVec4(dvar_t const*, float, float, float, float);
-void Dvar_SetVec4FromVec4(dvar_t const*, vec4_t&);
+void Dvar_SetVec4FromVec4(dvar_t const*, vec4_t*);
 void Dvar_SetString(dvar_t const*, const char*);
 dvar_t* Dvar_SetOrRegisterString(dvar_t const*, const char*, const char*);
 void Dvar_SetColor(dvar_t const*, float, float, float, float);

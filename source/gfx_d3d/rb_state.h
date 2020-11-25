@@ -1,9 +1,10 @@
 #pragma once
+#include "r_shared.h"
 #include "r_material.h"
+#include "r_rendercmds.h"
 #include "r_scene.h"
+#include "r_state.h"
 #include "rb_stats.h"
-
-#include <d3d11.h>
 
 enum GfxDepthRangeType
 {

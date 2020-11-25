@@ -226,6 +226,12 @@ struct GfxWorldFogVolume
 	unsigned int controlEx;
 	GfxWorldFog volumeWorldFog[1];
 };
+
+struct GfxClientFog
+{
+	GfxFog settings[6];
+	int index;
+};
 #pragma endregion
 
 struct ExtraCamLodInfo

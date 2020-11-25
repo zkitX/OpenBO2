@@ -1,5 +1,4 @@
 #pragma once
-
 #include <universal/dvar.h>
 
 enum netadrtype_t

@@ -1,5 +1,8 @@
 #pragma once
 #include "r_shared.h"
+#include "r_light.h"
+#include "r_scene.h"
+#include "rb_stats.h"
 
 struct GfxGammaRamp
 {
@@ -87,12 +90,6 @@ struct GfxMatrix
 struct TxaaCtxDX
 {
 	unsigned int pad[256];
-};
-
-struct GfxClientFog
-{
-	GfxFog settings[6];
-	int index;
 };
 
 struct DxCmdBuf

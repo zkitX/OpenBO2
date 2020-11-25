@@ -1,6 +1,30 @@
 #pragma once
-
 #include <universal/dvar.h>
+
+enum DBLOCK_READY
+{
+	DBLOCK_EMPTY = 0x0,
+	DBLOCK_READY_FOG = 0x1,
+	DBLOCK_READY_COLOR = 0x2,
+	DBLOCK_READY_BLOOM = 0x3,
+	DBLOCK_READY_WSI = 0x4,
+};
+
+DBLOCK_READY gDvarDataReady;
+vec4_t dvar_buffer;
+vec4_t vecin;
+vec4_t stru_83BAA78; // ??
+vec4_t stru_83BAA88; // ??
+vec4_t stru_83BAA98; // ??
+vec4_t stru_83BAAA8; // ??
+vec4_t stru_83BAAB8; // ??
+vec4_t stru_83BAAC8;
+vec4_t stru_83BAAD8;
+vec4_t stru_83BAAE8;
+vec4_t stru_83BAAF8;
+vec4_t stru_83BAB08;
+vec4_t stru_83BAB18;
+vec4_t stru_83BAB28;
 
 #pragma region DVARS
 const dvar_t* r_smp_worker_thread[8];
@@ -433,27 +457,27 @@ const dvar_t* vid_ypos;
 #pragma endregion
 
 #pragma region DVARENUMS
-const char* names[8]{
+const char* names[]{
 	"r_smp_worker_thread0", "r_smp_worker_thread1", "r_smp_worker_thread2", "r_smp_worker_thread3", "r_smp_worker_thread4", "r_smp_worker_thread5", "r_smp_worker_thread6", "r_smp_worker_thread7"
 };
-const char* codecNames[3]{
+const char* codecNames[]{
 	"MJPEG",
 	"VP8"
 };
-const char* clipSizeNames[5]{
+const char* clipSizeNames[]{
 	"360",
 	"480",
 	"720",
 	"1080"
 };
 
-const char* mipFilterNames[5]{
+const char* mipFilterNames[]{
 	"Unchanged",
 	"Force Trilinear",
 	"Force Bilinear"
 };
 
-const char* debugShaderNames[7]{
+const char* debugShaderNames[]{
 	"none",
 	"normal",
 	"basisTangent",
@@ -462,13 +486,13 @@ const char* debugShaderNames[7]{
 	"lmapDir"
 };
 
-const char* debugPerformanceNames[4]{
+const char* debugPerformanceNames[]{
 	"none",
 	"current",
 	"average"
 };
 
-const char* lightMapNames[34]{
+const char* lightMapNames[]{
 	"Black",
 	"Unchanged",
 	"Intensity2",
@@ -503,28 +527,70 @@ const char* lightMapNames[34]{
 	"Intensity31"
 };
 
-const char* colorMapNames[6]{
+const char* colorMapNames[]{
 	"Black", "Unchanged", "White", "Gray Linear", "Gray sRGB"
 };
 
-const char* alphaMapNames[5]{
+const char* alphaMapNames[]{
 	"Unchanged", "255", "192", "128"
 };
-const char* specularMapNames[4]{
+const char* specularMapNames[]{
 	"Non metal (sRGB 56)", "Unchanged", "Metal (sRGB 255)"
 };
-const char* glossMapNames[8]{
+const char* glossMapNames[]{
 	"", "Unchanged", "255", "204", "153", "102", "51"
 };
-const char* occlusionMapNames[5]{
+const char* occlusionMapNames[]{
 	"", "Unchanged", "255", "128"
 };
-const char* lodInfoNames[6]{
+const char* lodInfoNames[]{
 	"None", "All", "Current LOD", "Current Distance", "Auto LOD Distance Only"
 };
-const char* showPenetrationNames[4]{
+const char* showPenetrationNames[]{
 	"off", "flash penetrable materials" "flash non-penetrable materials"
+};
+const char* showReflectionProbeSelectionNames[]{
+	"off", "bsp", "static models", "ents"
+};
+const char* r_drawInfoNames[]{
+	"Off", "Stages", "Types", "Tris", "Prims"
+};
+const char* r_showTessNames[]{
+	"off", "tech", "techset", "material"
+};
+const char* showCollisionNames[]{
+	"None", "All", "Player" "Bullet", "Missile", "Vehicle", "Monster", "Item", "CanShoot", "AINoSight"
+};
+const char* showCollisionGroupsNames[]{
+	"All", "Brush", "Terrain"
+};
+const char* showCollisionPolyTypeNames[]{
+	"All", "Wireframe", "Interior"
+};
+const char* r_forceLodNames[]{
+	"high", "medium", "low", "lowest", "none"
+};
+const char* sm_showOverlayNames[]{
+	"off", "sun", "spot"
+};
+const char* s_aspectRatioNames[]{
+	"auto", "standard", "wide 16:10", "wide 16:9"
+};
+const char* superflareDrawlistModesNames[]{
+	"off(with fx)", "pre viewmodel", "post viewmodel", "post blur"
+};
+const char* showPrimaryLightLinesNames[]{
+	"off", "bsp", "static models", "scene models", "dobj", "dyn ent models"
 };
 #pragma endregion
 
+const dvar_t* sv_cheats; // REMOVE LATER
+
 void R_RegisterDvars();
+bool R_CheckDvarModified(const dvar_t* dvar);
+float R_GetDefaultNearClip();
+float R_GetDefaultNearClip_DepthHack();
+void DvarBlock_SetFog();
+void DvarBlock_SetWSI();
+void DvarBlock_SetVcBloom();
+void DvarBlock_SetVcColor();

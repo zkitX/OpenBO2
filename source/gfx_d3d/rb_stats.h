@@ -62,3 +62,7 @@ struct GfxFrameStats
 		int fxIndexCount;
 	} counters;
 };
+
+int previous;
+unsigned int frameCount;
+float frameRate;

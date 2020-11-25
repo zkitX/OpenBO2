@@ -34,20 +34,6 @@ struct GfxPackedVertex
 	PackedUnitVec tangent;
 };
 
-struct GfxViewParms
-{
-	GfxMatrix viewMatrix;
-	GfxMatrix projectionMatrix;
-	GfxMatrix viewProjectionMatrix;
-	GfxMatrix inverseViewProjectionMatrix;
-	vec4_t origin;
-	vec3_t axis[3];
-	float depthHackNearClip;
-	float zNear;
-	float zFar;
-	int bspCellIndex;
-};
-
 struct GfxStateBits
 {
 	unsigned int loadBits[2];

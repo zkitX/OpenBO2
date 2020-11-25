@@ -26,9 +26,9 @@ void SetThreadName(unsigned int dwThreadID, const char* szThreadName)
 
 void Sys_CreateEvent(int manualReset, int initialState, void** evt)
 {
-    HANDLE eventResponse; // eax
-    void* eventPointer; // esi
-    DWORD lastError; // eax
+    HANDLE eventResponse;
+    void* eventPointer;
+    DWORD lastError;
 
     eventResponse = CreateEventA(0, manualReset, initialState, 0);
     eventPointer = eventResponse;
@@ -53,8 +53,8 @@ void Sys_CreateEvent(int manualReset, int initialState, void** evt)
 
 void Sys_CreateThread(unsigned int threadContext, void(*function)(unsigned int))
 {
-    HANDLE newThread; // eax
-    DWORD lastError; // eax
+    HANDLE newThread;
+    DWORD lastError;
 #ifdef _DEBUG
     if (threadFunc[threadContext]
         && !Assert_MyHandler(
@@ -462,7 +462,7 @@ char Sys_SpawnStreamThread(void(*function)(unsigned int))
 
 void Sys_StreamSleep()
 {
-    DWORD returnedValue; // eax
+    DWORD returnedValue;
 
     SetEvent(streamCompletedEvent);
     SetEvent(streamDatabasePausedReading);

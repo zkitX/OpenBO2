@@ -199,6 +199,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\gfx_d3d\rb_light.h" />
+    <ClInclude Include="source\gfx_d3d\r_model.h" />
+    <ClInclude Include="source\gfx_d3d\rb_tess.h" />
+    <ClInclude Include="source\gfx_d3d\r_meshdata.h" />
+    <ClInclude Include="source\gfx_d3d\r_rendercmds.h" />
+    <ClInclude Include="source\gfx_d3d\rb_state.h" />
+    <ClInclude Include="source\gfx_d3d\r_scene.h" />
+    <ClInclude Include="source\gfx_d3d\rb_stats.h" />
+    <ClInclude Include="source\gfx_d3d\r_init.h" />
+    <ClInclude Include="source\gfx_d3d\r_buffers.h" />
+    <ClInclude Include="source\gfx_d3d\r_legacy.h" />
     <ClInclude Include="source\universal\memfile.h" />
     <ClInclude Include="source\gfx_d3d\r_font.h" />
     <ClInclude Include="source\universal\com_vector.h" />
@@ -370,8 +381,19 @@
     <ClInclude Include="source\win32\win_configure.h" />
     <ClInclude Include="source\win32\timing.h" />
     <ClInclude Include="source\xanim\xanim.h" />
+    <ClInclude Include="source\qcommon\threads_interlock.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\gfx_d3d\rb_light.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_model.cpp" />
+    <ClCompile Include="source\gfx_d3d\rb_tess.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_meshdata.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_rendercmds.cpp" />
+    <ClCompile Include="source\gfx_d3d\rb_state.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_scene.cpp" />
+    <ClCompile Include="source\gfx_d3d\rb_stats.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_init.cpp" />
+    <ClCompile Include="source\gfx_d3d\r_buffers.cpp" />
     <ClCompile Include="source\universal\memfile.cpp" />
     <ClCompile Include="source\gfx_d3d\r_font.cpp" />
     <ClCompile Include="source\universal\com_math_anglevectors.cpp" />

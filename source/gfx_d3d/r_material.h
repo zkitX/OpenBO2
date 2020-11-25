@@ -12,6 +12,31 @@ struct MaterialVertexShader;
 struct MaterialPixelShader;
 struct MaterialShaderArgument;
 
+enum MaterialVertexDeclType
+{
+	VERTDECL_GENERIC = 0x0,
+	VERTDECL_PACKED = 0x1,
+	VERTDECL_PACKED_LMAP_VC = 0x2,
+	VERTDECL_WORLD = 0x3,
+	VERTDECL_PACKED_WORLD = 0x4,
+	VERTDECL_PACKED_WORLD_T1N0 = 0x5,
+	VERTDECL_PACKED_WORLD_T1N1 = 0x6,
+	VERTDECL_PACKED_WORLD_T2N0 = 0x7,
+	VERTDECL_PACKED_WORLD_T2N1 = 0x8,
+	VERTDECL_PACKED_WORLD_T2N2 = 0x9,
+	VERTDECL_PACKED_WORLD_T3N0 = 0xA,
+	VERTDECL_PACKED_WORLD_T3N1 = 0xB,
+	VERTDECL_PACKED_WORLD_T3N2 = 0xC,
+	VERTDECL_PACKED_WORLD_T4N0 = 0xD,
+	VERTDECL_PACKED_WORLD_T4N1 = 0xE,
+	VERTDECL_PACKED_WORLD_T4N2 = 0xF,
+	VERTDECL_POS_TEX = 0x10,
+	VERTDECL_PARTICLECLOUD = 0x11,
+	VERTDECL_POS_COLOR = 0x12,
+	VERTDECL_POS_FP16TEX = 0x13,
+	VERTDECL_COUNT = 0x14,
+};
+
 struct MaterialInfo
 {
 	const char* name;
@@ -124,6 +149,19 @@ struct MaterialShaderArgument
 	MaterialArgumentDef u;
 };
 
+struct VertUsage
+{
+	int index;
+	VertUsage* next;
+};
+
+struct MaterialUsage
+{
+	int memory;
+	VertUsage* verts;
+	Material* material;
+};
+
 struct MaterialStreamRouting
 {
 	char source;
@@ -181,8 +219,4 @@ struct MaterialVertexShader
 {
 	const char* name;
 	MaterialVertexShaderProgram prog;
-};
-
-class r_material
-{
 };

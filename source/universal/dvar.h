@@ -3,6 +3,7 @@
 #include <gfx_d3d/r_utils.h>
 
 #include <qcommon/com_clients.h>
+#include <qcommon/threads_interlock.h>
 #include <universal/memfile.h>
 
 enum dvarType_t
@@ -29,12 +30,6 @@ enum DvarSetSource
 	DVAR_SOURCE_EXTERNAL = 0x1,
 	DVAR_SOURCE_SCRIPT = 0x2,
 	DVAR_SOURCE_DEVGUI = 0x3,
-};
-
-struct FastCriticalSection
-{
-	volatile int readCount;
-	volatile int writeCount;
 };
 
 union DvarValue

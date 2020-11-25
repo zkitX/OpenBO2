@@ -1,10 +1,10 @@
 #include "r_gpu_timer.h"
+#include "r_init.h"
 
 #include <qcommon/com_clients.h>
+#include <qcommon/threads.h>
 #include <universal/assertive.h>
 #include <universal/win_common.h>
-
-DxGlobals dx;
 
 void R_GPU_CalcDerivedTimers(GPUTimerFrame* timerFrame)
 {
@@ -286,16 +286,16 @@ void R_GPU_EndFrameCallback()
 
 void R_GPU_BeginFrame(void)
 {
-    GPUTimerFrame* v0; // esi
+    GPUTimerFrame* timerFrame; // esi
     int v1; // eax
     int v2; // ecx
 
-    s_displayMode = Dvar_GetInt(r_gpuTimers);
+    s_displayMode = (GPUTimerDisplayMode)Dvar_GetInt(r_gpuTimers);
     if (s_displayMode)
     {
-        v0 = &s_timerFrames[s_writeIndex];
-        v0->frameIndex = s_frameIndex;
-        if (v0->isCurrent
+        timerFrame = &s_timerFrames[s_writeIndex];
+        timerFrame->frameIndex = s_frameIndex;
+        if (timerFrame->isCurrent
             && !Assert_MyHandler(
                 __FILE__,
                 __LINE__,
@@ -306,8 +306,8 @@ void R_GPU_BeginFrame(void)
             __debugbreak();
         }
         ++s_frameIndex;
-        v0->isCurrent = 1;
-        v1 = &v0->timers[0].hide;
+        timerFrame->isCurrent = 1;
+        v1 = &timerFrame->timers[0].hide;
         v2 = 40;
         do
         {
@@ -327,7 +327,7 @@ void R_GPU_BeginFrame(void)
 
 void R_GPU_EndFrame(void)
 {
-    GPUTimerFrame* v0; // esi
+    GPUTimerFrame* timerFrame; // esi
     bool v1; // sf
     signed int v2; // eax
 
@@ -338,8 +338,8 @@ void R_GPU_EndFrame(void)
         {
             __debugbreak();
         }
-        v0 = &s_timerFrames[s_writeIndex];
-        if (!v0->isCurrent
+        timerFrame = &s_timerFrames[s_writeIndex];
+        if (!timerFrame->isCurrent
             && !Assert_MyHandler(
                 __FILE__,
                 __LINE__,
@@ -351,7 +351,7 @@ void R_GPU_EndFrame(void)
         }
         v2 = (s_writeIndex + 1) & 0x8000003F;
         v1 = v2 < 0;
-        v0->isCurrent = 0;
+        timerFrame->isCurrent = 0;
         if (v1)
             v2 = ((v2 - 1) | 0xFFFFFFC0) + 1;
         s_writeIndex = v2;

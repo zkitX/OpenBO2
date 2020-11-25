@@ -67,6 +67,13 @@ union vec4_t
 	};
 };
 
+struct float44 {
+	union {
+		vec4_t m[4];
+		float member[16];
+	};
+};
+
 inline vec4_t operator +(const vec4_t vec1, const vec4_t vec2) {
 	vec4_t out;
 

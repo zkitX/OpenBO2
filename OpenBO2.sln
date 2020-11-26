@@ -14,6 +14,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libtomcrypt", "libs\libtomc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tommath", "libs\libtommath-1.2.0\libtommath_VS2008.vcxproj", "{42109FEE-B0B9-4FCD-9E56-2863BF8C55D2}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jobqueue", "libs\tl\jobqueue\jobqueue\jobqueue.vcxproj", "{CBCAA562-589E-4759-AEBA-655F2FB1C079}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -70,6 +72,18 @@ Global
 		{42109FEE-B0B9-4FCD-9E56-2863BF8C55D2}.t6mp-Debug|x64.Build.0 = Debug|x64
 		{42109FEE-B0B9-4FCD-9E56-2863BF8C55D2}.t6mp-Debug|x86.ActiveCfg = Debug|Win32
 		{42109FEE-B0B9-4FCD-9E56-2863BF8C55D2}.t6mp-Debug|x86.Build.0 = Debug|Win32
+		{CBCAA562-589E-4759-AEBA-655F2FB1C079}.Debug|x64.ActiveCfg = Debug|x64
+		{CBCAA562-589E-4759-AEBA-655F2FB1C079}.Debug|x64.Build.0 = Debug|x64
+		{CBCAA562-589E-4759-AEBA-655F2FB1C079}.Debug|x86.ActiveCfg = Debug|Win32
+		{CBCAA562-589E-4759-AEBA-655F2FB1C079}.Debug|x86.Build.0 = Debug|Win32
+		{CBCAA562-589E-4759-AEBA-655F2FB1C079}.Release|x64.ActiveCfg = Release|x64
+		{CBCAA562-589E-4759-AEBA-655F2FB1C079}.Release|x64.Build.0 = Release|x64
+		{CBCAA562-589E-4759-AEBA-655F2FB1C079}.Release|x86.ActiveCfg = Release|Win32
+		{CBCAA562-589E-4759-AEBA-655F2FB1C079}.Release|x86.Build.0 = Release|Win32
+		{CBCAA562-589E-4759-AEBA-655F2FB1C079}.t6mp-Debug|x64.ActiveCfg = Debug|x64
+		{CBCAA562-589E-4759-AEBA-655F2FB1C079}.t6mp-Debug|x64.Build.0 = Debug|x64
+		{CBCAA562-589E-4759-AEBA-655F2FB1C079}.t6mp-Debug|x86.ActiveCfg = Debug|Win32
+		{CBCAA562-589E-4759-AEBA-655F2FB1C079}.t6mp-Debug|x86.Build.0 = Debug|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -226,9 +226,9 @@ void R_SetSunFromDvars(sunflare_t* sun)
 
 void R_LoadSunThroughDvars(const char* sunName, sunflare_t* sun)
 {
-    const char* m_sunName; // esi
-    sunflare_t* sunflare; // edi
-    const char* sunFileName; // esi
+    const char* m_sunName;
+    sunflare_t* sunflare;
+    const char* sunFileName;
 
     m_sunName = sunName;
     if (!sunName

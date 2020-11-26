@@ -603,6 +603,9 @@
     <ClCompile Include="source\gfx_d3d\r_warn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\gfx_d3d\r_draw_method.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\win32\win_main.h">
@@ -1215,6 +1218,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\gfx_d3d\r_warn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\gfx_d3d\r_draw_method.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

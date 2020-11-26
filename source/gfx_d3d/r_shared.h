@@ -7,6 +7,7 @@
 #include "r_buffers.h"
 #include "r_debug.h"
 #include "r_drawsurf.h"
+#include "r_draw_method.h"
 #include "r_dobj_skin.h"
 #include "r_dvars.h"
 #include "r_font.h"

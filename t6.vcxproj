@@ -199,6 +199,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\gfx_d3d\r_draw_method.h" />
     <ClInclude Include="source\gfx_d3d\r_warn.h" />
     <ClInclude Include="source\gfx_d3d\r_marks.h" />
     <ClInclude Include="source\gfx_d3d\r_staticmodel_load_obj.h" />
@@ -405,6 +406,7 @@
     <ClInclude Include="source\qcommon\threads_interlock.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\gfx_d3d\r_draw_method.cpp" />
     <ClCompile Include="source\gfx_d3d\r_warn.cpp" />
     <ClCompile Include="source\gfx_d3d\r_marks.cpp" />
     <ClCompile Include="source\gfx_d3d\r_staticmodel_load_obj.cpp" />

@@ -74,7 +74,7 @@ struct GfxSpotShadow
 	int clearScreen;
 };
 
-class GfxBackEndData
+struct GfxBackEndData
 {
 	char surfsBuffer[1];
 	FxCodeMeshData codeMeshes[1];
@@ -148,3 +148,5 @@ class GfxBackEndData
 	WindState gfxWindState;
 	GfxFrameStats frameStats;
 };
+
+GfxBackEndData* frontEndDataOut;

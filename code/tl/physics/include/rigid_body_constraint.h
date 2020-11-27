@@ -94,7 +94,7 @@ class rigid_body_constraint_ragdoll : rigid_body_constraint
 
 class rigid_body_constraint_wheel : rigid_body_constraint
 {
-	__declspec(align(8)) phys_vec3 m_b2_hitp_loc;
+	phys_vec3 m_b2_hitp_loc;
 	phys_vec3 m_b2_hitn_loc;
 	phys_vec3 m_b1_wheel_center_loc;
 	phys_vec3 m_b1_suspension_dir_loc;

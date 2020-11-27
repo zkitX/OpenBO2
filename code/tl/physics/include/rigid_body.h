@@ -46,6 +46,10 @@ public:
 	float m_b1_ud_limit_co_;
 	float m_b1_ud_limit_si_;
 	float m_b1_ud_active_limit_co_;
+
+	void set_b1_ud_loc(const phys_vec3* b1_ud_loc);
+	void set(const phys_vec3* b1_ud_loc, const float theta_limit);
+	void set_theta_limit(const float theta_limit);
 };
 
 struct rb_inplace_partition_node
@@ -68,6 +72,7 @@ struct rb_inplace_partition_node
 
 class rigid_body
 {
+public:
 	phys_vec3 m_last_position;
 	phys_vec3 m_moved_vec;
 	float m_smallest_lambda;
@@ -95,16 +100,35 @@ class rigid_body
 	float m_a_drag_coef;
 	void* m_userdata;
 	rb_inplace_partition_node m_partition_node;
+
+	void set_max_avel(const float max_avel);
+	void add_torque(const phys_vec3* torque);
+	void dangerous_set_t_vel(const phys_vec3* t_vel);
+	void dangerous_set_a_vel(const phys_vec3* a_vel);
+	void add_force(const phys_vec3* force);
+	void swap_last_position();
+	void adjust_col_moved_vec(const float lambda);
+	void set_inertia(const phys_vec3* inertia);
+	void set_mass(const float mass);
+	void set(const float mass, const phys_vec3* inertia, const phys_mat44* mat, const phys_vec3* t_vel, const phys_vec3* a_vel, const int stable_min_contact_count);
+	void add_force(const phys_vec3* force, const phys_vec3* point, const float torque_mult);
+	void update_last_position();
 };
 
 class user_rigid_body : rigid_body
 {
+public:
 	const phys_mat44* m_dictator;
 	phys_mat44 m_dictator_mat;
+
+	void setPosition(const phys_mat44* const dictator);
+	void set(const phys_mat44* const dictator);
 };
 
 class rigid_body_pair_key
 {
+public:
 	rigid_body* m_b1;
 	rigid_body* m_b2;
+	rigid_body_pair_key(rigid_body* const b1, rigid_body* const b2);
 };

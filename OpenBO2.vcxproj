@@ -116,6 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)code\tl\physics\include;$(ProjectDir)code\tl\jobqueue;$(ProjectDir)code\tl\base\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,7 +143,22 @@
     <ClInclude Include="code\tl\base\include\tl_defs.h" />
     <ClInclude Include="code\tl\base\include\tl_system.h" />
     <ClInclude Include="code\tl\base\include\tl_thread.h" />
+    <ClInclude Include="code\tl\defs.h" />
     <ClInclude Include="code\tl\jobqueue\jobqueue.h" />
+    <ClInclude Include="code\tl\jobqueue\jobqueue_atomic_heap.h" />
+    <ClInclude Include="code\tl\physics\include\collision\phys_board_phase.h" />
+    <ClInclude Include="code\tl\physics\include\collision\phys_board_phase_base.h" />
+    <ClInclude Include="code\tl\physics\include\collision\phys_collision.h" />
+    <ClInclude Include="code\tl\physics\include\collision\phys_gjk.h" />
+    <ClInclude Include="code\tl\physics\include\constraint_solver\pulse_sum_normal.h" />
+    <ClInclude Include="code\tl\physics\include\phys_avl_tree.h" />
+    <ClInclude Include="code\tl\physics\include\phys_mem_new.h" />
+    <ClInclude Include="code\tl\physics\include\phys_mutex.h" />
+    <ClInclude Include="code\tl\physics\include\phys_transient_allocator.h" />
+    <ClInclude Include="code\tl\physics\include\phys_util.h" />
+    <ClInclude Include="code\tl\physics\include\rbc_defs\rbc_def_contact.h" />
+    <ClInclude Include="code\tl\physics\include\rigid_body_constraint.h" />
+    <ClInclude Include="code\tl\physics\include\rigid_body.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\tl\jobqueue\jobqueue.cpp" />
